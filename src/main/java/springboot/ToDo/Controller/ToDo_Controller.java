@@ -76,14 +76,24 @@ public class ToDo_Controller {
 ///////////////////////////     INSERT   Automatic     ///////////////////////////////////////////////////////////////////
     @RequestMapping(value  = "/insert", method= RequestMethod.GET)
     public String get_insert_todo(ModelMap modelMap){
+
+        // making data ready to pre-fill in todo_object
         String u_retrived = (String) modelMap.get("uid");
-        Todo todo = new Todo(toDo_services.listAllToDo().size()+1,u_retrived,"HelloWorld",LocalDate.now(), LocalDate.now().plusYears(1),false );
-        modelMap.put("todooo", todo);
+        Todo todo_obj = new Todo(toDo_services.listAllToDo().size()+1,u_retrived,"HelloWorld",LocalDate.now(), LocalDate.now().plusYears(1),false );
+
+        // this injects our pre-fill the data from object to model to front_end
+        modelMap.put("todooo", todo_obj);
+
         return "insert"; // return  VIEW OUTPUT = insert.jsp // no @ResponseBody
     }
     @RequestMapping(value  = "/insert", method= RequestMethod.POST)
     public String post_insert_data(ModelMap modelMap, Todo todooo){
-        toDo_services.insert_todo(String.valueOf(todooo.getId()), todooo.getUsername(), todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
+
+        // retrieving username(=u_retrived) and hard coding username(u_retrived) intentionally into object while inserting as below.
+        // so basically username is NOT TWO way binding.
+        // except user, everything else will be 2 way binding...
+        String u_retrived = (String) modelMap.get("uid");
+        toDo_services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
         return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
     }
 

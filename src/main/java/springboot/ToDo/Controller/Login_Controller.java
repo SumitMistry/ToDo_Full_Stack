@@ -31,8 +31,8 @@ public class Login_Controller {
     }
 
     @RequestMapping(value = "/login2", method = RequestMethod.POST)
-    public String actual_login_happens_here(@RequestParam("uid") String usernr,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data
-                                            @RequestParam("pass") String passw,      // @RequestParam annotation binds Servlet request(from HTML) parameters to method argument
+    public String actual_login_happens_here( @RequestParam("uid") String usernr,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data
+                                             @RequestParam("pass") String passw,      // @RequestParam annotation binds Servlet request(from HTML) parameters to method argument
                                             ModelMap modelMap){
 
         // Step-1 Validation
