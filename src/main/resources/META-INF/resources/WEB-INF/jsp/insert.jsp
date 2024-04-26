@@ -32,18 +32,24 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
             <form:form method="post" modelAttribute="todooo">
                 <p><label>id : </label>
                     <form:input type="text" path="id" required="required"   />
+                    <form:errors path="id"  />
                 <p><label>username : </label>
                     <form:input type="text" path="username" required="required"    />
+                    <form:errors path="username"    />
                 <p><label>description : </label>
                     <form:input type="text" path="description" required="required"   />
+                    <form:errors path="description"   />
                 <p><label>creationDate : </label>
                     <form:input type="text" path="creationDate" required="required"    />
                 <p><label>targetDate : </label>
                     <form:input type="text" path="targetDate" required="required"    />
+                    <form:errors path="targetDate"   />
                 <p><label>done : </label>
                     <form:input type="text" path="done" required="required"    />
+                    <form:errors path="done"  />
 
                 <p><input type="submit" value=" + "  class="btn btn-success"> </input>
+
             </form:form>
 
             <p>

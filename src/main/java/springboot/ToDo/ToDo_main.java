@@ -11,7 +11,7 @@ public class ToDo_main {
 		System.out.println("> ToDo SpringBoot Application has started...");
 		System.out.println(" > Go and explore @Controller \n   http://localhost:8080        			           http://localhost:8080/actuator \n" +
 				"   http://localhost:8080/actuator/health 	   			http://localhost:8080/api/todo/health\n\n" +
-				"   http://localhost:8080/api/todo/login\n" +
+				"  														http://localhost:8080/api/todo/login\n" +
 				"   http://localhost:8080/api/todo/login2\n" +
 				"   http://localhost:8080/api/todo/list  \n" +
 				"   http://localhost:8080/api/todo/insert \n"  +

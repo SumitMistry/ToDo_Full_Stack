@@ -1,15 +1,14 @@
 package springboot.ToDo.Controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Services.ToDo_Services;
 
@@ -75,7 +74,7 @@ public class ToDo_Controller {
 
 ///////////////////////////     INSERT   Automatic     ///////////////////////////////////////////////////////////////////
     @RequestMapping(value  = "/insert", method= RequestMethod.GET)
-    public String get_insert_todo(ModelMap modelMap){
+    public String get_insert_todo( ModelMap modelMap){
 
         // making data ready to pre-fill in todo_object
         String u_retrived = (String) modelMap.get("uid");
@@ -87,7 +86,16 @@ public class ToDo_Controller {
         return "insert"; // return  VIEW OUTPUT = insert.jsp // no @ResponseBody
     }
     @RequestMapping(value  = "/insert", method= RequestMethod.POST)
-    public String post_insert_data(ModelMap modelMap, Todo todooo){
+    public String post_insert_data( ModelMap modelMap, @Valid @ModelAttribute("todooo") Todo todooo, BindingResult bindingResult){ //   @Valid can be used to validate beans "BEANS" ONLY
+
+        // binding validation errors if found in form, user will be redirected back to the same page.
+        // Errors will be hidden bcos of this...
+        if(bindingResult.hasErrors()){
+            int x = bindingResult.getErrorCount();
+            System.out.println(x); l1.info(" error  count = " + x );;
+            return  "insert";    //  --> "redirect:insert" returns   /insert   endpoint
+            // return "insert";   --> return "insert"    returns    insert.jsp
+        }
 
         // retrieving username(=u_retrived) and hard coding username(u_retrived) intentionally into object while inserting as below.
         // so basically username is NOT TWO way binding.

@@ -41,8 +41,8 @@ public class ToDo_Services {
                                   LocalDate targetDate,
                                   boolean done) {
 
-        int i1 = id.isEmpty() ? listToDo.size()+1 : Integer.valueOf(id);
-        boolean addedorNot = listToDo.add(new Todo(  i1 , username,description,creationDate,targetDate, done));
+        //int i1 = id.isEmpty() ? listToDo.size()+1 : Integer.valueOf(id);
+        boolean addedorNot = listToDo.add(new Todo(  Integer.parseInt(id) , username,description,creationDate,targetDate, done));
         l1.info("insertingg(insert_todo).... given data T/F ==" + addedorNot);
         return  listToDo;
     }

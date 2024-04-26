@@ -11,17 +11,17 @@ import java.util.Date;
 public class Todo {
 
     @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
-    @Digits(message="Number should contain 6 digits.", fraction = 0, integer = 6)
+    @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
     private int id;
     @Email(message = "springboot-starter-validation-@size---> username -->  ALLOWED to enter only EMAIL ")
     private String username;
     @Size(min=7 ,max = 12, message = "springboot-starter-validation-@size---> Description --> ALLOWED to enter only 7-12 char ")
     private String description;
-    // DateTimeFormat(pattern = "dd/MM/yyyy")
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate creationDate;
-    @Future(message ="springboot-starter-validation-@size---> ID -->  ALLOWED to enter only FUTURE dates " ) // to check date in future
+    @Future(message ="springboot-starter-validation-@size---> targetDate -->  ALLOWED to enter only FUTURE dates " ) // to check date in future
     private LocalDate targetDate;
-    @NotBlank @NonNull @NotEmpty
+    @NotNull(message = "springboot-starter-validation-@size---> DONE -->  ALLOWED to enter only boolean done's NON NULL ")
     private boolean done;
     //private Blob attachment;
 
