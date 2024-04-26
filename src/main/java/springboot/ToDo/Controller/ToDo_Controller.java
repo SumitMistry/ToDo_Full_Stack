@@ -42,7 +42,7 @@ public class ToDo_Controller {
     }
 
 
-    ///////////////////////////     INSERT 2       ///////////////////////////////////////////////////////////////////
+    ///////////////////////////     INSERT 2  MANUAL     ///////////////////////////////////////////////////////////////////
     @RequestMapping(value="/insert2" , method=RequestMethod.GET)
     public String get_insert_todo2(){
          return "insert2";
@@ -73,10 +73,11 @@ public class ToDo_Controller {
 
 
 
-///////////////////////////     INSERT        ///////////////////////////////////////////////////////////////////
+///////////////////////////     INSERT   Automatic     ///////////////////////////////////////////////////////////////////
     @RequestMapping(value  = "/insert", method= RequestMethod.GET)
     public String get_insert_todo(ModelMap modelMap){
-        Todo todo = new Todo(toDo_services.listAllToDo().size()+1,"Unkn","HelloWorld",LocalDate.now(), LocalDate.now().plusYears(1),false );
+        String u_retrived = (String) modelMap.get("uid");
+        Todo todo = new Todo(toDo_services.listAllToDo().size()+1,u_retrived,"HelloWorld",LocalDate.now(), LocalDate.now().plusYears(1),false );
         modelMap.put("todooo", todo);
         return "insert"; // return  VIEW OUTPUT = insert.jsp // no @ResponseBody
     }

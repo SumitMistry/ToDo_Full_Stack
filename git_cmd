@@ -13,7 +13,7 @@
         git init
         git add .
         git commit -m "Initial commit"
-        git remote add origin https://github.com/SumitMistry/Bookstore-Java-Rest-API-Sprinboot.git
+        git remote add origin https://github.com/SumitMistry/ToDo_Full_Stack.git
         git branch -M main
         git push -u -f origin main
 
