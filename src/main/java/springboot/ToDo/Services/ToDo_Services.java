@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class ToDo_Services {
@@ -45,6 +46,20 @@ public class ToDo_Services {
         boolean addedorNot = listToDo.add(new Todo(  Integer.parseInt(id) , username,description,creationDate,targetDate, done));
         l1.info("insertingg(insert_todo).... given data T/F ==" + addedorNot);
         return  listToDo;
+    }
+
+
+
+///////////////////////////     DELETE
+
+    public void deleteByID(int id ){
+        // PREDICATE functional programming
+        Predicate<? super Todo> predicate = todo2 -> todo2.getId() == id;
+
+        System.out.println("-------------------------------------------------deleted:::" + id); l1.info("DELETEDD::::::::" + id );
+
+        listToDo.removeIf(predicate);
+        // this predicate runs on every list item, and if the condition(iterated getId==user input id) matches then it will apply(remove) list.remove to that record...
     }
 
 }

@@ -105,7 +105,15 @@ public class ToDo_Controller {
         return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
     }
 
-
+///////////////////////////     DELETE
+    @RequestMapping(value = "delete", method = RequestMethod.DELETE )
+    public String deleteByID(@RequestParam(value = "id") int id ){
+        toDo_services.deleteByID(id);
+        System.out.println("-------------------------------------------------deleted:::" + id); l1.info("DELETEDD::::::::" + id );
+        l1.info("-------------------------------------------------deleted:::" + id); l1.info("DELETEDD::::::::" + id );
+        //return "listall";
+        return "redirect:list";
+    }
 
 }
 
