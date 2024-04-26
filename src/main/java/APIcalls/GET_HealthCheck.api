@@ -1,0 +1,5 @@
+
+//## GET
+//## https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html#converting-curl-requests
+
+ // GET{http://localhost:8080/api/todo/health}

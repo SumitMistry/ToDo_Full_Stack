@@ -1,0 +1,25 @@
+------First time setup here----
+        git config --list
+        # Observe the username and email listed here are config already as below:
+                user.name=Sumit Mistry
+                user.email=sumitmistry@l--------->.com
+
+        # If not use the below command to config:
+                git config --global user.name "Sumit Mistry"
+                git config --global user.email "sumitmistry@l--------->.com"
+
+        # Created git Repo on github manually
+
+        git init
+        git add .
+        git commit -m "Initial commit"
+        git remote add origin https://github.com/SumitMistry/Bookstore-Java-Rest-API-Sprinboot.git
+        git branch -M main
+        git push -u -f origin main
+
+
+------Second time push for updates only----
+
+        git add .
+        git commit -m "Initial commit"
+        git push -u -f origin main
