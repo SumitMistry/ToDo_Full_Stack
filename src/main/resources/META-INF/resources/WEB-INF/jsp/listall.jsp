@@ -32,6 +32,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                         <th> creationDate </th>
                         <th> targetDate </th>
                         <th> done </th>
+                        <th> Attachment? </th>
                         <th> Delete? </th>
                         <th> Update? </th>
 
@@ -46,8 +47,9 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
+                            <td> <a href="attach?id=${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.attach} </td>
                             <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x </a> id:${eentry.id} </td>
-                            <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> + </a> id:${eentry.id} </td>
+                            <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> +🖕 </a> id:${eentry.id} </td>
                         </tr>
                     </test1:forEach>
                 </tbody>

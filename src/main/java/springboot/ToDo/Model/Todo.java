@@ -23,7 +23,7 @@ public class Todo {
     private LocalDate targetDate;
     @NotNull(message = "springboot-starter-validation-@size---> DONE -->  ALLOWED to enter only boolean done's NON NULL ")
     private boolean done;
-    //private Blob attachment;
+    //private Blob attach;
 
 
     public LocalDate getCreationDate() {
@@ -34,14 +34,14 @@ public class Todo {
         this.creationDate = creationDate;
     }
 
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done /*, Blob attachment */) {
+    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done /*, Blob attach */) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.creationDate =creationDate;
         this.targetDate = targetDate;
         this.done = done;
-        //this.attachment = attachment;
+        //this.attach = attach;
     }
 
     public int getId() {
@@ -84,12 +84,12 @@ public class Todo {
         this.done = done;
     }
 
-//    public Blob getAttachment() {
-//        return attachment;
+//    public Blob getattach() {
+//        return attach;
 //    }
 //
-//    public void setAttachment(Blob attachment) {
-//        this.attachment = attachment;
+//    public void setattach(Blob attach) {
+//        this.attach = attach;
 //    }
 
     @Override
@@ -101,7 +101,7 @@ public class Todo {
                 ", targetDate=" + targetDate +
                 ", creationDate=" + creationDate +
                 ", done=" + done +
-                ", attachment= XX"  +
+                ", attach= XX"  +
                 '}';
     }
 }

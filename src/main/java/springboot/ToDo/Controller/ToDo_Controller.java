@@ -33,6 +33,7 @@ public class ToDo_Controller {
                                 this.toDo_services = toDo_services;
                             }
 
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         List<Todo> outputList = toDo_services.listAllToDo();
@@ -162,6 +163,14 @@ public class ToDo_Controller {
         // if no validation error: Insert data here
         toDo_services.insert_todo(String.valueOf(todoo9.getId()) ,todoo9.getUsername(), todoo9.getDescription(), todoo9.getCreationDate(), todoo9.getTargetDate(), todoo9.getDone());
         return "redirect:list";
+    }
+
+
+
+    @RequestMapping(value = "attach", method = RequestMethod.GET)
+    public String get_attach_function(ModelMap modelMap){
+                                //modelMap.addAttribute("button_code", "success");
+        return "listall";
     }
 
 }

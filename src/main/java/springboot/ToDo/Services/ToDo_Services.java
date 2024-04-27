@@ -50,7 +50,7 @@ public class ToDo_Services {
 
 
 
-///////////////////////////     DELETE
+
     public void deleteByID(int id ){
         // PREDICATE functional programming
         Predicate<? super Todo> predicate = todo2 -> todo2.getId() == id;
@@ -65,6 +65,8 @@ public class ToDo_Services {
     public List<Todo> findByID_from_List(int id){
         Predicate <? super Todo>  predicate = tod2 -> tod2.getId() == id;
         List<Todo> list =  listToDo.stream().filter(predicate).toList();
+        // or List<Todo> list =  listToDo.stream().filter(predicate).toList();
+        // or Todo t1=  listToDo.stream().filter(predicate).findFirst().get();
         return list;
     }
 
