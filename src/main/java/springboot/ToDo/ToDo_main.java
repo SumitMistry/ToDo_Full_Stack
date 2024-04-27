@@ -21,7 +21,8 @@ public class ToDo_main {
 				"   http://localhost:8080/api/todo/insert2 -> (+)Manual\n" +
 				"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?id=3 \n" +
 				"   http://localhost:8080/api/todo/delete?id=2          http://localhost:8080/api/todo/delete?id=1 \n" +
-				"   http://localhost:8080/api/todo/find?id=3            http://localhost:8080/api/todo/find?id=2  \n "
+				"   http://localhost:8080/api/todo/find?id=3            http://localhost:8080/api/todo/find?id=2  \n " +
+				"   http://localhost:8080/api/todo/attach          		http://localhost:8080/api/todo/attach?id=1  \n "
 
 
 

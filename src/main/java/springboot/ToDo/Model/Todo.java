@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -23,25 +24,32 @@ public class Todo {
     private LocalDate targetDate;
     @NotNull(message = "springboot-starter-validation-@size---> DONE -->  ALLOWED to enter only boolean done's NON NULL ")
     private boolean done;
-    //private Blob attach;
+    private Blob attach;
 
 
-    public LocalDate getCreationDate() {
-        return creationDate;
+
+    public Todo(){
+
     }
 
-    public void setCreationDate(LocalDate creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done /*, Blob attach */) {
+    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.creationDate =creationDate;
         this.targetDate = targetDate;
         this.done = done;
-        //this.attach = attach;
+
+    }
+
+    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done , Blob attach ) {
+        this.id = id;
+        this.username = username;
+        this.description = description;
+        this.creationDate =creationDate;
+        this.targetDate = targetDate;
+        this.done = done;
+        this.attach = attach;
     }
 
     public int getId() {
@@ -76,6 +84,17 @@ public class Todo {
         this.targetDate = targetDate;
     }
 
+
+
+    public LocalDate getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        this.creationDate = creationDate;
+    }
+
+
     public boolean getDone() {
         return done;
     }
@@ -84,13 +103,13 @@ public class Todo {
         this.done = done;
     }
 
-//    public Blob getattach() {
-//        return attach;
-//    }
-//
-//    public void setattach(Blob attach) {
-//        this.attach = attach;
-//    }
+    public Blob getattach() {
+        return attach;
+    }
+
+    public void setattach(Blob attach) {
+        this.attach = attach;
+    }
 
     @Override
     public String toString() {
@@ -101,7 +120,7 @@ public class Todo {
                 ", targetDate=" + targetDate +
                 ", creationDate=" + creationDate +
                 ", done=" + done +
-                ", attach= XX"  +
+                ", attach="  +attach+
                 '}';
     }
 }
