@@ -11,7 +11,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
         <div>
             <h1>
                 <p> ToDo listing page... where ...
-                <p>your USER: ${uid}            Pass: ${pass}
+                <p>your USER: ${uid_email}            Pass: ${pass}
             </h1>
             <hr>
         </div>
@@ -35,7 +35,6 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                         <th> Delete? </th>
                         <th> Update? </th>
 
-
                     </tr>
                 </thead>
                 <tbody>
@@ -47,15 +46,15 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
-                            <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x  </a>  id= ${eentry.id} </td>
-                            <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> + </a> id= ${eentry.id} </td>
+                            <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x </a> id:${eentry.id} </td>
+                            <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> + </a> id:${eentry.id} </td>
                         </tr>
                     </test1:forEach>
                 </tbody>
             </table>
-            AUTO   : <a href="insert" class="btn btn-success"> Insert </a>
+            AUTO VALIDATION: <a href="insert" class="btn btn-success"> Insert </a>
             <p>
-            MANUAL : <a href="insert2" class="btn btn-success"> Insert2 </a>
+            MANUAL: <a href="insert2" class="btn btn-success"> Insert2 </a>
         </div>
         <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
         <script src="\webjars\jquery\3.6.0\jquery.min.js"> </script>

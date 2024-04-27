@@ -9,8 +9,8 @@
             <pre>    ${authmsg}         <pre>
 
             <form method = "post">
-                <label>UID : </label>
-                <input type="text" name="uid">
+                <label>Email : </label>
+                <input type="text" name="uid_email">
                 <label>Password : </label>
                 <input type="text" name="pass">
                 <input type="submit">

@@ -51,7 +51,6 @@ public class ToDo_Services {
 
 
 ///////////////////////////     DELETE
-
     public void deleteByID(int id ){
         // PREDICATE functional programming
         Predicate<? super Todo> predicate = todo2 -> todo2.getId() == id;
@@ -61,5 +60,17 @@ public class ToDo_Services {
         listToDo.removeIf(predicate);
         // this predicate runs on every list item, and if the condition(iterated getId==user input id) matches then it will apply(remove) list.remove to that record...
     }
+
+
+    public List<Todo> findByID_from_List(int id){
+        Predicate <? super Todo>  predicate = tod2 -> tod2.getId() == id;
+        List<Todo> list =  listToDo.stream().filter(predicate).toList();
+        return list;
+    }
+
+
+
+
+
 
 }

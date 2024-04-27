@@ -16,7 +16,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
             <h1>
                 <p> Enter NEW TODO details:
                 <p> ToDo listing page... where ...
-                <p> your USER: ${uid}            Pass: ${pass}
+                <p> your USER: ${uid_email}            Pass: ${pass}
             </h1>
                 <p> ${listMapVar}   <---- this is not available because we have not put variable =listMapVar into SessionAttributes({x,y,z, listMapVar})
             <hr> <p>
