@@ -1,4 +1,5 @@
 <%@ taglib prefix="test1" uri="http://java.sun.com/jsp/jstl/core" %>
+
 META-INF\resources\webjars\bootstrap\5.1.3\css\bootstrap.min.css
 META-INF\resources\webjars\bootstrap\5.1.3\js\bootstrap.min.js
 META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
@@ -32,9 +33,9 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                         <th> creationDate </th>
                         <th> targetDate </th>
                         <th> done </th>
-                        <th> Attachment? </th>
-                        <th> Delete? </th>
-                        <th> Update? </th>
+                        <th> Attachment </th>
+                        <th> Delete </th>
+                        <th> Update (No Validation)</th>
 
                     </tr>
                 </thead>
@@ -54,9 +55,12 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                     </test1:forEach>
                 </tbody>
             </table>
-            AUTO VALIDATION: <a href="insert" class="btn btn-success"> Insert </a>
+            1.AUTO VALIDATION: <a href="insert" class="btn btn-success"> Insert </a>
             <p>
-            MANUAL: <a href="insert2" class="btn btn-success"> Insert2 </a>
+            2.MANUAL: <a href="insert2" class="btn btn-success"> Insert2 </a>
+            <p>
+            3.SpringDataJPA: <a href="hardcode1" class="btn btn-success"> hardcode1 </a> <a href="insert3" class="btn btn-success"> insert3 </a>
+            <p>
         </div>
         <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
         <script src="\webjars\jquery\3.6.0\jquery.min.js"> </script>

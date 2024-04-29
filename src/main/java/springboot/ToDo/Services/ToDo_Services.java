@@ -4,15 +4,10 @@ package springboot.ToDo.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestParam;
-import springboot.ToDo.Model.Todo;
+import springboot.ToDo.Model.Todo_original;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -20,30 +15,30 @@ import java.util.function.Predicate;
 public class ToDo_Services {
 
     Logger l1 = LoggerFactory.getLogger(Class.class);
-    private static List<Todo> listToDo = new ArrayList<Todo>();
+    private static List<Todo_original> listToDo = new ArrayList<Todo_original>();
     private static int counter =0;
 
 
     static{  //this is data creation here
-        listToDo.add(new Todo(++counter,"Sumit","1st Todo list description", LocalDate.now(),  LocalDate.of(2024,2,22),false));
-        listToDo.add(new Todo(++counter,"Mistry","2nd Todo list description", LocalDate.now(), LocalDate.of(2024,8,30) ,false));
-        listToDo.add(new Todo(++counter,"Smith","3rd Todo list description", LocalDate.now(),  LocalDate.of(2024,7,2),false));
+        listToDo.add(new Todo_original(++counter,"Sumit","1st Todo list description", LocalDate.now(),  LocalDate.of(2024,2,22),false));
+        listToDo.add(new Todo_original(++counter,"Mistry","2nd Todo list description", LocalDate.now(), LocalDate.of(2024,8,30) ,false));
+        listToDo.add(new Todo_original(++counter,"Smith","3rd Todo list description", LocalDate.now(),  LocalDate.of(2024,7,2),false));
     }
 
-    public List<Todo> listAllToDo(){
+    public List<Todo_original> listAllToDo(){
         l1.info(listToDo.toString());
         return listToDo; // this will be going to be used as variable  in todo_welcome.jsp as ${lsitTodo}
     }
 
-    public List<Todo> insert_todo(String id,
-                                  String username,
-                                  String description,
-                                  LocalDate creationDate,
-                                  LocalDate targetDate,
-                                  boolean done) {
+    public List<Todo_original> insert_todo(String id,
+                                           String username,
+                                           String description,
+                                           LocalDate creationDate,
+                                           LocalDate targetDate,
+                                           boolean done) {
 
         //int i1 = id.isEmpty() ? listToDo.size()+1 : Integer.valueOf(id);
-        boolean addedorNot = listToDo.add(new Todo(  Integer.parseInt(id) , username,description,creationDate,targetDate, done));
+        boolean addedorNot = listToDo.add(new Todo_original(  Integer.parseInt(id) , username,description,creationDate,targetDate, done));
         l1.info("insertingg(insert_todo).... given data T/F ==" + addedorNot);
         return  listToDo;
     }
@@ -53,7 +48,7 @@ public class ToDo_Services {
 
     public void deleteByID(int id ){
         // PREDICATE functional programming
-        Predicate<? super Todo> predicate = todo2 -> todo2.getId() == id;
+        Predicate<? super Todo_original> predicate = todoOriginal2 -> todoOriginal2.getId() == id;
 
         System.out.println("-------------------------------------------------deleted:::" + id); l1.info("DELETEDD::::::::" + id );
 
@@ -62,9 +57,9 @@ public class ToDo_Services {
     }
 
 
-    public List<Todo> findByID_from_List(int id){
-        Predicate <? super Todo>  predicate = tod2 -> tod2.getId() == id;
-        List<Todo> list =  listToDo.stream().filter(predicate).toList();
+    public List<Todo_original> findByID_from_List(int id){
+        Predicate <? super Todo_original>  predicate = tod2 -> tod2.getId() == id;
+        List<Todo_original> list =  listToDo.stream().filter(predicate).toList();
         // or List<Todo> list =  listToDo.stream().filter(predicate).toList();
         // or Todo t1=  listToDo.stream().filter(predicate).findFirst().get();
         return list;

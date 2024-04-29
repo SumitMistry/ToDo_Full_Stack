@@ -29,7 +29,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
             <pre> ${id_err_msg2} ${id_err_msg1} </pre>
 
-            <form:form method="post" modelAttribute="todooo">
+            <form:form method="post" modelAttribute="todo_obj_spring_data_jpa2">
 
                     <fieldset class="mb-3">
                     <form:label path="id"> id : </form:label>

@@ -2,14 +2,11 @@ package springboot.ToDo.Model;
 
 
 import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.NonNull;
 
 import java.sql.Blob;
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Todo {
+public class Todo_original {
 
     @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
     @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
@@ -28,11 +25,11 @@ public class Todo {
 
 
 
-    public Todo(){
+    public Todo_original(){
 
     }
 
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done) {
+    public Todo_original(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done) {
         this.id = id;
         this.username = username;
         this.description = description;
@@ -42,7 +39,7 @@ public class Todo {
 
     }
 
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done , Blob attach ) {
+    public Todo_original(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done , Blob attach ) {
         this.id = id;
         this.username = username;
         this.description = description;

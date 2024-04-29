@@ -25,7 +25,6 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
 
         <div class="container">
-            <%-- Add todo login here --%>
 
             <pre> ${id_err_msg2} ${id_err_msg1} </pre>
 
@@ -59,7 +58,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                 <script src="\webjars\bootstrap-datepicker\1.9.0\js\bootstrap-datepicker.min.js"> </script>
                 <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
 
-
+<!-- the below tag not workring, this is not (like insert1.jsp=springboot form). This is normal form without Sprginboot  -->
         <script type="text/javascript">
            $('#targetDate').datepicker({
                format: 'dd-mm-yyyy'

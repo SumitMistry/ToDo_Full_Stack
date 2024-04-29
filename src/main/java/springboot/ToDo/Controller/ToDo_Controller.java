@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import springboot.ToDo.Model.Todo;
+import springboot.ToDo.Model.Todo_original;
 import springboot.ToDo.Services.ToDo_Services;
 
 import java.time.LocalDate;
@@ -36,7 +36,7 @@ public class ToDo_Controller {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
-        List<Todo> outputList = toDo_services.listAllToDo();
+        List<Todo_original> outputList = toDo_services.listAllToDo();
         modelMap.addAttribute("listMapVar", outputList);
         l1.debug("POST-validation-check:" + modelMap + outputList.toString());
         return "listall";
@@ -74,17 +74,17 @@ public class ToDo_Controller {
 
         // making data ready to pre-fill in todo_object
         String u_retrived = (String) modelMap.get("uid_email");
-        Todo todo_obj = new Todo(toDo_services.listAllToDo().size() + 1, u_retrived, "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false);
+        Todo_original todo_original_obj = new Todo_original(toDo_services.listAllToDo().size() + 1, u_retrived, "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false);
 
         // this injects our pre-fill the data from object to model to front_end
-        modelMap.put("todooo", todo_obj);
+        modelMap.put("todooo", todo_original_obj);
 
         return "insert"; // return  VIEW OUTPUT = insert.jsp // no @ResponseBody
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
     public String post_insert_data(ModelMap modelMap,
-                                   @Valid @ModelAttribute("todooo") Todo todooo,   //   @Valid can be used to validate beans "BEANS" ONLY
+                                   @Valid @ModelAttribute("todooo") Todo_original todooo,   //   @Valid can be used to validate beans "BEANS" ONLY
                                    BindingResult bindingResult) {
 
         // binding validation errors if found in form, user will be redirected back to the same page.
@@ -101,6 +101,8 @@ public class ToDo_Controller {
         // so basically username is NOT TWO way binding.
         // except user, everything else will be 2 way binding...
         String u_retrived = (String) modelMap.get("uid_email");
+
+        // Validation done under if(), now insert this data
         toDo_services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
         return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
     }
@@ -120,7 +122,7 @@ public class ToDo_Controller {
 ///////////////////////////     FindBYID     ///////////////////////////
     @RequestMapping(value = "find", method = RequestMethod.GET)
     public String findByID_from_List(@RequestParam(value = "id") int id, ModelMap modelMap){
-        List<Todo> list1 =  toDo_services.findByID_from_List(id);
+        List<Todo_original> list1 =  toDo_services.findByID_from_List(id);
         modelMap.addAttribute("listMapVar", list1);
         return "listall";
 
@@ -132,8 +134,8 @@ public class ToDo_Controller {
     public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "id") int id) {
 
         // Retrieved current record=data
-        List<Todo> current_data =  toDo_services.findByID_from_List(id);
-        Todo td0 = current_data.get(0);
+        List<Todo_original> current_data =  toDo_services.findByID_from_List(id);
+        Todo_original td0 = current_data.get(0);
 
         // delete current record
         deleteByID(id);
@@ -151,7 +153,7 @@ public class ToDo_Controller {
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String post_UpdateByID_page(  ModelMap modelMap,
                                          @RequestParam(value = "id") int id,
-                                         @ModelAttribute Todo todoo9,
+                                         @ModelAttribute Todo_original todoo9,
                                          BindingResult bindingResult
                                        ) {
         // if validation error handle here, handle here:
@@ -171,6 +173,9 @@ public class ToDo_Controller {
                                 //modelMap.addAttribute("button_code", "success");
         return "listall";
     }
+
+
+
 
 }
 
