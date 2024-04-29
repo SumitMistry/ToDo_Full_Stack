@@ -24,6 +24,10 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
 
         <div class="container">
+
+         <hr>
+                            <a href="list" class="btn btn-success">  /list  </a> <p>
+         <hr>
             <table class="table">
                 <thead>
                     <tr>
@@ -48,19 +52,30 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
-                            <td> <a href="attach?id=${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.attach} </td>
+                            <td> <a href="attach?id=${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.id} </td>
                             <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x </a> id:${eentry.id} </td>
                             <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> # </a> id:${eentry.id} </td>
                         </tr>
                     </test1:forEach>
                 </tbody>
             </table>
-            1.AUTO VALIDATION: <a href="insert" class="btn btn-success"> Insert </a>
-            <p>
-            2.MANUAL: <a href="insert2" class="btn btn-success"> Insert2 </a>
-            <p>
-            3.SpringDataJPA: <a href="hardcode1" class="btn btn-success"> hardcode1 </a> <a href="insert3" class="btn btn-success"> insert3 </a>
-            <p>
+
+            <hr>
+                    <a href="list" class="btn btn-success">  /list  </a> <p>
+
+            <hr>
+                    1.SpringDataJPA: <p>
+                    1.1<a href="hardcode1" class="btn btn-success"> Append 3 records: /hardcode1 </a> <p>
+                    1.2<a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
+            <hr>
+                    2.<a href="find?id=1" class="btn btn-success">find?id=1 </a> <p>
+            <hr>
+                    3.AUTO VALIDATION: <a href="insert" class="btn btn-warning"> X---Insert1---X </a> <p>
+            <hr>
+                    4.MANUAL: <a href="insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
+
+
+
         </div>
         <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
         <script src="\webjars\jquery\3.6.0\jquery.min.js"> </script>

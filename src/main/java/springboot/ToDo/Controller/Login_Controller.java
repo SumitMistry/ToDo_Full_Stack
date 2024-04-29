@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import springboot.ToDo.Services.Login_Services;
+
+
+/*
+ModelMap == map.put("listvarinJSP", a1fromJavaClass) -------------> This flows from Javs Class's a1 variable to ---> frontend
+(@RequestParam("username") String retrieved_username) -------------> frontend ---> Java class. This extracts submitted "username" tag's data into variable <retrieved_username>
+ */
+
 @Controller
 @RequestMapping("api/todo/")
 @SessionAttributes({"uid_email", "pass"})  // when you want to store a value in whole session, use this.

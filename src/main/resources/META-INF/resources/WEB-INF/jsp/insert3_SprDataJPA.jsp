@@ -29,6 +29,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
             <pre> ${id_err_msg2} ${id_err_msg1} </pre>
 
+        <%--  form:form method="post" action="/api" modelAttribute="todo_obj_spring_data_jpa2" --%>
             <form:form method="post" modelAttribute="todo_obj_spring_data_jpa2">
 
                     <fieldset class="mb-3">
@@ -91,7 +92,11 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
            $('#targetDate').datepicker({
                format: 'dd-mm-yyyy'
            });
-           </script>
+
+           $('#creationDate').datepicker({
+                format: 'dd-mm-yyyy'
+           });
+        </script>
 
     </body>
     <html>

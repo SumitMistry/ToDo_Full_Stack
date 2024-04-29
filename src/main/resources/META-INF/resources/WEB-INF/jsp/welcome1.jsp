@@ -1,10 +1,10 @@
 <html>
 
-<head> <title> welcome page Todo    </head> </title>
+<head> <title> Welcome- Todo    </head> </title>
 
     <body>
     <div class="container">
-            <h1> WElcome to ToDo page... </h1>
+            <h1> WElcome to ToDo page...
             <hr>
             <p>
             <p>USER: ${uid_email}

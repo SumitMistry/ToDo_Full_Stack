@@ -1,0 +1,41 @@
+
+In Spring Boot, you can manage the schema generation via application.properties or application.yml files using properties that control Hibernate's behavior. You have several options to customize schema generation:
+
+    spring.jpa.hibernate.ddl-auto: This property controls how Hibernate handles the database schema. Possible values include:
+        none: Hibernate does not perform any automatic schema generation or validation. It assumes that the database schema is already created.
+        create: Hibernate drops and recreates the database schema every time the application starts. This can be useful during development but should be used with caution in production.
+        create-drop: Similar to create, but also drops the schema when the application shuts down.
+        update: Hibernate updates the database schema to match the entity mappings. It adds columns, indexes, etc., but it does not drop existing tables or columns. Use with caution in production.
+        validate: Hibernate validates the database schema against the entity mappings but does not make any changes to the schema. It's useful for checking that the schema matches the expected configuration.
+
+    Example (application.properties):
+
+    arduino
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.datasource.initialization-mode: This property controls how the database initialization is performed. You can use it to specify whether to execute the schema.sql script, data.sql script, or both during application startup.
+
+Example (application.properties):
+
+scss
+
+spring.datasource.initialization-mode=always
+
+spring.datasource.schema: This property specifies the location of the schema file to be executed during database initialization. You can use this to specify a custom location for the schema SQL file if it's not in the default location (classpath:schema.sql).
+
+Example (application.properties):
+
+graphql
+
+spring.datasource.schema=classpath:custom-schema.sql
+
+spring.datasource.data: Similar to spring.datasource.schema, this property specifies the location of a data initialization SQL file (data.sql by default).
+
+Example (application.properties):
+
+kotlin
+
+    spring.datasource.data=classpath:custom-data.sql
+
+By configuring these properties in your application.properties or application.yml file, you can control how Hibernate generates and manages the database schema in your Spring Boot application.
