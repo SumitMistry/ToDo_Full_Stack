@@ -43,7 +43,7 @@ public class Todo {
     @Column(name = "description")
     private String description;
 
-//    @DateTimeFormat(pattern = "uuuu-MMM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name ="creationDate")
     private LocalDate creationDate;
 

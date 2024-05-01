@@ -10,26 +10,42 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
     </head>
     <body>
         <div>
-            <h1>
+            <h3>
                 <p> ToDo listing page... where ...
                 <p>your USER: ${uid_email}            Pass: ${pass}
-            </h1>
+            </h3>
             <hr>
         </div>
 
 
         <div>
             "${listMapVar}"
-        </div>        <p>        <p>
+
+        </div>   <hr>
 
 
         <div class="container">
 
-         <hr>
-                            <a href="list" class="btn btn-success">  /list  </a> <p>
-         <hr>
+                       <a href="list" class="btn btn-primary btn-block">       /list      </a>
+                       <a href="/actuator" class="btn btn-primary btn-block">       /actuator      </a>
+                       <a href="/actuator/health" class="btn btn-primary btn-block">       /actuator/health      </a>
+                       <a href="health" class="btn btn-primary btn-block">      /HealthCheck-Bluey      </a> <p>
+                       <hr>
+                        <a href="login" class="btn btn-primary btn-block">       /login     </a>
+                        <a href="login1" class="btn btn-primary btn-block">       /login1     </a>
+                        <a href="login2" class="btn btn-primary btn-block">       /login2     </a>
+                        <a href="/welcome1" class="btn btn-primary btn-block">       /welcome1     </a> <p>
+                        <hr>
+                        <a href="hardcode1" class="btn btn-primary btn-block"> Append 3 records: /hardcode1 </a> --> change value true-->false <p>
+                              @Transactional(readOnly = true, propagation = Propagation.) -->  I kept this hard coded data as READ ONLY so will not get injected to DB
+
+
+                        <hr>
             <table class="table">
+
+
                 <thead>
+
                     <tr>
                         <th> id </th>
                         <th> username </th>
@@ -37,10 +53,12 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                         <th> creationDate </th>
                         <th> targetDate </th>
                         <th> done </th>
-                        <th> Attachment </th>
-                        <th> Attachment </th>
+
+                        <th> Attach </th>
                         <th> Delete </th>
-                        <th> Update (No Validation)</th>
+                        <th> Update  </th>
+                        <th> Find </th>
+                        <th> Insert(Validate) </th>
 
                     </tr>
                 </thead>
@@ -53,10 +71,13 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
-                            <td> <a href="upload?id=${eentry.id}" class="btn btn-warning"> not working </a> id:${eentry.id} </td>
-                            <td> <a href="upload/${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.id} </td>
-                            <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x </a> id:${eentry.id} </td>
-                            <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> # </a> id:${eentry.id} </td>
+                             <%--  <td> <a href="upload?i=${eentry.id}" class="btn btn-warning"> not working </a> id:${eentry.id} </td>   --%>
+
+                            <td>  <a href="upload?i=${eentry.id}" class="btn btn-primary btn-block">  🔗 </a> i:${eentry.id} </td>
+                            <td>  <a href="delete?i=${eentry.id}" class="btn btn-danger"> x </a> i:${eentry.id} </td>
+                            <td>  <a href="update?i=${eentry.id}" class="btn btn-info"> # </a> i:${eentry.id} </td>
+                            <td>  <a href="find?i=${eentry.id}" class="btn btn-primary btn-block"> ? </a> i:${eentry.id} </td>
+                            <td>  <a href="insert3" class="btn btn-success"> + </a> i++ </td>
                         </tr>
                     </test1:forEach>
                 </tbody>
@@ -66,7 +87,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                     <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
             <hr>
                     2.SpringDataJPA - FIND: <p>
-                    <a href="find?id=1" class="btn btn-success">find?id=1 </a> <p>
+                    <a href="find?i=1" class="btn btn-success">find?i=1 </a> <p>
             <hr>
                     @Transactional(readOnly = true) // , propagation = Propagation.)
                     / I kept this hard coded data as READONLY so will not get injected to DB

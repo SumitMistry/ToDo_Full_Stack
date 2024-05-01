@@ -60,19 +60,14 @@ public class ToDo_Controller {
     }
 
 
-    ///////////////////////////     FindBYID     ///////////////////////////
+///////////////////////////     FindBYID     ///////////////////////////
     @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String findByID_from_List(@RequestParam(value = "id") int id, ModelMap modelMap) {
-
+    public String findByID_from_List(@RequestParam(value = "i") int id, ModelMap modelMap) {
         System.out.println(toDo_Services.findByID(id));
         //List<Todo> list1 =  toDo_Services.findByID_from_List(id);
         modelMap.addAttribute("listMapVar", toDo_Services.findByID(id));
         return "listall";
-
     }
-
-
-///////////////////////// WORKING
 
 
 ///////////////////////////////////////
@@ -85,6 +80,7 @@ public class ToDo_Controller {
 
 
     //////////////////// This end point ONLY used to ADD HARDCODED values into SQL
+    /////////// CHange values to NOT readOnly..here...to make it work @Transactional(readOnly = true)
     @RequestMapping(value = {"hardcode1"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(readOnly = true) // , propagation = Propagation.)
@@ -149,7 +145,7 @@ public class ToDo_Controller {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.GET)
-    public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "id") int id) {
+    public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "i") int id) {
 
         // Retrieved current record=data
         List<Todo> td0 = toDo_Services.findByID(id); //toDo_Services.findByID_from_List(id);
@@ -168,7 +164,7 @@ public class ToDo_Controller {
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String post_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam("id") int[] id2, // this result in [ old val, new val], we need new val by user so
+                                       @RequestParam("i") int id2, // this result in [ old val, new val], we need new val by user so
                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                        BindingResult bindingResult,
                                        Errors err
@@ -181,7 +177,7 @@ public class ToDo_Controller {
         }
 
         // New record object
-        Todo t1 = new Todo(id2[1], //this is new id at 1st index
+        Todo t1 = new Todo(id2, //this is new id at 1st index
                 todo_obj_spring_data_jpa2.getUsername(),
                 todo_obj_spring_data_jpa2.getDescription(),
                 todo_obj_spring_data_jpa2.getCreationDate(),
@@ -191,7 +187,7 @@ public class ToDo_Controller {
 
         // if no validation error: update data here
         // delete current old record from index 0 of REQ PARAM value, so we can replace with new data
-        toDo_Services.updateByID(id2[0], t1);
+        toDo_Services.updateByID(id2, t1);
 
         return "redirect:list";
     }
@@ -199,7 +195,7 @@ public class ToDo_Controller {
 
     ///////////////////////////     DELETE     ///////////////////////////
     @RequestMapping(value = "delete")
-    public String deleteByID(@RequestParam(value = "id") int id) {
+    public String deleteByID(@RequestParam(value = "i") int id) {
         toDo_Services.deleteByID_springDataJPA(id);
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
         l1.info("DELETEDD::::::::" + id);
@@ -213,10 +209,10 @@ public class ToDo_Controller {
 
 
     ///////////////////////////     UPLOAD     ///////////////////////////
-    @RequestMapping(value = "upload/{todoId}", method = RequestMethod.GET)
+    @RequestMapping(value = "upload", method = RequestMethod.GET)
     public String get_attach_function(
             ModelMap modelMap,
-            @PathVariable(value = "todoId") int todoId) {
+            @RequestParam(value = "i") int todoId) {
 
         // Retrieved current record/data
         Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
@@ -229,10 +225,10 @@ public class ToDo_Controller {
         return "upload";
     }
 
-    @RequestMapping(value = "upload/{todoId}", method = RequestMethod.POST)
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String post_now_uploading_here(
             @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
-            @PathVariable(value = "todoId") int todoId // this result in [ old val, new val], we need new val by user so
+            @RequestParam(value = "i") int todoId // this result in [ old val, new val], we need new val by user so
             ) {
 
         //finding existing Todo
