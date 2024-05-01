@@ -50,14 +50,14 @@
 
     <div class="container">
         <center> <h1> To-Dooh Login </h1> </center>
-        <pre> ${message} </pre>
+        <pre>${authmsg}</pre>
 
             <form method="post">
                 <div class="container">
                     <label>Email : </label>
-                    <input type="text" placeholder="Enter Email" name="uid_email" required>
+                    <input type="text" placeholder="Enter Email" name="uid_email" value="${prefill_login_old_get1}" >
                     <label>Password : </label>
-                    <input type="password" placeholder="Enter Password" name="pass" required>
+                    <input type="password" placeholder="Enter Password" name="pass" >
                     <button type="submit">Login</button>
                     <input type="checkbox" checked="checked"> Remember me
                     <button type="button" class="cancelbtn"> Cancel</button>
@@ -65,10 +65,6 @@
                 </div>
             </form>
 
-            <p>
-            Hint1: uid must have @
-            <p>
-            Hint2: pass must be 4 length
     </div>
 </body>
 

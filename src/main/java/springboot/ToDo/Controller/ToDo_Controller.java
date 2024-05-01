@@ -53,7 +53,7 @@ public class ToDo_Controller {
         // this to set initial static block, will initialize once only...
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
@@ -91,7 +91,7 @@ public class ToDo_Controller {
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(readOnly = true) // , propagation = Propagation.)
     // I kept this hard coded data as READONLY so will not get injected to DB
-    public String sprData_jpa_hard_code_data(ModelMap modelMap) {
+    public String hard_code_data_sprData_jpa(ModelMap modelMap) {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();

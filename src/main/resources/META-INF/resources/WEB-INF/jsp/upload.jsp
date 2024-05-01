@@ -2,12 +2,7 @@
 <%@ include file="common/navigation.jspf" %>
 
         <div>
-            <h1>
-                <p> Enter NEW TODO details:
-                <p> ToDo listing page... where ...
-                <p> your USER: ${uid_email}            Pass: ${pass}
-            </h1>
-                <p> ${listMapVar}   <---- this is not available because we have not put variable =listMapVar into SessionAttributes({x,y,z, listMapVar})
+            <p> ${listMapVar}   "${listMapVar}"<---- this is not available because we have not put variable =listMapVar into SessionAttributes({x,y,z, listMapVar})
             <hr> <p>
         </div>
 

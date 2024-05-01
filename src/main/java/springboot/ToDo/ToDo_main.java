@@ -16,8 +16,9 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/insert  -> (+)Auto Validation\n"  +
 						"   http://localhost:8080/api/todo/insert2 -> (+)Manual\n\n" +
 
-						"   http://localhost:8080/api/todo/login   -> new UI\n" +
-						"   http://localhost:8080/api/todo/login2  -> old UI\n" +
+						"   http://localhost:8080/login   -> Spring Security UI\n" +
+						"   http://localhost:8080/login1  -> new UI\n" +
+						"   http://localhost:8080/login2  -> old UI\n" +
 						"   http://localhost:8080/api/todo/insert3 -> (+)SpringDataJPA-SQL <- http://localhost:8080/api/todo/hardcode1 \n" +
 						"   http://localhost:8080/api/todo/find                 http://localhost:8080/api/todo/find?i=2  \n" +
 						"   http://localhost:8080/api/todo/delete               http://localhost:8080/api/todo/delete?i=1 \n" +

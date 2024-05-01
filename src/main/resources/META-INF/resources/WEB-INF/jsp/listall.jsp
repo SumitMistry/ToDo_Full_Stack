@@ -2,38 +2,11 @@
 <%@ include file="common/navigation.jspf" %>
 
 
-        <div>
-            <h3>
-                <p> ToDo listing page... where ...
-                <p>your USER: ${uid_email}            Pass: ${pass}
-            </h3>
-            <hr>
-        </div>
-
-
-        <div>
-            "${listMapVar}"
-
-        </div>   <hr>
-
 
         <div class="container">
-
-                       <a href="list" class="btn btn-primary">       /list      </a>
-                       <a href="/actuator" class="btn btn-primary">       /actuator      </a>
-                       <a href="/actuator/health" class="btn btn-primary">       /actuator/health      </a>
-                       <a href="health" class="btn btn-primary">      /HealthCheck-Bluey      </a> <p>
-                       <hr>
-                        <a href="login" class="btn btn-primary">       /login     </a>
-                        <a href="login1" class="btn btn-primary">       /login1     </a>
-                        <a href="login2" class="btn btn-primary">       /login2     </a>
-                        <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
-                        <hr>
                         <a href="hardcode1" class="btn btn-primary btn-block"> Append 3 records: /hardcode1 </a> --> change value true-->false <p>
                               @Transactional(readOnly = true, propagation = Propagation.) -->  I kept this hard coded data as READ ONLY so will not get injected to DB
                         <hr>
-
-
             <table class="table">
                 <thead>
 
@@ -73,6 +46,13 @@
                     </test1:forEach>
                 </tbody>
             </table>
+            </div>
+
+
+
+            <div class="container">
+
+
 
                     1.SpringDataJPA - INSERT: <p>
                     <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
@@ -88,10 +68,19 @@
                     3.Auto Validation: <a href="insert" class="btn btn-warning"> X---Insert1---X </a> <p>
             <hr>
                     4.Manual: <a href="insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
-
-
+            <hr>
+                       <a href="/" class="btn btn-primary">     /     </a>
+                       <a href="list" class="btn btn-primary">    /list     </a>
+                       <a href="/actuator" class="btn btn-primary">    /actuator  </a>
+                       <a href="/actuator/health" class="btn btn-primary">   /actuator/health </a>
+                       <a href="health" class="btn btn-primary">      /HealthCheck-Bluey      </a>
+                        <a href="login" class="btn btn-primary">       /login     </a>
+                        <a href="login1" class="btn btn-primary">       /login1     </a>
+                        <a href="login2" class="btn btn-primary">       /login2     </a>
+                        <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
 
         </div>
 
+        <hr>asList: "${listMapVar}"<hr>
 
 <%@ include file="common/footer.jspf" %>
