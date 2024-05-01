@@ -1,8 +1,6 @@
-<html>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
-<head> <title> Welcome- Todo    </title> </head>
-
-    <body>
     <div class="container">
             <h1> WElcome to ToDo page...
             <hr>
@@ -12,7 +10,10 @@
             <p>
             <p> All List of ToDos are... :
             <a href = "list"> list -->  Manage </a> your todos here...
-    </div>
-    </body>
 
-<html>
+
+        </div>
+
+
+
+<%@ include file="common/footer.jspf" %>

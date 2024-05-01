@@ -1,14 +1,7 @@
-<%@ taglib prefix="test1" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 
-META-INF\resources\webjars\bootstrap\5.1.3\css\bootstrap.min.css
-META-INF\resources\webjars\bootstrap\5.1.3\js\bootstrap.min.js
-META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
-<html>
-    <head>
-        <link href="\webjars\bootstrap\5.1.3\css\bootstrap.min.css" rel="stylesheet">
-        <title> List: Todo    </title>
-    </head>
-    <body>
+
         <div>
             <h3>
                 <p> ToDo listing page... where ...
@@ -26,24 +19,22 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
         <div class="container">
 
-                       <a href="list" class="btn btn-primary btn-block">       /list      </a>
-                       <a href="/actuator" class="btn btn-primary btn-block">       /actuator      </a>
-                       <a href="/actuator/health" class="btn btn-primary btn-block">       /actuator/health      </a>
-                       <a href="health" class="btn btn-primary btn-block">      /HealthCheck-Bluey      </a> <p>
+                       <a href="list" class="btn btn-primary">       /list      </a>
+                       <a href="/actuator" class="btn btn-primary">       /actuator      </a>
+                       <a href="/actuator/health" class="btn btn-primary">       /actuator/health      </a>
+                       <a href="health" class="btn btn-primary">      /HealthCheck-Bluey      </a> <p>
                        <hr>
-                        <a href="login" class="btn btn-primary btn-block">       /login     </a>
-                        <a href="login1" class="btn btn-primary btn-block">       /login1     </a>
-                        <a href="login2" class="btn btn-primary btn-block">       /login2     </a>
-                        <a href="/welcome1" class="btn btn-primary btn-block">       /welcome1     </a> <p>
+                        <a href="login" class="btn btn-primary">       /login     </a>
+                        <a href="login1" class="btn btn-primary">       /login1     </a>
+                        <a href="login2" class="btn btn-primary">       /login2     </a>
+                        <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
                         <hr>
                         <a href="hardcode1" class="btn btn-primary btn-block"> Append 3 records: /hardcode1 </a> --> change value true-->false <p>
                               @Transactional(readOnly = true, propagation = Propagation.) -->  I kept this hard coded data as READ ONLY so will not get injected to DB
-
-
                         <hr>
+
+
             <table class="table">
-
-
                 <thead>
 
                     <tr>
@@ -101,7 +92,6 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
 
 
         </div>
-        <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
-        <script src="\webjars\jquery\3.6.0\jquery.min.js"> </script>
-    </body>
-    <html>
+
+
+<%@ include file="common/footer.jspf" %>

@@ -1,6 +1,7 @@
 package springboot.ToDo.Controller;
 
 import jakarta.validation.Valid;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,9 @@ public class ToDo_Controller {
         this.toDo_Services = toDo_Services;
     }
 
+    static {
+        // this to set initial static block, will initialize once only...
+    }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
@@ -56,7 +60,9 @@ public class ToDo_Controller {
         List<Todo> list1 = toDo_Services.findbyALL();
         modelMap.addAttribute("listMapVar", list1);
         l1.debug("POST-validation-check:" + modelMap + l1.toString());
+
         return "listall";
+
     }
 
 
@@ -112,7 +118,7 @@ public class ToDo_Controller {
     public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
-        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
+        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
         modelMap.put("todo_obj_spring_data_jpa2", t1);
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
@@ -164,11 +170,17 @@ public class ToDo_Controller {
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String post_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam("i") int id2, // this result in [ old val, new val], we need new val by user so
+                                       @RequestParam("i") int oldvalue_of_id_NO_use, // ---> this is old id values, BEFORE user's update
+                                       @RequestParam("id") int iDtakenFromHtmlTag, // ---> this is new id values, AFTER user's update, taken from mapping HTML user's input
                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                        BindingResult bindingResult,
                                        Errors err
     ) {
+
+        // this id logic is to fetch user entered "NEW value of" ID for our this Update function
+        //System.out.println(oldvalue_of_id_NO_use); // ---> this is old  values
+        System.out.println(iDtakenFromHtmlTag ); // this will be the user's new value
+
         // if validation error handle here, handle here:
         if (bindingResult.hasErrors() || err.hasErrors()) {
             System.out.println(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
@@ -177,7 +189,7 @@ public class ToDo_Controller {
         }
 
         // New record object
-        Todo t1 = new Todo(id2, //this is new id at 1st index
+        Todo new_obj_to_Be_Added = new Todo(iDtakenFromHtmlTag, //this is new id at 1st index
                 todo_obj_spring_data_jpa2.getUsername(),
                 todo_obj_spring_data_jpa2.getDescription(),
                 todo_obj_spring_data_jpa2.getCreationDate(),
@@ -187,7 +199,7 @@ public class ToDo_Controller {
 
         // if no validation error: update data here
         // delete current old record from index 0 of REQ PARAM value, so we can replace with new data
-        toDo_Services.updateByID(id2, t1);
+        toDo_Services.updateByID(oldvalue_of_id_NO_use, new_obj_to_Be_Added);
 
         return "redirect:list";
     }
@@ -228,7 +240,8 @@ public class ToDo_Controller {
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String post_now_uploading_here(
             @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
-            @RequestParam(value = "i") int todoId // this result in [ old val, new val], we need new val by user so
+            @RequestParam(value = "i") int todoId, // this result in [ old val, new val], we need new val by user so
+            ModelMap modelmap
             ) {
 
         //finding existing Todo
