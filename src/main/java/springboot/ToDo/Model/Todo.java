@@ -1,60 +1,93 @@
 package springboot.ToDo.Model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.time.LocalDate;
 
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "todoh", schema = "sumit") // // Here "todoh" will be the table name created by hibernate automatically under schema/db=sumit
 public class Todo {
 
 
-    @Id
-    @Column(name = "id")
-    @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
-    @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
-    private int id;
-    @Email(message = "springboot-starter-validation-@size---> username -->  ALLOWED to enter only EMAIL ")
-    @Column(name = "username")
-    private String username;
-    @Size(min=7 ,max = 12, message = "springboot-starter-validation-@size---> Description --> ALLOWED to enter only 7-12 char ")
-    @Column(name = "description")
-    private String description;
-    //@DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Column(name ="creationDate")
-    private LocalDate creationDate;
-    @Future(message ="springboot-starter-validation-@size---> targetDate -->  ALLOWED to enter only FUTURE dates " ) // to check date in future
-    @Column(name="targetDate")
-    private LocalDate targetDate;
-    @NotNull(message = "springboot-starter-validation-@size---> DONE -->  ALLOWED to enter only boolean done's NON NULL ")
-    @Column(name="done")
-    private boolean done;
-    @Column(name ="attach")
-    private Blob attach;
-
-
-
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done) {
+    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
         this.id = id;
         this.username = username;
         this.description = description;
         this.creationDate =creationDate;
         this.targetDate = targetDate;
         this.done = done;
-
+        this.attach = attach;
+//        this.multipartFile =multipartFile;
+//        this.attachedFileName = attachedFileName;
     }
 
+    @Id
+    @Column(name = "id")
+    @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
+    @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
+    private int id;
 
+    @Email(message = "springboot-starter-validation-@size---> username -->  ALLOWED to enter only EMAIL ")
+    @Column(name = "username")
+    private String username;
+
+    @Size(min=7 ,max = 12, message = "springboot-starter-validation-@size---> Description --> ALLOWED to enter only 7-12 char ")
+    @Column(name = "description")
+    private String description;
+
+//    @DateTimeFormat(pattern = "uuuu-MMM-dd")
+    @Column(name ="creationDate")
+    private LocalDate creationDate;
+
+    @Future(message ="springboot-starter-validation-@size---> targetDate -->  ALLOWED to enter only FUTURE dates " ) // to check date in future
+    @Column(name="targetDate")
+    private LocalDate targetDate;
+
+
+    @Column(name="done")
+    private boolean done;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Store file as binary data
+    @Column(name ="attach")
+    @Lob
+    private Blob attach; // Store file as binary data , but can store only small size---> byte[], big size go to BLOB
+    public Blob getattach() {
+        return attach;
+    }
+    public void setattach(Blob attach) {
+        this.attach = attach;
+    }
+
+//    @Transient // Exclude from JPA mapping // this will not reach to databse, and will just work internally to java...
+//    // MultipartFile field for file upload  // this variable name to be set into upload.jsp form at binding object like this:  form:bind="*{multipartFile}"/>
+//    private MultipartFile multipartFile; // MultipartFile field for file upload / this variable name to be set into upload.jsp form at binding object like this:  form:bind="*{multipartFile}"/>
+//    // this variable name to be set into upload.jsp form at binding object like this:  form:bind="*{multipartFile}"/>
+//    public MultipartFile getMultipartFile(){
+//        return  multipartFile;
+//    }
+//    public void setMultipartFile(MultipartFile multipartFile){
+//        this.multipartFile = multipartFile;
+//    }
+//
+//    @Transient // Exclude from JPA mapping // this will not reach to databse, and will just work internally to java...
+//    private String attachedFileName; // Store file name
+//    public String getAttachedFileName() {
+//        return attachedFileName;
+//    }
+//    public void setAttachedFileName(String attachedFileName) {
+//        this.attachedFileName = attachedFileName;
+//    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
     public int getId() {
         return id;
     }
@@ -104,13 +137,10 @@ public class Todo {
         this.done = done;
     }
 
-    public Blob getattach() {
-        return attach;
-    }
 
-    public void setattach(Blob attach) {
-        this.attach = attach;
-    }
+
+
+
 
     @Override
     public String toString() {

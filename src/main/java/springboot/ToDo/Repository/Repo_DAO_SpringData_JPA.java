@@ -6,3 +6,4 @@ import springboot.ToDo.Model.Todo;
 public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo, Integer> {
 
 }
+

@@ -1,6 +1,6 @@
 <html>
 
-<head> <title> Welcome- Todo    </head> </title>
+<head> <title> Welcome- Todo    </title> </head>
 
     <body>
     <div class="container">

@@ -6,14 +6,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
 //import springboot.ToDo.Model.removed.Todo;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Services.ToDo_Services;
 
+import javax.sql.rowset.serial.SerialException;
+import java.io.*;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,18 +41,17 @@ public class ToDo_Controller {
     Logger l1 = LoggerFactory.getLogger(Class.class);
 
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
-                            private final ToDo_Services toDo_services;
+    private final ToDo_Services toDo_Services;
 
-                            public ToDo_Controller(ToDo_Services toDo_services) {
-                                super();
-                                this.toDo_services = toDo_services;
-                            }
-
+    public ToDo_Controller(ToDo_Services toDo_Services) {
+        super();
+        this.toDo_Services = toDo_Services;
+    }
 
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
-        //List<Todo> outputList = toDo_services.listAllToDo();
+        //List<Todo> outputList = toDo_Services.listAllToDo();
 
         List<Todo> list1 = toDo_Services.findbyALL();
         modelMap.addAttribute("listMapVar", list1);
@@ -55,25 +60,17 @@ public class ToDo_Controller {
     }
 
 
-
-///////////////////////////     FindBYID     ///////////////////////////
+    ///////////////////////////     FindBYID     ///////////////////////////
     @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String findByID_from_List(@RequestParam(value = "id") int id, ModelMap modelMap){
+    public String findByID_from_List(@RequestParam(value = "id") int id, ModelMap modelMap) {
 
         System.out.println(toDo_Services.findByID(id));
-        //List<Todo> list1 =  toDo_services.findByID_from_List(id);
+        //List<Todo> list1 =  toDo_Services.findByID_from_List(id);
         modelMap.addAttribute("listMapVar", toDo_Services.findByID(id));
         return "listall";
 
     }
 
-
-
-    @RequestMapping(value = "attach", method = RequestMethod.GET)
-    public String get_attach_function(ModelMap modelMap){
-        //modelMap.addAttribute("button_code", "success");
-        return "listall";
-    }
 
 ///////////////////////// WORKING
 
@@ -87,60 +84,60 @@ public class ToDo_Controller {
     ///
 
 
-
-    @Autowired
-    private ToDo_Services toDo_Services;
-
     //////////////////// This end point ONLY used to ADD HARDCODED values into SQL
     @RequestMapping(value = {"hardcode1"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.CREATED)
-    public String sprData_jpa_hard_code_data(ModelMap modelMap){
+    @Transactional(readOnly = true) // , propagation = Propagation.)
+    // I kept this hard coded data as READONLY so will not get injected to DB
+    public String sprData_jpa_hard_code_data(ModelMap modelMap) {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
-        list1.add(new Todo(1,"Sumit@gmail.com", "TableDesc-1", LocalDate.of(2021,02,8), LocalDate.of(2048,10,7),true));
-        list1.add(new Todo(2,"MIstrSS@microso.com", "Vrajwilback", LocalDate.of(1987,12,22), LocalDate.of(2031,01,15),true));
-        list1.add(new Todo(3,"RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004,11,22), LocalDate.of(2025,11,25),false));
+        list1.add(new Todo(1, "Sumit@gmail.com", "TableDesc-1", LocalDate.of(2021, 02, 8), LocalDate.of(2048, 10, 7), true, null));
+        list1.add(new Todo(2, "MIstrSS@microso.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
+        list1.add(new Todo(3, "RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");
 
-        list1.addAll(toDo_Services.findbyALL());
-        // Map above list to frontend to display on UI
-        modelMap.addAttribute("listMapVar",list1);
-
-        // ADD: sent list to SQL
+        // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list1);
+
+        // FETCH all from SQL
+        List<Todo> existing = toDo_Services.findbyALL();
+
+        // Map above list to display on frontend UI
+        modelMap.addAttribute("listMapVar", existing);
 
         return "listall";
     }
 
-//////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
+    //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
     @RequestMapping(value = "/insert3", method = RequestMethod.GET)
-    public String get_SprData_JPA_insert(ModelMap modelMap){
+    public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
-        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false);
+        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
         modelMap.put("todo_obj_spring_data_jpa2", t1);
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
+
     @RequestMapping(value = "/insert3", method = RequestMethod.POST)
-    public String post_SprData_JPA_insert( ModelMap modelMap,
-                                           @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2 ,
-                                           BindingResult bindingResult, Errors err) {
+    public String post_SprData_JPA_insert(ModelMap modelMap,
+                                          @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
+                                          BindingResult bindingResult, Errors err) {
 
         //use binding result to find error while validating / entering data
-        if (err.hasErrors()  || bindingResult.hasErrors()){
+        if (err.hasErrors() || bindingResult.hasErrors()) {
 //            l1.info(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
 //            System.out.println(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
 //            return "redirect:insert3_SprDataJPA";
             return "insert3_SprDataJPA";
         }
 
-
         // add data from front end viewing only
         List<Todo> list1 = toDo_Services.findbyALL();
         list1.add(todo_obj_spring_data_jpa2);
-        modelMap.addAttribute("listMapVar",list1);
+        modelMap.addAttribute("listMapVar", list1);
 
         // post data to backend SQL
         toDo_Services.insert_list_data_springDataJpa(list1);
@@ -155,7 +152,7 @@ public class ToDo_Controller {
     public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "id") int id) {
 
         // Retrieved current record=data
-        List<Todo> td0 =  toDo_Services.findByID(id); //toDo_services.findByID_from_List(id);
+        List<Todo> td0 = toDo_Services.findByID(id); //toDo_Services.findByID_from_List(id);
         System.out.println("--->" + td0);
         //Todo td0 = current_data.get(0);
 
@@ -170,15 +167,16 @@ public class ToDo_Controller {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String post_UpdateByID_page(  ModelMap modelMap,
-                                         @RequestParam("id") int[] id2, // this result in [ old val, new val], we need new val by user so
-                                         @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
-                                         BindingResult bindingResult,
-                                         Errors err
+    public String post_UpdateByID_page(ModelMap modelMap,
+                                       @RequestParam("id") int[] id2, // this result in [ old val, new val], we need new val by user so
+                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
+                                       BindingResult bindingResult,
+                                       Errors err
     ) {
         // if validation error handle here, handle here:
-        if (bindingResult.hasErrors() || err.hasErrors()){
-            System.out.println(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs"); l1.info(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
+        if (bindingResult.hasErrors() || err.hasErrors()) {
+            System.out.println(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
+            l1.info(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
             return "insert3_SprDataJPA";
         }
 
@@ -188,7 +186,8 @@ public class ToDo_Controller {
                 todo_obj_spring_data_jpa2.getDescription(),
                 todo_obj_spring_data_jpa2.getCreationDate(),
                 todo_obj_spring_data_jpa2.getTargetDate(),
-                todo_obj_spring_data_jpa2.getDone() );
+                todo_obj_spring_data_jpa2.getDone()
+                , null);
 
         // if no validation error: update data here
         // delete current old record from index 0 of REQ PARAM value, so we can replace with new data
@@ -202,13 +201,162 @@ public class ToDo_Controller {
     @RequestMapping(value = "delete")
     public String deleteByID(@RequestParam(value = "id") int id) {
         toDo_Services.deleteByID_springDataJPA(id);
-        //toDo_services.deleteByID(id); // this was old implementation for  deleting from local list.
+        //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
         l1.info("DELETEDD::::::::" + id);
         //return "listall";
         return "redirect:list";
     }
 
 
+    @Autowired
+    private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+
+
+    ///////////////////////////     UPLOAD     ///////////////////////////
+    @RequestMapping(value = "upload/{todoId}", method = RequestMethod.GET)
+    public String get_attach_function(
+            ModelMap modelMap,
+            @PathVariable(value = "todoId") int todoId) {
+
+        // Retrieved current record/data
+        Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+
+        // insertion of fetched above data's mapping is done in below step now,
+        modelMap.addAttribute("todoId", todoId); // REF: upload.jsp //used for --> form's post action="upload/${todoId}"
+        modelMap.addAttribute("todo55", existingTodo); // REF: upload.jsp // half page of this form is loaded with existing <todo's data>
+        modelMap.addAttribute("fileUpload_holder", new MultipartFile_holder()); // REF: upload.jsp // half page of this form is loaded with <fileUpload_holder>
+
+        return "upload";
+    }
+
+    @RequestMapping(value = "upload/{todoId}", method = RequestMethod.POST)
+    public String post_now_uploading_here(
+            @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
+            @PathVariable(value = "todoId") int todoId // this result in [ old val, new val], we need new val by user so
+            ) {
+
+        //finding existing Todo
+        Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+        try{
+            if (  !  (multipartFile.getMultipartFile() == null && multipartFile.getMultipartFile().isEmpty())) {
+
+                //  This works great for BLOB datatype. Large data object attach to db. We change model to byte[] or BLOB depending on the requirement
+                byte[] b = multipartFile.getMultipartFile().getBytes();
+                existingTodo.setattach(new javax.sql.rowset.serial.SerialBlob(b));
+                repo_dao_springData_jpa.save(existingTodo);
+
+                                    /*
+                                    ##  This works great for small size files like byte[] datatype. We change model to byte[] or BLOB depending on the requirement
+                                        existingTodo.setattach(multipartFile.getMultipartFile().getBytes());
+                                        repo_dao_springData_jpa.save(existingTodo);
+                                    */
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SerialException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:list";
+    }
+
+}
+
+
+
+
+
+
+
+
+/*
+ if (todo55.getattach() != null && !todo.getAttach().isEmpty()) {
+                // attach attachment
+                existingTodo.setattach(todo55.getMultipartFile().getBytes());
+                // save/commit object to dB via SpringJPA
+                repo_dao_springData_jpa.save(existingTodo);
+            }
+ */
+
+/*
+try {
+            if (todo.getAttach() != null && !todo.getAttach().isEmpty()) {
+                byte[] attachedFileBytes = StreamUtils.copyToByteArray(todo.getAttach().getInputStream());
+                existingTodo.setAttachedFile(attachedFileBytes);
+                existingTodo.setAttachedFileName(todo.getAttach().getOriginalFilename());
+                todoRepository.save(existingTodo);
+            }
+ */
+
+/*
+
+            // uploaded file ---> byte[]
+            byte[] uploaded_file = f1.getBytes();
+
+            // byte[] ---> attach into <t11> todo obj();
+            existingTodo.setattach(uploaded_file);
+
+            // <t11> todo obj() ---> to save/commit into dB
+ */
+
+
+    /*
+     ModelMap modelMap,
+                                         @RequestParam("id") int[] id2, // this result in [ old val, new val], we need new val by user so
+                                         @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
+                                         BindingResult bindingResult,
+                                         Errors err
+     */
+
+    /* backup UPLOAD GET WORKING...
+
+
+    @RequestMapping(value = {"upload"}, method = RequestMethod.GET)
+    public String get_attach_function(ModelMap modelMap, @RequestParam(value = "id") int id) {
+
+        // Retrieved current record=data
+        List<Todo> td0 = toDo_Services.findByID(id); //toDo_Services.findByID_from_List(id);
+
+
+        // insertion done in above step now , reloading Listing page
+        modelMap.addAttribute("todo55", td0.get(0));
+        return "upload";
+    }
+
+
+    @RequestMapping(value = {"upload"}, method = RequestMethod.POST)
+    @ResponseBody
+    public Todo post_attach_function(
+            @RequestParam("id") int[] id2, // this result in [ old val, new val], we need new val by user so
+            @ModelAttribute("todo55") Todo todo55,
+            @RequestParam("attach") MultipartFile f1
+    ) throws IOException {
+        return null;
+
+    }
+     */
+
+    /*
+
+
+            // Normalize file name
+            String fileName = StringUtils.cleanPath(f1.getOriginalFilename());
+
+                Todo tg1 =   new Todo(todo55.getId(), todo55.getUsername(), todo55.getDescription(), todo55.getCreationDate(), todo55.getTargetDate()
+                        , todo55.getDone(), f1.getBytes());
+
+                return repo_dao_springData_jpa.save(tg1);
+
+
+            ////
+            String fileDoenloadURi = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/downloadFile/")
+                    .path(dbFile.getId())
+                    .toUriString();
+
+        }
+     */
 
 
 
@@ -230,8 +378,8 @@ public class ToDo_Controller {
 //                return "insert2";
 //            }
 //        }
-//        l1.info("--------------------.> now adding the forntend data ---> backend calling services toDo_services.insert_todo ");
-//        toDo_services.insert_todo(id, username, description, creationDate, targetDate, done);
+//        l1.info("--------------------.> now adding the forntend data ---> backend calling services toDo_Services.insert_todo ");
+//        toDo_Services.insert_todo(id, username, description, creationDate, targetDate, done);
 //        return // after insert is done, show all todos
 //                "redirect:list"; // this redirect to listall.jsp VIEW using /list
 //        //redierct: {Always put url endpoint name, NOT JSP}
@@ -244,7 +392,7 @@ public class ToDo_Controller {
 //
 //        // making data ready to pre-fill in todo_object
 //        String u_retrived = (String) modelMap.get("uid_email");
-//        Todo Todo_model_SprDataJPA_obj = new Todo(toDo_services.listAllToDo().size() + 1, u_retrived, "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false);
+//        Todo Todo_model_SprDataJPA_obj = new Todo(toDo_Services.listAllToDo().size() + 1, u_retrived, "HelloWorld", LocalDate.now(), LocalDate.now().plusYears(1), false);
 //
 //        // this injects our pre-fill the data from object to model to front_end
 //        modelMap.put("todooo", Todo_model_SprDataJPA_obj);
@@ -273,15 +421,10 @@ public class ToDo_Controller {
 //        String u_retrived = (String) modelMap.get("uid_email");
 //
 //        // Validation done under if(), now insert this data
-//        toDo_services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
+//        toDo_Services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
 //        return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
 //    }
 
-
-
-
-
-}
 
 
 

@@ -15,7 +15,7 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?id=3 \n" +
 						"   http://localhost:8080/api/todo/delete?id=2          http://localhost:8080/api/todo/delete?id=1 \n" +
 						"   http://localhost:8080/api/todo/find?id=3            http://localhost:8080/api/todo/find?id=2  \n" +
-						"   http://localhost:8080/api/todo/attach               http://localhost:8080/api/todo/attach?id=1  \n " +
+						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?id=1  \n " +
 						"   http://localhost:8080/api/todo/insert  -> (+)Auto Validation\n"  +
 						"   http://localhost:8080/actuator/health 	   			http://localhost:8080/api/todo/health\n\n" +
 						"   http://localhost:8080/api/todo/insert2 -> (+)Manual\n\n" +

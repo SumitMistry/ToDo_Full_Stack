@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -34,16 +34,6 @@ public class ToDo_Services {
     }
 
 
-    public void insert_single_data_springDataJpa(int id,
-                                                 String username,
-                                                 String description,
-                                                 LocalDate creationDate,
-                                                 LocalDate targetDate,
-                                                 boolean done  ){
-        Todo t1= new Todo(id,username,description,creationDate,targetDate,done);
-        repo_dao_springData_jpa.save(t1);
-    }
-
     @Transactional(propagation = Propagation.REQUIRED)  /// requires_new
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database
@@ -57,6 +47,7 @@ public class ToDo_Services {
         return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getId() == id).toList();
     }
 
+
     public List<Todo> findbyALL(){
         return repo_dao_springData_jpa.findAll();
     }
@@ -66,8 +57,6 @@ public class ToDo_Services {
         repo_dao_springData_jpa.deleteById(idTodelete);
         repo_dao_springData_jpa.save(todo);
     }
-
-
 
 
 

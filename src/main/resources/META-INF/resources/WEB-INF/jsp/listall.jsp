@@ -38,6 +38,7 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                         <th> targetDate </th>
                         <th> done </th>
                         <th> Attachment </th>
+                        <th> Attachment </th>
                         <th> Delete </th>
                         <th> Update (No Validation)</th>
 
@@ -52,7 +53,8 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
-                            <td> <a href="attach?id=${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.id} </td>
+                            <td> <a href="upload?id=${eentry.id}" class="btn btn-warning"> not working </a> id:${eentry.id} </td>
+                            <td> <a href="upload/${eentry.id}" class="btn btn-warning"> 🔗 </a> id:${eentry.id} </td>
                             <td>  <a href="delete?id=${eentry.id}" class="btn btn-warning"> x </a> id:${eentry.id} </td>
                             <td>  <a href="update?id=${eentry.id}" class="btn btn-success"> # </a> id:${eentry.id} </td>
                         </tr>
@@ -60,19 +62,20 @@ META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
                 </tbody>
             </table>
 
+                    1.SpringDataJPA - INSERT: <p>
+                    <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
             <hr>
-                    <a href="list" class="btn btn-success">  /list  </a> <p>
-
+                    2.SpringDataJPA - FIND: <p>
+                    <a href="find?id=1" class="btn btn-success">find?id=1 </a> <p>
             <hr>
-                    1.SpringDataJPA: <p>
+                    @Transactional(readOnly = true) // , propagation = Propagation.)
+                    / I kept this hard coded data as READONLY so will not get injected to DB
+                    public String sprData_jpa_hard_code_data(ModelMap modelMap){ <p>
                     1.1<a href="hardcode1" class="btn btn-success"> Append 3 records: /hardcode1 </a> <p>
-                    1.2<a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
             <hr>
-                    2.<a href="find?id=1" class="btn btn-success">find?id=1 </a> <p>
+                    3.Auto Validation: <a href="insert" class="btn btn-warning"> X---Insert1---X </a> <p>
             <hr>
-                    3.AUTO VALIDATION: <a href="insert" class="btn btn-warning"> X---Insert1---X </a> <p>
-            <hr>
-                    4.MANUAL: <a href="insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
+                    4.Manual: <a href="insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
 
 
 
