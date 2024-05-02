@@ -64,23 +64,9 @@
                 <p><input type="submit" value=" Attach "  class="btn btn-success"> </input>
 
             </form:form>
-
-            <p>
-                Hint1:
-            <p>
-                Hint2:
         </div>
 
 
-        <script type="text/javascript">
-           $('#targetDate').datepicker({
-               format: 'dd-mm-yyyy'
-           });
-
-           $('#creationDate').datepicker({
-                format: 'dd-mm-yyyy'
-           });
-        </script>
 
 
 <%@ include file="common/footer.jspf" %>
