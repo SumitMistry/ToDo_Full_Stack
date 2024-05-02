@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
-import java.time.LocalDate;
+
 import java.util.List;
 
 @Service
@@ -31,8 +30,6 @@ public class ToDo_Services {
     public void insert_list_data_springDataJpa(List<Todo> list1){
         list1.forEach(x->repo_dao_springData_jpa.save(x));
     }
-
-
     @Transactional(propagation = Propagation.REQUIRED)  /// requires_new
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database

@@ -2,10 +2,6 @@ package springboot.ToDo;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.ModelMap;
-import springboot.ToDo.Controller.ToDo_Controller;
-
-import java.util.function.BiFunction;
 
 
 @Component
