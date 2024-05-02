@@ -100,7 +100,7 @@ public class Login_Controller {
 
         // username retrieved from user's login entry point
         String retrived_user = login_services.get_username_from_login_from_spring_Security();
-        System.out.println(retrived_user);
+        l1.info("Loggged in by:--->" +retrived_user);
         modelMap.addAttribute("uid_email", retrived_user);
 
         return "welcome1";

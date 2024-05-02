@@ -25,8 +25,9 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?i=3 \n" +
 						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?i=1  \n" +
 						"   http://localhost:8080/api/todo/list   \n" +
-						"   http://localhost:8080 " +
-						"UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();"
+						"   http://localhost:8080								http://localhost:8080/h2-console\n" +
+						"	UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();\n" +
+						"	Hardcoced data coming from: data.sql  + schema.sql\n"
 
 
 

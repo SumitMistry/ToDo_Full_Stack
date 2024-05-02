@@ -8,3 +8,24 @@
 ---  if I write here anything it will automatically get executed...
 --- if I keep this "update" this file will automatically created
 --- spring.jpa.hibernate.ddl-auto=update
+
+CREATE DATABASE IF NOT EXISTS sumit;
+use sumit;
+CREATE TABLE  IF NOT EXISTS todoh (
+  id int NOT NULL,
+  attach mediumblob,
+  creation_date date DEFAULT NULL,
+  description varchar(20) DEFAULT NULL,
+  done bit(1) DEFAULT NULL,
+  target_date date DEFAULT NULL,
+  username varchar(255) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+INSERT INTO sumit.todoh (id, creation_date, description, done, target_date, username)
+        VALUES (FLOOR(RAND() * (100 - 1 + 1)) + 1, "2012-01-20", "schema.sql_add", true, "2029-05-04", "Sumit@sumit.com");
+
+
+
+

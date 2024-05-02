@@ -3,7 +3,6 @@ package springboot.ToDo.Controller;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,9 +42,12 @@ public class ToDo_Controller {
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
     private final ToDo_Services toDo_Services;
 
-    public ToDo_Controller(ToDo_Services toDo_Services) {
+    private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+
+    public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa) {
         super();
         this.toDo_Services = toDo_Services;
+        this.repo_dao_springData_jpa =repo_dao_springData_jpa;
     }
 
     static {
@@ -220,9 +222,6 @@ public class ToDo_Controller {
         return "redirect:list";
     }
 
-
-    @Autowired
-    private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
 
 
     ///////////////////////////     UPLOAD     ///////////////////////////
