@@ -1,8 +1,7 @@
-<html>
-    <head>
-        <title> login page </title>
-    </head>
-    <body>
+
+    <%@ include file="common/header.jspf" %>
+    <%@ include file="common/navigation.jspf" %>
+
         <div class="container">
             <h1> Welcome to Login Page </h1>
             <p>

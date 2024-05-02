@@ -15,6 +15,7 @@
         <link href="\webjars\bootstrap-datepicker\1.9.0\css\bootstrap-datepicker3.standalone.min.css" rel="stylesheet"> </script>
         <title> List: Todo Webapp   </title>
     </head>
-    <body>
+
+    <body style="background-color:#f0f0f0">
 
 

@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /*
     ModelMap == map.put("listvarinJSP", a1fromJavaClass) -------------> This flows from Javs Class's a1 variable to ---> frontend
@@ -33,7 +34,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("api/todo/")
-@SessionAttributes({"uid_email", "pass"})  // when you want to store a value in whole session, use this.
+@SessionAttributes({"uid_email", "pass", "totally"})  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
 // <usernr> is backend variable, this will nto work
 // "uid_email" is the frontend variable, passing this will be able to save as session. it will work..
@@ -57,32 +58,40 @@ public class ToDo_Controller {
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
+        // List with all todos + parsing it to modelmap
         List<Todo> list1 = toDo_Services.findbyALL();
         modelMap.addAttribute("listMapVar", list1);
-        l1.debug("POST-validation-check:" + modelMap + l1.toString());
 
+        // counting total todos and parsing on the navigation.jspf vvia {totally} variable
+        modelMap.addAttribute("totally", list1.size());
+
+        // now final result listing as view
         return "listall";
-
     }
 
 
 ///////////////////////////     FindBYID     ///////////////////////////
     @RequestMapping(value = "find", method = RequestMethod.GET)
     public String findByID_from_List(@RequestParam(value = "i") int id, ModelMap modelMap) {
-        System.out.println(toDo_Services.findByID(id));
-        //List<Todo> list1 =  toDo_Services.findByID_from_List(id);
+        //        System.out.println(toDo_Services.findByID(id));
+        //      List<Todo> list1 =  toDo_Services.findByID_from_List(id);
         modelMap.addAttribute("listMapVar", toDo_Services.findByID(id));
         return "listall";
     }
 
+///////////////////////////     FindBYuser     ///////////////////////////
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String findBYusername(@RequestParam(value = "i")String enter_username, ModelMap modelMap ){
 
-///////////////////////////////////////
-    ////////////////////////////////
-    //////////////////////////
-    ////////////////////
-    //////////////
-    /////////
-    ///
+        // Predicate function practice
+        Predicate<? super Todo> p1 = x-> x.getUsername().equalsIgnoreCase(enter_username);
+        List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(p1).toList();
+
+        // or // List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(x->x.getUsername().equals(enter_username)).toList();
+        modelMap.addAttribute("listMapVar", t1);
+        return "listall";
+    }
+
 
 
     //////////////////// This end point ONLY used to ADD HARDCODED values into SQL
@@ -136,16 +145,11 @@ public class ToDo_Controller {
             return "insert3_SprDataJPA";
         }
 
-        // add data from front end viewing only
-        List<Todo> list1 = toDo_Services.findbyALL();
-        list1.add(todo_obj_spring_data_jpa2);
-        modelMap.addAttribute("listMapVar", list1);
-
         // post data to backend SQL
-        toDo_Services.insert_list_data_springDataJpa(list1);
+        repo_dao_springData_jpa.save(todo_obj_spring_data_jpa2);
 
         // get data view
-        return "listall"; // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
+        return "redirect:list"; // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
     }
 
 
@@ -185,11 +189,14 @@ public class ToDo_Controller {
         if (bindingResult.hasErrors() || err.hasErrors()) {
             System.out.println(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
             l1.info(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
+            System.out.println(bindingResult.getAllErrors());
+            System.out.println(err.getAllErrors());
             return "insert3_SprDataJPA";
         }
 
         // New record object
-        Todo new_obj_to_Be_Added = new Todo(iDtakenFromHtmlTag, //this is new id at 1st index
+        Todo new_obj_to_Be_Added = new Todo(todo_obj_spring_data_jpa2.getId(),
+                //iDtakenFromHtmlTag, //this is new id at 1st index
                 todo_obj_spring_data_jpa2.getUsername(),
                 todo_obj_spring_data_jpa2.getDescription(),
                 todo_obj_spring_data_jpa2.getCreationDate(),

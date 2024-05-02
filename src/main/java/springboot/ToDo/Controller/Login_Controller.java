@@ -3,12 +3,15 @@ package springboot.ToDo.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Services.Login_Services;
 
 
@@ -19,15 +22,18 @@ ModelMap == map.put("listvarinJSP", a1fromJavaClass) -------------> This flows f
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({"uid_email", "pass"})  // when you want to store a value in whole session, use this.
+@SessionAttributes({"uid_email", "pass", "totally" })  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid> not <usernr>
 // <usernr> is backend variable, this will nto work
 // "uid" is the frontend variable, passing this will be able to save as session. it will work..
 public class Login_Controller {
+
+
     Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
 
     @Autowired
     private Login_Services login_services;
+
 
 ///////////////////////   LOGIN (REGULAR GOOD UI)    ///////////////
     @RequestMapping(value = { "/login1"}, method = RequestMethod.GET)
@@ -90,9 +96,19 @@ public class Login_Controller {
 ///////////////////////   LOGIN (Spring Security)    ///////////////
     @RequestMapping(value = {"/", "login" }, method = RequestMethod.GET)
     public String get_login_page(ModelMap modelMap){
+
+
         // username print from modelmap
-        modelMap.addAttribute("uid_email", "login1@spring.security");
+        //modelMap.addAttribute("uid_email", "login@spring.Security");
+
+        // username retrieved from user's login entry point
+        String retrived_user = login_services.get_username_from_login_from_spring_Security();
+        System.out.println(retrived_user);
+        modelMap.addAttribute("uid_email", retrived_user);
+
         return "welcome1";
     }
+
+
 
 }

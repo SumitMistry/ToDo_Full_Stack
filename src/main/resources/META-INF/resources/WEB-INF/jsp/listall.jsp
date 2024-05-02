@@ -18,11 +18,14 @@
                         <th> targetDate </th>
                         <th> done </th>
 
-                        <th> Attach </th>
-                        <th> Delete </th>
+                        <th> Insert<br>(Validated) </th>
                         <th> Update  </th>
-                        <th> Find </th>
-                        <th> Insert(Validate) </th>
+                        <th> Delete </th>
+                        <th> Attach </th>
+                        <th> findBy<br>Id(?) </th>
+                        <th> findBy<br>User(?) </th>
+
+
 
                     </tr>
                 </thead>
@@ -37,22 +40,21 @@
                             <td>  ${eentry.done}   </td>
                              <%--  <td> <a href="upload?i=${eentry.id}" class="btn btn-warning"> not working </a> id:${eentry.id} </td>   --%>
 
-                            <td>  <a href="upload?i=${eentry.id}" class="btn btn-primary btn-block">  🔗 </a> i:${eentry.id} </td>
-                            <td>  <a href="delete?i=${eentry.id}" class="btn btn-danger"> x </a> i:${eentry.id} </td>
-                            <td>  <a href="update?i=${eentry.id}" class="btn btn-info"> # </a> i:${eentry.id} </td>
-                            <td>  <a href="find?i=${eentry.id}" class="btn btn-primary btn-block"> ? </a> i:${eentry.id} </td>
                             <td>  <a href="insert3" class="btn btn-success"> + </a> i++ </td>
+                            <td>  <a href="update?i=${eentry.id}" class="btn btn-info"> # </a> i:${eentry.id} </td>
+                            <td>  <a href="delete?i=${eentry.id}" class="btn btn-danger"> x </a> i:${eentry.id} </td>
+                            <td>  <a href="upload?i=${eentry.id}" class="btn btn-primary btn-block">  🔗 </a> i:${eentry.id} </td>
+                            <td>  <a href="find?i=${eentry.id}" class="btn btn-warning"> ? </a> i:${eentry.id} </td>
+                            <td>  <a href="user?i=${eentry.username}" class="btn btn-warning"> ? </a> i:${eentry.username} </td>
+
+
                         </tr>
                     </test1:forEach>
                 </tbody>
             </table>
             </div>
 
-
-
             <div class="container">
-
-
 
                     1.SpringDataJPA - INSERT: <p>
                     <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>

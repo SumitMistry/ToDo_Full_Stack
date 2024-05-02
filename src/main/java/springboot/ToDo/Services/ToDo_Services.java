@@ -30,7 +30,6 @@ public class ToDo_Services {
 
     public void insert_list_data_springDataJpa(List<Todo> list1){
         list1.forEach(x->repo_dao_springData_jpa.save(x));
-        l1.info("\n ----> SERVICES: ADDING FAKE hard-coded DATA...Logging: " + list1);
     }
 
 
