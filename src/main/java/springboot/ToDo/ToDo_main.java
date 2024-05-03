@@ -26,8 +26,9 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?i=1  \n" +
 						"   http://localhost:8080/api/todo/list   \n" +
 						"   http://localhost:8080								http://localhost:8080/h2-console\n" +
-						"	UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();\n" +
-						"	Hardcoced data coming from: data.sql  + schema.sql\n"
+						"		Hardcoced data coming from scripts (data.sql  + schema.sql)\n" +
+						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
+						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();\n"
 
 
 
