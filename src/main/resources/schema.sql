@@ -24,7 +24,7 @@ CREATE TABLE  IF NOT EXISTS todoh (
 
 
 INSERT INTO sumit.todoh (id, creation_date, description, done, target_date, username)
-        VALUES (FLOOR(RAND() * (100 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "Sumit@sumit.com");
+        VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "Sumit@sumit.com");
 
 
 

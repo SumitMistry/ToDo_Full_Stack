@@ -24,7 +24,7 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/delete               http://localhost:8080/api/todo/delete?i=1 \n" +
 						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?i=3 \n" +
 						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?i=1  \n" +
-						"   http://localhost:8080/api/todo/list   \n" +
+						"   http://localhost:8080/api/todo/list                 http://localhost:8080/api/todo/listjson   \n" +
 						"   http://localhost:8080								http://localhost:8080/h2-console\n" +
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +

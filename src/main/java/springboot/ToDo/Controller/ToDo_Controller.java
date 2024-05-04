@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -67,6 +68,14 @@ public class ToDo_Controller {
 
         // now final result listing as view
         return "listall";
+    }
+
+
+    @RequestMapping(value = "listjson", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
+        return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(),HttpStatus.OK);
     }
 
 

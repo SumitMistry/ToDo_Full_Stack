@@ -1,0 +1,96 @@
+## Ubuntu was connected to MySQL using above all same configs. Used docker to install run container of MYSQL
+
+## Steps mentioned here and also in Docker folder in root project level
+
+	# 1. Create a folder "TodoSQL" and enter inside
+	sudo -s
+
+
+    # 2. Pull the PostgreSQL Docker image
+    (optional) docker pull postgres (if you system has already postgres image, no need this)
+
+
+
+	# 3. Run the MySQL container (removed "--detached", root username not require as root_username==root always)
+        docker run -t -i --env MYSQL_ROOT_PASSWORD=1029 --env MYSQL_DATABASE=sumit --name mysql --publish 3306:3306 mysql
+
+        # 3. Once container installed, up and running, Install Shell to Login to mysql
+        sudo snap install mysql-shell
+
+
+        # 4. Run mySQL in terminal
+                # $. mysql-py>            \connect root@localhost:3306
+                                        #  pass is 1029
+                # $. mysql-py>            mysql-py []> \sql
+                                        #  Switching to SQL mode... Commands end with ;
+                # $. mysql-py>            mysql-py []> \use sumit
+                # $. mysql-sql []>      select * from sumit.todoh;
+
+        # 5. Stopping mysql
+            docker stop mysql
+
+
+## Update package indices
+sudo apt-get update -y
+
+## Install docker-compose
+apt install docker-compose
+
+List images: List all images on your system.
+            #sudo docker images
+                #docker pull mysql
+                #sudo systemctl restart docker
+                #docker ps
+                #docker container ls
+                #docker ps -a
+                #docker images
+                #docker stop
+                docker -v
+                docker-compose --version
+                docker-compose -v
+
+------------
+Reference:
+
+List images: List all images on your system.
+docker images
+
+Pull an image: Download an image from a registry.
+docker pull <image_name>
+
+Remove an image: Delete an image from your system.
+docker rmi -f <image_id or image_name>
+
+Containers:::
+List containers: List all containers (running and stopped).
+docker ps -a
+docker container ls
+
+List running containers: List only running containers.
+docker ps
+
+Run a container: Create and start a new container based on an image.
+docker run <options> <image_name>
+docker run --name my_postgres -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 -v /path/to/local/data:
+/var/lib/postgresql/data postgres
+
+Stop a container: Stop a running container.
+docker stop <container_id or container_name>
+
+Start a stopped container: Start a stopped container.
+docker start <container_id or container_name>
+
+Remove a container: Delete a container from your system.
+docker rm <container_id or container_name>
+
+Additional Options
+
+	-a, --all: Show all containers (default shows just running).
+	-l, --latest: Show the latest created container (includes all states).
+	-n, --last n: Show the last n created containers (includes all states).
+	-q, --quiet: Only display numeric IDs.
+
+Remember to replace <image_name>, <container_id>, and <container_name> with the actual names or IDs of the images and
+containers you're working with.
+
+
