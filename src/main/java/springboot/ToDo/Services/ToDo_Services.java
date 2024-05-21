@@ -13,12 +13,13 @@ import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = false)
+@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
         // @Transactional(readOnly = false) --> this allows all method inside class to do writable transactions.
         // @Transactional(readOnly = true)  keeping this "true"", will not allow to add any transaction into dB
         // even though all method post successfully, this will lock it...
         // manage at each method separately or class level anything is fine.
 public class ToDo_Services {
+
 
     Logger l1 = LoggerFactory.getLogger(Class.class);
 

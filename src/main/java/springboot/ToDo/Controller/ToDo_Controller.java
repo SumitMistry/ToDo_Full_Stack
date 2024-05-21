@@ -3,6 +3,8 @@ package springboot.ToDo.Controller;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,7 @@ import java.util.function.Predicate;
 
 @Controller
 @RequestMapping("api/todo/")
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally"})  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
 // <usernr> is backend variable, this will nto work
