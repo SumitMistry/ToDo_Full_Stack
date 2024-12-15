@@ -8,6 +8,7 @@ public class ToDo_main {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ToDo_main.class, args);
+		System.out.println("Before this.... Autorun class automatically started here at this point... public class Autorun_justReference implements CommandLineRunner { 'run' method}");
 		System.out.println("> ToDo SpringBoot Application has started...");
 		System.out.println(
 				" > Go and explore @Controller \n" +

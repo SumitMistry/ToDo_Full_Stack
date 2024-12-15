@@ -6,8 +6,12 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-
-@Component
+/**
+ * This runs before ToDo_Main(psvm) main method.
+ * The main method run later....
+ * This class/method runs first
+ */
+//@Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class Autorun_justReference implements CommandLineRunner {
 
