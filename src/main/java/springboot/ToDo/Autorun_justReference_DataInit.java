@@ -25,8 +25,8 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
     private Login_Services login_Services;
     @Override
     public void run(String[] str) throws Exception {
-        if (login_Services.get_username_from_login_from_spring_Security().equals("admin")) {
-            System.out.println("No users found in the database. Initializing default users...");
+        if (login_Services.toString().equals("admin")) {
+            System.out.println("\n\n                              " +"No users found in the database. Initializing default users...");
 
             Login_Services user1 = new Login_Services();
             Login_Services user2 = new Login_Services();
@@ -36,7 +36,7 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
 
             System.out.println("Default users initialized... from......... Autorun_justReference_DataInit implements CommandLineRunner");
         } else {
-            System.out.println("Users already exist in the database. Skipping initialization......... Autorun_justReference_DataInit implements CommandLineRunner");
+            System.out.println("\n\n                              " +"Users already exist in the database. Skipping initialization......... Autorun_justReference_DataInit implements CommandLineRunner"+"\n\n                              " );
         }
     }
 

@@ -26,7 +26,9 @@ public class Autorun_justReference implements CommandLineRunner {
 
     @Override
     public void run(String[] strings) throws Exception{
-        System.out.println("\n\n                              AutoRunner:   in CMD line Runner " +
+        System.out.println("\n\n                              " +
+                "Autorun_justReference implements CommandLineRunner" +
+                "AutoRunner:   in CMD line Runner " +
                 "                              AutoRunner:   No methdos is defined here...jjust fyi...." +
         "                              AutoRunner:   Any method defined here...will autorun ...fyi.... \n\n");
 

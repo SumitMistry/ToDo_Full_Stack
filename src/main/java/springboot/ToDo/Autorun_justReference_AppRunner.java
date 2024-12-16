@@ -23,6 +23,6 @@ public class Autorun_justReference_AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args1) throws Exception {
-        System.out.println("Application started with arguments: " + args1.getOptionNames()  + " .....Autorun_justReference_AppRunner implements ApplicationRunner");
+        System.out.println("\n\n                              " + "Application started with arguments: " + args1.getOptionNames()  + " .....Autorun_justReference_AppRunner implements ApplicationRunner");
     }
 }
