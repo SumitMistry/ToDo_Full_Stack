@@ -1,8 +1,9 @@
 package springboot.ToDo;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.context.properties.ConfigurationPropertiesBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,18 +19,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
-public class Autorun_justReference implements CommandLineRunner {
-
-    Autorun_justReference(){
-        super();
-    }
+public class Autorun_justReference_AppRunner implements ApplicationRunner {
 
     @Override
-    public void run(String[] strings) throws Exception{
-        System.out.println("\n\n                              AutoRunner:   in CMD line Runner " +
-                "                              AutoRunner:   No methdos is defined here...jjust fyi...." +
-        "                              AutoRunner:   Any method defined here...will autorun ...fyi.... \n\n");
-
+    public void run(ApplicationArguments args1) throws Exception {
+        System.out.println("Application started with arguments: " + args1.getOptionNames()  + " .....Autorun_justReference_AppRunner implements ApplicationRunner");
     }
-
 }
