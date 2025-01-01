@@ -18,7 +18,7 @@ import java.util.function.Function;
 @ConfigurationProperties
 public class SpringSecurityConfiguration {
 
-    // GEnerally in comapnies, we connect this Clas with below 2 methods to get user login data:
+    // Generally in comapnies, we connect this Clas with below 2 methods to get user login data:
     // 1. LDAP / database use to fetch user details...
     // 2. In memory userDetailsManager ----------> this is used here to start leaning Spr.Secu-session-1
 
@@ -37,6 +37,7 @@ public class SpringSecurityConfiguration {
     public InMemoryUserDetailsManager configure_user_detail(){
 
         Function<String,String> pass_encoder_algo =  input  ->  passwordEncoder_method().encode(input) ;
+
         UserDetails user11 =
                         User
                         .builder()
