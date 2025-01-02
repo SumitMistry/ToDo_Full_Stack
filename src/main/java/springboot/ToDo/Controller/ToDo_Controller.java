@@ -117,19 +117,31 @@ public class ToDo_Controller {
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
         list1.add(new Todo(1, "VJ@Karma.com", "fromCOnrolEdPOit", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
-        list1.add(new Todo(2, "MIstrSS@SuMIT.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
-        list1.add(new Todo(3, "RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");
 
         // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list1);
 
+
+        // ADD: locally add to LIST
+        List<Todo> list2 = new ArrayList<>();
+        list2.add(new Todo(2, "MIstrSS@SuMIT.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
+        // INSERTING to SQL
+        toDo_Services.insert_list_data_springDataJpa(list2);
+
+        // ADD: locally add to LIST
+        List<Todo> list3 = new ArrayList<>();
+        list3.add(new Todo(3, "RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
+        // INSERTING to SQL
+        toDo_Services.insert_list_data_springDataJpa(list3);
+
+
         // FETCH all from SQL
         List<Todo> existing = toDo_Services.findbyALL();
-
         // Map above list to display on frontend UI
         modelMap.addAttribute("listMapVar", existing);
+
 
         return "listall";
     }

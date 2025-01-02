@@ -14,18 +14,18 @@
 CREATE DATABASE IF NOT EXISTS sumit;
 use sumit;
 CREATE TABLE  IF NOT EXISTS todoh (
-  ---UID int NOT NULL AUTO_INCREMENT,
-  id int NOT NULL,
+  uid int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL UNIQUE,
   attach mediumblob,
   creation_date date DEFAULT NULL,
   description varchar(20) DEFAULT NULL,
   done bit(1) DEFAULT NULL,
   target_date date DEFAULT NULL,
   username varchar(255) DEFAULT NULL,
-  PRIMARY KEY (id)
+  PRIMARY KEY (uid)
 );
 
-
+---  PRIMARY KEY (uid)
 
 --- Below SQL insert cmd lines moved to <data.sql> file.
 --- This is easily configurable at application.properties >>>  spring.datasource.data=classpath:data.sql
