@@ -1,6 +1,6 @@
-package springboot.ToDo.Model;
+package springboot.ToDo.A_ForPracticeONLY;
 
-public class PersonJSON {
+public class PersonJSON_POJO_Model {
 
     private String name;
     private  int age;

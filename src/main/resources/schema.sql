@@ -12,6 +12,7 @@
 CREATE DATABASE IF NOT EXISTS sumit;
 use sumit;
 CREATE TABLE  IF NOT EXISTS todoh (
+  ---UID int NOT NULL AUTO_INCREMENT,
   id int NOT NULL,
   attach mediumblob,
   creation_date date DEFAULT NULL,
@@ -23,8 +24,11 @@ CREATE TABLE  IF NOT EXISTS todoh (
 );
 
 
+
+--- Below SQL insert cmd lines moved to <data.sql> file.
+--- This is easily configurable at application.properties >>>  spring.datasource.data=classpath:data.sql
 INSERT INTO sumit.todoh (id, creation_date, description, done, target_date, username)
-        VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "Sumit@sumit.com");
+        VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "KK@sumit.com");
 
 
 

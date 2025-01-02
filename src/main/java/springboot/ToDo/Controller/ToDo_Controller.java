@@ -14,7 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Model.MultipartFile_holder;
-import springboot.ToDo.Model.PersonJSON;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Services.ToDo_Services;
@@ -290,11 +289,6 @@ public class ToDo_Controller {
 
 
 
-    @RequestMapping(value = "pJSON")
-    public String createPersonJSON(@RequestBody PersonJSON personJSON){
-        System.out.println("I ....m ....here....");
-        return "  ---> RETURNUNG JSON name=" + personJSON.getName() + "  ---> RETURNUNG JSON age="+ personJSON.getAge();
-    }
 }
 
 
