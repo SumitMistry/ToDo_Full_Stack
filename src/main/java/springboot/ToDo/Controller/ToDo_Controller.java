@@ -116,8 +116,8 @@ public class ToDo_Controller {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
-        list1.add(new Todo(1, "Sumit@gmail.com", "TableDesc-1", LocalDate.of(2021, 02, 8), LocalDate.of(2048, 10, 7), true, null));
-        list1.add(new Todo(2, "MIstrSS@microso.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
+        list1.add(new Todo(1, "VJ@Karma.com", "fromCOnrolEdPOit", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
+        list1.add(new Todo(2, "MIstrSS@SuMIT.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
         list1.add(new Todo(3, "RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");

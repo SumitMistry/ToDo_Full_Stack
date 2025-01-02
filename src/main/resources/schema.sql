@@ -9,6 +9,8 @@
 --- if I keep this "update" this file will automatically created
 --- spring.jpa.hibernate.ddl-auto=update
 
+
+
 CREATE DATABASE IF NOT EXISTS sumit;
 use sumit;
 CREATE TABLE  IF NOT EXISTS todoh (
@@ -27,8 +29,8 @@ CREATE TABLE  IF NOT EXISTS todoh (
 
 --- Below SQL insert cmd lines moved to <data.sql> file.
 --- This is easily configurable at application.properties >>>  spring.datasource.data=classpath:data.sql
-INSERT INTO sumit.todoh (id, creation_date, description, done, target_date, username)
-        VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "KK@sumit.com");
+--- INSERT INTO sumit.todoh (id, creation_date, description, done, target_date, username)
+---        VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, "2024-01-20", "schema.sql_ADDED", false, "2029-05-04", "KK@sumit.com");
 
 
 

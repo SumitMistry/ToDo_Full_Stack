@@ -24,9 +24,14 @@ public class Todo {
         this.done = done;
         this.attach = attach;
     }
+//
+//    // @ Id is for Primary Ky
+//    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+//    // PK primary Key is MUST else error..
+//    @Column(name= "UID")
+//    private int UID;
 
-    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
-    // PK primary Key is MUST else error..
+    @Id
     @Column(name = "id")
     @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
     @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
@@ -36,7 +41,7 @@ public class Todo {
     @Column(name = "username")
     private String username;
 
-    @Size(min=7 ,max = 20, message = "springboot-starter-validation-@size---> Description --> ALLOWED to enter only 7-20 char ")
+    @Size(min=7 ,max = 40, message = "springboot-starter-validation-@size---> Description --> ALLOWED to enter only 7-20 char ")
     //@Column(name = "description") this is not Mandatory, it will automatically take it
     private String description;
 
