@@ -15,7 +15,7 @@ CREATE DATABASE IF NOT EXISTS sumit;
 use sumit;
 CREATE TABLE  IF NOT EXISTS todoh (
   uid int NOT NULL AUTO_INCREMENT,
-  id int NOT NULL UNIQUE,
+  id int NOT NULL UNIQUE ,
   attach mediumblob,
   creation_date date DEFAULT NULL,
   description varchar(20) DEFAULT NULL,

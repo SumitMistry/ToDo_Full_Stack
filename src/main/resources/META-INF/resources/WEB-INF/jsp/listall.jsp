@@ -11,7 +11,7 @@
                 <thead>
 
                     <tr>
-
+                        <th> uid </th>
                         <th> id </th>
                         <th> username </th>
                         <th> description </th>
@@ -23,31 +23,29 @@
                         <th> Update  </th>
                         <th> Delete </th>
                         <th> Attach </th>
-                        <th> findBy<br>Id(?) </th>
+                        <th> findBy<br>Uid(?) </th>
                         <th> findBy<br>User(?) </th>
-
-
 
                     </tr>
                 </thead>
                 <tbody>
                     <test1:forEach items="${listMapVar}" var="eentry">
                         <tr>
-
+                            <td>  ${eentry.uid}  </td>
                             <td>  ${eentry.id}  </td>
                             <td>  ${eentry.username}   </td>
                             <td>  ${eentry.description}   </td>
                             <td>  ${eentry.creationDate}   </td>
                             <td>  ${eentry.targetDate}   </td>
                             <td>  ${eentry.done}   </td>
-                             <%--  <td> <a href="upload?i=${eentry.id}" class="btn btn-warning"> not working </a> id:${eentry.id} </td>   --%>
+                             <%--  <td> <a href="upload?u=${eentry.uid}" class="btn btn-warning"> not working </a> id:${eentry.uid} </td>   --%>
 
                             <td>  <a href="insert3" class="btn btn-success"> + </a> i++ </td>
-                            <td>  <a href="update?i=${eentry.id}" class="btn btn-info"> # </a> i:${eentry.id} </td>
-                            <td>  <a href="delete?i=${eentry.id}" class="btn btn-danger"> x </a> i:${eentry.id} </td>
-                            <td>  <a href="upload?i=${eentry.id}" class="btn btn-primary btn-block">  🔗 </a> i:${eentry.id} </td>
-                            <td>  <a href="find?i=${eentry.id}" class="btn btn-warning"> ? </a> i:${eentry.id} </td>
-                            <td>  <a href="user?i=${eentry.username}" class="btn btn-warning"> ? </a> i:${eentry.username} </td>
+                            <td>  <a href="update?u=${eentry.uid}" class="btn btn-info"> # </a> u=${eentry.uid} </td>
+                            <td>  <a href="delete?u=${eentry.uid}" class="btn btn-danger"> x </a> u=${eentry.uid} </td>
+                            <td>  <a href="upload?u=${eentry.uid}" class="btn btn-primary btn-block">  🔗 </a> u=${eentry.uid} </td>
+                            <td>  <a href="find?u=${eentry.uid}" class="btn btn-warning"> ? </a> u=${eentry.uid} </td>
+                            <td>  <a href="user?u=${eentry.username}" class="btn btn-warning"> ? </a> u=${eentry.username} </td>
 
 
                         </tr>
@@ -62,7 +60,7 @@
                     <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
             <hr>
                     2.SpringDataJPA - FIND: <p>
-                    <a href="find?i=1" class="btn btn-success">find?i=1 </a> <p>
+                    <a href="find?u=1" class="btn btn-success">find?u=1 </a> <p>
             <hr>
                     @Transactional(readOnly = true) // , propagation = Propagation.)
                     / I kept this hard coded data as READONLY so will not get injected to DB

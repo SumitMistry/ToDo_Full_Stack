@@ -40,8 +40,8 @@ public class ToDo_Services {
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
-    public List<Todo> findByID(int id){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
-        return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getId() == id).toList();
+    public List<Todo> findByUid(int uid){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
+        return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).toList();
     }
 
 

@@ -39,7 +39,7 @@ import java.util.function.Predicate;
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
 // <usernr> is backend variable, this will not work
 // "uid_email" is the frontend variable, passing this will be able to save as session. it will work..
-public class ToDo_Controller {
+public class ToDo_Controller<T> {
 
     Logger l1 = LoggerFactory.getLogger(Class.class);
 
@@ -63,6 +63,7 @@ public class ToDo_Controller {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
         // List with all todos + parsing it to modelmap
+
         List<Todo> list1 = toDo_Services.findbyALL();
         modelMap.addAttribute("listMapVar", list1);
 
@@ -84,16 +85,16 @@ public class ToDo_Controller {
 
 ///////////////////////////     FindBYID     ///////////////////////////
     @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String findByID_from_List(@RequestParam(value = "i") int id, ModelMap modelMap) {
-        //        System.out.println(toDo_Services.findByID(id));
-        //      List<Todo> list1 =  toDo_Services.findByID_from_List(id);
-        modelMap.addAttribute("listMapVar", toDo_Services.findByID(id));
+    public String findByID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
+        //      System.out.println(toDo_Services.findByID(uid));
+        //      List<Todo> list1 =  toDo_Services.findByID_from_List(uid);
+        modelMap.addAttribute("listMapVar", toDo_Services.findByUid(uid));
         return "listall";
     }
 
 ///////////////////////////     FindBYuser     ///////////////////////////
     @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String findBYusername(@RequestParam(value = "i")String enter_username, ModelMap modelMap ){
+    public String findBYusername(@RequestParam(value = "u")String enter_username, ModelMap modelMap ){
 
         // Predicate function practice
         Predicate<? super Todo> p1 = x-> x.getUsername().equalsIgnoreCase(enter_username);
@@ -179,17 +180,17 @@ public class ToDo_Controller {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.GET)
-    public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "i") int id) {
+    public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "u") int uid) {
 
         // Retrieved current record=data
-        List<Todo> td0 = toDo_Services.findByID(id); //toDo_Services.findByID_from_List(id);
-        System.out.println("--->" + td0);
-        //Todo td0 = current_data.get(0);
+        List<Todo> retrieve_current_rec = toDo_Services.findByUid(uid); //toDo_Services.findByID_from_List(id);
+        System.out.println("--->" + retrieve_current_rec);
+        //Todo retrieve_current_rec = current_data.get(0);
 
 
         // To inject our pre-fill the data from object to model to front_end
         // This model is dupming data into insert3_SprDataJPA
-        modelMap.put("todo_obj_spring_data_jpa2", td0.get(0));
+        modelMap.put("todo_obj_spring_data_jpa2", retrieve_current_rec.get(0));
 
         // insertion done in above step now , reloading Listing page
         return "insert3_SprDataJPA";
@@ -198,7 +199,7 @@ public class ToDo_Controller {
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String post_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam("i") int oldvalue_of_id_NO_use, // ---> this is old id values, BEFORE user's update
+                                       @RequestParam("u") int oldvalue_of_id_NO_use, // ---> this is old id values, BEFORE user's update
                                        @RequestParam("id") int iDtakenFromHtmlTag, // ---> this is new id values, AFTER user's update, taken from mapping HTML user's input
                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                        BindingResult bindingResult,
@@ -238,7 +239,7 @@ public class ToDo_Controller {
 
     ///////////////////////////     DELETE     ///////////////////////////
     @RequestMapping(value = "delete")
-    public String deleteByID(@RequestParam(value = "i") int id) {
+    public String deleteByID(@RequestParam(value = "u") int id) {
         toDo_Services.deleteByID_springDataJPA(id);
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
         l1.info("DELETEDD::::::::" + id);
@@ -252,7 +253,7 @@ public class ToDo_Controller {
     @RequestMapping(value = "upload", method = RequestMethod.GET)
     public String get_attach_function(
             ModelMap modelMap,
-            @RequestParam(value = "i") int todoId) {
+            @RequestParam(value = "u") int todoId) {
 
         // Retrieved current record/data
         Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
@@ -268,7 +269,7 @@ public class ToDo_Controller {
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String post_now_uploading_here(
             @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
-            @RequestParam(value = "i") int todoId, // this result in [ old val, new val], we need new val by user so
+            @RequestParam(value = "u") int todoId, // this result in [ old val, new val], we need new val by user so
             ModelMap modelmap
             ) {
 

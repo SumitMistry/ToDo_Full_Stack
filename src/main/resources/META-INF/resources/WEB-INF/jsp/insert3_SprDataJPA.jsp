@@ -2,9 +2,6 @@
 <%@ include file="common/navigation.jspf" %>
 
 
-
-
-
         <div class="container">
 
         <div>

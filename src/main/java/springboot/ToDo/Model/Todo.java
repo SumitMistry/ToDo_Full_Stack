@@ -26,10 +26,12 @@ public class Todo {
     }
 
     // @ Id is for Primary Ky
-    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+//    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
     // PK primary Key is MUST else error..
-    @Column(name= "UID")
-    private int UID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "uid")
+    private int uid;
 
     @Column(name = "id")
     @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
@@ -90,6 +92,13 @@ public class Todo {
 //    }
 
     ///////////////////////////////////////////////////////////////////////////////////////
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
     public int getId() {
         return id;
     }
@@ -140,24 +149,17 @@ public class Todo {
     }
 
 
-    public int getUID() {
-        return UID;
-    }
-
-    public void setUID(int UID) {
-        this.UID = UID;
-    }
-
     @Override
     public String toString() {
-        return "ToDo{" +
-                "id=" + id +
-                ", username='" + username +
-                ", description='" + description +
-                ", targetDate=" + targetDate +
+        return "Todo{" +
+                "uid=" + uid +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", description='" + description + '\'' +
                 ", creationDate=" + creationDate +
+                ", targetDate=" + targetDate +
                 ", done=" + done +
-                ", attach="  +attach+
+                ", attach=" + attach +
                 '}';
     }
 }
