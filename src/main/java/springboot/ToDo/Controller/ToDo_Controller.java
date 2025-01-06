@@ -199,8 +199,8 @@ public class ToDo_Controller<T> {
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public String post_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam("u") int oldvalue_of_id_NO_use, // ---> this is old id values, BEFORE user's update
-                                       @RequestParam("id") int iDtakenFromHtmlTag, // ---> this is new id values, AFTER user's update, taken from mapping HTML user's input
+                                       @RequestParam("u") int oldvalue_uid_NO_use, // ---> this is old id values, BEFORE user's update
+                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is new id values, AFTER user's update, taken from mapping HTML user's input
                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                        BindingResult bindingResult,
                                        Errors err
@@ -208,7 +208,7 @@ public class ToDo_Controller<T> {
 
         // this id logic is to fetch user entered "NEW value of" ID for our this Update function
         //System.out.println(oldvalue_of_id_NO_use); // ---> this is old  values
-        System.out.println(iDtakenFromHtmlTag ); // this will be the user's new value
+        System.out.println(uidTakenFromHtmlTag ); // this will be the user's new value
 
         // if validation error handle here, handle here:
         if (bindingResult.hasErrors() || err.hasErrors()) {
@@ -220,8 +220,10 @@ public class ToDo_Controller<T> {
         }
 
         // New record object
-        Todo new_obj_to_Be_Added = new Todo(todo_obj_spring_data_jpa2.getId(),
-                //iDtakenFromHtmlTag, //this is new id at 1st index
+        Todo new_obj_to_Be_Added = new Todo(
+                //uidTakenFromHtmlTag, //this is new id at 1st index
+                todo_obj_spring_data_jpa2.getUid(),
+                todo_obj_spring_data_jpa2.getId(),
                 todo_obj_spring_data_jpa2.getUsername(),
                 todo_obj_spring_data_jpa2.getDescription(),
                 todo_obj_spring_data_jpa2.getCreationDate(),
@@ -231,7 +233,7 @@ public class ToDo_Controller<T> {
 
         // if no validation error: update data here
         // delete current old record from index 0 of REQ PARAM value, so we can replace with new data
-        toDo_Services.updateByID(oldvalue_of_id_NO_use, new_obj_to_Be_Added);
+        toDo_Services.update( new_obj_to_Be_Added);
 
         return "redirect:list";
     }

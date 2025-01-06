@@ -15,7 +15,18 @@ import java.time.LocalDate;
 public class Todo {
 
 
-    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
+    public Todo(int uid, int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
+        this.uid = uid;
+        this.id = id;
+        this.username = username;
+        this.description = description;
+        this.creationDate =creationDate;
+        this.targetDate = targetDate;
+        this.done = done;
+        this.attach = attach;
+    }
+
+    public Todo( int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
         this.id = id;
         this.username = username;
         this.description = description;

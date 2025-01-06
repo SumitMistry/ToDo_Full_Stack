@@ -31,6 +31,11 @@ public class ToDo_Services {
     public void insert_list_data_springDataJpa(List<Todo> list1){
         list1.forEach(x->repo_dao_springData_jpa.save(x));
     }
+
+
+
+
+
     @Transactional(propagation = Propagation.REQUIRED)  /// requires_new
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database
@@ -39,25 +44,33 @@ public class ToDo_Services {
         repo_dao_springData_jpa.deleteById(id);
     }
 
+
+
+
+
+
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
     public List<Todo> findByUid(int uid){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
         return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).toList();
     }
 
 
+
     public List<Todo> findbyALL(){
         return repo_dao_springData_jpa.findAll();
     }
 
+
+
+
+
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void updateByID(int idTodelete, Todo todo){
-        repo_dao_springData_jpa.deleteById(idTodelete);
+    public void update( Todo todo){
         repo_dao_springData_jpa.save(todo);
     }
 
 
-
-
+}
 
 
 
@@ -106,8 +119,3 @@ public class ToDo_Services {
 //    }
 
 
-
-
-
-
-}
