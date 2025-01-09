@@ -39,7 +39,7 @@ public class Todo {
     // @ Id is for Primary Ky
 //    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
     // PK primary Key is MUST else error..
-    @Id
+    @Id   // Ensure that this UID-PK field is annotated with @GeneratedValue for automatic ID generation
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "uid")
     private int uid;
