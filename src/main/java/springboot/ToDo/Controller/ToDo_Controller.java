@@ -26,6 +26,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+
+
+/*
+    BOTH -----> Adds the key-value pair to the ModelMap:
+
+    modelMap.put(key, value)
+        >1 Signature ONLY ===>
+        >Requires a key to be explicitly specified.
+
+    modelMap.addAttribute(key, value)  ******** BEST***************
+        >2 Signature ====> modelMap.addAttribute(user) OR  modelMap.addAttribute("user", user);
+        >Used for Null values handling.
+        >Can derive the key automatically if omitted
+
+ */
 /*
     ModelMap == map.put("listvarinJSP", a1fromJavaClass) -------------> This flows from Javs Class's a1 variable to ---> frontend
     (@RequestParam("username") String retrieved_username) -------------> frontend ---> Java class. This extracts submitted "username" tag's data into variable <retrieved_username>
@@ -152,8 +167,8 @@ public class ToDo_Controller<T> {
     public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
-        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
-        modelMap.put("todo_obj_spring_data_jpa2", t1);
+            Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
+            modelMap.put("todo_obj_spring_data_jpa2", t1);
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
 
@@ -188,52 +203,28 @@ public class ToDo_Controller<T> {
         //Todo retrieve_current_rec = current_data.get(0);
 
 
+
         // To inject our pre-fill the data from object to model to front_end
         // This model is dupming data into insert3_SprDataJPA
-        modelMap.put("todo_obj_spring_data_jpa2", retrieve_current_rec.get(0));
+        modelMap.addAttribute("todo_obj_spring_data_jpa2", retrieve_current_rec.get(0));
 
         // insertion done in above step now , reloading Listing page
         return "insert3_SprDataJPA";
     }
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
-    @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String post_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam("u") int oldvalue_uid_NO_use, // ---> this is old id values, BEFORE user's update
-                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is new id values, AFTER user's update, taken from mapping HTML user's input
-                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
+    @RequestMapping(value = "update", method = {RequestMethod.PUT, RequestMethod.POST})
+    public String post_UpdateByUID_page(ModelMap modelMap,
+                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
+                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
                                        BindingResult bindingResult,
                                        Errors err
     ) {
+        // this is fetching existing UID of the record, first we need UID
+        todo_obj_spring_data_jpa2.setUid(uidTakenFromHtmlTag);
 
-        // this id logic is to fetch user entered "NEW value of" ID for our this Update function
-        //System.out.println(oldvalue_of_id_NO_use); // ---> this is old  values
-        System.out.println(uidTakenFromHtmlTag ); // this will be the user's new value
-
-        // if validation error handle here, handle here:
-        if (bindingResult.hasErrors() || err.hasErrors()) {
-            System.out.println(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
-            l1.info(" YOU HAVE ERRRRRRORS....in INPUT VALIDATIONs");
-            System.out.println(bindingResult.getAllErrors());
-            System.out.println(err.getAllErrors());
-            return "insert3_SprDataJPA";
-        }
-
-        // New record object
-        Todo new_obj_to_Be_Added = new Todo(
-                //uidTakenFromHtmlTag, //this is new id at 1st index
-                todo_obj_spring_data_jpa2.getUid(),
-                todo_obj_spring_data_jpa2.getId(),
-                todo_obj_spring_data_jpa2.getUsername(),
-                todo_obj_spring_data_jpa2.getDescription(),
-                todo_obj_spring_data_jpa2.getCreationDate(),
-                todo_obj_spring_data_jpa2.getTargetDate(),
-                todo_obj_spring_data_jpa2.getDone()
-                , null);
-
-        // if no validation error: update data here
-        // delete current old record from index 0 of REQ PARAM value, so we can replace with new data
-        toDo_Services.update( new_obj_to_Be_Added);
+        // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
+        toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
 
         return "redirect:list";
     }

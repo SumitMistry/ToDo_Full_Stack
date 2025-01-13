@@ -10,7 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 
+import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
@@ -33,9 +37,6 @@ public class ToDo_Services {
     }
 
 
-
-
-
     @Transactional(propagation = Propagation.REQUIRED)  /// requires_new
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database
@@ -43,8 +44,6 @@ public class ToDo_Services {
     public void deleteByID_springDataJPA(int id){
         repo_dao_springData_jpa.deleteById(id);
     }
-
-
 
 
 
@@ -62,12 +61,50 @@ public class ToDo_Services {
 
 
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public Todo updateByUid(Todo todo3  ) {
+        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x->x.getUid() == todo3.getUid()).toList().get(0);
 
+        existing_rec_retrieved.setId(todo3.getId());
+        existing_rec_retrieved.setattach(todo3.getattach());
+        existing_rec_retrieved.setTargetDate(todo3.getTargetDate());
+        existing_rec_retrieved.setDescription(todo3.getDescription());
+        existing_rec_retrieved.setCreationDate(todo3.getCreationDate());
+        existing_rec_retrieved.setUsername(todo3.getUsername());
+        existing_rec_retrieved.setDone(todo3.getDone());
+
+        return existing_rec_retrieved;
+    }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void update( Todo todo){
-        repo_dao_springData_jpa.save(todo);
+    public Todo updateByUid(int uid, int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach  ) {
+        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x->x.getUid() == uid).toList().get(0);
+
+        existing_rec_retrieved.setId(id);
+        existing_rec_retrieved.setattach(attach);
+        existing_rec_retrieved.setTargetDate(targetDate);
+        existing_rec_retrieved.setDescription(description);
+        existing_rec_retrieved.setCreationDate(creationDate);
+        existing_rec_retrieved.setUsername(username);
+        existing_rec_retrieved.setDone(done);
+
+        return existing_rec_retrieved;
     }
+
+
+//        List<Todo> get_curr_record = repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).findFirst();
+//
+//        .setId(new_updated_todo.getId());
+//        new_updated_todo.setId(get_curr_record.get().setId(););
+//        get_curr_record.get().setUsername(new_updated_todo.getUsername());
+//        get_curr_record.get().setDone(new_updated_todo.getDone());
+//        get_curr_record.get().setCreationDate(new_updated_todo.getCreationDate());
+//        get_curr_record.get().setDescription(new_updated_todo.getDescription());
+//        get_curr_record.get().setTargetDate(new_updated_todo.getTargetDate());
+//        get_curr_record.get().setattach(new_updated_todo.getattach());
+//
+//        repo_dao_springData_jpa.save(new_updated_todo);
+
 
 
 }
