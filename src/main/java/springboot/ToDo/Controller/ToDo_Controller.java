@@ -20,6 +20,7 @@ import springboot.ToDo.Services.ToDo_Services;
 
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class ToDo_Controller<T> {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
-        list1.add(new Todo(1, "VJ@Karma.com", "fromCOnrolEdPOit", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
+        list1.add(new Todo(001, "VJ@Karma.com", "From Cntrl-hardc end", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");
 
@@ -142,13 +143,13 @@ public class ToDo_Controller<T> {
 
         // ADD: locally add to LIST
         List<Todo> list2 = new ArrayList<>();
-        list2.add(new Todo(2, "MIstrSS@SuMIT.com", "Vrajwilback", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
+        list2.add(new Todo(002, "MIstrSS@SuMIT.com", "Vraj will be back", LocalDate.of(1987, 12, 22), LocalDate.of(2031, 01, 15), true,   null));
         // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list2);
 
         // ADD: locally add to LIST
         List<Todo> list3 = new ArrayList<>();
-        list3.add(new Todo(3, "RuthBVraj@nakamo.com", "Faint2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
+        list3.add(new Todo(003, "RuthBVraj@nakamo.com", "Faint of 2021-2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
         // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list3);
 
@@ -197,6 +198,8 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "update", method = RequestMethod.GET)
     public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "u") int uid) {
 
+
+
         // Retrieved current record=data
         List<Todo> retrieve_current_rec = toDo_Services.findByUid(uid); //toDo_Services.findByID_from_List(id);
         System.out.println("--->" + retrieve_current_rec);
@@ -213,6 +216,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
+    //This updated method will NOT create new UID upon modifying/updating existing record.
     @RequestMapping(value = "update", method = {RequestMethod.PUT, RequestMethod.POST})
     public String post_UpdateByUID_page(ModelMap modelMap,
                                        @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
@@ -223,11 +227,24 @@ public class ToDo_Controller<T> {
         // this is fetching existing UID of the record, first we need UID
         todo_obj_spring_data_jpa2.setUid(uidTakenFromHtmlTag);
 
+        System.out.println(todo_obj_spring_data_jpa2.toString());
+
+
+        if (err.hasErrors() || bindingResult.hasErrors()) {
+//            int x = bindingResult.getErrorCount();
+//            System.out.println(x);
+//            l1.info(" error  count = " + x);
+//            return "insert";    //  --> "redirect:insert" returns   /insert   endpoint
+//            // return "insert";   --> return "insert"    returns    insert.jsp
+            return "insert3_SprDataJPA";
+             }
+
         // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
         toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
 
         return "redirect:list";
     }
+
 
 
     ///////////////////////////     DELETE     ///////////////////////////

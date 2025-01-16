@@ -18,7 +18,7 @@ CREATE TABLE  IF NOT EXISTS todoh (
   id int NOT NULL UNIQUE ,
   attach mediumblob,
   creation_date date DEFAULT NULL,
-  description varchar(20) DEFAULT NULL,
+  description varchar(40) DEFAULT NULL,
   done bit(1) DEFAULT NULL,
   target_date date DEFAULT NULL,
   username varchar(255) DEFAULT NULL,
