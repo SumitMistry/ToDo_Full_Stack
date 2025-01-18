@@ -41,10 +41,12 @@ public class Todo {
     // PK primary Key is MUST else error..
     @Id   // Ensure that this UID-PK field is annotated with @GeneratedValue for automatic ID generation
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "uid")
+    @NotNull
+    @Column(name= "uid",  nullable = false)  // you're instructing JPA to create a database column that does not allow NULL values.
     private int uid;
 
-    @Column(name = "id")
+    @NotNull
+    @Column(name = "id", unique = true, nullable = false)  // you're instructing JPA to create a database column that does not allow NULL values.
     @Positive(message = "springboot-starter-validation-@size---> ID -->  ALLOWED to enter only POSITIVE ")
     @Digits(message=" springboot-starter-validation-@size---> ID --> Number should contain between 0 to 3 digits.", fraction = 0, integer = 3)
     private int id;

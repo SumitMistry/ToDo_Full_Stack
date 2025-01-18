@@ -11,7 +11,9 @@
         <div class="container">
 
             <pre> ${id_err_msg2} ${id_err_msg1} </pre>
-
+<p>
+PART-A : (Form existing UID record data / GET)
+<p>
 
             <form:form method="get"  enctype="multipart/form-data"  modelAttribute="todo55">
                     <fieldset class="mb-3">
@@ -54,6 +56,10 @@
 
             <%-- commented ...<form:form method="post" action="upload"  enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
             <%-- commented...<form:form method="post" action="upload/${todoId}" enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
+<p>
+PART-B : (Upload section / POST)
+<p>
+
             <form:form method="post"                                enctype="multipart/form-data"  modelAttribute="fileUpload_holder">
 
                     <fieldset class="mb-3">

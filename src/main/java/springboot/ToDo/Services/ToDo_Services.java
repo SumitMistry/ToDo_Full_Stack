@@ -12,6 +12,7 @@ import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 
 import java.sql.Blob;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,16 +42,39 @@ public class ToDo_Services {
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database
     //    method needs a transaction, either open one for me or use an existing one → getConnection(). setAutocommit(false). commit().
-    public void deleteByID_springDataJPA(int id){
-        repo_dao_springData_jpa.deleteById(id);
+    public void deleteByUID_springDataJPA(int uid){
+        repo_dao_springData_jpa.deleteByUid(uid);
     }
 
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Optional<List<Todo>> getAllSumit(){
+        return repo_dao_springData_jpa.findSumit();
+    }
 
-
+    // This method is based on Derived Query on JPA, comparing findByUid() vs findByUid1(), this method works best as it generates query automatically and no need to write query and JPA auto construct it.
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
-    public List<Todo> findByUid(int uid){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
+    public List<Todo> findByUid(int uid){
+        return repo_dao_springData_jpa.findByUid(uid).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+    }
+
+
+    // WARNING : This is not ideal method, because when data is too heavy then you can not run all records and then select onw out of one, you need to target your records for faster and performance reason.
+    //This method is NOT USED and NOT IDEAL and so Deprecated because performance is poor, this iterates all data instead of 1 UID target.
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
+    public List<Todo> findByUid1(int uid){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
         return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).toList();
+    }
+
+
+   // @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
+    public List<Todo> fiByID(int id){
+//      return repo_dao_springData_jpa.findById(id).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+        List<Todo> todoList = new ArrayList<Todo>();
+        todoList.add(repo_dao_springData_jpa.findById(id).get());
+
+        return todoList;
+
     }
 
 

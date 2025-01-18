@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 
@@ -74,7 +75,7 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
+    @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
@@ -83,7 +84,7 @@ public class ToDo_Controller<T> {
         List<Todo> list1 = toDo_Services.findbyALL();
         modelMap.addAttribute("listMapVar", list1);
 
-        // counting total todos and parsing on the navigation.jspf vvia {totally} variable
+        // counting total todos and parsing on the navigation.jspf vvia {totally} variable, this is for HEADER count variable
         modelMap.addAttribute("totally", list1.size());
 
         // now final result listing as view
@@ -99,18 +100,46 @@ public class ToDo_Controller<T> {
     }
 
 
-///////////////////////////     FindBYID     ///////////////////////////
-    @RequestMapping(value = "find", method = RequestMethod.GET)
-    public String findByID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
+    ///////////////////////////     FindBYUID     ///////////////////////////
+    @RequestMapping(value = "findByUID", method = RequestMethod.GET)
+    public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
         //      System.out.println(toDo_Services.findByID(uid));
         //      List<Todo> list1 =  toDo_Services.findByID_from_List(uid);
-        modelMap.addAttribute("listMapVar", toDo_Services.findByUid(uid));
+
+        List<Todo> todo_uid = toDo_Services.findByUid(uid);
+        modelMap.addAttribute("listMapVar", todo_uid );
         return "listall";
     }
 
-///////////////////////////     FindBYuser     ///////////////////////////
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String findBYusername(@RequestParam(value = "u")String enter_username, ModelMap modelMap ){
+    ///////////////////////////     FindBY ID     ///////////////////////////
+    @RequestMapping(value = "fiByID", method = RequestMethod.GET)
+    public String fiByID(@RequestParam(value = "i") int id, ModelMap modelMap) {
+
+        List<Todo> todo_inList = toDo_Services.fiByID(id);
+
+        l1.info("-->>>" + String.valueOf(id));
+        l1.info("-->>>" + todo_inList.toString());
+
+        modelMap.addAttribute("listMapVar", todo_inList );
+        return "listall";
+    }
+
+    // New Derived Query bases JPA fucntion //////////////
+    // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
+    @RequestMapping(value = "findByUser", method = RequestMethod.GET)
+    public String findByUsername(@RequestParam(value = "user")String enter_username, ModelMap modelMap ){
+
+        List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
+
+        modelMap.addAttribute("listMapVar", t1);
+        return "listall";
+    }
+
+    //  OLD -STEAMING ALL List = POOR Performance ////////////////////////////
+    // Not in use, taken off from JSP - front end (listall.jsp) side
+    // /////////////////////////     findByUser     ///////////////////////////
+    @RequestMapping(value = "findByUser1", method = RequestMethod.GET)
+    public String findBYusername1(@RequestParam(value = "u")String enter_username, ModelMap modelMap ){
 
         // Predicate function practice
         Predicate<? super Todo> p1 = x-> x.getUsername().equalsIgnoreCase(enter_username);
@@ -199,17 +228,15 @@ public class ToDo_Controller<T> {
     public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "u") int uid) {
 
 
-
         // Retrieved current record=data
-        List<Todo> retrieve_current_rec = toDo_Services.findByUid(uid); //toDo_Services.findByID_from_List(id);
+        Todo retrieve_current_rec = toDo_Services.findByUid(uid).get(0); //toDo_Services.findByID_from_List(id);
         System.out.println("--->" + retrieve_current_rec);
         //Todo retrieve_current_rec = current_data.get(0);
 
 
-
         // To inject our pre-fill the data from object to model to front_end
         // This model is dupming data into insert3_SprDataJPA
-        modelMap.addAttribute("todo_obj_spring_data_jpa2", retrieve_current_rec.get(0));
+        modelMap.addAttribute("todo_obj_spring_data_jpa2", retrieve_current_rec);
 
         // insertion done in above step now , reloading Listing page
         return "insert3_SprDataJPA";
@@ -247,29 +274,49 @@ public class ToDo_Controller<T> {
 
 
 
-    ///////////////////////////     DELETE     ///////////////////////////
-    @RequestMapping(value = "delete")
-    public String deleteByID(@RequestParam(value = "u") int id) {
-        toDo_Services.deleteByID_springDataJPA(id);
+    ///////////////////////////     DELETE BY UID    ///////////////////////////
+    @RequestMapping(value = "deleteByUid", method = RequestMethod.GET)
+    public String deleteByUID(@RequestParam(value = "u") int uid) {
+        toDo_Services.deleteByUID_springDataJPA(uid);
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
+        l1.info("DELETEDD::::::::" + uid);
+        //return "listall";
+        return "redirect:list";
+    }
+
+    ///////////////////////////     DELETE BY ID    ///////////////////////////
+    @RequestMapping(value = "delByID", method = RequestMethod.GET)
+    public String del_By_ID(@RequestParam(value = "i") int id) {
+        repo_dao_springData_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
         //return "listall";
         return "redirect:list";
     }
 
+    /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
+    @RequestMapping(value = "sam", method = RequestMethod.GET)
+    public String getSum(ModelMap modelMap){
+        modelMap.addAttribute("listMapVar", toDo_Services.getAllSumit());
+        return "listall";
+    }
+
+
+    /////////////       DERIVED QUERY supported by JpaRepository  //////////////////////
 
 
     ///////////////////////////     UPLOAD     ///////////////////////////
     @RequestMapping(value = "upload", method = RequestMethod.GET)
     public String get_attach_function(
             ModelMap modelMap,
-            @RequestParam(value = "u") int todoId) {
+            @RequestParam(value = "u") int todoUID) {
 
         // Retrieved current record/data
-        Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+        Todo existingTodo = repo_dao_springData_jpa.findById(todoUID).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+
+        Todo existingTodoByUID = repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == todoUID).toList().stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
 
         // insertion of fetched above data's mapping is done in below step now,
-        modelMap.addAttribute("todoId", todoId); // REF: upload.jsp //used for --> form's post action="upload/${todoId}"
+        modelMap.addAttribute("todoUID", todoUID); // REF: upload.jsp //used for --> form's post action="upload/${todoUID}"
         modelMap.addAttribute("todo55", existingTodo); // REF: upload.jsp // half page of this form is loaded with existing <todo's data>
         modelMap.addAttribute("fileUpload_holder", new MultipartFile_holder()); // REF: upload.jsp // half page of this form is loaded with <fileUpload_holder>
 

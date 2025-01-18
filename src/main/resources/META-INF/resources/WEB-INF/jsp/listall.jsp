@@ -20,10 +20,12 @@
                         <th> done </th>
 
                         <th> Insert<br>(Validated) </th>
-                        <th> Update  </th>
-                        <th> Delete </th>
+                        <th> Update </th>
+                        <th> DeleteBy<br>ID(?) </th>
+                        <th> DeleteBy<br>UID(?) </th>
                         <th> Attach </th>
-                        <th> findBy<br>Uid(?) </th>
+                        <th> findBy<br>ID(?) </th>
+                        <th> findBy<br>UID(?) </th>
                         <th> findBy<br>User(?) </th>
 
                     </tr>
@@ -42,10 +44,12 @@
 
                             <td>  <a href="insert3" class="btn btn-success"> + </a> i++ </td>
                             <td>  <a href="update?u=${eentry.uid}" class="btn btn-info"> # </a> u=${eentry.uid} </td>
-                            <td>  <a href="delete?u=${eentry.uid}" class="btn btn-danger"> x </a> u=${eentry.uid} </td>
+                            <td>  <a href="delByID?i=${eentry.id}" class="btn btn-danger"> x </a> i=${eentry.id} </td>
+                            <td>  <a href="deleteByUid?u=${eentry.uid}" class="btn btn-danger"> x </a> u=${eentry.uid} </td>
                             <td>  <a href="upload?u=${eentry.uid}" class="btn btn-primary btn-block">  🔗 </a> u=${eentry.uid} </td>
-                            <td>  <a href="find?u=${eentry.uid}" class="btn btn-warning"> ? </a> u=${eentry.uid} </td>
-                            <td>  <a href="user?u=${eentry.username}" class="btn btn-warning"> ? </a> u=${eentry.username} </td>
+                            <td>  <a href="fiByID?i=${eentry.id}" class="btn btn-warning"> ? </a> i=${eentry.id} </td>
+                            <td>  <a href="findByUID?u=${eentry.uid}" class="btn btn-warning"> ? </a> u=${eentry.uid} </td>
+                            <td>  <a href="findByUser?user=${eentry.username}" class="btn btn-warning"> ? </a> user=${eentry.username} </td>
 
 
                         </tr>
