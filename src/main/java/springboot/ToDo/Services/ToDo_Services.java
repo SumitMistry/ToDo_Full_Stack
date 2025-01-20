@@ -103,7 +103,7 @@ public class ToDo_Services {
 
     @Transactional
     public List<Todo> findByKeyword(String keyword){
-        return repo_dao_springData_jpa.findByKeyword(keyword).orElseThrow( () -> new NoSuchElementException(""));
+        return repo_dao_springData_jpa.findByKeyword(keyword).orElseThrow( () -> new NoSuchElementException("No keyword found heREHREHR"));
     }
 
 }

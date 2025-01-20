@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
@@ -310,15 +311,75 @@ public class ToDo_Controller<T> {
     }
 
 
-    @RequestMapping(value = "searchAPI", method = RequestMethod.GET)
+    @RequestMapping(value = "searchAPI", method ={ RequestMethod.GET, RequestMethod.POST})
     public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
                                 ModelMap modelMap){
+
         List<Todo> todoList = toDo_Services.findByKeyword(keyword);
-        modelMap.addAttribute("listMapVar",todoList);
+
+        System.out.println(todoList.size());
+
+        if (! todoList.isEmpty()) {
+            modelMap.addAttribute("listMapVar", todoList);
+        } else {
+            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
+        }
         return "listall";
     }
 
 
+
+    //backup UPLOAD GET WORKING...
+
+    ///////////////////////////     UPLOAD     ///////////////////////////
+    @RequestMapping(value = "upload", method = RequestMethod.GET)
+    public String get_attach_function(
+            ModelMap modelMap,
+            @RequestParam(value = "u") int todoId) {
+
+        // Retrieved current record/data
+        List<Todo> existingTodo = toDo_Services.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+
+        // insertion of fetched above data's mapping is done in below step now,
+        modelMap.addAttribute("todoId", todoId); // REF: upload.jsp //used for --> form's post action="upload/${todoId}"
+        modelMap.addAttribute("todo55", existingTodo); // REF: upload.jsp // half page of this form is loaded with existing <todo's data>
+        modelMap.addAttribute("fileUpload_holder", new MultipartFile_holder()); // REF: upload.jsp // half page of this form is loaded with <fileUpload_holder>
+
+        return "upload";
+    }
+
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    public String post_now_uploading_here(
+            @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
+            @RequestParam(value = "u") int todoId, // this result in [ old val, new val], we need new val by user so
+            ModelMap modelmap
+    ) {
+
+        //finding existing Todo
+        List<Todo> existingTodo = toDo_Services.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+        try{
+            if (  !  (multipartFile.getMultipartFile() == null && multipartFile.getMultipartFile().isEmpty())) {
+
+                //  This works great for BLOB datatype. Large data object attach to db. We change model to byte[] or BLOB depending on the requirement
+                byte[] b = multipartFile.getMultipartFile().getBytes();
+                existingTodo.get(0).setAttach(new javax.sql.rowset.serial.SerialBlob(b));
+                repo_dao_springData_jpa.save(existingTodo.get(0));
+
+                                    /*
+                                    ##  This works great for small size files like byte[] datatype. We change model to byte[] or BLOB depending on the requirement
+                                        existingTodo.setattach(multipartFile.getMultipartFile().getBytes());
+                                        repo_dao_springData_jpa.save(existingTodo);
+                                    */
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SerialException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "redirect:list";
+    }
 
 
 
