@@ -198,6 +198,14 @@
 		</dependency>
 
 
+		<!-- Datasource-Proxy: Intercepts and logs SQL queries, providing detailed information about the query and its parameters -->
+		<dependency>
+			<groupId>com.github.gavlyukovskiy</groupId>
+			<artifactId>datasource-proxy-spring-boot-starter</artifactId>
+			<version>1.9.1</version>
+		</dependency>
+
+
 	</dependencies>
 
             <build>

@@ -20,7 +20,6 @@ import springboot.ToDo.Services.ToDo_Services;
 
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -112,22 +111,31 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     FindBY ID     ///////////////////////////
-    @RequestMapping(value = "fiByID", method = RequestMethod.GET)
-    public String fiByID(@RequestParam(value = "i") int id, ModelMap modelMap) {
+    @RequestMapping(value = "findById", method = RequestMethod.GET)
+    public String findById(@RequestParam(value = "u") int id,
+                           ModelMap modelMap) {
 
-        List<Todo> todo_inList = toDo_Services.fiByID(id);
+        System.out.println("-->>" + repo_dao_springData_jpa.findById(58).get().toString());
+        System.out.println("----->>>>>>----------" +  id);
 
-        l1.info("-->>>" + String.valueOf(id));
-        l1.info("-->>>" + todo_inList.toString());
+        Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
+        List<Todo> todo_list= repo_dao_springData_jpa.findById(id).get();
 
-        modelMap.addAttribute("listMapVar", todo_inList );
-        return "listall";
+        System.out.println( "->>>>>>>"+ todo_list.toString());
+        modelMap.addAttribute("listMapVar",todo_list);
+
+        return "listall"; // JSP page name (without prefix/suffix)
+
     }
+
+
 
     // New Derived Query bases JPA fucntion //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
     @RequestMapping(value = "findByUser", method = RequestMethod.GET)
-    public String findByUsername(@RequestParam(value = "user")String enter_username, ModelMap modelMap ){
+    public String findByUsername(@RequestParam(value = "user")String enter_username,
+                                 ModelMap modelMap ){
+
 
         List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
 
@@ -162,7 +170,7 @@ public class ToDo_Controller<T> {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
-        list1.add(new Todo(001, "VJ@Karma.com", "From Cntrl-hardc end", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
+        list1.add(new Todo(001,  "VJ@Karma.com", "From Cntrl-hardc end", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");
 
@@ -286,8 +294,8 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "delByID", method = RequestMethod.GET)
-    public String del_By_ID(@RequestParam(value = "i") int id) {
-        repo_dao_springData_jpa.deleteById(id);
+    public String del_By_ID(@RequestParam(value = "u") int id) {
+        toDo_Services.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
         //return "listall";
         return "redirect:list";
@@ -303,58 +311,6 @@ public class ToDo_Controller<T> {
 
     /////////////       DERIVED QUERY supported by JpaRepository  //////////////////////
 
-
-    ///////////////////////////     UPLOAD     ///////////////////////////
-    @RequestMapping(value = "upload", method = RequestMethod.GET)
-    public String get_attach_function(
-            ModelMap modelMap,
-            @RequestParam(value = "u") int todoUID) {
-
-        // Retrieved current record/data
-        Todo existingTodo = repo_dao_springData_jpa.findById(todoUID).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
-
-        Todo existingTodoByUID = repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == todoUID).toList().stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
-
-        // insertion of fetched above data's mapping is done in below step now,
-        modelMap.addAttribute("todoUID", todoUID); // REF: upload.jsp //used for --> form's post action="upload/${todoUID}"
-        modelMap.addAttribute("todo55", existingTodo); // REF: upload.jsp // half page of this form is loaded with existing <todo's data>
-        modelMap.addAttribute("fileUpload_holder", new MultipartFile_holder()); // REF: upload.jsp // half page of this form is loaded with <fileUpload_holder>
-
-        return "upload";
-    }
-
-    @RequestMapping(value = "upload", method = RequestMethod.POST)
-    public String post_now_uploading_here(
-            @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
-            @RequestParam(value = "u") int todoId, // this result in [ old val, new val], we need new val by user so
-            ModelMap modelmap
-            ) {
-
-        //finding existing Todo
-        Todo existingTodo = repo_dao_springData_jpa.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
-        try{
-            if (  !  (multipartFile.getMultipartFile() == null && multipartFile.getMultipartFile().isEmpty())) {
-
-                //  This works great for BLOB datatype. Large data object attach to db. We change model to byte[] or BLOB depending on the requirement
-                byte[] b = multipartFile.getMultipartFile().getBytes();
-                existingTodo.setattach(new javax.sql.rowset.serial.SerialBlob(b));
-                repo_dao_springData_jpa.save(existingTodo);
-
-                                    /*
-                                    ##  This works great for small size files like byte[] datatype. We change model to byte[] or BLOB depending on the requirement
-                                        existingTodo.setattach(multipartFile.getMultipartFile().getBytes());
-                                        repo_dao_springData_jpa.save(existingTodo);
-                                    */
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SerialException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return "redirect:list";
-    }
 
 
 

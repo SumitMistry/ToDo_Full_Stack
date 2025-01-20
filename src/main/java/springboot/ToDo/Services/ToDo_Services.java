@@ -4,6 +4,7 @@ package springboot.ToDo.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +13,9 @@ import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 
 import java.sql.Blob;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
@@ -25,16 +25,14 @@ import java.util.stream.Collectors;
         // manage at each method separately or class level anything is fine.
 public class ToDo_Services {
 
-
     Logger l1 = LoggerFactory.getLogger(Class.class);
-
 
     @Autowired
     private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
 
 
-    public void insert_list_data_springDataJpa(List<Todo> list1){
-        list1.forEach(x->repo_dao_springData_jpa.save(x));
+    public void insert_list_data_springDataJpa(List<Todo> list1) {
+        list1.forEach(x -> repo_dao_springData_jpa.save(x));
     }
 
 
@@ -42,55 +40,16 @@ public class ToDo_Services {
     //    is telling Spring that this method needs to execute in its own transaction, independent of any other, already existing transaction
     //    Which basically means your code will open two (physical) connections/transactions to the database
     //    method needs a transaction, either open one for me or use an existing one → getConnection(). setAutocommit(false). commit().
-    public void deleteByUID_springDataJPA(int uid){
+    public void deleteByUID_springDataJPA(int uid) {
         repo_dao_springData_jpa.deleteByUid(uid);
     }
 
-
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    public Optional<List<Todo>> getAllSumit(){
-        return repo_dao_springData_jpa.findSumit();
-    }
-
-    // This method is based on Derived Query on JPA, comparing findByUid() vs findByUid1(), this method works best as it generates query automatically and no need to write query and JPA auto construct it.
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
-    public List<Todo> findByUid(int uid){
-        return repo_dao_springData_jpa.findByUid(uid).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
-    }
-
-
-    // WARNING : This is not ideal method, because when data is too heavy then you can not run all records and then select onw out of one, you need to target your records for faster and performance reason.
-    //This method is NOT USED and NOT IDEAL and so Deprecated because performance is poor, this iterates all data instead of 1 UID target.
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
-    public List<Todo> findByUid1(int uid){  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
-        return repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).toList();
-    }
-
-
-   // @Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
-    public List<Todo> fiByID(int id){
-//      return repo_dao_springData_jpa.findById(id).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
-        List<Todo> todoList = new ArrayList<Todo>();
-        todoList.add(repo_dao_springData_jpa.findById(id).get());
-
-        return todoList;
-
-    }
-
-
-
-    public List<Todo> findbyALL(){
-        return repo_dao_springData_jpa.findAll();
-    }
-
-
-
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public Todo updateByUid(Todo todo3  ) {
-        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x->x.getUid() == todo3.getUid()).toList().get(0);
+    public Todo updateByUid(Todo todo3) {
+        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == todo3.getUid()).toList().get(0);
 
         existing_rec_retrieved.setId(todo3.getId());
-        existing_rec_retrieved.setattach(todo3.getattach());
+        existing_rec_retrieved.setAttach(todo3.getAttach());
         existing_rec_retrieved.setTargetDate(todo3.getTargetDate());
         existing_rec_retrieved.setDescription(todo3.getDescription());
         existing_rec_retrieved.setCreationDate(todo3.getCreationDate());
@@ -100,83 +59,50 @@ public class ToDo_Services {
         return existing_rec_retrieved;
     }
 
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public Todo updateByUid(int uid, int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach  ) {
-        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x->x.getUid() == uid).toList().get(0);
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Optional<List<Todo>> getAllSumit() {
+        return repo_dao_springData_jpa.findSumit();
+    }
 
-        existing_rec_retrieved.setId(id);
-        existing_rec_retrieved.setattach(attach);
-        existing_rec_retrieved.setTargetDate(targetDate);
-        existing_rec_retrieved.setDescription(description);
-        existing_rec_retrieved.setCreationDate(creationDate);
-        existing_rec_retrieved.setUsername(username);
-        existing_rec_retrieved.setDone(done);
-
-        return existing_rec_retrieved;
+    public List<Todo> findbyALL() {
+        return repo_dao_springData_jpa.findAll();
     }
 
 
-//        List<Todo> get_curr_record = repo_dao_springData_jpa.findAll().stream().filter(x-> x.getUid() == uid).findFirst();
-//
-//        .setId(new_updated_todo.getId());
-//        new_updated_todo.setId(get_curr_record.get().setId(););
-//        get_curr_record.get().setUsername(new_updated_todo.getUsername());
-//        get_curr_record.get().setDone(new_updated_todo.getDone());
-//        get_curr_record.get().setCreationDate(new_updated_todo.getCreationDate());
-//        get_curr_record.get().setDescription(new_updated_todo.getDescription());
-//        get_curr_record.get().setTargetDate(new_updated_todo.getTargetDate());
-//        get_curr_record.get().setattach(new_updated_todo.getattach());
-//
-//        repo_dao_springData_jpa.save(new_updated_todo);
+
+    @Modifying
+    @Transactional
+    public void deleteById(int id){
+        repo_dao_springData_jpa.deleteById(id);
+    }
+
+    // WARNING : This is not ideal method, because when data is too heavy then you can not run all records and then select onw out of one, you need to target your records for faster and performance reason.
+    //This method is NOT USED and NOT IDEAL and so Deprecated because performance is poor, this iterates all data instead of 1 UID target.
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    //this will not allow any WRITE transaction to be posted in db.
+    public List<Todo> findByUid_nouse(int uid) {  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
+        return repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == uid).toList();
+    }
 
 
+    //@Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
+//    public List<Todo> get_todo_LIST_by_id(int id) {
+////      return repo_dao_springData_jpa.findById(id).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+//        List<Todo> todoList = repo_dao_springData_jpa.findAllById(id);
+//        return todoList;
+//    }
+
+
+    // This method is based on Derived Query on JPA, comparing findByUid() vs findByUid1(), this method works best as it generates query automatically and no need to write query and JPA auto construct it.
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    //this will not allow any WRITE transaction to be posted in db.
+    public List<Todo> findByUid(int uid) {
+        return repo_dao_springData_jpa.findByUid(uid).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public Optional<List<Todo>> findById(int id) {
+        return repo_dao_springData_jpa.findById(id);
+    }
 
 }
-
-
-
-
-//    private static List<Todo> listToDo = new ArrayList<Todo>();
-//    private static int counter =0;
-//
-////    static{  //this is data creation here
-////        listToDo.add(new Todo(++counter,"Sumit","1st Todo list description", LocalDate.now(),  LocalDate.of(2024,2,22),false));
-//        listToDo.add(new Todo(++counter,"Mistry","2nd Todo list description", LocalDate.now(), LocalDate.of(2024,8,30) ,false));
-//        listToDo.add(new Todo(++counter,"Smith","3rd Todo list description", LocalDate.now(),  LocalDate.of(2024,7,2),false));
-//    }
-
-//    public List<Todo> listAllToDo(){
-//        l1.info(listToDo.toString());
-//        return listToDo; // this will be going to be used as variable  in todo_welcome.jsp as ${lsitTodo}
-//    }
-
-//    public List<Todo> insert_todo(String id,
-//                                           String username,
-//                                           String description,
-//                                           LocalDate creationDate,
-//                                           LocalDate targetDate,
-//                                           boolean done) {
-//
-//        //int i1 = id.isEmpty() ? listToDo.size()+1 : Integer.valueOf(id);
-//        boolean addedorNot = listToDo.add(new Todo(  Integer.parseInt(id) , username,description,creationDate,targetDate, done));
-//        l1.info("insertingg(insert_todo).... given data T/F ==" + addedorNot);
-//        return  listToDo;
-//    }
-//
-//    public void deleteByID(int id ){
-//        // PREDICATE functional programming
-//        Predicate<? super Todo> predicate = todoOriginal2 -> todoOriginal2.getId() == id;
-//        listToDo.removeIf(predicate);
-//        // this predicate runs on every list item, and if the condition(iterated getId==user input id) matches then it will apply(remove) list.remove to that record...
-//    }
-
-//
-//    public List<Todo> findByID_from_List(int id){
-//        Predicate <? super Todo>  predicate = tod2 -> tod2.getId() == id;
-//        List<Todo> list =  listToDo.stream().filter(predicate).toList();
-//        // or List<Todo> list =  listToDo.stream().filter(predicate).toList();
-//        // or Todo t1=  listToDo.stream().filter(predicate).findFirst().get();
-//        return list;
-//    }
-
-

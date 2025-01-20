@@ -15,8 +15,8 @@ import java.time.LocalDate;
 public class Todo {
 
 
-    public Todo(int uid, int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
-        this.uid = uid;
+    public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
+
         this.id = id;
         this.username = username;
         this.description = description;
@@ -26,18 +26,9 @@ public class Todo {
         this.attach = attach;
     }
 
-    public Todo( int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
-        this.id = id;
-        this.username = username;
-        this.description = description;
-        this.creationDate =creationDate;
-        this.targetDate = targetDate;
-        this.done = done;
-        this.attach = attach;
-    }
 
     // @ Id is for Primary Ky
-//    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
+    //    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
     // PK primary Key is MUST else error..
     @Id   // Ensure that this UID-PK field is annotated with @GeneratedValue for automatic ID generation
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,12 +68,6 @@ public class Todo {
     @Column(name ="attach")
     @Lob
     private Blob attach; // Store file as binary data , but can store only small size---> byte[], big size go to BLOB
-    public Blob getattach() {
-        return attach;
-    }
-    public void setattach(Blob attach) {
-        this.attach = attach;
-    }
 
 //    @Transient // Exclude from JPA mapping // this will not reach to databse, and will just work internally to java...
 //    // MultipartFile field for file upload  // this variable name to be set into upload.jsp form at binding object like this:  form:bind="*{multipartFile}"/>
@@ -105,6 +90,7 @@ public class Todo {
 //    }
 
     ///////////////////////////////////////////////////////////////////////////////////////
+
     public int getUid() {
         return uid;
     }
@@ -112,6 +98,7 @@ public class Todo {
     public void setUid(int uid) {
         this.uid = uid;
     }
+
     public int getId() {
         return id;
     }
@@ -136,14 +123,6 @@ public class Todo {
         this.description = description;
     }
 
-    public LocalDate getTargetDate() {
-        return targetDate;
-    }
-
-    public void setTargetDate(LocalDate targetDate) {
-        this.targetDate = targetDate;
-    }
-
     public LocalDate getCreationDate() {
         return creationDate;
     }
@@ -152,6 +131,13 @@ public class Todo {
         this.creationDate = creationDate;
     }
 
+    public LocalDate getTargetDate() {
+        return targetDate;
+    }
+
+    public void setTargetDate(LocalDate targetDate) {
+        this.targetDate = targetDate;
+    }
 
     public boolean getDone() {
         return done;
@@ -161,18 +147,11 @@ public class Todo {
         this.done = done;
     }
 
+    public Blob getAttach() {
+        return attach;
+    }
 
-    @Override
-    public String toString() {
-        return "Todo{" +
-                "uid=" + uid +
-                ", id=" + id +
-                ", username='" + username + '\'' +
-                ", description='" + description + '\'' +
-                ", creationDate=" + creationDate +
-                ", targetDate=" + targetDate +
-                ", done=" + done +
-                ", attach=" + attach +
-                '}';
+    public void setAttach(Blob attach) {
+        this.attach = attach;
     }
 }

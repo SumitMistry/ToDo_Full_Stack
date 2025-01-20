@@ -1,3 +1,4 @@
+
 <%@ include file="common/header.jspf" %>
 <%@ include file="common/navigation.jspf" %>
 
@@ -44,10 +45,10 @@
 
                             <td>  <a href="insert3" class="btn btn-success"> + </a> i++ </td>
                             <td>  <a href="update?u=${eentry.uid}" class="btn btn-info"> # </a> u=${eentry.uid} </td>
-                            <td>  <a href="delByID?i=${eentry.id}" class="btn btn-danger"> x </a> i=${eentry.id} </td>
+                            <td>  <a href="delByID?u=${eentry.id}" class="btn btn-danger"> x </a> u=${eentry.id} </td>
                             <td>  <a href="deleteByUid?u=${eentry.uid}" class="btn btn-danger"> x </a> u=${eentry.uid} </td>
                             <td>  <a href="upload?u=${eentry.uid}" class="btn btn-primary btn-block">  🔗 </a> u=${eentry.uid} </td>
-                            <td>  <a href="fiByID?i=${eentry.id}" class="btn btn-warning"> ? </a> i=${eentry.id} </td>
+                            <td>  <a href="findById?u=${eentry.id}" class="btn btn-warning"> ? </a> u=${eentry.id} </td>
                             <td>  <a href="findByUID?u=${eentry.uid}" class="btn btn-warning"> ? </a> u=${eentry.uid} </td>
                             <td>  <a href="findByUser?user=${eentry.username}" class="btn btn-warning"> ? </a> user=${eentry.username} </td>
 
