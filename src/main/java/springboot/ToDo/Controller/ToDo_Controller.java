@@ -295,7 +295,7 @@ public class ToDo_Controller<T> {
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "delByID", method = RequestMethod.GET)
     public String del_By_ID(@RequestParam(value = "u") int id) {
-        toDo_Services.deleteById(id);
+        repo_dao_springData_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
         //return "listall";
         return "redirect:list";

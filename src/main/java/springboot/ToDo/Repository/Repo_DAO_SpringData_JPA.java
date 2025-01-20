@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, 
     void deleteByUid(int uid);
 
 
+
+    // HEre if i remove @modifying and @Transactional , then error : org.springframework.orm.jpa.JpaSystemException: JDBC exception executing SQL [DELETE FROM todoh WHERE id = ? ;] [Statement.executeQuery() cannot issue statements that do not produce result sets.]
+    // This error comes becasue JPA need modification permission, we creating custoom query so we need to plug this into it
     @Modifying
+    @Transactional
     @Query(value = "DELETE FROM todoh WHERE id = :id ;", nativeQuery = true) // The @Param("id") annotation ensures that the id method parameter is correctly mapped to the :id placeholder in the query
     void deleteById(Integer id);
 

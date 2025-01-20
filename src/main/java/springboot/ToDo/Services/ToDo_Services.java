@@ -70,12 +70,6 @@ public class ToDo_Services {
 
 
 
-    @Modifying
-    @Transactional
-    public void deleteById(int id){
-        repo_dao_springData_jpa.deleteById(id);
-    }
-
     // WARNING : This is not ideal method, because when data is too heavy then you can not run all records and then select onw out of one, you need to target your records for faster and performance reason.
     //This method is NOT USED and NOT IDEAL and so Deprecated because performance is poor, this iterates all data instead of 1 UID target.
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
