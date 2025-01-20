@@ -14,6 +14,7 @@ import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -97,6 +98,12 @@ public class ToDo_Services {
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Optional<List<Todo>> findById(int id) {
         return repo_dao_springData_jpa.findById(id);
+    }
+
+
+    @Transactional
+    public List<Todo> findByKeyword(String keyword){
+        return repo_dao_springData_jpa.findByKeyword(keyword).orElseThrow( () -> new NoSuchElementException(""));
     }
 
 }

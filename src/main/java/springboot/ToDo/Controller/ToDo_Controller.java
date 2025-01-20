@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -308,6 +309,14 @@ public class ToDo_Controller<T> {
         return "listall";
     }
 
+
+    @RequestMapping(value = "searchAPI", method = RequestMethod.GET)
+    public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
+                                ModelMap modelMap){
+        List<Todo> todoList = toDo_Services.findByKeyword(keyword);
+        modelMap.addAttribute("listMapVar",todoList);
+        return "listall";
+    }
 
 
 

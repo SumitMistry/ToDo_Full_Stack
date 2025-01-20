@@ -24,8 +24,8 @@
     <td>  <a href="deleteByUid?u=${eentry.uid}" class="btn btn-danger"> x </a> u=${eentry.uid} </td>
 
     <div class="container">
-      <form class="form-inline" method="post" action="search.jsp">
-        <input type="text" name="roll_no" class="form-control" placeholder="Search..">
+      <form class="form-inline" method="post" action="searchAPI">
+        <input type="text" name="searchKey" class="form-control" placeholder="Search..">
         <button type="submit" name="save" class="btn btn-primary">Search</button>
       </form>
     </div>
