@@ -1,5 +1,6 @@
 package springboot.ToDo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,17 @@ public class Todo {
         this.attach = attach;
     }
 
+
+    public Todo(int uid, int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
+        this.uid = uid;
+        this.id = id;
+        this.username = username;
+        this.description = description;
+        this.creationDate =creationDate;
+        this.targetDate = targetDate;
+        this.done = done;
+        this.attach = attach;
+    }
 
     // @ Id is for Primary Ky
     //    @Id  //this must be present else error =  Failed to initialize JPA EntityManagerFactory: Entity Model.Todo has no identifier (every '@Entity' class must declare or inherit at least one '@Id' or '@EmbeddedId' property)
@@ -67,6 +79,7 @@ public class Todo {
     // Store file as binary data
     @Column(name ="attach")
     @Lob
+    @JsonIgnore // this will help to avoid serialization of this field and if we dont annotate this then it wil throw error = com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class java.io.ByteArrayInputStream and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS
     private Blob attach; // Store file as binary data , but can store only small size---> byte[], big size go to BLOB
 
 //    @Transient // Exclude from JPA mapping // this will not reach to databse, and will just work internally to java...

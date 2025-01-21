@@ -83,6 +83,7 @@ public class ToDo_Controller<T> {
         // List with all todos + parsing it to modelmap
 
         List<Todo> list1 = toDo_Services.findbyALL();
+
         modelMap.addAttribute("listMapVar", list1);
 
         // counting total todos and parsing on the navigation.jspf vvia {totally} variable, this is for HEADER count variable
@@ -97,7 +98,8 @@ public class ToDo_Controller<T> {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
-        return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(),HttpStatus.OK);
+
+        return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
     }
 
 
@@ -117,13 +119,9 @@ public class ToDo_Controller<T> {
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
-        System.out.println("-->>" + repo_dao_springData_jpa.findById(58).get().toString());
-        System.out.println("----->>>>>>----------" +  id);
-
         Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
         List<Todo> todo_list= repo_dao_springData_jpa.findById(id).get();
 
-        System.out.println( "->>>>>>>"+ todo_list.toString());
         modelMap.addAttribute("listMapVar",todo_list);
 
         return "listall"; // JSP page name (without prefix/suffix)
@@ -137,7 +135,6 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "findByUser", method = RequestMethod.GET)
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
-
 
         List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
 
@@ -233,55 +230,6 @@ public class ToDo_Controller<T> {
     }
 
 
-    ///////////////////////////     UPDATE GET + POST     ///////////////////////////
-    @RequestMapping(value = "update", method = RequestMethod.GET)
-    public String show_UpdateByID_page(ModelMap modelMap, @RequestParam(value = "u") int uid) {
-
-
-        // Retrieved current record=data
-        Todo retrieve_current_rec = toDo_Services.findByUid(uid).get(0); //toDo_Services.findByID_from_List(id);
-        System.out.println("--->" + retrieve_current_rec);
-        //Todo retrieve_current_rec = current_data.get(0);
-
-
-        // To inject our pre-fill the data from object to model to front_end
-        // This model is dupming data into insert3_SprDataJPA
-        modelMap.addAttribute("todo_obj_spring_data_jpa2", retrieve_current_rec);
-
-        // insertion done in above step now , reloading Listing page
-        return "insert3_SprDataJPA";
-    }
-
-    ///////////////////////////     UPDATE GET + POST     ///////////////////////////
-    //This updated method will NOT create new UID upon modifying/updating existing record.
-    @RequestMapping(value = "update", method = {RequestMethod.PUT, RequestMethod.POST})
-    public String post_UpdateByUID_page(ModelMap modelMap,
-                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
-                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
-                                       BindingResult bindingResult,
-                                       Errors err
-    ) {
-        // this is fetching existing UID of the record, first we need UID
-        todo_obj_spring_data_jpa2.setUid(uidTakenFromHtmlTag);
-
-        System.out.println(todo_obj_spring_data_jpa2.toString());
-
-
-        if (err.hasErrors() || bindingResult.hasErrors()) {
-//            int x = bindingResult.getErrorCount();
-//            System.out.println(x);
-//            l1.info(" error  count = " + x);
-//            return "insert";    //  --> "redirect:insert" returns   /insert   endpoint
-//            // return "insert";   --> return "insert"    returns    insert.jsp
-            return "insert3_SprDataJPA";
-             }
-
-        // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
-        toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
-
-        return "redirect:list";
-    }
-
 
 
     ///////////////////////////     DELETE BY UID    ///////////////////////////
@@ -327,6 +275,51 @@ public class ToDo_Controller<T> {
         return "listall";
     }
 
+    ///////////////////////////     UPDATE GET + POST     ///////////////////////////
+    @RequestMapping(value = "update", method = RequestMethod.GET)
+    public String show_UpdateByID_page(ModelMap modelMap,
+                                       @RequestParam(value = "u") int uidTakenFromHtmlTag) {
+
+        // Retrieved current record=data
+        Todo retrieve_current_rec = toDo_Services.findByUid(uidTakenFromHtmlTag).get(0); //toDo_Services.findByID_from_List(id);
+
+        // To inject our pre-fill the data from object to model to front_end
+        // This model is dupming data into insert3_SprDataJPA
+        modelMap.addAttribute("todo_obj_spring_data_jpa2", retrieve_current_rec);
+
+        // insertion done in above step now , reloading Listing page
+        return "insert3_SprDataJPA";
+    }
+
+    ///////////////////////////     UPDATE GET + POST     ///////////////////////////
+    //This updated method will NOT create new UID upon modifying/updating existing record.
+    @RequestMapping(value = "update", method = {RequestMethod.PUT, RequestMethod.POST})
+    public String post_UpdateByUID_page(ModelMap modelMap,
+                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
+                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
+                                       BindingResult bindingResult,
+                                       Errors err
+    ) {
+
+        // this is fetching existing UID of the record, first we need UID
+        todo_obj_spring_data_jpa2.setUid(uidTakenFromHtmlTag);
+
+        if (err.hasErrors() || bindingResult.hasErrors()) {
+//            int x = bindingResult.getErrorCount();
+//            System.out.println(x);
+//            l1.info(" error  count = " + x);
+//            return "insert";    //  --> "redirect:insert" returns   /insert   endpoint
+//            // return "insert";   --> return "insert"    returns    insert.jsp
+            return "insert3_SprDataJPA";
+             }
+
+        // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
+        toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
+
+        return "redirect:list";
+    }
+
+
 
 
     //backup UPLOAD GET WORKING...
@@ -335,13 +328,13 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "upload", method = RequestMethod.GET)
     public String get_attach_function(
             ModelMap modelMap,
-            @RequestParam(value = "u") int todoId) {
+            @RequestParam(value = "u") int uidTakenFromHtmlTag) {
 
         // Retrieved current record/data
-        List<Todo> existingTodo = toDo_Services.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+        Todo existingTodo = toDo_Services.findByUid(uidTakenFromHtmlTag).get(0);
 
         // insertion of fetched above data's mapping is done in below step now,
-        modelMap.addAttribute("todoId", todoId); // REF: upload.jsp //used for --> form's post action="upload/${todoId}"
+
         modelMap.addAttribute("todo55", existingTodo); // REF: upload.jsp // half page of this form is loaded with existing <todo's data>
         modelMap.addAttribute("fileUpload_holder", new MultipartFile_holder()); // REF: upload.jsp // half page of this form is loaded with <fileUpload_holder>
 
@@ -350,13 +343,16 @@ public class ToDo_Controller<T> {
 
     @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String post_now_uploading_here(
+            ModelMap modelMap,
             @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,
-            @RequestParam(value = "u") int todoId, // this result in [ old val, new val], we need new val by user so
-            ModelMap modelmap
+            @RequestParam(value = "u") int uidTakenFromHtmlTag, // this result in [ old val, new val], we need new val by user so
+            @ModelAttribute("todo55") @Valid Todo todo55,  // this brings data from HTML VIEW FORM to here--->
+            BindingResult bindingResult,
+            Errors err
     ) {
 
         //finding existing Todo
-        List<Todo> existingTodo = toDo_Services.findById(todoId).orElseThrow(() -> new IllegalArgumentException("Invalid Todo ID"));
+        List<Todo> existingTodo = toDo_Services.findByUid(uidTakenFromHtmlTag);
         try{
             if (  !  (multipartFile.getMultipartFile() == null && multipartFile.getMultipartFile().isEmpty())) {
 

@@ -17,6 +17,12 @@ PART-A : (Form existing UID record data / GET)
 
             <form:form method="get"  enctype="multipart/form-data"  modelAttribute="todo55">
                     <fieldset class="mb-3">
+                    <form:label path="uid"> uid : </form:label>
+                    <form:input type="text" path="uid" required="required"   />
+                    <form:errors path="uid"  cssClass="text-warning"  />
+                    </fieldset>
+
+                    <fieldset class="mb-3">
                     <form:label path="id"> id : </form:label>
                     <form:input type="text" path="id" required="required"   />
                     <form:errors path="id"  cssClass="text-warning"  />
@@ -60,7 +66,7 @@ PART-A : (Form existing UID record data / GET)
 PART-B : (Upload section / POST)
 <p>
 
-            <form:form method="post"                                enctype="multipart/form-data"  modelAttribute="fileUpload_holder">
+            <form:form method="post"          enctype="multipart/form-data"  modelAttribute="fileUpload_holder">
 
                     <fieldset class="mb-3">
                       <form:label path="multipartFile"> Choose file:: </form:label>

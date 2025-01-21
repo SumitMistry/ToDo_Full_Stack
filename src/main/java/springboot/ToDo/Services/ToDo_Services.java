@@ -46,8 +46,12 @@ public class ToDo_Services {
     }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public Todo updateByUid(Todo todo3) {
-        Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == todo3.getUid()).toList().get(0);
+    public void updateByUid(Todo todo3) {
+        // WRONG METHOD, LAGs when TOO much DATA....
+        // Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == todo3.getUid()).toList().get(0);
+
+        // Correct Method...using JPA
+        Todo existing_rec_retrieved = repo_dao_springData_jpa.findByUid(todo3.getUid()).get().get(0);
 
         existing_rec_retrieved.setId(todo3.getId());
         existing_rec_retrieved.setAttach(todo3.getAttach());
@@ -57,7 +61,6 @@ public class ToDo_Services {
         existing_rec_retrieved.setUsername(todo3.getUsername());
         existing_rec_retrieved.setDone(todo3.getDone());
 
-        return existing_rec_retrieved;
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
