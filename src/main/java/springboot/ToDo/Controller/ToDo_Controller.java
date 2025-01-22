@@ -145,6 +145,7 @@ public class ToDo_Controller<T> {
     //  OLD -STEAMING ALL List = POOR Performance ////////////////////////////
     // Not in use, taken off from JSP - front end (listall.jsp) side
     // /////////////////////////     findByUser     ///////////////////////////
+    // ---BELOW  NOT in USE---------------
     @RequestMapping(value = "findByUser1", method = RequestMethod.GET)
     public String findBYusername1(@RequestParam(value = "u")String enter_username, ModelMap modelMap ){
 
