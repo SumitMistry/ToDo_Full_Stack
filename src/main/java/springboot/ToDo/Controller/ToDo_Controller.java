@@ -7,6 +7,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -91,6 +93,13 @@ public class ToDo_Controller<T> {
 
         // now final result listing as view
         return "listall";
+    }
+
+    public String getUserinfo_Spring(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String fullAuthInfo = auth.toString();
+        String usr_name = auth.getName();
+        return usr_name;
     }
 
 

@@ -36,6 +36,7 @@ public class SpringSecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager configure_user_detail(){
 
+        // Lambda function
         Function<String,String> pass_encoder_algo =  input  ->  passwordEncoder_method().encode(input) ;
 
         UserDetails user11 =
