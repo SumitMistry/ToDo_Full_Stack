@@ -3,6 +3,7 @@ package springboot.ToDo.Controller;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
+import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.ToDo_Services;
 
 import javax.sql.rowset.serial.SerialException;
@@ -68,6 +70,7 @@ public class ToDo_Controller<T> {
 
     private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
 
+
     public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa) {
         super();
         this.toDo_Services = toDo_Services;
@@ -78,28 +81,29 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
+    static {
+
+        // mapping retrived username, pass from Spring_login to "listall" page
+        String retrived_user = new Login_Services().get_username_from_login_from_spring_Security();
+        new ModelMap().addAttribute("uid_email", retrived_user);
+
+    }
+
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
         // List with all todos + parsing it to modelmap
-
         List<Todo> list1 = toDo_Services.findbyALL();
-
         modelMap.addAttribute("listMapVar", list1);
 
-        // counting total todos and parsing on the navigation.jspf vvia {totally} variable, this is for HEADER count variable
-        modelMap.addAttribute("totally", list1.size());
+        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
+        int count_todos = list1.size();
+        modelMap.addAttribute("totally", count_todos );
+
 
         // now final result listing as view
         return "listall";
-    }
-
-    public String getUserinfo_Spring(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String fullAuthInfo = auth.toString();
-        String usr_name = auth.getName();
-        return usr_name;
     }
 
 

@@ -14,12 +14,12 @@ public class Login_Services {
     }
 
 
-/////////////////////// new Spring security feature
-    public String get_username_from_login_from_spring_Security(){
+    /////////////////////// new Spring security feature
+    public String get_username_from_login_from_spring_Security() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String g = auth.getName();
-        System.out.println(g);
-        return g;
+        String uname = auth.getName();
+        System.out.println(uname);
+        return uname;
     }
 
 

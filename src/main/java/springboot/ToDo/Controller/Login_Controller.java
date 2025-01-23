@@ -3,6 +3,8 @@ package springboot.ToDo.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -89,7 +91,6 @@ public class Login_Controller {
     }
 
 
-
 ///////////////////////   LOGIN (Spring Security)    ///////////////
     @RequestMapping(value = {"/", "login" }, method = RequestMethod.GET)
     public String get_login_page(ModelMap modelMap){
@@ -98,13 +99,16 @@ public class Login_Controller {
         // username print from modelmap
         //modelMap.addAttribute("uid_email", "login@spring.Security");
 
-        // username retrieved from user's login entry point
+        // username retrieved from user's login entry point // HTML tag label are "pass" and "uid_email", retrieving what use entered in frontend.
         String retrived_user = login_services.get_username_from_login_from_spring_Security();
         l1.info("Loggged in by:--->" +retrived_user);
         modelMap.addAttribute("uid_email", retrived_user);
+        // I can build password method here too...
 
         return "welcome1";
     }
+
+
 
 
 
