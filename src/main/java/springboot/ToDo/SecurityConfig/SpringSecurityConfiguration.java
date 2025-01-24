@@ -37,19 +37,22 @@ public class SpringSecurityConfiguration {
 
     // Password encoder algorithm set
     @Bean
-    public PasswordEncoder passwordEncoder_method(){
-        return new BCryptPasswordEncoder();
+    public PasswordEncoder passwordEncoder_method(){  return new BCryptPasswordEncoder();
     }
     // Create User details Manager - This is exclusively for in memory only.
-
-
-    @Bean
+    // # if you configure an InMemoryUserDetailsManager() method in your application explicitly, the properties set in application.properties for spring.security.user.name and spring.security.user.password will not take effect
+    // Spring Boot's default behavior for these properties (spring.security.user.*) only applies if you do not provide your own custom UserDetailsService or SecurityFilterChain configuration.
+    // By defining an InMemoryUserDetailsManager, you're overriding the default auto-configuration for the in-memory user, and Spring ignores the spring.security.user.* properties.
+//    @Bean
     public InMemoryUserDetailsManager configure_each_user_detail() {
 
         //fetching username password data from Application.properties
         // Initialize the manager without duplicates
+        // USER=1 by default from Application.properties --> spring.security.user.name=
+        // USER=2 ENV VAR from Application.properties --> @VALUE
         UserDetails user1 = createNewUSer(adminUsername1, adminPass1, adminRole1);
-        UserDetails user2 = createNewUSer("u2", "p2", "USER");
+        // USER=3 HARD CODED user here
+        UserDetails user2 = createNewUSer("s", "1", "ADMIN");
 
         InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
         // Pass users as a Set to eliminate duplicates
@@ -81,7 +84,6 @@ public class SpringSecurityConfiguration {
     // Every chain of request is being passed through this filter automatically by default in spring security...
     //            Without this method  Forbidden Error
     //            =  Whitelabel Error Page :(type=Forbidden, status=403)
-
     @Bean
     public SecurityFilterChain filterchain_1(HttpSecurity httpSecurity) throws Exception {
 

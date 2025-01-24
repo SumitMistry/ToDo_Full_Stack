@@ -29,7 +29,9 @@ public class ToDo_main {
 						"   http://localhost:8080								http://localhost:8080/h2-console\n" +
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
-						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();\n"
+						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"s\").password(\"1\").roles(\"USER\", \"ADMIN\").build();\n" +
+						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"d\").password(\"1\").roles(\"ADMIN\").build();\n" +
+						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"f\").password(\"1\").roles(\"USER\").build();\n"
 
 
 

@@ -95,13 +95,14 @@ public class Login_Controller {
     @RequestMapping(value = {"/", "login" }, method = RequestMethod.GET)
     public String get_login_page(ModelMap modelMap){
 
-
-        // username print from modelmap
-        //modelMap.addAttribute("uid_email", "login@spring.Security");
-
         // username retrieved from user's login entry point // HTML tag label are "pass" and "uid_email", retrieving what use entered in frontend.
         String retrived_user = login_services.get_username_from_login_from_spring_Security();
-        l1.info("Loggged in by:--->" +retrived_user);
+        String retrived_user_details = login_services.get_user_Full_details();
+        System.out.println( "Loggged in by:---> "+retrived_user + " "+ retrived_user_details);
+        l1.info("Loggged in by:--->" +retrived_user + "\n" +retrived_user_details );
+
+        // username print from modelmap //removing hard-coded username, passing from well organized method...
+        //modelMap.addAttribute("uid_email", "login@spring.Security");
         modelMap.addAttribute("uid_email", retrived_user);
         // I can build password method here too...
 
