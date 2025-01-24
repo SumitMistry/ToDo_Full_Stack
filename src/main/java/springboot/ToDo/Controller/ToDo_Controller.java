@@ -70,7 +70,6 @@ public class ToDo_Controller<T> {
 
     private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
 
-
     public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa) {
         super();
         this.toDo_Services = toDo_Services;
@@ -81,13 +80,6 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
-    static {
-
-        // mapping retrived username, pass from Spring_login to "listall" page
-        String retrived_user = new Login_Services().get_username_from_login_from_spring_Security();
-        new ModelMap().addAttribute("uid_email", retrived_user);
-
-    }
 
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
