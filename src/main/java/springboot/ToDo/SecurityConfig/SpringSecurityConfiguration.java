@@ -27,6 +27,8 @@ public class SpringSecurityConfiguration {
     private String adminPass1;
     @Value("${login.adminRole1}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
     private String adminRole1;
+    @Value("${login.adminRole2}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminRole2;
 
     // Generally in companies, we connect this Clas with below 2 methods to get user login data:
     // 1. LDAP / database use to fetch user details...
@@ -43,26 +45,26 @@ public class SpringSecurityConfiguration {
     // # if you configure an InMemoryUserDetailsManager() method in your application explicitly, the properties set in application.properties for spring.security.user.name and spring.security.user.password will not take effect
     // Spring Boot's default behavior for these properties (spring.security.user.*) only applies if you do not provide your own custom UserDetailsService or SecurityFilterChain configuration.
     // By defining an InMemoryUserDetailsManager, you're overriding the default auto-configuration for the in-memory user, and Spring ignores the spring.security.user.* properties.
-//    @Bean
+    @Bean
     public InMemoryUserDetailsManager configure_each_user_detail() {
 
         //fetching username password data from Application.properties
         // Initialize the manager without duplicates
-        // USER=1 by default from Application.properties --> spring.security.user.name=
+        // USER=1 by default from Application.properties --> spring.security.user.name= .....
         // USER=2 ENV VAR from Application.properties --> @VALUE
-        UserDetails user1 = createNewUSer(adminUsername1, adminPass1, adminRole1);
+        UserDetails user1 = createNewUSer(adminUsername1, adminPass1, adminRole1, adminRole2);
         // USER=3 HARD CODED user here
-        UserDetails user2 = createNewUSer("s", "1", "ADMIN");
+        UserDetails user2 = createNewUSer("s", "1","ADMIN","DEVELOPER" );
 
         InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
         // Pass users as a Set to eliminate duplicates
         return im;
     }
 
-    // @Bean ---> if I add Bean here, the double time this method will execute and App will Fail to Start
+    // @Bean //---> if I add Bean here, the double time this method will execute and App will Fail to Start
     // we dont need bean becasue this dependency is being automatically called into method=configure_each_user_detail()
     // turning @Bean ON will create duplicate user in the framework and will fail to start
-    public UserDetails createNewUSer(String u_name, String pass_rd, String roleee){
+    public UserDetails createNewUSer(String u_name, String pass_rd, String... roleee){
         // generate pass decode algorithm--> to be used in next step
         // Lambda function
         Function<String,String> pass_encoder_algo =  input  ->  passwordEncoder_method().encode(input) ;
