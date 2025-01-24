@@ -21,8 +21,12 @@ import java.util.function.Function;
 public class SpringSecurityConfiguration {
 
 
-    @Value("${login.username2}") // this variable is set in Application.properties
-    private String myVarUserName2;
+    @Value("${login.adminUsername1}")  // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminUsername1;
+    @Value("${login.adminPass1}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminPass1;
+    @Value("${login.adminRole1}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminRole1;
 
     // Generally in companies, we connect this Clas with below 2 methods to get user login data:
     // 1. LDAP / database use to fetch user details...
@@ -44,8 +48,8 @@ public class SpringSecurityConfiguration {
 
         //fetching username password data from Application.properties
         // Initialize the manager without duplicates
-        UserDetails user1 = createNewUSer("s", "1");
-        UserDetails user2 = createNewUSer("user2", "password2");
+        UserDetails user1 = createNewUSer(adminUsername1, adminPass1, adminRole1);
+        UserDetails user2 = createNewUSer("u2", "p2", "USER");
 
         InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
         // Pass users as a Set to eliminate duplicates
@@ -55,7 +59,7 @@ public class SpringSecurityConfiguration {
     // @Bean ---> if I add Bean here, the double time this method will execute and App will Fail to Start
     // we dont need bean becasue this dependency is being automatically called into method=configure_each_user_detail()
     // turning @Bean ON will create duplicate user in the framework and will fail to start
-    public UserDetails createNewUSer(String u_name, String pass_rd){
+    public UserDetails createNewUSer(String u_name, String pass_rd, String roleee){
         // generate pass decode algorithm--> to be used in next step
         // Lambda function
         Function<String,String> pass_encoder_algo =  input  ->  passwordEncoder_method().encode(input) ;
@@ -67,7 +71,7 @@ public class SpringSecurityConfiguration {
                         .passwordEncoder(pass_encoder_algo)
                         .username(u_name)
                         .password(pass_rd)
-                        .roles("USER", "ADMIN")
+                        .roles(roleee)  // rolse could be "ADMIN, "USER" //   .roles("ADMIN, "USER") --> can be replaced
                         .build();
 
         return user_generating;
@@ -85,7 +89,7 @@ public class SpringSecurityConfiguration {
         // pass all request through below so all request get authenticated
         httpSecurity.authorizeHttpRequests(
                 // pass through any request below function so it get authenticated
-                auth1 -> auth1.anyRequest().authenticated()
+                auth1 -> auth1.anyRequest().authenticated()  // it will make sure, all request Requires authentication for all types IN/OUT
         );
 
         // Step-2: Login form shown for unauthorized access
