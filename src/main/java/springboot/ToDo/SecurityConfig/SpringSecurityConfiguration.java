@@ -21,14 +21,14 @@ import java.util.function.Function;
 public class SpringSecurityConfiguration {
 
 
-    @Value("${login.adminUsername1}")  // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
-    private String adminUsername1;
-    @Value("${login.adminPass1}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
-    private String adminPass1;
-    @Value("${login.adminRole1}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
-    private String adminRole1;
+    @Value("${login.adminUsername2}")  // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminUsername2;
+    @Value("${login.adminPass2}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminPass2;
     @Value("${login.adminRole2}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
     private String adminRole2;
+    @Value("${login.adminRole3}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
+    private String adminRole3;
 
     // Generally in companies, we connect this Clas with below 2 methods to get user login data:
     // 1. LDAP / database use to fetch user details...
@@ -50,11 +50,13 @@ public class SpringSecurityConfiguration {
 
         //fetching username password data from Application.properties
         // Initialize the manager without duplicates
-        // USER=1 by default from Application.properties --> spring.security.user.name= .....
+
+        // USER=1 HARD CODED user here
+        UserDetails user1 = createNewUSer("sumit@bofa.com", "1","ADMIN","DEVELOPER" );
         // USER=2 ENV VAR from Application.properties --> @VALUE
-        UserDetails user1 = createNewUSer(adminUsername1, adminPass1, adminRole1, adminRole2);
-        // USER=3 HARD CODED user here
-        UserDetails user2 = createNewUSer("s", "1","ADMIN","DEVELOPER" );
+        UserDetails user2 = createNewUSer(adminUsername2, adminPass2, adminRole2, adminRole3);
+
+        // USER=3 by default from Application.properties --> spring.security.user.name= .....
 
         InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
         // Pass users as a Set to eliminate duplicates
@@ -86,6 +88,8 @@ public class SpringSecurityConfiguration {
     // Every chain of request is being passed through this filter automatically by default in spring security...
     //            Without this method  Forbidden Error
     //            =  Whitelabel Error Page :(type=Forbidden, status=403)
+    // The provided filterchain_1 method secures all application endpoints by requiring authentication. It uses Spring Security’s default login page for user authentication and allows access to the H2 database console by disabling CSRF protection and frame restrictions.
+    // This configuration is ideal for development purposes but requires additional considerations for production environments.
     @Bean
     public SecurityFilterChain filterchain_1(HttpSecurity httpSecurity) throws Exception {
 
@@ -102,7 +106,7 @@ public class SpringSecurityConfiguration {
 
         // Step-3: CSRF disable / filer /exception adjustment to be able to access:  "/h2-console"
         // Now, time to add exclusion from the above filter...
-        httpSecurity.csrf(c -> c.disable());
+        httpSecurity.csrf(c -> c.disable()); // doing this for h2 dB
 
         // Step-4: Enable the use of Frames in our App
         httpSecurity.headers(h->h.frameOptions(c->c.disable()));

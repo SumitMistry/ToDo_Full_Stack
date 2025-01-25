@@ -69,11 +69,13 @@ public class ToDo_Controller<T> {
     private final ToDo_Services toDo_Services;
 
     private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+    private final Login_Services loginServices;
 
-    public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa) {
+    public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa, Login_Services loginServices) {
         super();
         this.toDo_Services = toDo_Services;
         this.repo_dao_springData_jpa =repo_dao_springData_jpa;
+        this.loginServices = loginServices;
     }
 
     static {
@@ -81,7 +83,25 @@ public class ToDo_Controller<T> {
     }
 
 
+
+    // USER based LISTING
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
+    public String list_per_user_todos(ModelMap modelMap) {
+
+        // List with all todos + parsing it to modelmap
+        List<Todo> user_listing = repo_dao_springData_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security()).orElseThrow(()-> new IllegalArgumentException("Username, No data not found"));
+        modelMap.addAttribute("listMapVar", user_listing);
+
+        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
+        int count_todos = user_listing.size();
+        modelMap.addAttribute("totally", count_todos );
+
+        // now final result listing as view
+        return "listall";
+    }
+
+    // ALL USER LISTING
+    @RequestMapping(value = {"listall"}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 

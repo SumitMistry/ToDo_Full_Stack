@@ -16,6 +16,9 @@ import java.time.LocalDate;
 public class Todo {
 
 
+    public Todo(){
+
+    }
     public Todo(int id, String username, String description, LocalDate creationDate , LocalDate targetDate, boolean done, Blob attach /*, MultipartFile multipartFile, String attachedFileName */ ) {
 
         this.id = id;
