@@ -1,1 +1,4 @@
 2025-01-25T11:06:57.557-05:00  WARN 14068 --- [ToDo] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h32m4s423ms473µs700ns).
+2025-01-25T14:25:42.387-05:00  INFO 14068 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-01-25T14:25:42.398-05:00  INFO 14068 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-01-25T14:25:42.414-05:00  INFO 14068 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
