@@ -53,5 +53,13 @@ public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, 
     @Query(value = "SELECT * FROM todoh WHERE description LIKE %:keyword% OR username LIKE %:keyword%", nativeQuery = true)
     Optional<List<Todo>> findByKeyword(@Param("keyword") String keyword);
 
+
+
+    // Custom Delete Query
+    @Modifying
+    @Transactional
+    @Query(value = "delete from sumit.todoh where id BETWEEN 300 AND 999;", nativeQuery = true)
+    int deleteRecords();
+
 }
 
