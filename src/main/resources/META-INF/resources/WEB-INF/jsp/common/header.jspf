@@ -24,7 +24,7 @@
 
       <style>
                 /* Fixed header styling */
-                .fixed-header {
+                .fixed-header1 {
                     position: fixed;
                     top: 0;
                     left: 0;
@@ -36,9 +36,24 @@
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
                 }
 
+                /* Fixed header styling */
+                .fixed-header2 {
+                    position: fixed;
+                    top: 60;
+                    left: 0;
+                    width: 100%;
+                    z-index: 100; /* Ensure it stays above other elements */
+                    background-color: #343a40; /* Bootstrap dark color */
+                    color: white;
+                    padding: 10px 20px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+                }
+
+
+
                 /* Add padding to body to prevent content overlap with the fixed header */
                 body {
-                    padding-top: 60px;
+                    padding-top: 130px;
                 }
 
       </style>

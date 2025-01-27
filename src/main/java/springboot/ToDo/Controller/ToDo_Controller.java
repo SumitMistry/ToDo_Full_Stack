@@ -205,7 +205,7 @@ public class ToDo_Controller<T> {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
-        list1.add(new Todo(001,  "VJ@Karma.com", "From Cntrl-hardc end", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
+        list1.add(new Todo(001,  "VJ@Karma.com", "added by Todo_Controller.java/hardcoded1", LocalDate.now(), LocalDate.now().plusYears(1), false,  null));
 
         l1.info("\n ----> CONTROLLER: ADDING FAKE hard-coded DATA...");
 
@@ -239,8 +239,10 @@ public class ToDo_Controller<T> {
     public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
+            //pre-filling add tags in forms automatically populated for users as easy to use.
             Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
             modelMap.put("todo_obj_spring_data_jpa2", t1);
+
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
 

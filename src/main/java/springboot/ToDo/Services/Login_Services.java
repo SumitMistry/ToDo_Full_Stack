@@ -11,8 +11,7 @@ public class Login_Services {
 
 /////////////////////// OLD HARD-Coded login validation -Not in use - SAFE TO DELETE
     public boolean validateLogin(String uid, String pass){
-        if (uid.contains("@") && pass.length()==4){ return true;}
-            else return false;
+        return uid.contains("@") && pass.length() == 4;
     }
 
 

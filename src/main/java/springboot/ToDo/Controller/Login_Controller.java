@@ -48,7 +48,7 @@ public class Login_Controller {
         modelMap.put("uid_email", usernr);
         modelMap.put("pass", passw);
         boolean validation_result = login_services.validateLogin(usernr, passw);
-        l1.debug("PRE-validation-check:" + modelMap.toString() + validation_result +"  " +usernr + passw);
+        l1.debug("PRE-validation-check:" + modelMap + validation_result +"  " +usernr + passw);
         // Step-2 Login failed
         if (!validation_result){
             modelMap.addAttribute("authmsg", "Auth Failed...    <p>\n" +
@@ -77,7 +77,7 @@ public class Login_Controller {
         modelMap.put("uid_email", usernr);
         modelMap.put("pass", passw);
         boolean validation_result = login_services.validateLogin(usernr, passw);
-        l1.debug("PRE-validation-check:" + modelMap.toString() + validation_result +"  " +usernr + passw);
+        l1.debug("PRE-validation-check:" + modelMap + validation_result +"  " +usernr + passw);
         // Step-2 Login failed
         if (!validation_result){
             modelMap.addAttribute("authmsg", "Auth Failed...    <p>\n" +
