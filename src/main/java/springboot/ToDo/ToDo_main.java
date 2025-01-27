@@ -21,12 +21,19 @@ public class ToDo_main {
 						"   http://localhost:8080/login1  -> new UI\n" +
 						"   http://localhost:8080/login2  -> old UI\n" +
 						"   http://localhost:8080/api/todo/insert3 -> (+)SpringDataJPA-SQL <- http://localhost:8080/api/todo/hardcode1 \n" +
-						"   http://localhost:8080/api/todo/find                 http://localhost:8080/api/todo/find?i=2  \n" +
-						"   http://localhost:8080/api/todo/delete               http://localhost:8080/api/todo/delete?i=1 \n" +
-						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?i=3 \n" +
-						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?i=1  \n" +
-						"   http://localhost:8080/api/todo/list                 http://localhost:8080/api/todo/listjson   \n" +
-						"   http://localhost:8080								http://localhost:8080/h2-console\n" +
+						"   http://localhost:8080/api/todo/find                 http://localhost:8080/api/todo/find?u=2  \n" +
+						"   http://localhost:8080/searchAPI						http://localhost:8080/api/todo/searchAPI?searchKey=sumit\n" +
+						"   http://localhost:8080/api/todo/delete               http://localhost:8080/api/todo/delete?u=1 \n" +
+						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?u=3 \n" +
+						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?u=1  \n" +
+						"   http://localhost:8080/api/todo/findById             http://localhost:8080/api/todo/findById?u=1  \n" +
+						"   http://localhost:8080/api/todo/findByUID            http://localhost:8080/api/todo/findByUID?u=1  \n" +
+						"   http://localhost:8080/api/todo/findByUser            http://localhost:8080/api/todo/findByUser?user=vraj@yyz.com  \n" +
+
+						"   http://localhost:8080/api/todo/list (USER specific) http://localhost:8080/api/todo/listjson   \n" +
+						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console\n" +
+
+						"   http://localhost:8080\n" +
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
 						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +

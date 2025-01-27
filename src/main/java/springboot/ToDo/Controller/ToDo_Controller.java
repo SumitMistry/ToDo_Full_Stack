@@ -97,7 +97,7 @@ public class ToDo_Controller<T> {
         modelMap.addAttribute("totally", count_todos );
 
         // now final result listing as view
-        return "listall";
+        return "index";
     }
 
     // ALL USER LISTING
@@ -115,7 +115,7 @@ public class ToDo_Controller<T> {
 
 
         // now final result listing as view
-        return "listall";
+        return "index";
     }
 
 
@@ -128,6 +128,16 @@ public class ToDo_Controller<T> {
     }
 
 
+
+    @RequestMapping(value = "listjson1", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<Todo> listAll_todos_json1() {
+        List<Todo> ans =  toDo_Services.findbyALL();
+        return ans;
+    }
+
+
     ///////////////////////////     FindBYUID     ///////////////////////////
     @RequestMapping(value = "findByUID", method = RequestMethod.GET)
     public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
@@ -136,7 +146,7 @@ public class ToDo_Controller<T> {
 
         List<Todo> todo_uid = toDo_Services.findByUid(uid);
         modelMap.addAttribute("listMapVar", todo_uid );
-        return "listall";
+        return "index";
     }
 
     ///////////////////////////     FindBY ID     ///////////////////////////
@@ -149,13 +159,13 @@ public class ToDo_Controller<T> {
 
         modelMap.addAttribute("listMapVar",todo_list);
 
-        return "listall"; // JSP page name (without prefix/suffix)
+        return "index"; // JSP page name (without prefix/suffix)
 
     }
 
 
 
-    // New Derived Query bases JPA fucntion //////////////
+    // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
     @RequestMapping(value = "findByUser", method = RequestMethod.GET)
     public String findByUsername(@RequestParam(value = "user")String enter_username,
@@ -164,7 +174,7 @@ public class ToDo_Controller<T> {
         List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
 
         modelMap.addAttribute("listMapVar", t1);
-        return "listall";
+        return "index";
     }
 
     //  OLD -STEAMING ALL List = POOR Performance ////////////////////////////
@@ -180,7 +190,7 @@ public class ToDo_Controller<T> {
 
         // or // List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(x->x.getUsername().equals(enter_username)).toList();
         modelMap.addAttribute("listMapVar", t1);
-        return "listall";
+        return "index";
     }
 
 
@@ -215,14 +225,13 @@ public class ToDo_Controller<T> {
         // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list3);
 
-
         // FETCH all from SQL
         List<Todo> existing = toDo_Services.findbyALL();
         // Map above list to display on frontend UI
         modelMap.addAttribute("listMapVar", existing);
 
 
-        return "listall";
+        return "index";
     }
 
     //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
@@ -264,7 +273,7 @@ public class ToDo_Controller<T> {
         toDo_Services.deleteByUID_springDataJPA(uid);
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
         l1.info("DELETEDD::::::::" + uid);
-        //return "listall";
+        //return "index";
         return "redirect:list";
     }
 
@@ -273,7 +282,7 @@ public class ToDo_Controller<T> {
     public String del_By_ID(@RequestParam(value = "u") int id) {
         repo_dao_springData_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
-        //return "listall";
+        //return "index";
         return "redirect:list";
     }
 
@@ -281,7 +290,7 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "sam", method = RequestMethod.GET)
     public String getSum(ModelMap modelMap){
         modelMap.addAttribute("listMapVar", toDo_Services.getAllSumit());
-        return "listall";
+        return "index";
     }
 
 
@@ -298,7 +307,7 @@ public class ToDo_Controller<T> {
         } else {
             modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
         }
-        return "listall";
+        return "index";
     }
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////

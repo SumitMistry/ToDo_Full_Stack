@@ -40,6 +40,14 @@
                 body {
                     padding-top: 60px;
                 }
+
+                /* below is color codes added later for the header list coloring only..for that part   */
+                .nav-link {
+                    color: blue; /* Link color */
+                }
+                .nav-email {
+                    color: green; /* Color for the ${uid_email} part */
+                }
       </style>
 
     </head>
