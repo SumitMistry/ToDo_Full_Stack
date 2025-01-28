@@ -38,14 +38,15 @@
  <!-- Fixed Header PART-2--->
 <nav class="fixed-header2 navbar navbar-expand-md navbar-dark bg-dark mb-0 p-2">
     <!-- First Section -->
-    <div class="collapse navbar-collapse">
-         <form class="form-inline d-flex" method="GET" action="dateRange">
-             <input type="text" id="creationDate" name="creationDate" class="form-control me-0" placeholder=" From (Date)" required>
-             <input type="text" id="targetDate" name="targetDate" class="form-control me-0" placeholder="To (Date)" required >
-             <button type="submit" class="btn btn-success">🔎</button>
-         </form>
-    </div>
 
+    <div class="collapse navbar-collapse">
+        <label for="fromDate" class="me-2">Creation date:</label>
+        <form class="form-inline d-flex" method="GET" action="dateRangePicker">
+            <input type="date" id="fromDate" name="fromDate" class="form-control me-2" required>
+            <input type="date" id="toDate" name="toDate" class="form-control me-2" required>
+            <button type="submit" class="btn btn-warning">?</button>
+        </form>
+    </div>
 
     <!-- Second Section (Right Aligned) -->
     <div class="collapse navbar-collapse justify-content-end">

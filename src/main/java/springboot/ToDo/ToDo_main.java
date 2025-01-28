@@ -41,8 +41,6 @@ public class ToDo_main {
 						"		UserDetails user3 =  User.withDefaultPasswordEncoder().username(\"a\").password(\"1\").roles(\"DEVELOPER\").build();\n"
 
 
-
-
 		);
 
 	}

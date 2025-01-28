@@ -1,11 +1,13 @@
 package springboot.ToDo.Controller;
 
 import jakarta.validation.Valid;
+import org.h2.engine.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -146,6 +148,7 @@ public class ToDo_Controller<T> {
 
         List<Todo> todo_uid = toDo_Services.findByUid(uid);
         modelMap.addAttribute("listMapVar", todo_uid );
+        modelMap.addAttribute("totally", todo_uid.size());
         return "index";
     }
 
@@ -154,15 +157,15 @@ public class ToDo_Controller<T> {
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
-        Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
+        // Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
         List<Todo> todo_list= repo_dao_springData_jpa.findById(id).get();
 
         modelMap.addAttribute("listMapVar",todo_list);
+        modelMap.addAttribute("totally", todo_list.size());
 
         return "index"; // JSP page name (without prefix/suffix)
 
     }
-
 
 
     // New Derived Query bases JPA function //////////////
@@ -174,6 +177,7 @@ public class ToDo_Controller<T> {
         List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
 
         modelMap.addAttribute("listMapVar", t1);
+        modelMap.addAttribute("totally", t1.size());
         return "index";
     }
 
@@ -190,6 +194,7 @@ public class ToDo_Controller<T> {
 
         // or // List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(x->x.getUsername().equals(enter_username)).toList();
         modelMap.addAttribute("listMapVar", t1);
+        modelMap.addAttribute("totally", t1.size());
         return "index";
     }
 
@@ -235,18 +240,18 @@ public class ToDo_Controller<T> {
     }
 
     //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
-    @RequestMapping(value = "/insert3", method = RequestMethod.GET)
+    @RequestMapping(value = "insert3", method = RequestMethod.GET)
     public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
             //pre-filling add tags in forms automatically populated for users as easy to use.
             Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
-            modelMap.put("todo_obj_spring_data_jpa2", t1);
+            modelMap.addAttribute("todo_obj_spring_data_jpa2", t1);
 
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
 
-    @RequestMapping(value = "/insert3", method = RequestMethod.POST)
+    @RequestMapping(value = "insert3", method = RequestMethod.POST)
     public String post_SprData_JPA_insert(ModelMap modelMap,
                                           @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                           BindingResult bindingResult, Errors err) {
@@ -291,10 +296,31 @@ public class ToDo_Controller<T> {
     /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
     @RequestMapping(value = "sam", method = RequestMethod.GET)
     public String getSum(ModelMap modelMap){
-        modelMap.addAttribute("listMapVar", toDo_Services.getAllSumit());
+        List<Todo> todo =  toDo_Services.getAllSumit().get();
+        modelMap.addAttribute("listMapVar", todo);
+        modelMap.addAttribute("totally", todo.size());
         return "index";
     }
 
+
+    @RequestMapping(value = "/dateRangePicker", method = RequestMethod.GET)
+    public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+                                  @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
+                                  ModelMap modelMap){
+
+        System.out.println("    KKKKKKKKKKKK  " + fromDate + "      " + toDate);
+
+        List<Todo> list_todos = repo_dao_springData_jpa.findCreationDateRange(fromDate,toDate);
+
+        if (! list_todos.isEmpty()) {
+            modelMap.addAttribute("listMapVar", list_todos);
+            modelMap.addAttribute("totally", list_todos.size());
+        } else {
+            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
+            modelMap.addAttribute("totally", 0);
+        }
+        return "index";
+    }
 
     @RequestMapping(value = "searchAPI", method ={ RequestMethod.GET, RequestMethod.POST})
     public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
@@ -306,8 +332,10 @@ public class ToDo_Controller<T> {
 
         if (! todoList.isEmpty()) {
             modelMap.addAttribute("listMapVar", todoList);
+            modelMap.addAttribute("totally", todoList.size());
         } else {
             modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
+            modelMap.addAttribute("totally",0);
         }
         return "index";
     }

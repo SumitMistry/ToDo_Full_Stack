@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,6 +61,13 @@ public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, 
     @Transactional
     @Query(value = "delete from sumit.todoh where id BETWEEN (200 AND 400) AND (600 AND 888);", nativeQuery = true)
     int deleteRecords();
+
+    @Modifying
+    @Transactional // in below "Todo" is entity name , not table name. in Non-native query, it is based on Entity= TODO model name
+    @Query(value = "SELECT t FROM Todo t WHERE t.creationDate BETWEEN :startDate AND :endDate")
+    List<Todo> findCreationDateRange(@Param("startDate") LocalDate startDate,
+                                     @Param("endDate") LocalDate endDate);
+
 
 }
 

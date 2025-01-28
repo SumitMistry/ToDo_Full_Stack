@@ -33,7 +33,6 @@
                     background-color: #343a40; /* Bootstrap dark color */
                     color: white;
                     padding: 10px 20px;
-                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
                 }
 
                 /* Fixed header styling */

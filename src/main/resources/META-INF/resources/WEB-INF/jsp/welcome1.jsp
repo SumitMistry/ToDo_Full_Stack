@@ -3,7 +3,7 @@
 
     <div class="container">
             <p>
-            <p> ToDo App is located:  <a href = "api/todo/list">  right here </a>
+            <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
         </div>
 
 <%@ include file="common/footer.jspf" %>
