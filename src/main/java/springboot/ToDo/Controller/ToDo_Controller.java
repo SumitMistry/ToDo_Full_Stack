@@ -57,7 +57,7 @@ import java.util.function.Predicate;
  */
 
 @Controller
-@RequestMapping("api/todo/")
+@RequestMapping(value = "api/todo/")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally"})  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
