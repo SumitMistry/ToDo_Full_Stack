@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
@@ -65,7 +66,7 @@ import java.util.function.Predicate;
 // "uid_email" is the frontend variable, passing this will be able to save as session. it will work..
 public class ToDo_Controller<T> {
 
-    Logger l1 = LoggerFactory.getLogger(Class.class);
+    private static final Logger l1 = LoggerFactory.getLogger(Class.class);
 
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
     private final ToDo_Services toDo_Services;
@@ -122,15 +123,14 @@ public class ToDo_Controller<T> {
 
 
     @RequestMapping(value = "listjson", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
-
         return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
     }
 
 
-
+    //  below is without the use of ----> [responseEntity<> wrapper ]
     @RequestMapping(value = "listjson1", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -158,7 +158,11 @@ public class ToDo_Controller<T> {
                            ModelMap modelMap) {
 
         // Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
-        List<Todo> todo_list= repo_dao_springData_jpa.findById(id).get();
+        List<Todo> todo_list= repo_dao_springData_jpa.findById(id).orElseThrow(() -> new NoSuchElementException(" id -> Element not found"));
+
+        if (todo_list.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found");
+        }
 
         modelMap.addAttribute("listMapVar",todo_list);
         modelMap.addAttribute("totally", todo_list.size());
@@ -307,8 +311,6 @@ public class ToDo_Controller<T> {
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){
-
-        System.out.println("    KKKKKKKKKKKK  " + fromDate + "      " + toDate);
 
         List<Todo> list_todos = repo_dao_springData_jpa.findCreationDateRange(fromDate,toDate);
 
