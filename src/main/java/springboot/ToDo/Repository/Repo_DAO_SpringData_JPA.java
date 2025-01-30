@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
 
+import java.rmi.server.UID;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +69,7 @@ public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, 
     List<Todo> findCreationDateRange(@Param("startDate") LocalDate startDate,
                                      @Param("endDate") LocalDate endDate);
 
+    boolean existsByUid(Integer uid);
 
 }
 

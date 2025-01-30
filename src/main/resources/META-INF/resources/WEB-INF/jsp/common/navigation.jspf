@@ -37,7 +37,7 @@
 
  <!-- Fixed Header PART-2--->
 <nav class="fixed-header2 navbar navbar-expand-md navbar-dark bg-dark mb-0 p-2">
-    <!-- First Section -->
+    <!-- First Section (Left Side)-->
 
     <div class="collapse navbar-collapse">
         <label for="fromDate" class="me-2">Creation date:</label>

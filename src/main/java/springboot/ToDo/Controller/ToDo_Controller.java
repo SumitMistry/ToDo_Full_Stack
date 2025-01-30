@@ -1,6 +1,7 @@
 package springboot.ToDo.Controller;
 
 import jakarta.validation.Valid;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 import org.h2.engine.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +27,10 @@ import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.ToDo_Services;
 
+import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,6 +88,15 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
+// to check if the
+    @ResponseBody
+    @RequestMapping(value = "exist", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
+                                           ModelMap modelMap){
+        boolean x =  repo_dao_springData_jpa.existsByUid(uid);
+
+        return new ResponseEntity<>(x, HttpStatus.OK);
+    }
 
 
     // USER based LISTING
@@ -161,7 +173,7 @@ public class ToDo_Controller<T> {
         List<Todo> todo_list= repo_dao_springData_jpa.findById(id).orElseThrow(() -> new NoSuchElementException(" id -> Element not found"));
 
         if (todo_list.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
         }
 
         modelMap.addAttribute("listMapVar",todo_list);
@@ -281,9 +293,16 @@ public class ToDo_Controller<T> {
     ///////////////////////////     DELETE BY UID    ///////////////////////////
     @RequestMapping(value = "deleteByUid", method = RequestMethod.GET)
     public String deleteByUID(@RequestParam(value = "u") int uid) {
-        toDo_Services.deleteByUID_springDataJPA(uid);
+
+        if (repo_dao_springData_jpa.existsByUid(uid)){
+            toDo_Services.deleteByUID_springDataJPA(uid);
+            l1.info("Deleted UID: " + uid);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Todo not foundd");
+        }
+
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
-        l1.info("DELETEDD::::::::" + uid);
+
         //return "index";
         return "redirect:list";
     }
@@ -420,27 +439,25 @@ public class ToDo_Controller<T> {
 
         //finding existing Todo
         List<Todo> existingTodo = toDo_Services.findByUid(uidTakenFromHtmlTag);
-        try{
-            if (  !  (multipartFile.getMultipartFile() == null && multipartFile.getMultipartFile().isEmpty())) {
 
-                //  This works great for BLOB datatype. Large data object attach to db. We change model to byte[] or BLOB depending on the requirement
-                byte[] b = multipartFile.getMultipartFile().getBytes();
-                existingTodo.get(0).setAttach(new javax.sql.rowset.serial.SerialBlob(b));
+        try {
+            MultipartFile file = multipartFile.getMultipartFile();
+            if (file != null && !file.isEmpty()) {
+                byte[] fileData = file.getBytes();
+                Blob blob = new SerialBlob(fileData);
+                existingTodo.get(0).setAttach(blob);
                 repo_dao_springData_jpa.save(existingTodo.get(0));
-
+            }
+        } catch (IOException | SQLException e) {
+            l1.error("File upload failed", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "File upload failed");
+        }
                                     /*
                                     ##  This works great for small size files like byte[] datatype. We change model to byte[] or BLOB depending on the requirement
                                         existingTodo.setattach(multipartFile.getMultipartFile().getBytes());
                                         repo_dao_springData_jpa.save(existingTodo);
                                     */
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SerialException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         return "redirect:list";
     }
 
