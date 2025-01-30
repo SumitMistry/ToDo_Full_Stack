@@ -88,14 +88,20 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
-// to check if the
+// to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
+// Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
-    @RequestMapping(value = "exist", method = RequestMethod.GET)
+    @RequestMapping(value = "existbyuidexistbyuid", method = RequestMethod.GET)
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
                                            ModelMap modelMap){
         boolean x =  repo_dao_springData_jpa.existsByUid(uid);
 
-        return new ResponseEntity<>(x, HttpStatus.OK);
+        if (x == true){   // if (x == true)
+            return new ResponseEntity<>(x, HttpStatus.FOUND); // 302 code
+        }
+        else{
+            return new ResponseEntity<>(x, HttpStatus.NOT_FOUND); //404 error code
+        }
     }
 
 
