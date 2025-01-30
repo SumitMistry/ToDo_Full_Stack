@@ -40,11 +40,11 @@
     <!-- First Section (Left Side)-->
 
     <div class="collapse navbar-collapse">
-        <label for="fromDate" class="form-control me-2">Creation date:</label>
+        <label for="fromDate" class="me-1">Creation date:</label>
         <form class="form-inline d-flex" method="GET" action="dateRangePicker">
             <input type="date" id="fromDate" name="fromDate" class="form-control me-2" required>
             <input type="date" id="toDate" name="toDate" class="form-control me-2" required>
-            <button type="submit" class="btn btn-warning"> ? </button>
+            <button type="submit" class="btn btn-primary"> Search </button>
         </form>
     </div>
 
@@ -53,7 +53,7 @@
         <ul class="navbar-nav">
             <li class="nav-item">
                 <form class="form-inline d-flex" method="GET" action="searchAPI">
-                    <input type="text" name="searchKey" class="form-control me-2" placeholder="Search...">
+                    <input type="text" name="searchKey" class="form-control me-1" placeholder="Search...">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </li>

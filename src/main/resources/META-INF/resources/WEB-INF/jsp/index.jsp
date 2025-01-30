@@ -48,9 +48,9 @@
                             <td>  <a href="delByID?u=${eentry.id}" class="btn btn-danger"> &#x2718 </a> u=${eentry.id} </td>
                             <td>  <a href="deleteByUid?u=${eentry.uid}" class="btn btn-danger"> &#x2718;</a> u=${eentry.uid} </td>
                             <td>  <a href="upload?u=${eentry.uid}" class="btn btn-primary btn-success">  &#x1F517 </a> u=${eentry.uid} </td>
-                            <td>  <a href="findById?u=${eentry.id}" class="btn btn-warning"> ? </a> u=${eentry.id} </td>
-                            <td>  <a href="findByUID?u=${eentry.uid}" class="btn btn-warning"> ? </a> u=${eentry.uid} </td>
-                            <td>  <a href="findByUser?user=${eentry.username}" class="btn btn-warning"> ? </a> user=${eentry.username} </td>
+                            <td>  <a href="findById?u=${eentry.id}" class="btn btn-warning"> &#x2754; </a> u=${eentry.id} </td>
+                            <td>  <a href="findByUID?u=${eentry.uid}" class="btn btn-warning"> &#x2754; </a> u=${eentry.uid} </td>
+                            <td>  <a href="findByUser?user=${eentry.username}" class="btn btn-warning"> &#x2754; </a> user=${eentry.username} </td>
 
 
                         </tr>
