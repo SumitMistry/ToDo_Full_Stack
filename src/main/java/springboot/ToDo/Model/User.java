@@ -7,17 +7,17 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity // Marks the class as a JPA entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "todohlogin", schema = "sumit")
-@Data       // @Data = Lombok annotation.. generates boilerplate code for a class.., like getters, setters, equals(), hashCode(), and toString()
+@Table(name = "todohusers", schema = "sumit")
+@Data       // @Data = Lombok annotation.. generates boilerplate code for a class.., like @getters, @setters, equals(), hashCode(), and toString()
+@EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED
 public class User {
 
     @Id
@@ -27,16 +27,26 @@ public class User {
     private int uid;
 
     @Column(name = "username", nullable = false, unique = true)
-    @Email
+    @Email(message = "ONLY emails allowed as USERNAME")
     @NotNull
     private String username;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "creationDate")
-    @CreatedDate
-    private LocalDate creationDate;
+    /*
+    What is @EntityListeners(AuditingEntityListener.class)?
+        The annotation @EntityListeners(AuditingEntityListener.class) is used in a JPA entity to enable auditing functionality
+        provided by Spring Data JPA. It listens for lifecycle events (e.g., insert, update) and automatically updates auditing fields like @CreatedDate and @LastModifiedDate
+    Why Do We Need It?
+        1)  Enables Automatic Timestamping----If you use @CreatedDate and @LastModifiedDate, you need AuditingEntityListener to populate these fields automatically.
+        2)  It listens for entity lifecycle events and sets values accordingly.
+    How It Works?
+        Spring Boot scans the entity
+        @EntityListeners(AuditingEntityListener.class) is detected
+        Spring injects auditing values during entity creation or update
+        No need to set timestamps manually!
+     */
 
     @CreatedDate
     @Column(nullable = false, updatable = false) // Ensures immutability
