@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import springboot.ToDo.Model.User;
 
 @Repository
-
 public interface Repo_DAO_User_JPA extends JpaRepository<User, Integer> {
 
 

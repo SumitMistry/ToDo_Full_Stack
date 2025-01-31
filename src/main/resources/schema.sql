@@ -48,6 +48,3 @@ CREATE TABLE  IF NOT EXISTS todoh (
 
 
 --- I have no schema for todohusers, because, I will keep entity itself allow to make schema from that.
----
----
----

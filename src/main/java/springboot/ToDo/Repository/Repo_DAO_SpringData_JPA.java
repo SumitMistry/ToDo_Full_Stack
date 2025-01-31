@@ -60,7 +60,7 @@ public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, 
     // Custom Delete Query
     @Modifying
     @Transactional
-    @Query(value = "delete from sumit.todoh where id BETWEEN (200 AND 400) AND (600 AND 888);", nativeQuery = true)
+    @Query(value = "delete from sumit.todoh where id BETWEEN 200 AND 888;", nativeQuery = true)
     int deleteRecords();
 
     @Modifying
