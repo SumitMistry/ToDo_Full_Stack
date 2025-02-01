@@ -2,8 +2,10 @@ package springboot.ToDo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing // added this to handle "@CreatedDate" automatically in entity/database entry. so local creation date will be aut handled by App
 public class ToDo_main {
 
 	public static void main(String[] args) {
@@ -34,7 +36,7 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/list (USER specific) http://localhost:8080/api/todo/listjson   \n" +
 						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console\n" +
 
-						"   http://localhost:8080\n" +
+						"   http://localhost:8080								http://localhost:8080/signup\n" +
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql  +  Autorun_justReference_DataInit.java)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
 						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +

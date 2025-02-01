@@ -20,11 +20,18 @@ public class User_Signup_Services {
     }
 
     // CREATE- INSERT  / SAVE NEW user
-    public User insert_user(User user){
+    public User insert_user_raw(User user){
         repo_dao_user_jpa.save(user);
         User retrived_user = repo_dao_user_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("User name ENTEREDD not found! weirdo"));
+
+        System.out.println("77777777777777"+ retrived_user.toString());
         return retrived_user;
     }
+
+
+    // Use BCryptPasswordEncoder to <<<ENCODE>>> the password before saving it.
+
+    // Use BCryptPasswordEncoder to <<DECODE>> the password before saving it.
 
 
 }

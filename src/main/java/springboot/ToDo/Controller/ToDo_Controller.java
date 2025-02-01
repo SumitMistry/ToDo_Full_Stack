@@ -88,8 +88,8 @@ public class ToDo_Controller<T> {
         // this to set initial static block, will initialize once only...
     }
 
-// to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
-// Output directly into BODY of HTML using @ResponseBody
+    // to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
+    // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
     @RequestMapping(value = "existbyuidexistbyuid", method = RequestMethod.GET)
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
@@ -110,12 +110,17 @@ public class ToDo_Controller<T> {
     public String list_per_user_todos(ModelMap modelMap) {
 
         // List with all todos + parsing it to modelmap
-        List<Todo> user_listing = repo_dao_springData_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security()).orElseThrow(()-> new IllegalArgumentException("Username, No data not found"));
-        modelMap.addAttribute("listMapVar", user_listing);
+        Optional<List<Todo>> user_listing = repo_dao_springData_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security());
+        modelMap.addAttribute("listMapVar", user_listing.get());
 
         // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
-        int count_todos = user_listing.size();
+        int count_todos = user_listing.get().size();
         modelMap.addAttribute("totally", count_todos );
+
+        // This code helps in - Improve Exception Handling
+        if (user_listing.isEmpty() || user_listing.get().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data found for the uxser");
+        }
 
         // now final result listing as view
         return "index";
@@ -133,7 +138,6 @@ public class ToDo_Controller<T> {
         // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
         int count_todos = list1.size();
         modelMap.addAttribute("totally", count_todos );
-
 
         // now final result listing as view
         return "index";
@@ -176,14 +180,14 @@ public class ToDo_Controller<T> {
                            ModelMap modelMap) {
 
         // Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
-        List<Todo> todo_list= repo_dao_springData_jpa.findById(id).orElseThrow(() -> new NoSuchElementException(" id -> Element not found"));
+        Optional<List<Todo>> todo_list= repo_dao_springData_jpa.findById(id);
 
-        if (todo_list.isEmpty()) {
+        if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
         }
 
-        modelMap.addAttribute("listMapVar",todo_list);
-        modelMap.addAttribute("totally", todo_list.size());
+        modelMap.addAttribute("listMapVar",todo_list.get());
+        modelMap.addAttribute("totally", todo_list.get().size());
 
         return "index"; // JSP page name (without prefix/suffix)
 
@@ -196,10 +200,15 @@ public class ToDo_Controller<T> {
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
 
-        List<Todo> t1 =  repo_dao_springData_jpa.findByUsername(enter_username).orElseThrow(() -> new IllegalArgumentException("Wrong username, retry..."));
+        Optional<List<Todo>> t1 =  repo_dao_springData_jpa.findByUsername(enter_username);
 
-        modelMap.addAttribute("listMapVar", t1);
-        modelMap.addAttribute("totally", t1.size());
+        // this technique Improve Exception Handling
+        if (t1.isEmpty() || t1.get().isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Wrong username, retry...");
+        }
+
+        modelMap.addAttribute("listMapVar", t1.get());
+        modelMap.addAttribute("totally", t1.get().size());
         return "index";
     }
 
@@ -300,7 +309,8 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "deleteByUid", method = RequestMethod.GET)
     public String deleteByUID(@RequestParam(value = "u") int uid) {
 
-        if (repo_dao_springData_jpa.existsByUid(uid)){
+        // before deleting, checking if the ID exist or not!!, this is good practice..
+        if (repo_dao_springData_jpa.existsByUid(uid) == true){ // if exist == true
             toDo_Services.deleteByUID_springDataJPA(uid);
             l1.info("Deleted UID: " + uid);
         } else {

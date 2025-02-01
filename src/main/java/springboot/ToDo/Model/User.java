@@ -20,6 +20,18 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED
 public class User {
 
+    public User(String username, String password){
+        super();
+        this.username = username;
+        this.password = password;
+    }
+    public User(String username, String password, LocalDateTime localDateTime){
+        super();
+        this.username = username;
+        this.password = password;
+        this.createdDate = localDateTime;
+    }
+
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uuid", nullable = false, unique = true, updatable = false)
