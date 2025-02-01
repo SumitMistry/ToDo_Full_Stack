@@ -2,14 +2,12 @@ package springboot.ToDo.Model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity // Marks the class as a JPA entity
@@ -20,16 +18,11 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED
 public class User {
 
-    public User(String username, String password){
-        super();
+
+    public User(String username, String password_raw, String password_encoded) {
         this.username = username;
-        this.password = password;
-    }
-    public User(String username, String password, LocalDateTime localDateTime){
-        super();
-        this.username = username;
-        this.password = password;
-        this.createdDate = localDateTime;
+        this.password_raw = password_raw;
+        this.password_encoded = password_encoded;
     }
 
     @Id
@@ -43,8 +36,12 @@ public class User {
     @NotNull
     private String username;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "password_raw", nullable = false)
+    private String password_raw;
+
+
+    @Column(name = "password_encoded", nullable = false)
+    private String password_encoded;
 
     /*
     What is @EntityListeners(AuditingEntityListener.class)?
@@ -59,7 +56,6 @@ public class User {
         Spring injects auditing values during entity creation or update
         No need to set timestamps manually!
      */
-
     @CreatedDate
     @Column(nullable = false, updatable = false) // Ensures immutability
     private LocalDateTime createdDate;
@@ -80,12 +76,20 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassword_raw() {
+        return password_raw;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword_raw(String password_raw) {
+        this.password_raw = password_raw;
+    }
+
+    public String getPassword_encoded() {
+        return password_encoded;
+    }
+
+    public void setPassword_encoded(String password_encoded) {
+        this.password_encoded = password_encoded;
     }
 
     public LocalDateTime getCreatedDate() {
@@ -96,13 +100,13 @@ public class User {
         this.createdDate = createdDate;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
                 "uid=" + uid +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", password_raw='" + password_raw + '\'' +
+                ", password_encoded='" + password_encoded + '\'' +
                 ", createdDate=" + createdDate +
                 '}';
     }

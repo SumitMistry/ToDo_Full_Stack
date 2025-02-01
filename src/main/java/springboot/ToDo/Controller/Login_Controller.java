@@ -3,15 +3,12 @@ package springboot.ToDo.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Services.Login_Services;
+import springboot.ToDo.Services.User_Signup_Services;
 
 
 /*
@@ -33,8 +30,10 @@ public class Login_Controller {
     @Autowired
     private Login_Services login_services;
 
+    @Autowired
+    private User_Signup_Services user_Signup_services;
 
-///////////////////////   LOGIN (REGULAR GOOD UI)    ///////////////
+    ///////////////////////   LOGIN (REGULAR GOOD UI)    ///////////////
     @RequestMapping(value = { "/login1"}, method = RequestMethod.GET)
     public String get_login_page1(ModelMap modelMap){
         modelMap.put("prefill_login_old_get1", "login1@new.ui");
@@ -110,7 +109,20 @@ public class Login_Controller {
     }
 
 
-
-
+    // CHECK MATCH sign-in //  RAW Pass --vs-- ENCODED Pass
+    @RequestMapping(value = {"/", "login" }, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public String isPassMAtch(@RequestParam(value = "uid_email") String  incoming_username,
+                              @RequestParam(value = "pass") String  incoming_pass,
+                              ModelMap modelMap){
+        //if username's raw pass vs same user's encrypted pass matches, then allow to go further / show "list"
+        if (user_Signup_services.validate_User_Login(incoming_username, incoming_pass) == true){
+            return  "welcome1"; // "list" ; --> whatever you want to display we can do here...
+        }
+        else {
+            modelMap.addAttribute("authmsg_signup", "UsrNm / PAssword wrong, something not matching....");
+            return "redirect:signup";
+        }
+    }
 
 }
