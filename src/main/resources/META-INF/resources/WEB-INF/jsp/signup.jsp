@@ -3,9 +3,11 @@
     <%@ include file="common/navigation.jspf" %>
 
         <div class="container">
-            <h1> Account SIGN-UP Setup </h1>
+            <h2> Account SIGN-UP Setup </h2>
             <p>
             <pre>${authmsg_signup}<pre>
+            <p>
+            <pre>${authmsg_signup1}<pre>
 
             <form method = "post">
                 <label>Email : </label>          <input type="email" placeholder="email..." name="uid_email" value="${prefill_signup_email}" >

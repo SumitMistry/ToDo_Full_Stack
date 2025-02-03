@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import java.util.function.Function;
 
 @Configuration
 @ConfigurationProperties
+@EnableWebSecurity
 public class SpringSecurityConfiguration {
 
 
@@ -105,6 +107,7 @@ public class SpringSecurityConfiguration {
                 auth1 -> auth1.anyRequest().authenticated()  // it will make sure, all request Requires authentication for all types IN/OUT
         );
 
+
         // Step-2: Login form shown for unauthorized access
         // For all the above request, show the springboot login form to user.. with the default features as below:
         httpSecurity.formLogin(Customizer.withDefaults());  // .wuthDefaults() is static method, so we need ot pass Defaults into static variables
@@ -115,7 +118,6 @@ public class SpringSecurityConfiguration {
 
         // Step-4: Enable the use of Frames in our App
         httpSecurity.headers(h->h.frameOptions(c->c.disable()));
-
 
         SecurityFilterChain s1 = httpSecurity.build();
         return s1;

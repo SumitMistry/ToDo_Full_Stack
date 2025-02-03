@@ -32,6 +32,12 @@ public class User {
         this.password_raw = password_raw;
     }
 
+
+    public User(String password_raw) {
+        this.password_raw = password_raw;
+    }
+
+
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uuid", nullable = false, unique = true, updatable = false)

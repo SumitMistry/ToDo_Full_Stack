@@ -33,8 +33,8 @@ public class User_Signup_Controller {
     @ResponseStatus(HttpStatus.OK)
     public String get_signup_page(ModelMap modelmap){
         // (This is to pre-populate / pre-parse data)
-        modelmap.addAttribute("prefill_signup_email", "test1@abc.xyz" );
-        modelmap.addAttribute("prefill_signup_pass", "1" );
+        modelmap.addAttribute("prefill_signup_email", "abXCX@abc.xyz" );
+        modelmap.addAttribute("prefill_signup_pass", "123" );
 
         return "signup";
     }
@@ -42,7 +42,7 @@ public class User_Signup_Controller {
 
 
 
-    // SIGNUP: INSERT + RAW pass + (POST)
+    //////////////////////  SIGNUP: INSERT + (RAW pass) + (ENCODED pass)  POST  ////////////////
     @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.POST, RequestMethod.PUT})
     //@ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
@@ -54,43 +54,18 @@ public class User_Signup_Controller {
         if ( incoming_password.isEmpty() ||  incoming_username.isEmpty()){
             modelMap.addAttribute("authmsg_signup", "Failed... : incoming_password.isEmpty() ||  incoming_username.isEmpty()");
         }else {
-            // adding RAW values, NON-ENCODED
-            User retrieved_output =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
-            modelMap.addAttribute("authmsg_signup", "Success: " + retrieved_output.toString());
+            // Adding RAW pass into USER object
+            User retrieved_output_after_raw_pass_added =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
+            modelMap.addAttribute("authmsg_signup", "Success[RawPass_added]: " + retrieved_output_after_raw_pass_added.toString());
+
+            // Adding ENCODED pass into USER object
+            User retrieved_output_after_Encoded_and_raw_pass_added = user_Signup_services.signup_insert_encoded_pass(incoming_username, incoming_password);
+            modelMap.addAttribute("authmsg_signup1", "Success[ENCODED_pass_added]: " + retrieved_output_after_Encoded_and_raw_pass_added.toString());
         }
         return "signup";   // throw new ResponseStatusException(HttpStatusCode.valueOf(779), " USername / pass is empty");
         // this return JSON
         //return new ResponseEntity<>(retrieved_output, HttpStatus.CREATED); // 201
     }
-
-
-
-
-
-
-//    // SIGNUP: INSERT + ENCODED pass + (POST)
-//    @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.POST, RequestMethod.PUT})
-//    //@ResponseBody
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public String signup_insert_encoded_pass(@RequestParam(value = "uid_email") String incoming_username,
-//                           @RequestParam(value = "pass") String incoming_password,
-//                           ModelMap modelMap){
-//
-//        // this returns back html page with "fail"  //  "success written on body"
-//        if ( incoming_password.isEmpty() ||  incoming_username.isEmpty()){
-//            modelMap.addAttribute("authmsg_signup", "Failed...");
-//        }else {
-//
-//            User retrieved_output =  user_Signup_services.insert_user_Bcrypted_encoded(incoming_username, incoming_password);
-//
-//            // adding RAW values, NON-ENCODED
-//            modelMap.addAttribute("authmsg_signup", "Success: " + retrieved_output.toString());
-//        }
-//        return "signup";   // throw new ResponseStatusException(HttpStatusCode.valueOf(779), " USername / pass is empty");
-//        // this return JSON
-//        //return new ResponseEntity<>(retrieved_output, HttpStatus.CREATED); // 201
-//    }
-
 
 
 

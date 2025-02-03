@@ -119,10 +119,10 @@ public class ToDo_Controller<T> {
         int count_todos = user_listing.get().size();
         modelMap.addAttribute("totally", count_todos );
 
-        // This code helps in - Improve Exception Handling
-        if (user_listing.isEmpty() || user_listing.get().isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data found for the uxser");
-        }
+//        // This code helps in - Improve Exception Handling
+//        if (user_listing.isEmpty() || user_listing.get().isEmpty()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data found for the uxser");
+//        }
 
         // now final result listing as view
         return "index";

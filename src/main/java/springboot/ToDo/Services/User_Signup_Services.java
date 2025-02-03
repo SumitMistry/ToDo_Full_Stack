@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
-//import springboot.ToDo.SecurityConfig.PassEncoder_config;
 
 @Service
 @Transactional(readOnly = false, propagation= Propagation.REQUIRES_NEW )
@@ -55,23 +54,25 @@ public class User_Signup_Services {
     }
 
 
-//    // SIGNUP: INSERT + ENCODED password
-//    public User signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass){
-//
-//        // ENCODE incoming raw password
-//        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(incoming_raw_pass);
-//
-//        // Creating ENCODED user object
-//        User final_user_to_Add = new User(incoming_username,incoming_raw_pass,encode_bcryp_pass);
-//
-//        if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
-//            throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "User name / Pass CAN NOT be empty ");
-//        }
-//        else {
-//            User retrieved_user_after_signup = repo_dao_user_jpa.save(final_user_to_Add);
-//            return retrieved_user_after_signup;
-//        }
-//    }
+   // SIGNUP: INSERT + ENCODED password
+    public User signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass){
+
+        if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
+            throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "User name / Pass CAN NOT be empty ");
+        }
+        else {
+            // ENCODE incoming raw password
+            String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
+
+            // Creating ENCODED user object
+            User retrieved_with_null_encode_value   = repo_dao_user_jpa.findByUsername(incoming_username);
+            retrieved_with_null_encode_value.setPassword_encoded(encoded_bcryp_pass);
+
+            User sinup_user_now_added_encoding = retrieved_with_null_encode_value;
+
+            return sinup_user_now_added_encoding;
+        }
+    }
 
 
 
