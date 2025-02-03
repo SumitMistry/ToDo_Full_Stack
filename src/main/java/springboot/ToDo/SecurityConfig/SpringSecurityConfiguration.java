@@ -37,10 +37,15 @@ public class SpringSecurityConfiguration {
     //static { }
 
 
+
     // Password encoder algorithm set
     @Bean
     public PasswordEncoder passwordEncoder_method(){  return new BCryptPasswordEncoder();
     }
+
+
+
+
     // Create User details Manager - This is exclusively for in memory only.
     // # if you configure an InMemoryUserDetailsManager() method in your application explicitly, the properties set in application.properties for spring.security.user.name and spring.security.user.password will not take effect
     // Spring Boot's default behavior for these properties (spring.security.user.*) only applies if you do not provide your own custom UserDetailsService or SecurityFilterChain configuration.
@@ -78,7 +83,7 @@ public class SpringSecurityConfiguration {
                         .passwordEncoder(pass_encoder_algo)
                         .username(u_name)
                         .password(pass_rd)
-                        .roles(roleee)  // rolse could be "ADMIN, "USER" //   .roles("ADMIN, "USER") --> can be replaced
+                        .roles(roleee)  // role= could be "ADMIN, "USER" //   .roles("ADMIN, "USER") --> can be replaced
                         .build();
 
         return user_generating;

@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class Login_Services {
-
-/////////////////////// OLD HARD-Coded login validation -Not in use - SAFE TO DELETE
-    public boolean validateLogin(String uid, String pass){
-        return uid.contains("@") && pass.length() == 4;
-    }
-
+//
+///////////////////////// OLD HARD-Coded login validation -Not in use - SAFE TO DELETE
+//    public boolean validateLogin(String uid, String pass){
+//        return uid.contains("@") && pass.length() == 4;
+//    }
+//
 
     /////////////////////// new Spring security feature
     public String get_username_from_login_from_spring_Security() {
@@ -27,7 +27,7 @@ public class Login_Services {
 
     Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
 
-    public String get_user_Full_details(){
+    public String get_logged_user_Full_details(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String details1 = auth.getName();
         String details2 = auth.getDetails().toString();

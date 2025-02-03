@@ -48,7 +48,8 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
 
         //Delete lot of records first....
         int rowsDeleted = repo_dao_springData_jpa.deleteRecords();
-        // USED JPA for query building in below.....this will make query1
+
+        // ADD 2 records::::: USED JPA for query building in below.....this will make query1
         // automatically ....by below 4 lines..
         Todo todoList1 = new Todo( random1, "sumit@bofa.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), true,null);
         Todo todoList2 = new Todo( random2, "vraj@yyz.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), false,null);
@@ -60,9 +61,9 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
 
             Login_Services user1 = new Login_Services();
             Login_Services user2 = new Login_Services();
-
-            user1.validateLogin("test123", "123");
-            user1.validateLogin("best321", "12345");
+//
+//            user1.validateLogin("test123", "123");
+//            user1.validateLogin("best321", "12345");
 
             System.out.println("Default users initialized... from......... Autorun_justReference_DataInit implements CommandLineRunner");
         } else {

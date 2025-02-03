@@ -14,8 +14,8 @@ import springboot.ToDo.Services.User_Signup_Services;
 @SessionAttributes({"uid_email", "pass", "totally" })
 public class User_Signup_Controller {
 
-    @Autowired
-    private Repo_DAO_User_JPA repo_dao_user_jpa;
+//    @Autowired
+//    private Repo_DAO_User_JPA repo_dao_user_jpa;
 
     private final User_Signup_Services user_Signup_services;
 
@@ -26,7 +26,9 @@ public class User_Signup_Controller {
 
     static{ }
 
-    // INSERT + RAW + (GET)
+
+
+    // SIGNUP: INSERT + RAW + (GET)
     @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.GET})
     @ResponseStatus(HttpStatus.OK)
     public String get_signup_page(ModelMap modelmap){
@@ -37,20 +39,23 @@ public class User_Signup_Controller {
         return "signup";
     }
 
-    // INSERT + RAW + (POST)
+
+
+
+    // SIGNUP: INSERT + RAW pass + (POST)
     @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.POST, RequestMethod.PUT})
     //@ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public String add_user(@RequestParam(value = "uid_email") String incoming_username,
+    public String signup_insert_raw_pass(@RequestParam(value = "uid_email") String incoming_username,
                            @RequestParam(value = "pass") String incoming_password,
                            ModelMap modelMap){
 
-        // this returns back html page with "success written on body"
+        // this returns back html page with "fail"  //  "success written on body"
         if ( incoming_password.isEmpty() ||  incoming_username.isEmpty()){
-            modelMap.addAttribute("authmsg_signup", "Failed...");
+            modelMap.addAttribute("authmsg_signup", "Failed... : incoming_password.isEmpty() ||  incoming_username.isEmpty()");
         }else {
             // adding RAW values, NON-ENCODED
-            User retrieved_output =  user_Signup_services.insert_user_Bcrypted_encoded(incoming_username, incoming_password);
+            User retrieved_output =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
             modelMap.addAttribute("authmsg_signup", "Success: " + retrieved_output.toString());
         }
         return "signup";   // throw new ResponseStatusException(HttpStatusCode.valueOf(779), " USername / pass is empty");
@@ -59,21 +64,53 @@ public class User_Signup_Controller {
     }
 
 
-    // Verify / match user entered password is Match or NOT ?
-    @RequestMapping(value = "validate", method = RequestMethod.GET)
-    public String validate_User_Login(@RequestParam(value = "uid_email") String input_username,
-                                      @RequestParam(value = "pass") String input_pass,
-                                      ModelMap modelMap){
 
-        boolean ans = user_Signup_services.validate_User_Login(input_username,input_pass);
 
-        if(ans == true){
-            modelMap.addAttribute("authmsg_login2","Success: Pass Matching = " + repo_dao_user_jpa.findByUsername(input_username));
-        } else if (ans == false) {
-            modelMap.addAttribute("authmsg_login2","Failed: Pass Mismatch = " + repo_dao_user_jpa.findByUsername(input_username));
-        }
-        return "signup";
-    }
+
+
+//    // SIGNUP: INSERT + ENCODED pass + (POST)
+//    @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.POST, RequestMethod.PUT})
+//    //@ResponseBody
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public String signup_insert_encoded_pass(@RequestParam(value = "uid_email") String incoming_username,
+//                           @RequestParam(value = "pass") String incoming_password,
+//                           ModelMap modelMap){
+//
+//        // this returns back html page with "fail"  //  "success written on body"
+//        if ( incoming_password.isEmpty() ||  incoming_username.isEmpty()){
+//            modelMap.addAttribute("authmsg_signup", "Failed...");
+//        }else {
+//
+//            User retrieved_output =  user_Signup_services.insert_user_Bcrypted_encoded(incoming_username, incoming_password);
+//
+//            // adding RAW values, NON-ENCODED
+//            modelMap.addAttribute("authmsg_signup", "Success: " + retrieved_output.toString());
+//        }
+//        return "signup";   // throw new ResponseStatusException(HttpStatusCode.valueOf(779), " USername / pass is empty");
+//        // this return JSON
+//        //return new ResponseEntity<>(retrieved_output, HttpStatus.CREATED); // 201
+//    }
+
+
+
+
+
+//    // Verify / match user entered password is Match or NOT ?
+//    @RequestMapping(value = {"validate", "validate/"}, method = RequestMethod.GET)
+//    public String validate_User_Login(@RequestParam(value = "uid_email") String input_username,
+//                                      @RequestParam(value = "pass") String input_pass,
+//                                      ModelMap modelMap){
+//
+//        boolean ans = user_Signup_services.validate_User_Login(input_username,input_pass);
+//
+//        if(ans == true){
+//            modelMap.addAttribute("authmsg_login2","Success: Pass Matching = " + repo_dao_user_jpa.findByUsername(input_username));
+//        } else if (ans == false) {
+//            modelMap.addAttribute("authmsg_login2","Failed: Pass Mismatch = " + repo_dao_user_jpa.findByUsername(input_username));
+//        }
+//        return "signup";
+//    }
+
 
 
 }

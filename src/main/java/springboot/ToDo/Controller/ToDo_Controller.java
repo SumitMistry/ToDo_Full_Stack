@@ -77,6 +77,7 @@ public class ToDo_Controller<T> {
     private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
     private final Login_Services loginServices;
 
+
     public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa, Login_Services loginServices) {
         super();
         this.toDo_Services = toDo_Services;
@@ -87,6 +88,8 @@ public class ToDo_Controller<T> {
     static {
         // this to set initial static block, will initialize once only...
     }
+
+
 
     // to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
@@ -104,8 +107,7 @@ public class ToDo_Controller<T> {
         }
     }
 
-
-    // USER based LISTING
+    ///////////////////////////     USER based LISTING     ///////////////////////////
     @RequestMapping(value = {"list", ""}, method = RequestMethod.GET)
     public String list_per_user_todos(ModelMap modelMap) {
 
@@ -126,7 +128,7 @@ public class ToDo_Controller<T> {
         return "index";
     }
 
-    // ALL USER LISTING
+    ///////////////////////////     ALL USER LISTING     ///////////////////////////
     @RequestMapping(value = {"listall"}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
@@ -151,8 +153,8 @@ public class ToDo_Controller<T> {
         return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
     }
 
-
-    //  below is without the use of ----> [responseEntity<> wrapper ]
+    ///////////////////////////     JSON     ///////////////////////////
+    // JSON: below is without the use of ----> [responseEntity<> wrapper ]
     @RequestMapping(value = "listjson1", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

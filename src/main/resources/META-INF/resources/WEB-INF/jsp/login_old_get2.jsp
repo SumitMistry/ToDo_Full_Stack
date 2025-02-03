@@ -11,7 +11,7 @@
             <form method = "post">
                 <label>Email : </label>          <input type="email" placeholder="email..." name="uid_email" value="${prefill_signup_email}" >
                 <label>Password : </label>       <input type="password" placeholder="password..." name="pass"  value="${prefill_signup_pass}">
-                <button type="submit" class="cancelbtn" name="validate">Login</button>
+                <button type="submit" class="cancelbtn" name="signup">Sign-Up!</button>
 
                         <p>
                         <input type="checkbox" checked="checked"> Remember me

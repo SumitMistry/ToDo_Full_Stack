@@ -4,6 +4,7 @@ package springboot.ToDo.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -25,6 +26,12 @@ public class User {
         this.password_encoded = password_encoded;
     }
 
+
+    public User(String username, String password_raw) {
+        this.username = username;
+        this.password_raw = password_raw;
+    }
+
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column(name = "uuid", nullable = false, unique = true, updatable = false)
@@ -40,8 +47,10 @@ public class User {
     private String password_raw;
 
 
-    @Column(name = "password_encoded", nullable = false)
+    // @Null  --> this will enforce all the values mut be null....ONLY NULL all values, that is not we want.
+    @Column(name = "password_encoded", nullable = true)
     private String password_encoded;
+
 
     /*
     What is @EntityListeners(AuditingEntityListener.class)?

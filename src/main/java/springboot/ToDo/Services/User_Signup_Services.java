@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
-import springboot.ToDo.SecurityConfig.PassEncoder_config;
+import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
+//import springboot.ToDo.SecurityConfig.PassEncoder_config;
 
 @Service
 @Transactional(readOnly = false, propagation= Propagation.REQUIRES_NEW )
@@ -17,42 +18,72 @@ public class User_Signup_Services {
     private final Repo_DAO_User_JPA repo_dao_user_jpa;
 
     @Autowired
-    private PassEncoder_config passEncoder_config;
+    private SpringSecurityConfiguration springSecurityConfiguration;
 
     public User_Signup_Services(Repo_DAO_User_JPA user_jpa){
         super();
         this.repo_dao_user_jpa = user_jpa;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        //        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
 
+    /*
+        public User insert_user_raw(User user){
+        repo_dao_user_jpa.save(user);
+        User retrived_user = repo_dao_user_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("User name ENTEREDD not found! weirdo"));
 
-    // INSERT + RAW
-    public User insert_user_raw(String incoming_username, String incoming_raw_pass){
+        System.out.println("77777777777777"+ retrived_user.toString());
+        return retrived_user;
+    }
+     */
 
-        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(incoming_raw_pass);
-        User final_user_to_Add = new User(incoming_username,incoming_raw_pass,encode_bcryp_pass);
 
-        if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
+    // SIGNUP: INSERT + RAW password
+    public User signup_insert_raw_pass(String incoming_username, String incoming_raw_pass){
+
+        User final_user_to_Add = new User(incoming_username,incoming_raw_pass);
+
+        // check if username is empty
+        if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty() ||   final_user_to_Add == null){
             throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "User name / Pass CAN NOT be empty ");
         }
         else {
-            User retrived_user = repo_dao_user_jpa.save(final_user_to_Add);
-            return retrived_user;
+            // Now add it to database using JPA
+            User retrieved_user_after_signup = repo_dao_user_jpa.save(final_user_to_Add);
+            return retrieved_user_after_signup;
         }
     }
 
 
+//    // SIGNUP: INSERT + ENCODED password
+//    public User signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass){
+//
+//        // ENCODE incoming raw password
+//        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(incoming_raw_pass);
+//
+//        // Creating ENCODED user object
+//        User final_user_to_Add = new User(incoming_username,incoming_raw_pass,encode_bcryp_pass);
+//
+//        if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
+//            throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "User name / Pass CAN NOT be empty ");
+//        }
+//        else {
+//            User retrieved_user_after_signup = repo_dao_user_jpa.save(final_user_to_Add);
+//            return retrieved_user_after_signup;
+//        }
+//    }
 
 
-    // INSERT + ENCODE == BCryptPasswordEncoder
-    public User insert_user_Bcrypted_encoded(String input_username, String input_pass){
 
-        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(input_pass);
-
-        User user_encrypted = new User(input_username, input_pass, encode_bcryp_pass);
-        return repo_dao_user_jpa.save(user_encrypted);
-    }
+//
+//    // INSERT + ENCODE == BCryptPasswordEncoder
+//    public User insert_user_Bcrypted_encoded(String input_username, String input_pass){
+//
+//        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(input_pass);
+//
+//        User user_encrypted = new User(input_username, input_pass, encode_bcryp_pass);
+//        return repo_dao_user_jpa.save(user_encrypted);
+//    }
 
 
 
@@ -64,12 +95,12 @@ public class User_Signup_Services {
     }
 
 
-
-    // Verify / match user entered password is Match or NOT ?
-    public boolean validate_User_Login(String incoming_username, String incoming_raw_pass){
-        String encoded_pass = repo_dao_user_jpa.findByUsername(incoming_username).getPassword_encoded();
-        boolean check = passEncoder_config.passwordEncoder().matches( incoming_raw_pass, encoded_pass );
-        return check;
-    }
+//
+//    // Verify / match user entered password is Match or NOT ?
+//    public boolean validate_User_Login(String incoming_username, String incoming_raw_pass){
+//        String encoded_pass = repo_dao_user_jpa.findByUsername(incoming_username).getPassword_encoded();
+//        boolean check = passEncoder_config.passwordEncoder().matches( incoming_raw_pass, encoded_pass );
+//        return check;
+//    }
 
 }
