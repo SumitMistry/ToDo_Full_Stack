@@ -56,10 +56,10 @@
             <form method="post">
                 <div class="container">
                     <label>Email : </label>
-                    <input type="text" placeholder="Enter Email" name="uid_email" value="${prefill_login_old_get1}" >
+                    <input type="text" placeholder="Enter Email" name="uid_email" value="${prefill_login_old1}" >
                     <label>Password : </label>
                     <input type="password" placeholder="Enter Password" name="pass" >
-                    <button type="submit">Login</button>
+                    <button type="submit">Login...</button>
                     <input type="checkbox" checked="checked"> Remember me
                     <button type="button" class="cancelbtn"> Cancel</button>
                     Forgot <a href="#"> password? </a>

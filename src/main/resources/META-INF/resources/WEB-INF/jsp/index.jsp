@@ -81,10 +81,10 @@
                        <a href="/actuator" class="btn btn-primary">    /actuator  </a>
                        <a href="/actuator/health" class="btn btn-primary">   /actuator/health </a>
                        <a href="health" class="btn btn-primary">      /HealthCheck-Bluey      </a>
-                        <a href="login" class="btn btn-primary">       /login     </a>
-                        <a href="login1" class="btn btn-primary">       /login1     </a>
-                        <a href="login2" class="btn btn-primary">       /login2     </a>
-                        <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
+                       <a href="login" class="btn btn-primary">       /login     </a>
+                       <a href="login1" class="btn btn-primary">       /login1     </a>
+                       <a href="login2" class="btn btn-primary">       /login2     </a>
+                       <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
 
         </div>
 

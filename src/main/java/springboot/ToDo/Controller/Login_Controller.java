@@ -36,8 +36,8 @@ public class Login_Controller {
 //    ///////////////////////   LOGIN (REGULAR GOOD UI)    ///////////////
 //    @RequestMapping(value = { "/login1"}, method = RequestMethod.GET)
 //    public String get_login_page1(ModelMap modelMap){
-//        modelMap.put("prefill_login_old_get1", "login1@new.ui");
-//        return "login_old_get1";
+//        modelMap.put("prefill_login_old1", "login1@new.ui");
+//        return "login_old1";
 //    }
 //    @RequestMapping(value = {"login1"}, method = RequestMethod.POST)
 //    public String actual_login_happens_here1( @RequestParam("uid_email") String usernr,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data
@@ -54,7 +54,7 @@ public class Login_Controller {
 //                    "            Hint1: uid must have @\n" +
 //                    "            <p>\n" +
 //                    "            Hint2: pass must be 4 length");
-//            return "login_old_get1";
+//            return "login_old1";
 //        }
 //        // Step-3 Login Pass
 //        return "welcome1";
@@ -66,7 +66,7 @@ public class Login_Controller {
 //    @RequestMapping(value = { "/login2" }, method = RequestMethod.GET)
 //    public String get_login_page2(ModelMap modelMap){
 //
-//        modelMap.put("prefill_login_old_get1", "login2@smMade.ui");
+//        modelMap.put("prefill_login_old1", "login2@smMade.ui");
 //        return "login_old_get2";
 //    }
 //    @RequestMapping(value = {"login2"}, method = RequestMethod.POST)
@@ -84,7 +84,7 @@ public class Login_Controller {
 //                    "            Hint1: uid must have @\n" +
 //                    "            <p>\n" +
 //                    "            Hint2: pass must be 4 length");
-//            return "login_old_get2";
+//            return "login_old2";
 //        }
 //        // Step-3 Login Pass
 //        return "welcome1";
