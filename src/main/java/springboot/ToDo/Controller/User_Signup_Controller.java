@@ -14,8 +14,6 @@ import springboot.ToDo.Services.User_Signup_Services;
 @SessionAttributes({"uid_email", "pass", "totally" })
 public class User_Signup_Controller {
 
-//    @Autowired
-//    private Repo_DAO_User_JPA repo_dao_user_jpa;
 
     private final User_Signup_Services user_Signup_services;
 
@@ -23,7 +21,6 @@ public class User_Signup_Controller {
         super();
         this.user_Signup_services = user_Signup_services;
     }
-
     static{ }
 
 
@@ -68,6 +65,19 @@ public class User_Signup_Controller {
     }
 
 
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //    // Verify / match user entered password is Match or NOT ?
@@ -86,6 +96,3 @@ public class User_Signup_Controller {
 //        return "signup";
 //    }
 
-
-
-}

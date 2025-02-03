@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import springboot.ToDo.Model.Todo;
+import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Services.Login_Services;
 
@@ -56,15 +57,13 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
         repo_dao_springData_jpa.save(todoList1);
         repo_dao_springData_jpa.save(todoList2);
 
+        // ADD 2 users to db.
+        User u1 = new User("sumit@bofa.com", "1");
+        User u2 = new User("vraj@yyz.com", "1");
+
+
         if (login_Services.toString().equals("admin")) {
             System.out.println("\n\n                              " +"No users found in the database. Initializing default users...");
-
-            Login_Services user1 = new Login_Services();
-            Login_Services user2 = new Login_Services();
-//
-//            user1.validateLogin("test123", "123");
-//            user1.validateLogin("best321", "12345");
-
             System.out.println("Default users initialized... from......... Autorun_justReference_DataInit implements CommandLineRunner");
         } else {
             System.out.println("\n\n                              " +"Users already exist in the database. Skipping initialization......... Autorun_justReference_DataInit implements CommandLineRunner"+"\n\n                              " );

@@ -344,40 +344,6 @@ public class ToDo_Controller<T> {
     }
 
 
-    @RequestMapping(value = "/dateRangePicker", method = RequestMethod.GET)
-    public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
-                                  @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
-                                  ModelMap modelMap){
-
-        List<Todo> list_todos = repo_dao_springData_jpa.findCreationDateRange(fromDate,toDate);
-
-        if (! list_todos.isEmpty()) {
-            modelMap.addAttribute("listMapVar", list_todos);
-            modelMap.addAttribute("totally", list_todos.size());
-        } else {
-            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
-            modelMap.addAttribute("totally", 0);
-        }
-        return "index";
-    }
-
-    @RequestMapping(value = "searchAPI", method ={ RequestMethod.GET, RequestMethod.POST})
-    public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
-                                ModelMap modelMap){
-
-        List<Todo> todoList = toDo_Services.findByKeyword(keyword);
-
-        System.out.println(todoList.size());
-
-        if (! todoList.isEmpty()) {
-            modelMap.addAttribute("listMapVar", todoList);
-            modelMap.addAttribute("totally", todoList.size());
-        } else {
-            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
-            modelMap.addAttribute("totally",0);
-        }
-        return "index";
-    }
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "update", method = RequestMethod.GET)

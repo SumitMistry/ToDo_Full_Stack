@@ -2,18 +2,26 @@ package springboot.ToDo.Services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import springboot.ToDo.Model.User;
+import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
+
+import java.util.Optional;
 
 @Service
 public class Login_Services {
-//
-///////////////////////// OLD HARD-Coded login validation -Not in use - SAFE TO DELETE
-//    public boolean validateLogin(String uid, String pass){
-//        return uid.contains("@") && pass.length() == 4;
-//    }
-//
+
+    @Autowired
+    private Repo_DAO_User_JPA repo_dao_user_jpa;
+
+
+    @Autowired
+    private SpringSecurityConfiguration springSecurityConfiguration;
+
 
     /////////////////////// new Spring security feature
     public String get_username_from_login_from_spring_Security() {
@@ -22,8 +30,6 @@ public class Login_Services {
         System.out.println(uname);
         return uname;
     }
-
-
 
     Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
 
@@ -38,6 +44,33 @@ public class Login_Services {
     }
 
 
+    // VALIDATION: Login check / VALIDATION
+    // Verify / match user entered password is Match or NOT ?
+    public boolean validate_login_raw_pass_match_to_db_encoded_pass(String input_user, String input_pass){
+
+
+        Optional<User> userOptional = repo_dao_user_jpa.findByUsername(input_user);
+
+        // retrieve encoded password
+        String encoded_pass = userOptional.map(User::getPassword_encoded).orElse(null);
+
+        // use match function ---> to confirm input raw pass = = encoded pass or not..
+        boolean check = springSecurityConfiguration.passwordEncoder_method().matches( input_pass, encoded_pass );
+        return check;
+    }
+
+
+
 }
 
 
+
+
+
+
+
+
+///////////////////////// OLD HARD-Coded login validation -Not in use - SAFE TO DELETE
+//    public boolean validateLogin(String uid, String pass){
+//        return uid.contains("@") && pass.length() == 4;
+//    }

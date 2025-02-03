@@ -26,16 +26,6 @@ public class User_Signup_Services {
     }
 
 
-    /*
-        public User insert_user_raw(User user){
-        repo_dao_user_jpa.save(user);
-        User retrived_user = repo_dao_user_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("User name ENTEREDD not found! weirdo"));
-
-        System.out.println("77777777777777"+ retrived_user.toString());
-        return retrived_user;
-    }
-     */
-
 
     // SIGNUP: INSERT + RAW password
     public User signup_insert_raw_pass(String incoming_username, String incoming_raw_pass){
@@ -65,18 +55,30 @@ public class User_Signup_Services {
             String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
 
             // Creating ENCODED user object
-            User retrieved_with_null_encode_value   = repo_dao_user_jpa.findByUsername(incoming_username);
-            retrieved_with_null_encode_value.setPassword_encoded(encoded_bcryp_pass);
+            User user_retrieved_with_null_encode_value   = repo_dao_user_jpa.findByUsername(incoming_username).get();
+            user_retrieved_with_null_encode_value.setPassword_encoded(encoded_bcryp_pass);
 
-            User sinup_user_now_added_encoding = retrieved_with_null_encode_value;
+            User sinup_user_now_added_encoding = user_retrieved_with_null_encode_value;
 
             return sinup_user_now_added_encoding;
         }
     }
 
+}
 
 
-//
+
+
+
+
+
+
+
+
+
+
+
+//    // NO NEED ------------------------------------------
 //    // INSERT + ENCODE == BCryptPasswordEncoder
 //    public User insert_user_Bcrypted_encoded(String input_username, String input_pass){
 //
@@ -88,20 +90,22 @@ public class User_Signup_Services {
 
 
 
-    // NO use
-    // GET + DECODED == BCryptPasswordEncoder ---> not possible // DECODING is not Allowed !
-    // You cannot retrieve or decrypt a Bcrypt-hashed password because Bcrypt is a one-way hashing algorithm. This is by design for security reasons.
-    public  User get_user_bcryp_decoded(User entered_user){
-        return  null;
-    }
 
-
-//
-//    // Verify / match user entered password is Match or NOT ?
-//    public boolean validate_User_Login(String incoming_username, String incoming_raw_pass){
-//        String encoded_pass = repo_dao_user_jpa.findByUsername(incoming_username).getPassword_encoded();
-//        boolean check = passEncoder_config.passwordEncoder().matches( incoming_raw_pass, encoded_pass );
-//        return check;
+//    /// NO NEED ------------------------------------------
+//    // GET + DECODED == BCryptPasswordEncoder ---> not possible // DECODING is not Allowed !
+//    // You cannot retrieve or decrypt a Bcrypt-hashed password because Bcrypt is a one-way hashing algorithm. This is by design for security reasons.
+//    public  User get_user_bcryp_decoded(User entered_user){
+//        return  null;
 //    }
 
-}
+
+
+    /*
+        public User insert_user_raw(User user){
+        repo_dao_user_jpa.save(user);
+        User retrived_user = repo_dao_user_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("User name ENTEREDD not found! weirdo"));
+
+        System.out.println("77777777777777"+ retrived_user.toString());
+        return retrived_user;
+    }
+     */
