@@ -22,7 +22,6 @@ import java.util.function.Function;
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
-
     @Value("${login.adminUsername2}")  // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
     private String adminUsername2;
     @Value("${login.adminPass2}") // this variable is set in Application.properties / Environment variable / used @@ConfigurationProperties @Value // Application.Properties
