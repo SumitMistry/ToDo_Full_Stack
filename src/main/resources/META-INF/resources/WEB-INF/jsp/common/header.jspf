@@ -29,10 +29,10 @@
                     top: 0;
                     left: 0;
                     width: 100%;
-                    z-index: 1030; /* Ensure it stays above other elements */
+                    z-index: 970; /* Ensure it stays above other elements */
                     background-color: #343a40; /* Bootstrap dark color */
                     color: white;
-                    padding: 10px 20px;
+                    padding: 0px 0px;
                 }
 
                 /* Fixed header styling */
@@ -52,7 +52,7 @@
 
                 /* Add padding to body to prevent content overlap with the fixed header */
                 body {
-                    padding-top: 130px;
+                    padding-top: 138px;
                 }
 
       </style>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Services.Login_Services;
-import springboot.ToDo.Services.User_Signup_Services;
+
 
 
 // ModelMap == map.put("listvarinJSP", a1fromJavaClass) -------------> This flows from Javs Class's a1 variable to ---> frontend
@@ -33,7 +33,9 @@ public class Login_Controller {
     @RequestMapping(value = { "/login2" }, method = RequestMethod.GET)
     public String get_login_page2(ModelMap modelMap){
 
-        modelMap.put("prefill_login_email_old2", "login2@smMade.ui");
+        modelMap.addAttribute("prefill_login_email_old2_a", "sumit@america.com");
+        modelMap.addAttribute("prefill_login_email_old2_b", "1");
+
         //modelMap.put("prefill_login_pass_old2", "1"); // we can pre-fill/ pre-populate password in the form here at login page.
         return "login_old2";
     }
@@ -41,8 +43,6 @@ public class Login_Controller {
     public String actual_login_happens_here2( @RequestParam("uid_email") String input_usernm,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data
                                              @RequestParam("pass") String input_passw,      // @RequestParam annotation binds Servlet request(from HTML) parameters to method argument
                                              ModelMap modelMap){
-
-
 
         // Step-1 Validation of username+pass Registered /SIGNUP or not?
         //        modelMap.put("uid_email", usernr);
@@ -61,9 +61,11 @@ public class Login_Controller {
         }
         else {  // success setup
             modelMap.addAttribute("login_auth_success", "Login Success. <p> validation_result= "+ validation_result);
+            modelMap.addAttribute("uid_email", input_usernm);
         }
 
         // Step-3 Login Pass  // validation = pass = success
+
         return "welcome1";
 
     }

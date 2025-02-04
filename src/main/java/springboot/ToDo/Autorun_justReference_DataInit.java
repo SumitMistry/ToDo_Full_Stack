@@ -7,10 +7,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import springboot.ToDo.Controller.User_Signup_Controller;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
+import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 import springboot.ToDo.Services.Login_Services;
+import springboot.ToDo.Services.User_Signup_Services;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -38,6 +41,9 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
     @Autowired
     private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
 
+    @Autowired
+    private Repo_DAO_User_JPA repo_dao_user_jpa;
+
     @Override
     public void run(String[] str) throws Exception {
 
@@ -57,9 +63,16 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
         repo_dao_springData_jpa.save(todoList1);
         repo_dao_springData_jpa.save(todoList2);
 
-        // ADD 2 users to db.
-        User u1 = new User("sumit@bofa.com", "1");
-        User u2 = new User("vraj@yyz.com", "1");
+        // ADD 2 users to db upon start // signup 2 users automatically upon start
+//        User u1 = new User("sumit@bofa.com", "1");
+//        User u2 = new User("vraj@yyz.com", "1");
+//        repo_dao_user_jpa.save(u1);
+//        repo_dao_user_jpa.save(u2);
+
+        // how to call controller or API here for the testing??
+        // I dont want to invoke method from backend, but I want from api endpoint in springboot
+        // signup_insert_raw_pass_and_encoded_pass
+
 
 
         if (login_Services.toString().equals("admin")) {

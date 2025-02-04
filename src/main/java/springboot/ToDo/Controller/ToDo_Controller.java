@@ -272,37 +272,6 @@ public class ToDo_Controller<T> {
         return "index";
     }
 
-    //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
-    @RequestMapping(value = "insert3", method = RequestMethod.GET)
-    public String get_SprData_JPA_insert(ModelMap modelMap) {
-        List<Todo> list1 = toDo_Services.findbyALL();
-
-            //pre-filling add tags in forms automatically populated for users as easy to use.
-            Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
-            modelMap.addAttribute("todo_obj_spring_data_jpa2", t1);
-
-        return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
-    }
-
-    @RequestMapping(value = "insert3", method = RequestMethod.POST)
-    public String post_SprData_JPA_insert(ModelMap modelMap,
-                                          @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
-                                          BindingResult bindingResult, Errors err) {
-
-        //use binding result to find error while validating / entering data
-        if (err.hasErrors() || bindingResult.hasErrors()) {
-//            l1.info(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
-//            System.out.println(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
-//            return "redirect:insert3_SprDataJPA";
-            return "insert3_SprDataJPA";
-        }
-
-        // post data to backend SQL
-        repo_dao_springData_jpa.save(todo_obj_spring_data_jpa2);
-
-        // get data view
-        return "redirect:list"; // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
-    }
 
 
 

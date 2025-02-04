@@ -63,6 +63,7 @@
 
                     1.SpringDataJPA - INSERT: <p>
                     <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
+
             <hr>
                     2.SpringDataJPA - FIND: <p>
                     <a href="find?u=1" class="btn btn-success">find?u=1 </a> <p>

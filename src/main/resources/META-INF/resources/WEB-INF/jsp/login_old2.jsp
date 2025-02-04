@@ -12,9 +12,9 @@
         </b>
 
             <form method = "post">
-                <label>Email    : </label>       <input type="email" placeholder="email..." name="uid_email" value="${prefill_login_email_old2}" > <p>
-                <label>Password : </label>       <input type="password" placeholder="password..." name="pass"  value="${prefill_login_pass_old2}"> <p>
-                <button type="submit" class="cancelbtn" name="signup">Sign-Up!</button> <p>
+                <label>Email    : </label>       <input type="email" placeholder="email..." name="uid_email" value="${prefill_login_email_old2_a}" > <p>
+                <label>Password : </label>       <input type="password" placeholder="password..." name="pass"  value="${prefill_login_email_old2_b}"> <p>
+                <button type="submit" class="cancelbtn" name="login">Login</button> <p>
 
                         <p>
                         <input type="checkbox" checked="checked"> Remember me

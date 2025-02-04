@@ -30,8 +30,8 @@ public class User_Signup_Controller {
     @ResponseStatus(HttpStatus.OK)
     public String get_signup_page(ModelMap modelmap){
         // (This is to pre-populate / pre-parse data)
-        modelmap.addAttribute("prefill_signup_email", "abXCX@abc.xyz" );
-        modelmap.addAttribute("prefill_signup_pass", "123" );
+        modelmap.addAttribute("prefill_signup_email", "sumit@americas.com" );
+        modelmap.addAttribute("prefill_signup_pass", "1" );
 
         return "signup";
     }
@@ -43,7 +43,7 @@ public class User_Signup_Controller {
     @RequestMapping(value = {"signup", "signup/"}, method = {RequestMethod.POST, RequestMethod.PUT})
     //@ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public String signup_insert_raw_pass(@RequestParam(value = "uid_email") String incoming_username,
+    public String signup_insert_raw_pass_and_encoded_pass(@RequestParam(value = "uid_email") String incoming_username,
                            @RequestParam(value = "pass") String incoming_password,
                            ModelMap modelMap){
 
