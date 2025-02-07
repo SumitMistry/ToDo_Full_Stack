@@ -1,0 +1,241 @@
+<%@ taglib prefix="test1" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+
+<%-- this is jsp comment
+META-INF\resources\webjars\bootstrap\5.1.3\css\bootstrap.min.css
+META-INF\resources\webjars\bootstrap\5.1.3\js\bootstrap.min.js
+META-INF\resources\webjars\jquery\3.6.0\jquery.min.js
+--%>
+
+
+<html>
+<head>
+
+    <div class="container">
+        <link href="\webjars\bootstrap\5.1.3\css\bootstrap.min.css" rel="stylesheet">
+        <link href="\webjars\bootstrap-datepicker\1.9.0\css\bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
+        <script src="\webjars\jquery\3.6.0\jquery.min.js"></script>
+        <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"></script>
+
+        <title> List: Todo Webapp   </title>
+    </div>
+
+
+    <style>
+        /* Fixed header styling */
+        .fixed-header1 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 970; /* Ensure it stays above other elements */
+            background-color: #343a40; /* Bootstrap dark color */
+            color: white;
+            padding: 0px 0px;
+        }
+
+        /* Fixed header styling */
+        .fixed-header2 {
+            position: fixed;
+            top: 60;
+            left: 0;
+            width: 100%;
+            z-index: 100; /* Ensure it stays above other elements */
+            background-color: #343a40; /* Bootstrap dark color */
+            color: white;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+        }
+
+
+
+        /* Add padding to body to prevent content overlap with the fixed header */
+        body {
+            padding-top: 138px;
+        }
+
+    </style>
+
+</head>
+
+
+
+<body style="background-color:#f0f0f0">
+
+
+
+
+
+
+
+<!-- Fixed Header -->
+    <nav class="fixed-header1 navbar navbar-expand-md navbar-dark bg-dark mb-0 p-2">
+
+        <a class="navbar-brand m-1" href="/">ToDoWebApp</a>
+        <a class="navbar-brand m-1" href="/api/todo/list"> (<b>${totally}</b>) </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">    <a class="nav-link" href="/api/todo/list"> /list <b style="color: limeGreen;" >${uid_email}</b> </a> </li>
+                <li class="nav-item"><a class="nav-link" href="/api/todo/listall">/listAll</a></li>
+                <li class="nav-item"><a class="nav-link" href="/api/todo/listjson">/listJSON</a></li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">/home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/actuator">/actuator</a></li>
+                <li class="nav-item"><a class="nav-link" href="/actuator/health">/health </a></li>
+                <li class="nav-item"><a class="nav-link" href="/h2-console">/h2-console</a></li>
+                <li class="nav-item"><a class="nav-link" href="/api/todo/hardcode1">hardcode1</a></li>
+            </ul>
+        </div>
+
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/signup">/signup</a></li>
+            <li class="nav-item"><a class="nav-link" href="/">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
+            <li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Fixed Header PART-2--->
+    <nav class="fixed-header2 navbar navbar-expand-md navbar-dark bg-dark mb-0 p-2">
+        <!-- First Section (Left Side)-->
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form class="form-inline d-flex">
+                        <label for="fromDate" class="me-1">Creation date:</label>
+                    </form>
+                </li>
+            </ul>
+
+
+
+            <form class="form-inline d-flex" method="GET" action="dateRangePicker">
+                <input type="date" id="fromDate" name="fromDate" class="form-control me-2" required>
+                <input type="date" id="toDate" name="toDate" class="form-control me-2" required>
+                <button type="submit" class="btn btn-primary"> Search </button>
+            </form>
+
+        </div>
+
+
+
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form class="form-inline d-flex">
+                        <a class="nav-link" href="/api/todo/health">healthCheck-Bluey</a>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Second Section (Right Aligned) ONLY + button-->
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <form class="form-inline d-flex">
+                    <a href="insert3" class="btn btn-success"> &#x271A; </a>
+                </form>
+            </ul>
+        </div>
+
+
+
+        <!-- Third Section (Right Aligned) -->
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <form class="form-inline d-flex" method="GET" action="searchAPI">
+                        <input type="text" name="searchKey" class="form-control me-1" placeholder="Search...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <td></td>
+    <div class="container">
+        <h3> Welcome to ToDo web-app ... </h3>      your  USER=<b> ${uid_email} </b> your Pass= <b> ${pass} </b>
+    </div>
+
+
+
+    <hr>
+
+
+    <div class="container">
+        <h2> Account LLLLLLLLLLLLLLLLLLLLLogin </h2>
+        <b style="color: blue;" >
+            <p><p>
+            <pre>${authmsg_login2}</pre>
+            <p><p><p>
+        </b>
+
+
+
+        <form method="POST" action="/login2">
+            <label>Email    : </label>       <input type="email" placeholder="email..." name="uid_email" value="${prefill_login_email_old2_a}" > <p>
+            <label>Password : </label>       <input type="password" placeholder="password..." name="pass"  value="${prefill_login_email_old2_b}"> <p>
+            <button type="submit" class="cancelbtn" name="login">Login</button> <p>
+
+            <p>
+                <input type="checkbox" checked="checked"> Remember me
+                <button type="button" class="cancelbtn"> Cancel</button> <p>
+            Forgot <a href="#"> password? </a>
+        </form>
+
+
+
+        <form method="POST" action="/login2">
+            <label>Email    : </label>
+            <input type="email" placeholder="email..." name="username" value="${prefill_login_email_old2_a}" required> <p>
+
+            <label>Password : </label>
+            <input type="password" placeholder="password..." name="password" value="${prefill_login_email_old2_b}" required> <p>
+            <button type="submit" class="cancelbtn">Login</button> <p>
+
+            <input type="checkbox" checked="checked"> Remember me
+            <button type="button" class="cancelbtn">Cancel</button> <p>
+
+            Forgot <a href="#">password?</a>
+
+            <!-- Show error message if login fails -->
+            <p style="color: red;">${param.error ? "Invalid username or password" : ""}</p>
+            <p style="color: green;">${param.logout ? "You have been logged out successfully" : ""}</p>
+        </form>
+
+    </div>
+
+
+
+    <!--  Order matters....Include jQuery before Bootstrap otherwise Bootstrap wont work-->
+    <script src="\webjars\jquery\3.6.0\jquery.min.js"> </script>
+    <script src="\webjars\bootstrap\5.1.3\js\bootstrap.min.js"> </script>
+    <script src="\webjars\bootstrap-datepicker\1.9.0\js\bootstrap-datepicker.min.js"> </script>
+
+
+    <script type="text/javascript">
+
+        $('#creationDate').datepicker({
+             format: 'dd/mm/yyyy'
+        });
+
+        $('#targetDate').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+
+    </script>
+    `
+
+</body>
+<html>
+

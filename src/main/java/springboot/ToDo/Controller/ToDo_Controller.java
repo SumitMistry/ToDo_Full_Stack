@@ -1,7 +1,6 @@
 package springboot.ToDo.Controller;
 
 import jakarta.validation.Valid;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 import org.h2.engine.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,7 +93,7 @@ public class ToDo_Controller<T> {
     // to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
-    @RequestMapping(value = "existbyuidexistbyuid", method = RequestMethod.GET)
+    @RequestMapping(value = "existbyuid", method = RequestMethod.GET)
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
                                            ModelMap modelMap){
         boolean x =  repo_dao_springData_jpa.existsByUid(uid);
@@ -271,7 +270,6 @@ public class ToDo_Controller<T> {
 
         return "index";
     }
-
 
 
 

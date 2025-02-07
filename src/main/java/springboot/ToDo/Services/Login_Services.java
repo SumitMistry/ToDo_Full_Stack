@@ -22,6 +22,8 @@ public class Login_Services {
     @Autowired
     private SpringSecurityConfiguration springSecurityConfiguration;
 
+//    @Autowired
+//    private SpringSecurityConfig3 springSecurityConfig3;
 
     /////////////////////// new Spring security feature
     public String get_username_from_login_from_spring_Security() {
@@ -55,7 +57,8 @@ public class Login_Services {
         String encoded_pass = userOptional.map(User::getPassword_encoded).orElse(null);
 
         // use match function ---> to confirm input raw pass = = encoded pass or not..
-        boolean check = springSecurityConfiguration.passwordEncoder_method().matches( input_pass, encoded_pass );
+        //boolean check = springSecurityConfiguration.passwordEncoder_method().matches( input_pass, encoded_pass );
+        boolean check = true;  //springSecurityConfig3.passwordEncoder_method().matches( input_pass, encoded_pass );
 
         return check;
     }

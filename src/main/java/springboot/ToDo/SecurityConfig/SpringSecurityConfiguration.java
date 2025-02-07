@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -90,21 +92,114 @@ public class SpringSecurityConfiguration {
         return user_generating;
     }
 
-    // HOW any specific url to be excluded / put in exception from login-security module, like health check of bluey..etc...
-    // Every chain of request is being passed through this filter automatically by default in spring security...
-    //            Without this method  Forbidden Error
-    //            =  Whitelabel Error Page :(type=Forbidden, status=403)
-    // The provided filterchain_1 method secures all application endpoints by requiring authentication. It uses Spring Security’s default login page for user authentication and allows access to the H2 database console by disabling CSRF protection and frame restrictions.
-    // This configuration is ideal for development purposes but requires additional considerations for production environments.
+
+//     HOW any specific url to be excluded / put in exception from login-security module, like health check of bluey..etc...
+//     Every chain of request is being passed through this filter automatically by default in spring security...
+//                Without this method  Forbidden Error
+//                =  Whitelabel Error Page :(type=Forbidden, status=403)
+//     The provided filterchain_1 method secures all application endpoints by requiring authentication. It uses Spring Security’s default login page for user authentication and allows access to the H2 database console by disabling CSRF protection and frame restrictions.
+//     This configuration is ideal for development purposes but requires additional considerations for production environments.
     @Bean
-    public SecurityFilterChain filterchain_1(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterchain_default_login(HttpSecurity httpSecurity) throws Exception {
 
         // Step-1 : PROTECT all URLS
         // pass all request through below so all request get authenticated
         httpSecurity.authorizeHttpRequests(
                 // pass through any request below function so it get authenticated
-                auth1 -> auth1.anyRequest().authenticated()  // it will make sure, all request Requires authentication for all types IN/OUT
+                auth1 -> auth1.requestMatchers("/login2").permitAll()  // Allow access to login page
+                                        .anyRequest().authenticated()); // it will make sure, all request Requires authentication for all types IN/OUT
+
+        // Step-2: Login form shown for unauthorized access
+        // For all the above request, show the springboot login form to user.. with the default features as below:
+        httpSecurity.formLogin(Customizer.withDefaults());  // .wuthDefaults() is static method, so we need ot pass Defaults into static variables
+//        httpSecurity.formLogin(form -> form
+//                .loginPage("/login2") // Custom login page
+//                .permitAll()
+//                .successHandler((request, response, authentication) -> {
+//                    response.sendRedirect("/welcome1"); // Redirect to a safe page after login
+//                }));
+
+
+
+        // Step-3: CSRF disable / filer /exception adjustment to be able to access:  "/h2-console"
+        // Now, time to add exclusion from the above filter...
+        httpSecurity.csrf(c -> c.disable()); // doing this for h2 dB
+
+        // Step-4: Enable the use of Frames in our App
+        httpSecurity.headers(h->h.frameOptions(c->c.disable()));
+        SecurityFilterChain s1 = httpSecurity.build();
+
+        return s1;
+    }
+
+
+
+    @Bean
+    public SecurityFilterChain filterchain_custom_login(HttpSecurity httpSecurity) throws Exception {
+
+        // Step-1 : PROTECT all URLS
+        // pass all request through below so all request get authenticated
+        httpSecurity.authorizeHttpRequests(
+                // pass through any request below function so it get authenticated
+                auth1 -> auth1.requestMatchers("/login2", "/signup").permitAll().anyRequest().authenticated() ); // it will make sure, all request Requires authentication for all types IN/OUT
+
+
+        // Step-2: Login form shown for unauthorized access
+        // For all the above request, show the springboot login form to user.. with the default features as below:
+//        httpSecurity.formLogin(Customizer.withDefaults());  // .wuthDefaults() is static method, so we need ot pass Defaults into static variables
+
+        httpSecurity.formLogin(form -> form
+                .loginPage("/login2")  // Ensure this matches the GET mapping
+                .loginProcessingUrl("/login2") // Change from `/perform_login` to `/login2`
+                .defaultSuccessUrl("/welcome1", true)
+                .failureUrl("/login2?error=true")
+                .permitAll()
         );
+
+
+        // Step-3: CSRF disable / filer /exception adjustment to be able to access:  "/h2-console"
+        // Now, time to add exclusion from the above filter...
+        httpSecurity.csrf(c -> c.disable()); // doing this for h2 dB
+
+        // Step-4: Enable the use of Frames in our App
+        httpSecurity.headers(h->h.frameOptions(c->c.disable()));
+        SecurityFilterChain s1 = httpSecurity.build();
+
+        return s1;
+    }
+
+
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/jsp/");  // resolver.setPrefix("/META-INF/resources/WEB-INF/jsp/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+This working best default one--------------------------------------------
+
+    public SecurityFilterChain filterchain_default_login(HttpSecurity httpSecurity) throws Exception {
+
+        // Step-1 : PROTECT all URLS
+        // pass all request through below so all request get authenticated
+        httpSecurity.authorizeHttpRequests(
+                // pass through any request below function so it get authenticated
+                auth1 -> auth1.anyRequest().authenticated() ); // it will make sure, all request Requires authentication for all types IN/OUT
 
 
         // Step-2: Login form shown for unauthorized access
@@ -117,11 +212,9 @@ public class SpringSecurityConfiguration {
 
         // Step-4: Enable the use of Frames in our App
         httpSecurity.headers(h->h.frameOptions(c->c.disable()));
-
         SecurityFilterChain s1 = httpSecurity.build();
+
         return s1;
     }
-
-}
-
+*/
 

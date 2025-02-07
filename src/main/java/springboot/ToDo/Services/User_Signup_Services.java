@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+
 import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
@@ -18,6 +19,9 @@ public class User_Signup_Services {
 
     @Autowired
     private SpringSecurityConfiguration springSecurityConfiguration;
+
+//    @Autowired
+//    private SpringSecurityConfig3 springSecurityConfig3;
 
     public User_Signup_Services(Repo_DAO_User_JPA user_jpa){
         super();
@@ -52,7 +56,8 @@ public class User_Signup_Services {
         }
         else {
             // ENCODE incoming raw password
-            String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
+            //String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
+            String encoded_bcryp_pass =  "hi"; // springSecurityConfig3.passwordEncoder_method().encode(incoming_raw_pass);
 
             // Creating ENCODED user object
             User user_retrieved_with_null_encode_value   = repo_dao_user_jpa.findByUsername(incoming_username).get();

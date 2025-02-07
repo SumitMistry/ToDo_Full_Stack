@@ -9,7 +9,13 @@
             </b>
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
+            <p>
+            <p>
+            <a href="/logout"> >>Logout<< </a>
 
         </div>
+
+
+
 
 <%@ include file="common/footer.jspf" %>
