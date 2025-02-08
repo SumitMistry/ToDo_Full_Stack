@@ -80,18 +80,6 @@ public class SpringSecurityConfiguration {
 
 
 
-    @Bean
-        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            Optional<springboot.ToDo.Model.User> optionalUser = repo_dao_user_jpa.findByUsername(username);
-            if (optionalUser.isEmpty()) {
-                throw new RuntimeException("User not found");
-            }
-            springboot.ToDo.Model.User user = optionalUser.get();
-            return User.withUsername(user.getUsername())
-                    .password(user.getPassword_encoded()) // Ensure password is encoded
-//              .roles(user.getUser_role()) // Assign role dynamically
-                    .build();
-        }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {

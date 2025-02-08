@@ -14,7 +14,7 @@
 
 
 
-                <form method="POST" action="/process-login2">
+                <form method="POST" action="/login2">
                     <label>Email    : </label>
                     <input type="email" placeholder="email..." name="uid_email" value="${prefill_login_email_old2_a}" required> <p>
 
