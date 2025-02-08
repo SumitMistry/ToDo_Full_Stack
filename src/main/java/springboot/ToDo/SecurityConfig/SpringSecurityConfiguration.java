@@ -1,21 +1,26 @@
 package springboot.ToDo.SecurityConfig;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -39,6 +44,8 @@ public class SpringSecurityConfiguration {
 
     //static { }
 
+    @Autowired
+    private Repo_DAO_User_JPA repo_dao_user_jpa;
 
 
     // Password encoder algorithm set
@@ -53,23 +60,61 @@ public class SpringSecurityConfiguration {
     // # if you configure an InMemoryUserDetailsManager() method in your application explicitly, the properties set in application.properties for spring.security.user.name and spring.security.user.password will not take effect
     // Spring Boot's default behavior for these properties (spring.security.user.*) only applies if you do not provide your own custom UserDetailsService or SecurityFilterChain configuration.
     // By defining an InMemoryUserDetailsManager, you're overriding the default auto-configuration for the in-memory user, and Spring ignores the spring.security.user.* properties.
+//    @Bean
+//    public InMemoryUserDetailsManager configure_each_user_detail() {
+//
+//        //fetching username password data from Application.properties
+//        // Initialize the manager without duplicates
+//
+//        // USER=1 HARD CODED user here
+//        UserDetails user1 = createNewUSer("sumit@bofa.com", "1","ADMIN","DEVELOPER" );
+//        // USER=2 ENV VAR from Application.properties --> @VALUE
+//        UserDetails user2 = createNewUSer(adminUsername2, adminPass2, adminRole2, adminRole3);
+//
+//        // USER=3 by default from Application.properties --> spring.security.user.name= .....
+//
+//        InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
+//        // Pass users as a Set to eliminate duplicates
+//        return im;
+//    }
+
+
+
     @Bean
-    public InMemoryUserDetailsManager configure_each_user_detail() {
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            Optional<springboot.ToDo.Model.User> optionalUser = repo_dao_user_jpa.findByUsername(username);
+            if (optionalUser.isEmpty()) {
+                throw new RuntimeException("User not found");
+            }
+            springboot.ToDo.Model.User user = optionalUser.get();
+            return User.withUsername(user.getUsername())
+                    .password(user.getPassword_encoded()) // Ensure password is encoded
+//              .roles(user.getUser_role()) // Assign role dynamically
+                    .build();
+        }
 
-        //fetching username password data from Application.properties
-        // Initialize the manager without duplicates
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
-        // USER=1 HARD CODED user here
-        UserDetails user1 = createNewUSer("sumit@bofa.com", "1","ADMIN","DEVELOPER" );
-        // USER=2 ENV VAR from Application.properties --> @VALUE
-        UserDetails user2 = createNewUSer(adminUsername2, adminPass2, adminRole2, adminRole3);
+            authProvider.setUserDetailsService(username -> {
 
-        // USER=3 by default from Application.properties --> spring.security.user.name= .....
+                Optional<springboot.ToDo.Model.User> optionalUser = repo_dao_user_jpa.findByUsername(username);
+                if (optionalUser.isEmpty()) {
+                    throw new RuntimeException("User not found");
+                }
+                springboot.ToDo.Model.User user = optionalUser.get();
+                return User.withUsername(user.getUsername())
+                        .password(user.getPassword_encoded()) // Ensure password is encoded
+//                        .roles(user.getUser_role()) // Assign role dynamically
+                        .build();
+            });
 
-        InMemoryUserDetailsManager im = new InMemoryUserDetailsManager(user1, user2);
-        // Pass users as a Set to eliminate duplicates
-        return im;
+        authProvider.setPasswordEncoder(passwordEncoder_method());
+        return authProvider;
     }
+
+
 
     // @Bean //---> if I add Bean here, the double time this method will execute and App will Fail to Start
     // we dont need bean becasue this dependency is being automatically called into method=configure_each_user_detail()
@@ -106,18 +151,26 @@ public class SpringSecurityConfiguration {
         // pass all request through below so all request get authenticated
         httpSecurity.authorizeHttpRequests(
                 // pass through any request below function so it get authenticated
-                auth1 -> auth1.requestMatchers("/login2").permitAll()  // Allow access to login page
+                auth1 -> auth1.requestMatchers("login", "/login2", "/signup").permitAll()  // Allow access to login page
                                         .anyRequest().authenticated()); // it will make sure, all request Requires authentication for all types IN/OUT
+
+
+
+
 
         // Step-2: Login form shown for unauthorized access
         // For all the above request, show the springboot login form to user.. with the default features as below:
-        httpSecurity.formLogin(Customizer.withDefaults());  // .wuthDefaults() is static method, so we need ot pass Defaults into static variables
+        httpSecurity.formLogin(Customizer.withDefaults());  // .withDefaults() is static method, so we need ot pass Defaults into static variables
 //        httpSecurity.formLogin(form -> form
-//                .loginPage("/login2") // Custom login page
-//                .permitAll()
-//                .successHandler((request, response, authentication) -> {
-//                    response.sendRedirect("/welcome1"); // Redirect to a safe page after login
-//                }));
+//                .loginPage("/custom-login")  // Specifies the custom login page URL
+//                .loginProcessingUrl("/process-login")  // Specifies the URL where login requests should be submitted
+//                .defaultSuccessUrl("/home", true)  // Redirects after successful login
+//                .failureUrl("/login?error=true")  // Redirects if login fails
+//                .usernameParameter("email")  // Custom username field name
+//                .passwordParameter("pass")  // Custom password field name
+//                .permitAll()  // Allows everyone to access the login page
+//        );
+
 
 
 

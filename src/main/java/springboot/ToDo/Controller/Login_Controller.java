@@ -16,7 +16,7 @@ import springboot.ToDo.Services.Login_Services;
 // (@RequestParam("username") String retrieved_username) -------------> frontend ---> Java class. This extracts submitted "username" tag's data into variable <retrieved_username>
 
 @Controller
-@RequestMapping("/")
+
 @SessionAttributes({"uid_email", "pass", "totally" })  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid> not <usernr>
 // <usernr> is backend variable, this will nto work
@@ -32,7 +32,7 @@ public class Login_Controller {
 
 
 /////////////////////////  LOGIN + PASS VALIDATION --- (My made) OLD   ///////////////
-    @RequestMapping(value = { "/login2", "login2" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/login2"}, method = RequestMethod.GET)
     public String get_login_page2(ModelMap modelMap){
 
         modelMap.addAttribute("prefill_login_email_old2_a", "sumit@america.com");

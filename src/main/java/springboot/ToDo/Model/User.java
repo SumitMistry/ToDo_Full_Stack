@@ -8,8 +8,11 @@ import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity // Marks the class as a JPA entity
 @NoArgsConstructor
@@ -33,6 +36,14 @@ public class User {
     }
 
 
+    public User(String username, String password_raw, String password_encoded, String user_role) {
+        this.username = username;
+        this.password_raw = password_raw;
+        this.password_encoded = password_encoded;
+        this.user_role = user_role;
+    }
+
+
     public User(String password_raw) {
         this.password_raw = password_raw;
     }
@@ -52,10 +63,12 @@ public class User {
     @Column(name = "password_raw", nullable = false)
     private String password_raw;
 
-
     // @Null  --> this will enforce all the values mut be null....ONLY NULL all values, that is not we want.
     @Column(name = "password_encoded", nullable = true)
     private String password_encoded;
+
+    @Column(name = "user_role", nullable = true) // nullable = true means, null values allowed
+    private String user_role;
 
 
     /*
@@ -115,6 +128,14 @@ public class User {
         this.createdDate = createdDate;
     }
 
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -122,7 +143,12 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password_raw='" + password_raw + '\'' +
                 ", password_encoded='" + password_encoded + '\'' +
+                ", user_role='" + user_role + '\'' +
                 ", createdDate=" + createdDate +
                 '}';
     }
+
+
+
+
 }
