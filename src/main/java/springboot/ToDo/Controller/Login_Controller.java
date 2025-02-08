@@ -16,7 +16,7 @@ import springboot.ToDo.Services.Login_Services;
 // (@RequestParam("username") String retrieved_username) -------------> frontend ---> Java class. This extracts submitted "username" tag's data into variable <retrieved_username>
 
 @Controller
-
+@RequestMapping("/")
 @SessionAttributes({"uid_email", "pass", "totally" })  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid> not <usernr>
 // <usernr> is backend variable, this will nto work
@@ -104,9 +104,9 @@ public class Login_Controller {
 
 
 
-///////////////////////   LOGIN - GET - (Spring Security)    ///////////////
-// This method work to only and only Fetches 2 items [[[[..... 1) entered_username 2) entered pass]]] from login page and variable get created....
-// username retrieved from user's login entry point // HTML tag label are "pass" and "uid_email", retrieving what use entered in frontend.
+/////////////////////   LOGIN - GET - (Spring Security)    ///////////////
+////  This method work to only and only Fetches 2 items [[[[..... 1) entered_username 2) entered pass]]] from login page and variable get created....
+////  username retrieved from user's login entry point // HTML tag label are "pass" and "uid_email", retrieving what use entered in frontend.
     @RequestMapping(value = {"/", "login" }, method = RequestMethod.GET)
     public String get_login_page(ModelMap modelMap){
 
@@ -119,6 +119,9 @@ public class Login_Controller {
         //modelMap.addAttribute("uid_email", "login@spring.Security");
         modelMap.addAttribute("uid_email", retrived_user);
         // I can build password method here too...
+
+        modelMap.addAttribute("login_auth_success_1", "= "+ login_services.get_userDETAILS_from_login_from_spring_Security());
+        modelMap.addAttribute("login_auth_success_2", "= "+ login_services.get_logged_user_Full_details());
 
         return "welcome1";
     }

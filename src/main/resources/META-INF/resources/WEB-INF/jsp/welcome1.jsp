@@ -3,10 +3,11 @@
 
     <div class="container">
 
-            <b style="color: blue;" >
-            <p>
-            <pre>${login_auth_success}</pre>
-            </b>
+        <style="color: blue;" >
+            <pre>${login_auth_success_1}</pre>
+            <pre>${login_auth_success_2}</pre>
+
+
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
             <p>

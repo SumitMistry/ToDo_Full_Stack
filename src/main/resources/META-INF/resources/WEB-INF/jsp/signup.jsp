@@ -11,10 +11,17 @@
             <p><p><p>
         </b>
 
-            <form method = "post">
+            <form method="post">
                 <label>Email    : </label>          <input type="email" placeholder="email..." name="uid_email" value="${prefill_signup_email}" > <p>
 
                 <label>Password : </label>       <input type="password" placeholder="password..." name="pass"  value="${prefill_signup_pass}"> <p>
+
+                <label>Role : </label>
+                    <input type="checkbox" id="roleUser" name="role" value="USER">     <label for="roleUser">User</label><br>
+                    <input type="checkbox" id="roleAdmin" name="role" value="ADMIN">     <label for="roleAdmin">Admin</label><br>
+
+                        <p>
+
                 <button type="submit" class="cancelbtn" name="signup">Sign-Up!</button> <p>
 
                         <p>

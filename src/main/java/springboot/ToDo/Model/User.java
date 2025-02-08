@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -19,7 +20,7 @@ import java.util.Collections;
 @AllArgsConstructor
 @Table(name = "todohusers", schema = "sumit")
 @Data       // @Data = Lombok annotation.. generates boilerplate code for a class.., like @getters, @setters, equals(), hashCode(), and toString()
-@EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED
+@EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED to get @Creation date data
 public class User {
 
 
@@ -36,7 +37,7 @@ public class User {
     }
 
 
-    public User(String username, String password_raw, String password_encoded, String user_role) {
+    public User(String username, String password_raw, String password_encoded, String[] user_role) {
         this.username = username;
         this.password_raw = password_raw;
         this.password_encoded = password_encoded;
@@ -68,7 +69,7 @@ public class User {
     private String password_encoded;
 
     @Column(name = "user_role", nullable = true) // nullable = true means, null values allowed
-    private String user_role;
+    private String[] user_role;
 
 
     /*
@@ -128,13 +129,14 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public String getUser_role() {
+    public String[] getUser_role() {
         return user_role;
     }
 
-    public void setUser_role(String user_role) {
+    public void setUser_role(String[] user_role) {
         this.user_role = user_role;
     }
+
 
     @Override
     public String toString() {
@@ -143,12 +145,8 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password_raw='" + password_raw + '\'' +
                 ", password_encoded='" + password_encoded + '\'' +
-                ", user_role='" + user_role + '\'' +
+                ", user_role=" + Arrays.toString(user_role) +
                 ", createdDate=" + createdDate +
                 '}';
     }
-
-
-
-
 }

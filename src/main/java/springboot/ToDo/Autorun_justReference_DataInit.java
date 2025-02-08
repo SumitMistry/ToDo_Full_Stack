@@ -48,7 +48,6 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
     public void run(String[] str) throws Exception {
 
         // AUTO-IMPORT 1 entry from JPA (this is not relying on data.sql) This is 1 record adding for sample based on user data fetched.
-        Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;  int random2 = rand.nextInt(1,999)+1;
         String usr_retrived = (String) new ModelMap().get("uid_email"); // this is null and not possible because username is not enterd before login / autorun will have no userdata, as autorun runs first.
         //System.out.println("sumit here =--=-=-=-=-=-=-=-=-=-=" +usr_retrived + "    ***********  " +random);
 
@@ -58,16 +57,18 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
 
         // ADD 2 records::::: USED JPA for query building in below.....this will make query1
         // automatically ....by below 4 lines..
+        Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;  int random2 = rand.nextInt(1,999)+1;
         Todo todoList1 = new Todo( random1, "sumit@bofa.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), true,null);
         Todo todoList2 = new Todo( random2, "vraj@yyz.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), false,null);
         repo_dao_springData_jpa.save(todoList1);
         repo_dao_springData_jpa.save(todoList2);
 
         // ADD 2 users to db upon start // signup 2 users automatically upon start
-//        User u1 = new User("sumit@bofa.com", "1");
-//        User u2 = new User("vraj@yyz.com", "1");
+//        User u1 = new User_Signup_Services().signup_insert_encoded_pass("sumit@bofa.com", "1" , new String[]{"USER,ADMIN"});
 //        repo_dao_user_jpa.save(u1);
-//        repo_dao_user_jpa.save(u2);
+//        u1.setPassword_raw("1");
+
+
 
         // how to call controller or API here for the testing??
         // I dont want to invoke method from backend, but I want from api endpoint in springboot

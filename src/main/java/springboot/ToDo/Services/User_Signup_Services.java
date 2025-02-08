@@ -49,19 +49,20 @@ public class User_Signup_Services {
 
 
    // SIGNUP: INSERT + ENCODED password
-    public User signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass){
+    public User signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass, String[] roles){
 
         if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
             throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "User name / Pass CAN NOT be empty ");
         }
         else {
             // ENCODE incoming raw password
-            //String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
-            String encoded_bcryp_pass =  "hi"; // springSecurityConfig3.passwordEncoder_method().encode(incoming_raw_pass);
+            String encoded_bcryp_pass = springSecurityConfiguration.passwordEncoder_method().encode(incoming_raw_pass);
+            // springSecurityConfig3.passwordEncoder_method().encode(incoming_raw_pass);
 
             // Creating ENCODED user object
             User user_retrieved_with_null_encode_value   = repo_dao_user_jpa.findByUsername(incoming_username).get();
             user_retrieved_with_null_encode_value.setPassword_encoded(encoded_bcryp_pass);
+            user_retrieved_with_null_encode_value.setUser_role(roles);
 
             User sinup_user_now_added_encoding = user_retrieved_with_null_encode_value;
 

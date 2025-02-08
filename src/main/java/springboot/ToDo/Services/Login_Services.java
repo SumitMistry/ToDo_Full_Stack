@@ -32,6 +32,11 @@ public class Login_Services {
         System.out.println(uname);
         return uname;
     }
+    public String get_userDETAILS_from_login_from_spring_Security() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // this username is being taken from main login-->spring Security, so my login2 page user data is different.
+        String s1= repo_dao_user_jpa.findByUsername(auth.getName()).get().toString();
+        return s1;
+    }
 
     Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
 
