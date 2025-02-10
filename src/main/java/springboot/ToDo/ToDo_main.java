@@ -35,7 +35,7 @@ public class ToDo_main {
 
 						"   http://localhost:8080/api/todo/list (USER specific) http://localhost:8080/api/todo/listjson   \n" +
 						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console\n" +
-						"   http://localhost:8080/login2  -> SM UI\n" +
+						"   http://localhost:8080/login1  -> SM UI\n" +
 
 						"   http://localhost:8080								http://localhost:8080/signup\n" +
 

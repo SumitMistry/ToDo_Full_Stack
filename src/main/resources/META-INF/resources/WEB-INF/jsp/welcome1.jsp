@@ -17,6 +17,12 @@
         </div>
 
 
+<form method="post" action="/logout">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+    <button type="submit">Logout</button>
+</form>
+
+
 
 
 <%@ include file="common/footer.jspf" %>

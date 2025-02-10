@@ -18,8 +18,10 @@
             			<li class="nav-item"><a class="nav-link" href="/">/home</a></li>
             			<li class="nav-item"><a class="nav-link" href="/actuator">/actuator</a></li>
             			<li class="nav-item"><a class="nav-link" href="/actuator/health">/health </a></li>
+            			<li class="nav-item"><a class="nav-link" href="/actuator/mappings">hardcode1</a></li>
             			<li class="nav-item"><a class="nav-link" href="/h2-console">/h2-console</a></li>
             			<li class="nav-item"><a class="nav-link" href="/api/todo/hardcode1">hardcode1</a></li>
+
             		</ul>
             	</div>
 
@@ -28,7 +30,9 @@
             			<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
-            		<li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+            		    <li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+
             	</ul>
 </nav>
 

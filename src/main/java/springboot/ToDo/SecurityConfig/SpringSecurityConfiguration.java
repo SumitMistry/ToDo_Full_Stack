@@ -156,47 +156,83 @@ public class SpringSecurityConfiguration {
     }
 
 
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
+                        .requestMatchers("/WEB-INF/jsp/**").permitAll() // Allow access to JSP files
+                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // Allow static resources
+                        .anyRequest().authenticated() // Secure all other pages
+                )
+                .formLogin(form -> form
+                        .loginPage("/login1")  // Ensure this matches your form action
+                        .loginProcessingUrl("/login_perform")  // Specifies the URL where login requests should be submitted
+                        .defaultSuccessUrl("/", true)  // Redirects after successful login
+                        .usernameParameter("uid_email")  // Match form field name
+                        .passwordParameter("pass")       // Match form field name
+                        .failureUrl("/login1?error=true")  // Redirect on failure
+                        .permitAll()
+                );
+
+         http.logout(logout -> logout
+                         .logoutUrl("/logout")
+                         .logoutSuccessUrl("/login1?logout=true")
+                         .invalidateHttpSession(true)
+                         .deleteCookies("JSESSIONID")
+                         .permitAll());
+
+        // Allow GET requests for below pages...
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login2/", "/logout", "logout", "logout/")); // Disable CSRF only for these endpoints
+
+        return http.build();
+    }
+
+
+
+
 //     HOW any specific url to be excluded / put in exception from login-security module, like health check of bluey..etc...
 //     Every chain of request is being passed through this filter automatically by default in spring security...
 //                Without this method  Forbidden Error
 //                =  Whitelabel Error Page :(type=Forbidden, status=403)
 //     The provided filterchain_1 method secures all application endpoints by requiring authentication. It uses Spring Security’s default login page for user authentication and allows access to the H2 database console by disabling CSRF protection and frame restrictions.
 //     This configuration is ideal for development purposes but requires additional considerations for production environments.
-    @Bean
-    public SecurityFilterChain filterchain_default_login(HttpSecurity httpSecurity) throws Exception {
-
-        // Step-1 : PROTECT all URLS
-        // pass all request through below so all request get authenticated
-        httpSecurity.authorizeHttpRequests(
-                // pass through any request below function so it get authenticated
-                auth1 -> auth1.requestMatchers("login", "/login2", "/signup").permitAll()  // Allow access to login page
-                                        .anyRequest().authenticated()); // it will make sure, all request Requires authentication for all types IN/OUT
-
-
-        // Step-2: Login form shown for unauthorized access
-        // For all the above request, show the springboot login form to user.. with the default features as below:
-        httpSecurity.formLogin(Customizer.withDefaults());  // .withDefaults() is static method, so we need ot pass Defaults into static variables
-//        httpSecurity.formLogin(form -> form
-//                .loginPage("/custom-login")  // Specifies the custom login page URL
-//                .loginProcessingUrl("/process-login")  // Specifies the URL where login requests should be submitted
-//                .defaultSuccessUrl("/home", true)  // Redirects after successful login
-//                .failureUrl("/login?error=true")  // Redirects if login fails
-//                .usernameParameter("email")  // Custom username field name
-//                .passwordParameter("pass")  // Custom password field name
-//                .permitAll()  // Allows everyone to access the login page
-//        );
-
-
-        // Step-3: CSRF disable / filer /exception adjustment to be able to access:  "/h2-console"
-        // Now, time to add exclusion from the above filter...
-        httpSecurity.csrf(c -> c.disable()); // doing this for h2 dB
-
-        // Step-4: Enable the use of Frames in our App
-        httpSecurity.headers(h->h.frameOptions(c->c.disable()));
-        SecurityFilterChain s1 = httpSecurity.build();
-
-        return s1;
-    }
+//    @Bean
+//    public SecurityFilterChain filterchain_default_login(HttpSecurity httpSecurity) throws Exception {
+//
+//        // Step-1 : PROTECT all URLS
+//        // pass all request through below so all request get authenticated
+//        httpSecurity.authorizeHttpRequests(
+//                // pass through any request below function so it get authenticated
+//                auth1 -> auth1.requestMatchers("login", "/login2", "/signup").permitAll()  // Allow access to login page
+//                                        .anyRequest().authenticated()); // it will make sure, all request Requires authentication for all types IN/OUT
+//
+//
+//        // Step-2: Login form shown for unauthorized access
+//        // For all the above request, show the springboot login form to user.. with the default features as below:
+//        httpSecurity.formLogin(Customizer.withDefaults());  // .withDefaults() is static method, so we need ot pass Defaults into static variables
+////        httpSecurity.formLogin(form -> form
+////                .loginPage("/custom-login")  // Specifies the custom login page URL
+////                .loginProcessingUrl("/process-login")  // Specifies the URL where login requests should be submitted
+////                .defaultSuccessUrl("/home", true)  // Redirects after successful login
+////                .failureUrl("/login?error=true")  // Redirects if login fails
+////                .usernameParameter("email")  // Custom username field name
+////                .passwordParameter("pass")  // Custom password field name
+////                .permitAll()  // Allows everyone to access the login page
+////        );
+//
+//
+//        // Step-3: CSRF disable / filer /exception adjustment to be able to access:  "/h2-console"
+//        // Now, time to add exclusion from the above filter...
+//        httpSecurity.csrf(c -> c.disable()); // doing this for h2 dB
+//
+//        // Step-4: Enable the use of Frames in our App
+//        httpSecurity.headers(h->h.frameOptions(c->c.disable()));
+//        SecurityFilterChain s1 = httpSecurity.build();
+//
+//        return s1;
+//    }
 
 
 //

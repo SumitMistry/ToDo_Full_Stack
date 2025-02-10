@@ -1,7 +1,9 @@
 
-    <%@ include file="common/header.jspf" %>
-    <%@ include file="common/navigation.jspf" %>
 
+<html>
+<head>
+</head>
+<body>
         <div class="container">
             <h2> Account SIGN-UP Setup </h2>
             <p><p>
