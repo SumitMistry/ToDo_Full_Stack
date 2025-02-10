@@ -32,20 +32,7 @@
             			<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
-
-            		    <!-- <li class="nav-item"> <a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>  -->
-            		    <!-- <li class="nav-item" action="/logout"> <a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>  -->
-
-            		    <li class="nav-item">
-            		            <a href="/logout">Logout</a>
-            		    </li>
-
-                        <li method="post" class="nav-item"  action="/logout">
-                                <button type="submit" class="nav-link" >
-                                    <b style="color: Black;"> Logout </b>
-                                    <b style="color: DodgerBlue;" >(${uid_email}</b>)
-                                    </button>
-                        </li>
+            		<li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
 
 
 

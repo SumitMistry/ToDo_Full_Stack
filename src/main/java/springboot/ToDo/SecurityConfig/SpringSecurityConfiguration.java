@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
@@ -155,23 +156,17 @@ public class SpringSecurityConfiguration {
         return user_generating;
     }
 
-
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-
-        // Allow GET requests for below pages...
-        http.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**")); // Disable CSRF only for these endpoints
-
         http
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
                         .requestMatchers("/WEB-INF/jsp/**").permitAll() // Allow access to JSP files
+                        .requestMatchers("/WEB-INF/jsp/common/**").permitAll() // Allow access to JSP files
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // Allow static resources
                         .anyRequest().authenticated() // Secure all other pages
                 )
-
                 .formLogin(form -> form
                         .loginPage("/login1")  // Ensure this matches your form action
                         .loginProcessingUrl("/login_perform")  // Specifies the URL where login requests should be submitted
@@ -180,24 +175,61 @@ public class SpringSecurityConfiguration {
                         .passwordParameter("pass")       // Match form field name
                         .failureUrl("/login1?error=true")  // Redirect on failure
                         .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")  // Enable logout via GET
+                        .logoutSuccessUrl("/login1?logout=true") // Redirect after logout
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // Enable GET for logout
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll()
                 );
-
-
-
-//  1) Allow Logout via GET 2) Allow Logout via POST
-//        Spring Security expects logout requests to be sent as a POST request, not GET.
-
-        http.logout(logout -> logout
-                         .logoutUrl("/logout")
-                         .logoutSuccessUrl("/login1?logout=true")
-                         .invalidateHttpSession(true)
-                         .deleteCookies("JSESSIONID")
-                         .permitAll());
-
-
 
         return http.build();
     }
+
+//
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//
+//
+//        // Allow GET requests for below pages...
+//        http.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**")); // Disable CSRF only for these endpoints
+//
+//        http
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
+//                        .requestMatchers("/WEB-INF/jsp/**").permitAll() // Allow access to JSP files
+//                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // Allow static resources
+//                        .anyRequest().authenticated() // Secure all other pages
+//                )
+//
+//                .formLogin(form -> form
+//                        .loginPage("/login1")  // Ensure this matches your form action
+//                        .loginProcessingUrl("/login_perform")  // Specifies the URL where login requests should be submitted
+//                        .defaultSuccessUrl("/", true)  // Redirects after successful login
+//                        .usernameParameter("uid_email")  // Match form field name
+//                        .passwordParameter("pass")       // Match form field name
+//                        .failureUrl("/login1?error=true")  // Redirect on failure
+//                        .permitAll()
+//                );
+//
+//
+//
+////  1) Allow Logout via GET 2) Allow Logout via POST
+////        Spring Security expects logout requests to be sent as a POST request, not GET.
+//
+//        http.logout(logout -> logout
+//                         .logoutUrl("/logout")
+//                         .logoutSuccessUrl("/login1?logout=true")
+//                         .invalidateHttpSession(true)
+//                         .deleteCookies("JSESSIONID")
+//                         .permitAll());
+//
+//
+//
+//        return http.build();
+//    }
 
 
 

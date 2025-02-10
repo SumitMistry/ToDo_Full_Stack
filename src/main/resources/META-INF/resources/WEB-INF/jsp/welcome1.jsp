@@ -14,12 +14,18 @@
             <p>
             <a href="/logout"> >>Logout<< </a>
 
+            <li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+
         </div>
 
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-<form method="post" action="/logout">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <button type="submit">Logout</button>
+<form method="GET" action="/logout">
+    <button type="submit">Logout-GET</button>
+</form>
+
+<form method="POST" action="/logout">
+    <button type="submit">Logout-POST</button>
 </form>
 
 
