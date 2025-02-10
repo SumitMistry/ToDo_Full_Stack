@@ -205,6 +205,9 @@
 		</dependency>
 
 
+
+
+
 		<!-- Datasource-Proxy: Intercepts and logs SQL queries, providing detailed information about the query and its parameters -->
 		<dependency>
 			<groupId>com.github.gavlyukovskiy</groupId>

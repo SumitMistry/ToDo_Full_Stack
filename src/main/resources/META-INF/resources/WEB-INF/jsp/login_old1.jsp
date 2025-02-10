@@ -47,9 +47,8 @@
 
 
 <body>
-
-
     <div class="container">
+
         <center> <h1> To-Dooh Login </h1> </center>
 
 
@@ -59,10 +58,7 @@
                     <p><p><p>
                 </b>
 
-
-
-
-            <form method="post" action="/login_perform">   <!--This brings to this listall page once click submitted. -->
+            <form method="post" action="/login_perform1">   <!--This brings to this listall page once click submitted. -->
 
                 <div class="container">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -83,12 +79,20 @@
                                         <!-- Show error message if login fails -->
                                         <p style="color: red;">${param.error ? "Invalid username or password" : ""}</p>
                                         <p style="color: green;">${param.logout ? "You have been logged out successfully" : ""}</p>
+
+
+
+
+
+        <button type="button" class="cancelbtn" onclick="window.location.href='/signup'">Sign-Up</button>
+
                 </div>
             </form>
 
 
 
     </div>
+
 </body>
 
 </html>

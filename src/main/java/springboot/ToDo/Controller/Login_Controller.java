@@ -33,7 +33,7 @@ public class Login_Controller {
 
 
     @RequestMapping(value = { "/login1", "login1" }, method = RequestMethod.GET)
-    public String get_login_page2(@RequestParam(value = "error", required = false) String error,
+    public String get_login_page1(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout,
                                   ModelMap modelMap) {
 
@@ -55,6 +55,33 @@ public class Login_Controller {
 
         return "login_old1";
     }
+
+
+    @RequestMapping(value = { "/login2", "login2" }, method = RequestMethod.GET)
+    public String get_login_page2(@RequestParam(value = "error", required = false) String error,
+                                  @RequestParam(value = "logout", required = false) String logout,
+                                  ModelMap modelMap) {
+
+        // Check if user is already authenticated and prevent looping
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser")) {
+            return "redirect:/welcome1"; // 🚀 Redirect authenticated users to the welcome page
+        }
+
+        if (error != null) {
+            modelMap.addAttribute("errorMessage", "Invalid username or password.");
+        }
+        if (logout != null) {
+            modelMap.addAttribute("logoutMessage", "You have been logged out.");
+        }
+
+        modelMap.addAttribute("prefill_login_email_old2_a", "sumit@america.com");
+        modelMap.addAttribute("prefill_login_email_old2_b", "1");
+
+        return "login_old2";
+    }
+
+
 //
 //    @RequestMapping(value = { "/login1", "login1"}, method = RequestMethod.POST)
 //    public String actual_login_happens_here2( @RequestParam("uid_email") String input_usernm,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data

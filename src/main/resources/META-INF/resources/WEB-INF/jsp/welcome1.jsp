@@ -10,23 +10,25 @@
 
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
-            <p>
-            <p>
-            <a href="/logout"> >>Logout<< </a>
 
-            <li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+            <p><p><p><p>
+
 
         </div>
 
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-<form method="GET" action="/logout">
-    <button type="submit">Logout-GET</button>
-</form>
+        <a href="/logout"> >>Logout<< </a>
 
-<form method="POST" action="/logout">
-    <button type="submit">Logout-POST</button>
-</form>
+        <b class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></b>
+
+        <form method="GET" action="/logout">
+            <button type="submit">Logout-GET</button>
+        </form>
+
+        <form method="POST" action="/logout">
+            <button type="submit">Logout-POST</button>
+        </form>
 
 
 

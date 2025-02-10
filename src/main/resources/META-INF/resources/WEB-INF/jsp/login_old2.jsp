@@ -13,8 +13,11 @@
 
 
 
+                <form method="post" action="/login_perform2">
 
-                <form method="POST" action="/welcome1">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+
                     <label>Email    : </label>
                     <input type="email" placeholder="email..." name="uid_email" value="${prefill_login_email_old2_a}" required> <p>
 
@@ -31,12 +34,15 @@
                     <!-- Show error message if login fails -->
                     <p style="color: red;">${param.error ? "Invalid username or password" : ""}</p>
                     <p style="color: green;">${param.logout ? "You have been logged out successfully" : ""}</p>
+
+
+
+                       <p>
+
+                    <button type="button" class="cancelbtn" onclick="window.location.href='/signup'">Sign-Up</button>
+
+
                 </form>
-
-
-
-
-
 
         </div>
     </body>

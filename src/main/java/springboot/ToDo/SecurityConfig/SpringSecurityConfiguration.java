@@ -162,14 +162,15 @@ public class SpringSecurityConfiguration {
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
-                        .requestMatchers("/WEB-INF/jsp/**").permitAll() // Allow access to JSP files
+                        .requestMatchers("/WEB-INF/jsp/**", "META-INF/resources/WEB-INF/jsp/common/", "META-INF/resources/WEB-INF/jsp/common", "/META-INF/resources/WEB-INF/jsp/common").permitAll() // Allow access to JSP files
+                        .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**", "/common/**", "/common", "common/").permitAll() // Allow static resources // The issue here is that Spring Security is blocking access to static resources (JS, CSS, Bootstrap, jQuery) before login. This is why your signup.jsp page appears broken before authentication but works fine after login.
                         .requestMatchers("/WEB-INF/jsp/common/**").permitAll() // Allow access to JSP files
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // Allow static resources
                         .anyRequest().authenticated() // Secure all other pages
                 )
                 .formLogin(form -> form
                         .loginPage("/login1")  // Ensure this matches your form action
-                        .loginProcessingUrl("/login_perform")  // Specifies the URL where login requests should be submitted
+                        .loginProcessingUrl("/login_perform1")  // Specifies the URL where login requests should be submitted
                         .defaultSuccessUrl("/", true)  // Redirects after successful login
                         .usernameParameter("uid_email")  // Match form field name
                         .passwordParameter("pass")       // Match form field name
