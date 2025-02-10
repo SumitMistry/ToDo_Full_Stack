@@ -82,44 +82,6 @@ public class Login_Controller {
     }
 
 
-//
-//    @RequestMapping(value = { "/login1", "login1"}, method = RequestMethod.POST)
-//    public String actual_login_happens_here2( @RequestParam("uid_email") String input_usernm,      //  @RequestParam is used to extract individual parameter values from the request URL or submitted form data
-//                                             @RequestParam("pass") String input_passw,      // @RequestParam annotation binds Servlet request(from HTML) parameters to method argument
-//                                             ModelMap modelMap){
-//
-//        // Step-1 Validation of username+pass Registered /SIGNUP or not?
-//        //        modelMap.put("uid_email", usernr);
-//        //        modelMap.put("pass", passw);
-//        boolean validation_result = login_services.validate_login_raw_pass_match_to_db_encoded_pass(input_usernm, input_passw);
-//        System.out.println(" -------------->          " + validation_result );
-//        l1.debug("STEP-1: validation-check: " + modelMap + validation_result +"  " +input_usernm  + " " + input_passw + " " + validation_result);
-//
-//        // Step-2 Login fail setup
-//        if ( ! validation_result){   // failing
-//            modelMap.addAttribute("authmsg_login1", "Auth Failed...    \n" +
-//                    "            Hint1: WRONG username or / password \n" +
-//                    "            Hint2: uid must have @\n" +
-//                    "            Hint3: pass must be 4 length");
-//            return "login_old1";
-//            //return "redirect:login2";
-//        }
-//        else {  // success setup
-//            System.out.println(" -------========------>          ");
-//            modelMap.addAttribute("login_auth_success", "Login Success. <p> validation_result= "+ validation_result);
-//            modelMap.addAttribute("uid_email", input_usernm);
-//        }
-//
-//        System.out.println(" -------========-++++++++----->          ");
-//        // Step-3 Login Pass  // validation = pass = success
-//
-//        return "welcome1";
-//
-//    }
-
-
-
-
 
 
 /////////////////////   LOGIN - GET - (Spring Security)    ///////////////
