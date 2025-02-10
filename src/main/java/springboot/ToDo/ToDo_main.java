@@ -35,9 +35,8 @@ public class ToDo_main {
 
 						"   http://localhost:8080/api/todo/list (USER specific) http://localhost:8080/api/todo/listjson   \n" +
 						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console\n" +
-						"   http://localhost:8080/login1  -> SM UI\n" +
-
-						"   http://localhost:8080								http://localhost:8080/signup\n" +
+						"   http://localhost:8080/login1						http://localhost:8080/signup					\n" +
+						"   http://localhost:8080								\n" +
 
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql  +  Autorun_justReference_DataInit.java)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
