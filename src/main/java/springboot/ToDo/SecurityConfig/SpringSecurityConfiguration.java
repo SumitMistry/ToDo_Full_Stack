@@ -159,6 +159,11 @@ public class SpringSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+
+        // Allow GET requests for below pages...
+        http.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**")); // Disable CSRF only for these endpoints
+
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
@@ -166,6 +171,7 @@ public class SpringSecurityConfiguration {
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll() // Allow static resources
                         .anyRequest().authenticated() // Secure all other pages
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login1")  // Ensure this matches your form action
                         .loginProcessingUrl("/login_perform")  // Specifies the URL where login requests should be submitted
@@ -176,15 +182,19 @@ public class SpringSecurityConfiguration {
                         .permitAll()
                 );
 
-         http.logout(logout -> logout
+
+
+//  1) Allow Logout via GET 2) Allow Logout via POST
+//        Spring Security expects logout requests to be sent as a POST request, not GET.
+
+        http.logout(logout -> logout
                          .logoutUrl("/logout")
                          .logoutSuccessUrl("/login1?logout=true")
                          .invalidateHttpSession(true)
                          .deleteCookies("JSESSIONID")
                          .permitAll());
 
-        // Allow GET requests for below pages...
-        http.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login2/", "/logout", "logout", "logout/")); // Disable CSRF only for these endpoints
+
 
         return http.build();
     }

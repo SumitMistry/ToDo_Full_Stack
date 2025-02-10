@@ -5,6 +5,7 @@
 
             	<a class="navbar-brand m-1" href="/">ToDoWebApp</a>
             	<a class="navbar-brand m-1" href="/api/todo/list"> (<b>${totally}</b>) </a>
+
             	<div class="collapse navbar-collapse">
             		<ul class="navbar-nav">
             			<li class="nav-item">    <a class="nav-link" href="/api/todo/list"> /list <b style="color: limeGreen;" >${uid_email}</b> </a> </li>
@@ -17,24 +18,34 @@
             		<ul class="navbar-nav">
             			<li class="nav-item"><a class="nav-link" href="/">/home</a></li>
             			<li class="nav-item"><a class="nav-link" href="/actuator">/actuator</a></li>
-            			<li class="nav-item"><a class="nav-link" href="/actuator/health">/health </a></li>
-            			<li class="nav-item"><a class="nav-link" href="/actuator/mappings">hardcode1</a></li>
+            			<li class="nav-item"><a class="nav-link" href="/actuator/mappings">/mapping</a></li>
             			<li class="nav-item"><a class="nav-link" href="/h2-console">/h2-console</a></li>
             			<li class="nav-item"><a class="nav-link" href="/api/todo/hardcode1">hardcode1</a></li>
-
             		</ul>
             	</div>
+
+    <input type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 
             	<ul class="navbar-nav">
             			<li class="nav-item"><a class="nav-link" href="/signup">/signup</a></li>
             			<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
-            		    <li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
-<form method="post" action="/logout">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-    <button type="submit">Logout</button>
-</form>
+
+            		    <!-- <li class="nav-item"> <a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>  -->
+            		    <!-- <li class="nav-item" action="/logout"> <a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>  -->
+
+            		    <li class="nav-item">
+            		            <a href="/logout">Logout</a>
+            		    </li>
+
+                        <li method="post" class="nav-item"  action="/logout">
+                                <button type="submit" class="nav-link" >
+                                    <b style="color: Black;"> Logout </b>
+                                    <b style="color: DodgerBlue;" >(${uid_email}</b>)
+                                    </button>
+                        </li>
 
 
 
@@ -70,7 +81,8 @@
             		<ul class="navbar-nav">
             			<li class="nav-item">
             			    <form class="form-inline d-flex">
-                                <a class="nav-link" href="/api/todo/health">healthCheck-Bluey</a>
+                                <a class="nav-link" href="/api/todo/health">/healthCheck-Bluey</a>
+                                <a class="nav-link" href="/actuator/health">/health </a>
                             </form>
             			</li>
             		</ul>
