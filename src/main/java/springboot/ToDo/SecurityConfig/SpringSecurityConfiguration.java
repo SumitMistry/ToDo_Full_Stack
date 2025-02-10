@@ -169,17 +169,17 @@ public class SpringSecurityConfiguration {
                         .anyRequest().authenticated() // Secure all other pages
                 )
                 .formLogin(form -> form
-                        .loginPage("/login1")  // Ensure this matches your form action
-                        .loginProcessingUrl("/login_perform1")  // Specifies the URL where login requests should be submitted
+                        .loginPage("/login2")  // Ensure this matches your form action
+                        .loginProcessingUrl("/login_perform2")  // Specifies the URL where login requests should be submitted
                         .defaultSuccessUrl("/", true)  // Redirects after successful login
                         .usernameParameter("uid_email")  // Match form field name
                         .passwordParameter("pass")       // Match form field name
-                        .failureUrl("/login1?error=true")  // Redirect on failure
+                        .failureUrl("/login2?error=true")  // Redirect on failure
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")  // Enable logout via GET
-                        .logoutSuccessUrl("/login1?logout=true") // Redirect after logout
+                        .logoutSuccessUrl("/login2?logout=true") // Redirect after logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // Enable GET for logout
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
