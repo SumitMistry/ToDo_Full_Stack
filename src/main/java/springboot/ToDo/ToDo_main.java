@@ -40,9 +40,9 @@ public class ToDo_main {
 
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql  +  Autorun_justReference_DataInit.java)\n" +
 						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
-						"		UserDetails user1 =  User.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +
-						"		UserDetails user2 =  User.withDefaultPasswordEncoder().username(\"vraj@yyz.com\").password(\"1\").roles(\"GUEST\", \"USER\").build();\n" +
-						"		UserDetails user3 =  User.withDefaultPasswordEncoder().username(\"f\").password(\"1\").roles(\"DEVELOPER\").build();\n"
+						"		UserDetails user1 =  UserAuth.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +
+						"		UserDetails user2 =  UserAuth.withDefaultPasswordEncoder().username(\"vraj@yyz.com\").password(\"1\").roles(\"GUEST\", \"USER\").build();\n" +
+						"		UserDetails user3 =  UserAuth.withDefaultPasswordEncoder().username(\"f\").password(\"1\").roles(\"DEVELOPER\").build();\n"
 
 
 		);

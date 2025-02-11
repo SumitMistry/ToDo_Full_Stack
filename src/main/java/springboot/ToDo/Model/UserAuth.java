@@ -4,16 +4,12 @@ package springboot.ToDo.Model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 @Entity // Marks the class as a JPA entity
 @NoArgsConstructor
@@ -21,23 +17,23 @@ import java.util.Collections;
 @Table(name = "todohusers", schema = "sumit")
 @Data       // @Data = Lombok annotation.. generates boilerplate code for a class.., like @getters, @setters, equals(), hashCode(), and toString()
 @EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED to get @Creation date data
-public class User {
+public class UserAuth {
 
 
-    public User(String username, String password_raw, String password_encoded) {
+    public UserAuth(String username, String password_raw, String password_encoded) {
         this.username = username;
         this.password_raw = password_raw;
         this.password_encoded = password_encoded;
     }
 
 
-    public User(String username, String password_raw) {
+    public UserAuth(String username, String password_raw) {
         this.username = username;
         this.password_raw = password_raw;
     }
 
 
-    public User(String username, String password_raw, String password_encoded, String[] user_role) {
+    public UserAuth(String username, String password_raw, String password_encoded, String[] user_role) {
         this.username = username;
         this.password_raw = password_raw;
         this.password_encoded = password_encoded;
@@ -45,7 +41,7 @@ public class User {
     }
 
 
-    public User(String password_raw) {
+    public UserAuth(String password_raw) {
         this.password_raw = password_raw;
     }
 
@@ -140,7 +136,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserAuth{" +
                 "uid=" + uid +
                 ", username='" + username + '\'' +
                 ", password_raw='" + password_raw + '\'' +

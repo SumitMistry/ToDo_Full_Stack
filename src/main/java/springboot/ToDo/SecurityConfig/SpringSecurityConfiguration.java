@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -15,15 +14,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import springboot.ToDo.Model.UserAuth;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Function;
 
 @Configuration
@@ -58,7 +56,7 @@ public class SpringSecurityConfiguration {
 
 
 
-    // Create User details Manager - This is exclusively for in memory only.
+    // Create UserAuth details Manager - This is exclusively for in memory only.
     // # if you configure an InMemoryUserDetailsManager() method in your application explicitly, the properties set in application.properties for spring.security.user.name and spring.security.user.password will not take effect
     // Spring Boot's default behavior for these properties (spring.security.user.*) only applies if you do not provide your own custom UserDetailsService or SecurityFilterChain configuration.
     // By defining an InMemoryUserDetailsManager, you're overriding the default auto-configuration for the in-memory user, and Spring ignores the spring.security.user.* properties.
@@ -90,14 +88,14 @@ public class SpringSecurityConfiguration {
 
             authProvider.setUserDetailsService(username -> {
 
-                Optional<springboot.ToDo.Model.User> optionalUser = repo_dao_user_jpa.findByUsername(username);
+                Optional<UserAuth> optionalUser = repo_dao_user_jpa.findByUsername(username);
                 if (optionalUser.isEmpty()) {
-                    throw new RuntimeException("User not found");
+                    throw new RuntimeException("UserAuth not found");
                 }
-                springboot.ToDo.Model.User user = optionalUser.get();
-                return User.withUsername(user.getUsername())
-                        .password(user.getPassword_encoded()) // Ensure password is encoded
-//                        .roles(user.getUser_role()) // Assign role dynamically
+                UserAuth userAuth = optionalUser.get();
+                return User.withUsername(userAuth.getUsername())
+                        .password(userAuth.getPassword_encoded()) // Ensure password is encoded
+//                        .roles(userAuth.getUser_role()) // Assign role dynamically
                         .build();
             });
 
@@ -114,23 +112,23 @@ public class SpringSecurityConfiguration {
     private  class CustomUserDetailsService implements UserDetailsService {
         @Override
         public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            springboot.ToDo.Model.User user = fetchUserFromDatabase(username);
-            return buildUserDetails(user);
+            UserAuth userAuth = fetchUserFromDatabase(username);
+            return buildUserDetails(userAuth);
         }
     }
 
-    private springboot.ToDo.Model.User fetchUserFromDatabase(String username) {
-        Optional<springboot.ToDo.Model.User> optionalUser = repo_dao_user_jpa.findByUsername(username);
+    private UserAuth fetchUserFromDatabase(String username) {
+        Optional<UserAuth> optionalUser = repo_dao_user_jpa.findByUsername(username);
         if (optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("UserAuth not found");
         }
         return optionalUser.get();
     }
 
-    private UserDetails buildUserDetails(springboot.ToDo.Model.User user) {
-        return User.withUsername(user.getUsername())
-                .password(user.getPassword_encoded()) // Ensure password is encoded
-                //.roles(user.getUser_role()) // Assign role dynamically
+    private UserDetails buildUserDetails(UserAuth userAuth) {
+        return User.withUsername(userAuth.getUsername())
+                .password(userAuth.getPassword_encoded()) // Ensure password is encoded
+                //.roles(userAuth.getUser_role()) // Assign role dynamically
                 .build();
     }
 

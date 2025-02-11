@@ -53,7 +53,7 @@ public class Login_Controller {
         modelMap.addAttribute("prefill_login_email_old1_a", "sumit@america.com");
         modelMap.addAttribute("prefill_login_email_old1_b", "1");
 
-        return "login_old1";
+        return "/";
     }
 
 
@@ -78,7 +78,7 @@ public class Login_Controller {
         modelMap.addAttribute("prefill_login_email_old2_a", "sumit@america.com");
         modelMap.addAttribute("prefill_login_email_old2_b", "1");
 
-        return "login_old2";
+        return "/";
     }
 
 

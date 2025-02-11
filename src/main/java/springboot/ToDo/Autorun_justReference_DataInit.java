@@ -7,18 +7,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import springboot.ToDo.Controller.User_Signup_Controller;
 import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Model.User;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 import springboot.ToDo.Services.Login_Services;
-import springboot.ToDo.Services.User_Signup_Services;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -64,7 +58,7 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
         repo_dao_springData_jpa.save(todoList2);
 
         // ADD 2 users to db upon start // signup 2 users automatically upon start
-//        User u1 = new User_Signup_Services().signup_insert_encoded_pass("sumit@bofa.com", "1" , new String[]{"USER,ADMIN"});
+//        UserAuth u1 = new User_Signup_Services().signup_insert_encoded_pass("sumit@bofa.com", "1" , new String[]{"USER,ADMIN"});
 //        repo_dao_user_jpa.save(u1);
 //        u1.setPassword_raw("1");
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import springboot.ToDo.Model.User;
+import springboot.ToDo.Model.UserAuth;
 import springboot.ToDo.Repository.Repo_DAO_User_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
 
@@ -56,10 +56,10 @@ public class Login_Services {
     public boolean validate_login_raw_pass_match_to_db_encoded_pass(String input_user, String input_pass){
 
 
-        Optional<User> userOptional = repo_dao_user_jpa.findByUsername(input_user);
+        Optional<UserAuth> userOptional = repo_dao_user_jpa.findByUsername(input_user);
 
         // retrieve encoded password
-        String encoded_pass = userOptional.map(User::getPassword_encoded).orElse(null);
+        String encoded_pass = userOptional.map(UserAuth::getPassword_encoded).orElse(null);
 
         // use match function ---> to confirm input raw pass = = encoded pass or not..
         //boolean check = springSecurityConfiguration.passwordEncoder_method().matches( input_pass, encoded_pass );

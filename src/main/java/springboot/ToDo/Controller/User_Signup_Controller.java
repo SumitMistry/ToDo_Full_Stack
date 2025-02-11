@@ -1,12 +1,10 @@
 package springboot.ToDo.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import springboot.ToDo.Model.User;
-import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.Model.UserAuth;
 import springboot.ToDo.Services.User_Signup_Services;
 
 @Controller
@@ -53,11 +51,11 @@ public class User_Signup_Controller {
             modelMap.addAttribute("authmsg_signup", "Failed... : incoming_password.isEmpty() ||  incoming_username.isEmpty() || role is blank");
         }else {
             // Adding RAW pass into USER object
-            User retrieved_output_after_raw_pass_added =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
+            UserAuth retrieved_output_after_raw_pass_added =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
             modelMap.addAttribute("authmsg_signup", "Success[RawPass_added]: " + retrieved_output_after_raw_pass_added.toString());
 
             // Adding ENCODED pass into USER object
-            User retrieved_output_after_Encoded_and_raw_pass_added = user_Signup_services.signup_insert_encoded_pass(incoming_username, incoming_password,roles);
+            UserAuth retrieved_output_after_Encoded_and_raw_pass_added = user_Signup_services.signup_insert_encoded_pass(incoming_username, incoming_password,roles);
             modelMap.addAttribute("authmsg_signup1", "Success[ENCODED_pass_added]: " + retrieved_output_after_Encoded_and_raw_pass_added.toString());
         }
 
