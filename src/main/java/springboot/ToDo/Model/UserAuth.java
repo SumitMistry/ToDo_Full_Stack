@@ -14,7 +14,7 @@ import java.util.Arrays;
 @Entity // Marks the class as a JPA entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "todo_users", schema = "sumit")
+@Table(name = "todo_user_auth", schema = "sumit")
 @Data       // @Data = Lombok annotation.. generates boilerplate code for a class.., like @getters, @setters, equals(), hashCode(), and toString()
 @EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED to get @Creation date data
 public class UserAuth {

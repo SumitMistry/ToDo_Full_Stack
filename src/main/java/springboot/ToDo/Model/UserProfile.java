@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "todo_profiles" , schema = "sumit")
+@Table(name = "todo_user_profiles" , schema = "sumit")
 public class UserProfile {
 
 
@@ -25,6 +25,7 @@ public class UserProfile {
     @NotNull
     @Email
     @Column(name = "username", nullable = false, unique = true)
+    //  @OneToOne(mappedBy = "username", )
     private String username;
 
     @Column(name = "f_name", nullable = false)
