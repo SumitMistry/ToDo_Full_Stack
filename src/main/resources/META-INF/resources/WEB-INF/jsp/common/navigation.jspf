@@ -33,7 +33,7 @@
             			<li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
             		<li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
-
+                    <a href="profile" > &#128064; </a>
 
 
             	</ul>
@@ -41,8 +41,8 @@
 
  <!-- Fixed Header PART-2--->
 <nav class="fixed-header2 navbar navbar-expand-md navbar-dark bg-dark mb-0 p-2">
-    <!-- First Section (Left Side)-->
 
+    <!-- First Section (Left Side)-->
     <div class="collapse navbar-collapse">
             		<ul class="navbar-nav">
             			<li class="nav-item">
@@ -54,7 +54,7 @@
 
 
 
-            <form class="form-inline d-flex" method="GET" action="dateRangePicker">
+            <form class="form-inline d-flex" method="GET" action="/api/todo/dateRangePicker">
                 <input type="date" id="fromDate" name="fromDate" class="form-control me-2" required>
                 <input type="date" id="toDate" name="toDate" class="form-control me-2" required>
                 <button type="submit" class="btn btn-primary"> Search </button>
@@ -62,9 +62,7 @@
 
     </div>
 
-
-
-            	<div class="collapse navbar-collapse">
+    <div class="collapse navbar-collapse">
             		<ul class="navbar-nav">
             			<li class="nav-item">
             			    <form class="form-inline d-flex">
@@ -73,7 +71,7 @@
                             </form>
             			</li>
             		</ul>
-            	</div>
+    </div>
 
 
 
@@ -81,7 +79,7 @@
     <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
              <form class="form-inline d-flex">
-                <a href="insert3" class="btn btn-success"> &#x271A; </a>
+                 <a href="/api/todo/insert3" class="btn btn-success"> &#x271A; </a>
              </form>
         </ul>
     </div>
@@ -92,7 +90,7 @@
     <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <form class="form-inline d-flex" method="GET" action="searchAPI">
+                <form class="form-inline d-flex" method="GET" action="/api/todo/searchAPI">
                     <input type="text" name="searchKey" class="form-control me-1" placeholder="Search...">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>

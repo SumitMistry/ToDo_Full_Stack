@@ -43,14 +43,14 @@
                             <td>  ${eentry.done}   </td>
                              <%--  <td> <a href="upload?u=${eentry.uid}" class="btn btn-warning"> not working </a> id:${eentry.uid} </td>   --%>
 
-                            <td>  <a href="insert3" class="btn btn-success"> &#x271A; </a> i++ </td>
-                            <td>  <a href="update?u=${eentry.uid}" class="btn btn-info"> # </a> u=${eentry.uid} </td>
-                            <td>  <a href="delByID?u=${eentry.id}" class="btn btn-danger"> &#x2718 </a> u=${eentry.id} </td>
-                            <td>  <a href="deleteByUid?u=${eentry.uid}" class="btn btn-danger"> &#x2718;</a> u=${eentry.uid} </td>
-                            <td>  <a href="upload?u=${eentry.uid}" class="btn btn-primary btn-success">  &#x1F517 </a> u=${eentry.uid} </td>
-                            <td>  <a href="findById?u=${eentry.id}" class="btn btn-warning"> &#x2754; </a> u=${eentry.id} </td>
-                            <td>  <a href="findByUID?u=${eentry.uid}" class="btn btn-warning"> &#x2754; </a> u=${eentry.uid} </td>
-                            <td>  <a href="findByUser?user=${eentry.username}" class="btn btn-warning"> &#x2754; </a> user=${eentry.username} </td>
+                            <td>  <a href="/api/todo/insert3" class="btn btn-success"> &#x271A; </a> i++ </td>
+                            <td>  <a href="/api/todo/update?u=${eentry.uid}" class="btn btn-info"> # </a> u=${eentry.uid} </td>
+                            <td>  <a href="/api/todo/delByID?u=${eentry.id}" class="btn btn-danger"> &#x2718 </a> u=${eentry.id} </td>
+                            <td>  <a href="/api/todo/deleteByUid?u=${eentry.uid}" class="btn btn-danger"> &#x2718;</a> u=${eentry.uid} </td>
+                            <td>  <a href="/api/todo/upload?u=${eentry.uid}" class="btn btn-primary btn-success">  &#x1F517 </a> u=${eentry.uid} </td>
+                            <td>  <a href="/api/todo/findById?u=${eentry.id}" class="btn btn-warning"> &#x2754; </a> u=${eentry.id} </td>
+                            <td>  <a href="/api/todo/findByUID?u=${eentry.uid}" class="btn btn-warning"> &#x2754; </a> u=${eentry.uid} </td>
+                            <td>  <a href="/api/todo/findByUser?user=${eentry.username}" class="btn btn-warning"> &#x2754; </a> user=${eentry.username} </td>
 
 
                         </tr>
@@ -62,20 +62,20 @@
             <div class="container">
 
                     1.SpringDataJPA - INSERT: <p>
-                    <a href="insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
+                    <a href="api/todo/insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
 
             <hr>
                     2.SpringDataJPA - FIND: <p>
-                    <a href="find?u=1" class="btn btn-success">find?u=1 </a> <p>
+                    <a href="api/todo/find?u=1" class="btn btn-success">find?u=1 </a> <p>
             <hr>
                     @Transactional(readOnly = true) // , propagation = Propagation.)
                     / I kept this hard coded data as READONLY so will not get injected to DB
                     public String sprData_jpa_hard_code_data(ModelMap modelMap){ <p>
-                    1.1<a href="hardcode1" class="btn btn-success"> Append 3 records: /hardcode1 </a> <p>
+                    1.1<a href="api/todo/hardcode1" class="btn btn-success"> Append 3 records: /hardcode1 </a> <p>
             <hr>
-                    3.Auto Validation: <a href="insert" class="btn btn-warning"> X---Insert1---X </a> <p>
+                    3.Auto Validation: <a href="api/todo/insert" class="btn btn-warning"> X---Insert1---X </a> <p>
             <hr>
-                    4.Manual: <a href="insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
+                    4.Manual: <a href="api/todo/insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
             <hr>
                        <a href="/" class="btn btn-primary">     /     </a>
                        <a href="list" class="btn btn-primary">    /list     </a>

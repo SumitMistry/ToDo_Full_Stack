@@ -60,8 +60,8 @@ PART-A : (Form existing UID record data / GET)
             </form:form>
 
 
-            <%-- commented ...<form:form method="post" action="upload"  enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
-            <%-- commented...<form:form method="post" action="upload/${todoId}" enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
+            <%-- commented ...<form:form method="post" action="api/todo/upload"  enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
+            <%-- commented...<form:form method="post" action="api/todo/upload/${todoId}" enctype="multipart/form-data"  modelAttribute="fileUpload_holder">   --%>
 <p>
 PART-B : (Upload section / POST)
 <p>

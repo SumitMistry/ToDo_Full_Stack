@@ -8,8 +8,10 @@ import springboot.ToDo.Model.UserAuth;
 import springboot.ToDo.Model.UserProfile;
 import springboot.ToDo.Services.User_Signup_Services;
 
+import java.lang.invoke.SwitchPoint;
+
 @Controller
-@RequestMapping(value = "/")
+//@RequestMapping(value = "/")
 @SessionAttributes({"uid_email", "pass", "totally" })
 public class User_Signup_Controller {
 
@@ -44,13 +46,22 @@ public class User_Signup_Controller {
     @ResponseStatus(HttpStatus.CREATED)
     public String signup_insert_raw_pass_and_encoded_pass(@RequestParam(value = "uid_email") String incoming_username,
                                                           @RequestParam(value = "pass") String incoming_password,
-                                                          @RequestParam(value = "role", required = true) String[] roles,
+                                                          @RequestParam(value = "role", required = false /** doing this "false" to handle null role error manually **/) String[] roles,
                                                           ModelMap modelMap){
 
+
         // this returns back html page with "fail"  //  "success written on body"
-        if ( incoming_password.isEmpty() ||  incoming_username.isEmpty() || roles.length < 1 || roles == null){
-            modelMap.addAttribute("authmsg_signup", "Failed... : incoming_password.isEmpty() ||  incoming_username.isEmpty() || role is blank");
-        }else {
+                if (roles == null || roles.length == 0) {
+                    modelMap.addAttribute("authmsg_signup", "Failed... : role is blank");
+                }
+                else if (incoming_username == null || incoming_username.trim().isEmpty()) { // trim used to remove white space char test case
+                    modelMap.addAttribute("authmsg_signup", "Failed... : incoming_username.isEmpty() ");
+                }
+                else if (incoming_password == null || incoming_password.trim().isEmpty()) {
+                    modelMap.addAttribute("authmsg_signup", "Failed... : incoming_password.isEmpty() ");
+                }
+
+        else {
             // Adding RAW pass into USER object
             UserAuth retrieved_output_after_raw_pass_added =  user_Signup_services.signup_insert_raw_pass(incoming_username, incoming_password);
             modelMap.addAttribute("authmsg_signup", "Success[RawPass_added]: " + retrieved_output_after_raw_pass_added.toString());

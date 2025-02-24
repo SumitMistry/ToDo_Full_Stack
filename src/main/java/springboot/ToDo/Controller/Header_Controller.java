@@ -22,8 +22,8 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping(value = "/")
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+//@RequestMapping(value = "/")
+//@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally"})  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
 // <usernr> is backend variable, this will not work
@@ -51,7 +51,7 @@ public class Header_Controller<T> {
     }
 
 
-    @RequestMapping(value = {"dateRangePicker", "/dateRangePicker", "api/todo/dateRangePicker", "api/todo/dateRangePicker/ "}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/api/todo/dateRangePicker"}, method = RequestMethod.GET)
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){
@@ -68,7 +68,7 @@ public class Header_Controller<T> {
         return "index";
     }
 
-    @RequestMapping(value = {"searchAPI", "/searchAPI", "api/todo/searchAPI", "api/todo/searchAPI/ "}, method = {RequestMethod.GET,  RequestMethod.POST})
+    @RequestMapping(value = {"/api/todo/searchAPI"}, method = {RequestMethod.GET,  RequestMethod.POST})
     public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
                                 ModelMap modelMap){
 
@@ -85,8 +85,9 @@ public class Header_Controller<T> {
         }
         return "index";
     }
+
     //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
-    @RequestMapping(value = { "insert3", "/insert3", "api/todo/insert3/", "api/todo/insert3", "/api/todo/insert3" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/api/todo/insert3" }, method = RequestMethod.GET)
     public String get_SprData_JPA_insert(ModelMap modelMap) {
         List<Todo> list1 = toDo_Services.findbyALL();
 
@@ -97,7 +98,7 @@ public class Header_Controller<T> {
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
     }
 
-    @RequestMapping(value = { "insert3", "/insert3", "api/todo/insert3/", "api/todo/insert3", "/api/todo/insert3" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/api/todo/insert3" }, method = RequestMethod.POST)
     public String post_SprData_JPA_insert(ModelMap modelMap,
                                           @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,
                                           BindingResult bindingResult, Errors err) {
