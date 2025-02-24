@@ -35,20 +35,20 @@
 
                     <fieldset class="mb-3">
                     <form:label path="l_name"> Last Name : </form:label>
-                    <form:input type="text" path="l_name" required="required"  readonly="true" />
+                    <form:input type="text" path="l_name" required="required"  />
                     <form:errors path="l_name"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="city"> City : </form:label>
-                    <form:input type="text" path="city" required="required"   />
+                    <form:input type="text" path="city"    />
                     <form:errors path="city"  cssClass="text-warning"  />
                     </fieldset>
 
 
                     <fieldset class="mb-3">
                     <form:label path="phone"> Phone : </form:label>
-                    <form:input type="text" path="phone" required="required"   />
+                    <form:input type="text" path="phone"    />
                     <form:errors path="phone"  cssClass="text-warning"  />
                     </fieldset>
 

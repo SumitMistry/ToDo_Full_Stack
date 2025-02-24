@@ -24,18 +24,24 @@ public class User_Profile_Services {
     }
 
     public UserProfile set_UserProfile(UserProfile userProfile){
-            //        // Retrieve current user profile
-            //        UserProfile current_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
-            //
-            //        // set data
-            //        current_profile.setCity(city);
-            //        current_profile.setF_name(f_name);
-            //        current_profile.setL_name(l_name);
-            //        current_profile.setPhone(phone);
-            //
-            //        // return c
-            //        UserProfile updated_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
-
         return repo_dao_userProfile_jpa.save(userProfile);
     }
 }
+
+
+
+
+
+
+
+//        // Retrieve current user profile
+//        UserProfile current_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
+//
+//        // set data
+//        current_profile.setCity(city);
+//        current_profile.setF_name(f_name);
+//        current_profile.setL_name(l_name);
+//        current_profile.setPhone(phone);
+//
+//        // return c
+//        UserProfile updated_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
