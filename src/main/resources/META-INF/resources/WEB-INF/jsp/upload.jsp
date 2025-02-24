@@ -18,43 +18,43 @@ PART-A : (Form existing UID record data / GET)
             <form:form method="get"  enctype="multipart/form-data"  modelAttribute="todo55">
                     <fieldset class="mb-3">
                     <form:label path="uid"> uid : </form:label>
-                    <form:input type="text" path="uid" required="required"   />
+                    <form:input type="text" path="uid" required="required"  readonly="readonly" />
                     <form:errors path="uid"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="id"> id : </form:label>
-                    <form:input type="text" path="id" required="required"   />
+                    <form:input type="text" path="id" required="required"  readonly="readonly" />
                     <form:errors path="id"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="username"> username : </form:label>
-                    <form:input type="text" path="username" required="required"   />
+                    <form:input type="text" path="username" required="required"  readonly="readonly" />
                     <form:errors path="username"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="description"> description : </form:label>
-                    <form:input type="text" path="description" required="required"   />
+                    <form:input type="text" path="description" required="required"   readonly="readonly" />
                     <form:errors path="description"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="creationDate"> creationDate : </form:label>
-                    <form:input type="text" path="creationDate" required="required"   />
+                    <form:input type="text" path="creationDate" required="required"  readonly="readonly" />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="targetDate"> targetDate : </form:label>
-                    <form:input type="text" path="targetDate" required="required"   />
+                    <form:input type="text" path="targetDate" required="required"   readonly="readonly" />
                     <form:errors path="targetDate"  cssClass="text-warning"  />
                     </fieldset>
 
 
                     <fieldset class="mb-3">
                     <form:label path="done"> done : </form:label>
-                    <form:input type="text" path="done" required="required"   />
+                    <form:input type="text" path="done" required="required"  readonly="readonly" />
                     <form:errors path="done"  cssClass="text-warning"  />
                     </fieldset>
             </form:form>

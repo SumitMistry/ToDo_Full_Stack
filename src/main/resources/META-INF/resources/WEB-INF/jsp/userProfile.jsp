@@ -14,13 +14,13 @@
                     <fieldset class="mb-3">
                     <form:label path="uid"> uid : </form:label>
                                                 <!-- <form:input type="text" path="uid" required="required"   />   -->
-                    <form:input type="text" path="uid" required="required"   />
+                    <form:input type="text" path="uid" required="required"   readonly="readonly"  />
                     <form:errors path="uid"  cssClass="text-warning"    />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="username"> username : </form:label>
-                    <form:input type="text" path="username" required="required"   />
+                    <form:input type="text" path="username" required="required"  readonly="readonly" />
                     <form:errors path="username"  cssClass="text-warning"  />
                     </fieldset>
 
