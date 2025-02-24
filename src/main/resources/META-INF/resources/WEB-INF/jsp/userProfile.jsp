@@ -13,14 +13,16 @@
 
                     <fieldset class="mb-3">
                     <form:label path="uid"> uid : </form:label>
-                                                <!-- <form:input type="text" path="uid" required="required"   />   -->
-                    <form:input type="text" path="uid" required="required"   readonly="readonly"  />
+                                                <!-- <form:input type="text" path="uid" required="required"  disabled="disabled"  />   -->
+                    <form:input type="text" path="uid" required="required" disabled="true"  />
+                    <form:hidden path="uid" />
                     <form:errors path="uid"  cssClass="text-warning"    />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="username"> username : </form:label>
-                    <form:input type="text" path="username" required="required"  readonly="readonly" />
+                    <form:input type="text" path="username" required="required" disabled="true"  />
+                    <form:hidden path="username" />
                     <form:errors path="username"  cssClass="text-warning"  />
                     </fieldset>
 
@@ -33,7 +35,7 @@
 
                     <fieldset class="mb-3">
                     <form:label path="l_name"> Last Name : </form:label>
-                    <form:input type="text" path="l_name" required="required"   />
+                    <form:input type="text" path="l_name" required="required"  readonly="true" />
                     <form:errors path="l_name"  cssClass="text-warning"  />
                     </fieldset>
 

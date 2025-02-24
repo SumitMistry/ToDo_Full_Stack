@@ -30,7 +30,7 @@ public class User_Profile_Controller {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String get_user_profile(@SessionAttribute(value = "uid_email") String username,
                                    ModelMap modelMap){
-        UserProfile up1_obj = repo_dao_userProfile_jpa.findByUsername(username).get();
+        UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
         modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
         return "userProfile";
     }
