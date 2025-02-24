@@ -7,7 +7,7 @@ import springboot.ToDo.Model.UserAuth;
 import java.util.Optional;
 
 @Repository
-public interface Repo_DAO_User_JPA extends JpaRepository<UserAuth, Integer> {
+public interface Repo_DAO_UserAuth_JPA extends JpaRepository<UserAuth, Integer> {
 
     Optional<UserAuth> findByUsername(String username);
 

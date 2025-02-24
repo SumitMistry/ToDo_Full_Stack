@@ -12,7 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
 import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.ToDo_Services;
 
@@ -36,14 +36,14 @@ public class Header_Controller<T> {
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
     private final ToDo_Services toDo_Services;
 
-    private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+    private final Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
 
 
 
-    public Header_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa, Login_Services loginServices) {
+    public Header_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa, Login_Services loginServices) {
         super();
         this.toDo_Services = toDo_Services;
-        this.repo_dao_springData_jpa =repo_dao_springData_jpa;
+        this.repo_dao_springData_todo_jpa = repo_dao_springData_todo_jpa;
     }
 
     static {
@@ -56,7 +56,7 @@ public class Header_Controller<T> {
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){
 
-        List<Todo> list_todos = repo_dao_springData_jpa.findCreationDateRange(fromDate,toDate);
+        List<Todo> list_todos = repo_dao_springData_todo_jpa.findCreationDateRange(fromDate,toDate);
 
         if (! list_todos.isEmpty()) {
             modelMap.addAttribute("listMapVar", list_todos);
@@ -111,7 +111,7 @@ public class Header_Controller<T> {
         }
 
         // post data to backend SQL
-        repo_dao_springData_jpa.save(todo_obj_spring_data_jpa2);
+        repo_dao_springData_todo_jpa.save(todo_obj_spring_data_jpa2);
 
         // get data view
         return "redirect:/api/todo/list"; // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List

@@ -8,27 +8,28 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.Model.UserProfile;
+import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserProfile_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
 
 @Service
 @Transactional(readOnly = false, propagation= Propagation.REQUIRES_NEW )
 public class User_Signup_Services {
 
-    private final Repo_DAO_User_JPA repo_dao_user_jpa;
-
     @Autowired
     private SpringSecurityConfiguration springSecurityConfiguration;
 
-//    @Autowired
-//    private SpringSecurityConfig3 springSecurityConfig3;
 
-    public User_Signup_Services(Repo_DAO_User_JPA user_jpa){
+
+    private final Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
+    private final Repo_DAO_UserAuth_JPA repo_dao_userAuth_jpa;
+    public User_Signup_Services(Repo_DAO_UserAuth_JPA userAuth_jpa, Repo_DAO_UserProfile_JPA userProfile_jpa){
         super();
-        this.repo_dao_user_jpa = user_jpa;
+        this.repo_dao_userAuth_jpa = userAuth_jpa;
+        this.repo_dao_userProfile_jpa = userProfile_jpa;
         //        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
 
 
     // SIGNUP: INSERT + RAW password
@@ -42,14 +43,14 @@ public class User_Signup_Services {
         }
         else {
             // Now add it to database using JPA
-            UserAuth retrieved_user_after_signupAuth = repo_dao_user_jpa.save(final_user_to_AddAuth);
+            UserAuth retrieved_user_after_signupAuth = repo_dao_userAuth_jpa.save(final_user_to_AddAuth);
             return retrieved_user_after_signupAuth;
         }
     }
 
 
-   // SIGNUP: INSERT + ENCODED password
-    public UserAuth signup_insert_encoded_pass(String incoming_username, String incoming_raw_pass, String[] roles){
+   // SIGNUP: INSERT + ENCODED password + ROLE
+    public UserAuth signup_insert_encoded_pass_and_role(String incoming_username, String incoming_raw_pass, String[] roles){
 
         if(incoming_username.isEmpty() || incoming_raw_pass.isEmpty()){
             throw  new ResponseStatusException(HttpStatusCode.valueOf(404), "UserAuth name / Pass CAN NOT be empty ");
@@ -60,7 +61,7 @@ public class User_Signup_Services {
             // springSecurityConfig3.passwordEncoder_method().encode(incoming_raw_pass);
 
             // Creating ENCODED user object
-            UserAuth user_Auth_retrieved_with_null_encode_value = repo_dao_user_jpa.findByUsername(incoming_username).get();
+            UserAuth user_Auth_retrieved_with_null_encode_value = repo_dao_userAuth_jpa.findByUsername(incoming_username).get();
             user_Auth_retrieved_with_null_encode_value.setPassword_encoded(encoded_bcryp_pass);
             user_Auth_retrieved_with_null_encode_value.setUser_role(roles);
 
@@ -69,6 +70,18 @@ public class User_Signup_Services {
             return sinup_user_now_added_encodingAuth;
         }
     }
+
+
+
+    public UserProfile add_ONLY_username_in_UserProfile(String usr_name){
+        if (usr_name.isEmpty()) {
+
+        }
+            UserProfile user_object_for_UserProfile = new UserProfile(usr_name);
+            repo_dao_userProfile_jpa.save(user_object_for_UserProfile);
+            return user_object_for_UserProfile;
+    }
+
 
 }
 
@@ -91,7 +104,7 @@ public class User_Signup_Services {
 //        String encode_bcryp_pass = passEncoder_config.passwordEncoder().encode(input_pass);
 //
 //        UserAuth user_encrypted = new UserAuth(input_username, input_pass, encode_bcryp_pass);
-//        return repo_dao_user_jpa.save(user_encrypted);
+//        return repo_dao_user_Auth_jpa.save(user_encrypted);
 //    }
 
 
@@ -108,8 +121,8 @@ public class User_Signup_Services {
 
     /*
         public UserAuth insert_user_raw(UserAuth user){
-        repo_dao_user_jpa.save(user);
-        UserAuth retrived_user = repo_dao_user_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("UserAuth name ENTEREDD not found! weirdo"));
+        repo_dao_user_Auth_jpa.save(user);
+        UserAuth retrived_user = repo_dao_user_Auth_jpa.findById(user.getUid()).orElseThrow(() -> new NoSuchElementException("UserAuth name ENTEREDD not found! weirdo"));
 
         System.out.println("77777777777777"+ retrived_user.toString());
         return retrived_user;

@@ -8,12 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
 
-import java.rmi.server.UID;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface Repo_DAO_SpringData_JPA extends JpaRepository<Todo  //However, if you encounter any specific issues or limitations, you might need to consider using separate entity classes or configurations for each database.
+public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //However, if you encounter any specific issues or limitations, you might need to consider using separate entity classes or configurations for each database.
         , Integer> {
 
 

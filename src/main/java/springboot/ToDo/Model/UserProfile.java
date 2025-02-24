@@ -5,35 +5,35 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "todo_user_profiles" , schema = "sumit")
 public class UserProfile {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uuid", nullable = false, unique = true, updatable = false)
+    @Column(name = "uid", nullable = false, unique = true, updatable = false)
     @NotNull
     private int uid;
 
-
     @NotNull
-    @Email
+    @Email(message = "ONLY emails allowed as USERNAME")
     @Column(name = "username", nullable = false, unique = true)
     //  @OneToOne(mappedBy = "username", )
     private String username;
 
-    @Column(name = "f_name", nullable = false)
-    @NotNull
+
+    @Column(name = "f_name", nullable = true)
     private String f_name;
 
-    @Column(name = "l_name", nullable = false)
-    @NotNull
+    @Column(name = "l_name", nullable = true)
     private String l_name;
 
     @Column(name = "phone")
@@ -42,14 +42,19 @@ public class UserProfile {
     @Column(name = "city")
     private String city;
 
-    public UserProfile(int uid, String username, String f_name, String l_name, String phone, String city) {
-        this.uid = uid;
+    public UserProfile( String username, String f_name, String l_name, String phone, String city) {
         this.username = username;
         this.f_name = f_name;
         this.l_name = l_name;
         this.phone = phone;
         this.city = city;
     }
+
+    public UserProfile(String username) {
+        this.username = username;
+    }
+
+
 
     public int getUid() {
         return uid;

@@ -48,7 +48,7 @@ public class UserAuth {
 
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    @Column(name = "uuid", nullable = false, unique = true, updatable = false)
+    @Column(name = "uid", nullable = false, unique = true, updatable = false)
     @NotNull
     private int uid;
 

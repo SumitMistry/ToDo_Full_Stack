@@ -8,6 +8,7 @@
         <b style="color: blue;" >
             <pre>${authmsg_signup}</pre>
             <pre>${authmsg_signup1}</pre>
+            <pre>${authmsg_signup2}</pre>
             <p><p><p>
         </b>
 

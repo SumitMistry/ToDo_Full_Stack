@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
 
 import java.util.Optional;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class Login_Services {
 
     @Autowired
-    private Repo_DAO_User_JPA repo_dao_user_jpa;
+    private Repo_DAO_UserAuth_JPA repo_dao_user_Auth_jpa;
 
 
     @Autowired
@@ -34,7 +34,7 @@ public class Login_Services {
     }
     public String get_userDETAILS_from_login_from_spring_Security() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // this username is being taken from main login-->spring Security, so my login2 page user data is different.
-        String s1= repo_dao_user_jpa.findByUsername(auth.getName()).get().toString();
+        String s1= repo_dao_user_Auth_jpa.findByUsername(auth.getName()).get().toString();
         return s1;
     }
 
@@ -56,7 +56,7 @@ public class Login_Services {
     public boolean validate_login_raw_pass_match_to_db_encoded_pass(String input_user, String input_pass){
 
 
-        Optional<UserAuth> userOptional = repo_dao_user_jpa.findByUsername(input_user);
+        Optional<UserAuth> userOptional = repo_dao_user_Auth_jpa.findByUsername(input_user);
 
         // retrieve encoded password
         String encoded_pass = userOptional.map(UserAuth::getPassword_encoded).orElse(null);

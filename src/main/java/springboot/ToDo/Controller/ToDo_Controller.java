@@ -1,17 +1,12 @@
 package springboot.ToDo.Controller;
 
 import jakarta.validation.Valid;
-import org.h2.engine.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -22,19 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
 import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.ToDo_Services;
 
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -73,14 +66,14 @@ public class ToDo_Controller<T> {
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
     private final ToDo_Services toDo_Services;
 
-    private final Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+    private final Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
     private final Login_Services loginServices;
 
 
-    public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_JPA repo_dao_springData_jpa, Login_Services loginServices) {
+    public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa, Login_Services loginServices) {
         super();
         this.toDo_Services = toDo_Services;
-        this.repo_dao_springData_jpa =repo_dao_springData_jpa;
+        this.repo_dao_springData_todo_jpa = repo_dao_springData_todo_jpa;
         this.loginServices = loginServices;
     }
 
@@ -96,7 +89,7 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = "existbyuid", method = RequestMethod.GET)
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
                                            ModelMap modelMap){
-        boolean x =  repo_dao_springData_jpa.existsByUid(uid);
+        boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
 
         if (x == true){   // if (x == true)
             return new ResponseEntity<>(x, HttpStatus.FOUND); // 302 code
@@ -111,7 +104,7 @@ public class ToDo_Controller<T> {
     public String list_per_user_todos(ModelMap modelMap) {
 
         // List with all todos + parsing it to modelmap
-        Optional<List<Todo>> user_listing = repo_dao_springData_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security());
+        Optional<List<Todo>> user_listing = repo_dao_springData_todo_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security());
         modelMap.addAttribute("listMapVar", user_listing.get());
 
         // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
@@ -180,8 +173,8 @@ public class ToDo_Controller<T> {
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
-        // Optional<List<Todo>> todo_list_optional = repo_dao_springData_jpa.findById(id);
-        Optional<List<Todo>> todo_list= repo_dao_springData_jpa.findById(id);
+        // Optional<List<Todo>> todo_list_optional = repo_dao_springData_todo_jpa.findById(id);
+        Optional<List<Todo>> todo_list= repo_dao_springData_todo_jpa.findById(id);
 
         if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
@@ -201,7 +194,7 @@ public class ToDo_Controller<T> {
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
 
-        Optional<List<Todo>> t1 =  repo_dao_springData_jpa.findByUsername(enter_username);
+        Optional<List<Todo>> t1 =  repo_dao_springData_todo_jpa.findByUsername(enter_username);
 
         // this technique Improve Exception Handling
         if (t1.isEmpty() || t1.get().isEmpty()){
@@ -222,9 +215,9 @@ public class ToDo_Controller<T> {
 
         // Predicate function practice
         Predicate<? super Todo> p1 = x-> x.getUsername().equalsIgnoreCase(enter_username);
-        List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(p1).toList();
+        List<Todo> t1 =  repo_dao_springData_todo_jpa.findAll().stream().filter(p1).toList();
 
-        // or // List<Todo> t1 =  repo_dao_springData_jpa.findAll().stream().filter(x->x.getUsername().equals(enter_username)).toList();
+        // or // List<Todo> t1 =  repo_dao_springData_todo_jpa.findAll().stream().filter(x->x.getUsername().equals(enter_username)).toList();
         modelMap.addAttribute("listMapVar", t1);
         modelMap.addAttribute("totally", t1.size());
         return "index";
@@ -279,7 +272,7 @@ public class ToDo_Controller<T> {
     public String deleteByUID(@RequestParam(value = "u") int uid) {
 
         // before deleting, checking if the ID exist or not!!, this is good practice..
-        if (repo_dao_springData_jpa.existsByUid(uid) == true){ // if exist == true
+        if (repo_dao_springData_todo_jpa.existsByUid(uid) == true){ // if exist == true
             toDo_Services.deleteByUID_springDataJPA(uid);
             l1.info("Deleted UID: " + uid);
         } else {
@@ -295,7 +288,7 @@ public class ToDo_Controller<T> {
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "delByID", method = RequestMethod.GET)
     public String del_By_ID(@RequestParam(value = "u") int id) {
-        repo_dao_springData_jpa.deleteById(id);
+        repo_dao_springData_todo_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
         //return "index";
         return "redirect:list";
@@ -397,7 +390,7 @@ public class ToDo_Controller<T> {
                 byte[] fileData = file.getBytes();
                 Blob blob = new SerialBlob(fileData);
                 existingTodo.get(0).setAttach(blob);
-                repo_dao_springData_jpa.save(existingTodo.get(0));
+                repo_dao_springData_todo_jpa.save(existingTodo.get(0));
             }
         } catch (IOException | SQLException e) {
             l1.error("File upload failed", e);
@@ -406,7 +399,7 @@ public class ToDo_Controller<T> {
                                     /*
                                     ##  This works great for small size files like byte[] datatype. We change model to byte[] or BLOB depending on the requirement
                                         existingTodo.setattach(multipartFile.getMultipartFile().getBytes());
-                                        repo_dao_springData_jpa.save(existingTodo);
+                                        repo_dao_springData_todo_jpa.save(existingTodo);
                                     */
 
         return "redirect:list";
@@ -430,7 +423,7 @@ public class ToDo_Controller<T> {
                 // attach attachment
                 existingTodo.setattach(todo55.getMultipartFile().getBytes());
                 // save/commit object to dB via SpringJPA
-                repo_dao_springData_jpa.save(existingTodo);
+                repo_dao_springData_todo_jpa.save(existingTodo);
             }
  */
 
@@ -501,7 +494,7 @@ try {
                 Todo tg1 =   new Todo(todo55.getId(), todo55.getUsername(), todo55.getDescription(), todo55.getCreationDate(), todo55.getTargetDate()
                         , todo55.getDone(), f1.getBytes());
 
-                return repo_dao_springData_jpa.save(tg1);
+                return repo_dao_springData_todo_jpa.save(tg1);
 
 
             ////

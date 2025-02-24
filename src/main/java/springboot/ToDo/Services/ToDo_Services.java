@@ -4,15 +4,12 @@ package springboot.ToDo.Services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
 
-import java.sql.Blob;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -29,11 +26,11 @@ public class ToDo_Services {
     Logger l1 = LoggerFactory.getLogger(Class.class);
 
     @Autowired
-    private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+    private Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
 
 
     public void insert_list_data_springDataJpa(List<Todo> list1) {
-        list1.forEach(x -> repo_dao_springData_jpa.save(x));
+        list1.forEach(x -> repo_dao_springData_todo_jpa.save(x));
     }
 
 
@@ -42,16 +39,16 @@ public class ToDo_Services {
     //    Which basically means your code will open two (physical) connections/transactions to the database
     //    method needs a transaction, either open one for me or use an existing one → getConnection(). setAutocommit(false). commit().
     public void deleteByUID_springDataJPA(int uid) {
-        repo_dao_springData_jpa.deleteByUid(uid);
+        repo_dao_springData_todo_jpa.deleteByUid(uid);
     }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void updateByUid(Todo todo3) {
         // WRONG METHOD, LAGs when TOO much DATA....
-        // Todo existing_rec_retrieved = repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == todo3.getUid()).toList().get(0);
+        // Todo existing_rec_retrieved = repo_dao_springData_todo_jpa.findAll().stream().filter(x -> x.getUid() == todo3.getUid()).toList().get(0);
 
         // Correct Method...using JPA
-        Todo existing_rec_retrieved = repo_dao_springData_jpa.findByUid(todo3.getUid()).get().get(0);
+        Todo existing_rec_retrieved = repo_dao_springData_todo_jpa.findByUid(todo3.getUid()).get().get(0);
 
         existing_rec_retrieved.setId(todo3.getId());
         existing_rec_retrieved.setAttach(todo3.getAttach());
@@ -65,11 +62,11 @@ public class ToDo_Services {
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Optional<List<Todo>> getAllSumit() {
-        return repo_dao_springData_jpa.findSumit();
+        return repo_dao_springData_todo_jpa.findSumit();
     }
 
     public List<Todo> findbyALL() {
-        return repo_dao_springData_jpa.findAll();
+        return repo_dao_springData_todo_jpa.findAll();
     }
 
 
@@ -79,14 +76,14 @@ public class ToDo_Services {
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     //this will not allow any WRITE transaction to be posted in db.
     public List<Todo> findByUid_nouse(int uid) {  // The findById method retrieves an entity by its unique identifier (id). It returns an Optional wrapper, indicating that the entity may or may not exist in the data store. If the entity is found, it will be wrapped inside the Optional. Otherwise, the Optional will be empty
-        return repo_dao_springData_jpa.findAll().stream().filter(x -> x.getUid() == uid).toList();
+        return repo_dao_springData_todo_jpa.findAll().stream().filter(x -> x.getUid() == uid).toList();
     }
 
 
     //@Transactional(readOnly = true, propagation = Propagation.REQUIRED) //this will not allow any WRITE transaction to be posted in db.
 //    public List<Todo> get_todo_LIST_by_id(int id) {
-////      return repo_dao_springData_jpa.findById(id).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
-//        List<Todo> todoList = repo_dao_springData_jpa.findAllById(id);
+////      return repo_dao_springData_todo_jpa.findById(id).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+//        List<Todo> todoList = repo_dao_springData_todo_jpa.findAllById(id);
 //        return todoList;
 //    }
 
@@ -95,18 +92,18 @@ public class ToDo_Services {
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     //this will not allow any WRITE transaction to be posted in db.
     public List<Todo> findByUid(int uid) {
-        return repo_dao_springData_jpa.findByUid(uid).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
+        return repo_dao_springData_todo_jpa.findByUid(uid).orElseThrow(() -> new IllegalArgumentException("UId entered is NOT-VALID, check!D"));
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public Optional<List<Todo>> findById(int id) {
-        return repo_dao_springData_jpa.findById(id);
+        return repo_dao_springData_todo_jpa.findById(id);
     }
 
 
     @Transactional
     public List<Todo> findByKeyword(String keyword){
-        return repo_dao_springData_jpa.findByKeyword(keyword).orElseThrow( () -> new NoSuchElementException("No keyword found heREHREHR"));
+        return repo_dao_springData_todo_jpa.findByKeyword(keyword).orElseThrow( () -> new NoSuchElementException("No keyword found heREHREHR"));
     }
 
 }

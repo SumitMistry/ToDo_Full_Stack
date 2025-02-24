@@ -19,7 +19,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
 
 import java.util.Optional;
 import java.util.function.Function;
@@ -45,7 +45,7 @@ public class SpringSecurityConfiguration {
     //static { }
 
     @Autowired
-    private Repo_DAO_User_JPA repo_dao_user_jpa;
+    private Repo_DAO_UserAuth_JPA repo_dao_user_Auth_jpa;
 
 
     // Password encoder algorithm set
@@ -88,7 +88,7 @@ public class SpringSecurityConfiguration {
 
             authProvider.setUserDetailsService(username -> {
 
-                Optional<UserAuth> optionalUser = repo_dao_user_jpa.findByUsername(username);
+                Optional<UserAuth> optionalUser = repo_dao_user_Auth_jpa.findByUsername(username);
                 if (optionalUser.isEmpty()) {
                     throw new RuntimeException("UserAuth not found");
                 }
@@ -118,7 +118,7 @@ public class SpringSecurityConfiguration {
     }
 
     private UserAuth fetchUserFromDatabase(String username) {
-        Optional<UserAuth> optionalUser = repo_dao_user_jpa.findByUsername(username);
+        Optional<UserAuth> optionalUser = repo_dao_user_Auth_jpa.findByUsername(username);
         if (optionalUser.isEmpty()) {
             throw new UsernameNotFoundException("UserAuth not found");
         }

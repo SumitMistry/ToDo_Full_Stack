@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Repository.Repo_DAO_SpringData_JPA;
-import springboot.ToDo.Repository.Repo_DAO_User_JPA;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
 import springboot.ToDo.Services.Login_Services;
 
 import java.time.LocalDate;
@@ -33,10 +33,10 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
     @Autowired
     private Login_Services login_Services;
     @Autowired
-    private Repo_DAO_SpringData_JPA repo_dao_springData_jpa;
+    private Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
 
     @Autowired
-    private Repo_DAO_User_JPA repo_dao_user_jpa;
+    private Repo_DAO_UserAuth_JPA repo_dao_user_Auth_jpa;
 
     @Override
     public void run(String[] str) throws Exception {
@@ -47,19 +47,19 @@ public class Autorun_justReference_DataInit implements CommandLineRunner{
 
 
         //Delete lot of records first....
-        int rowsDeleted = repo_dao_springData_jpa.deleteRecords();
+        int rowsDeleted = repo_dao_springData_todo_jpa.deleteRecords();
 
         // ADD 2 records::::: USED JPA for query building in below.....this will make query1
         // automatically ....by below 4 lines..
         Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;  int random2 = rand.nextInt(1,999)+1;
         Todo todoList1 = new Todo( random1, "sumit@bofa.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), true,null);
         Todo todoList2 = new Todo( random2, "vraj@yyz.com","Autorun_justRef_dataInit.java", LocalDate.now(), LocalDate.now().plusYears(1), false,null);
-        repo_dao_springData_jpa.save(todoList1);
-        repo_dao_springData_jpa.save(todoList2);
+        repo_dao_springData_todo_jpa.save(todoList1);
+        repo_dao_springData_todo_jpa.save(todoList2);
 
         // ADD 2 users to db upon start // signup 2 users automatically upon start
 //        UserAuth u1 = new User_Signup_Services().signup_insert_encoded_pass("sumit@bofa.com", "1" , new String[]{"USER,ADMIN"});
-//        repo_dao_user_jpa.save(u1);
+//        repo_dao_user_Auth_jpa.save(u1);
 //        u1.setPassword_raw("1");
 
 
