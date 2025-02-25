@@ -19,6 +19,23 @@ import java.util.Arrays;
 @EntityListeners(AuditingEntityListener.class)  // Enables auditing ---> REQUIRED to get @Creation date data
 public class UserAuth {
 
+    // 1️⃣ Establish One-to-One Relationship in Entities
+    //  Modify your UserAuth and UserProfile entities to define a one-to-one relationship.
+    //  @JoinColumn annotation in JPA is used to specify the foreign key column for an entity association. It is applied on the owning side of a relationship (e.g., @OneToOne, @ManyToOne).
+    /*
+        @JoinColumn(
+            name = "column_name",
+            referencedColumnName = "target_column_name",
+            insertable = false,
+            updatable = false,
+            nullable = false,
+            unique = false
+        )
+    */
+
+    @OneToOne(mappedBy = "userAuth")
+    private UserProfile userProfile;
+
 
     public UserAuth(String username, String password_raw, String password_encoded) {
         this.username = username;

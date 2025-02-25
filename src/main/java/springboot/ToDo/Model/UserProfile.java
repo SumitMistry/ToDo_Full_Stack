@@ -16,6 +16,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "todo_user_profiles" , schema = "sumit")
 public class UserProfile {
 
+    // 1️⃣ Establish One-to-One Relationship in Entities
+    //    Modify your UserAuth and UserProfile entities to define a one-to-one relationship.
+    @OneToOne
+    @JoinColumn(name = "username", referencedColumnName ="username", insertable = false, updatable = false, nullable = false, unique = false )
+    private UserAuth userAuth;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
