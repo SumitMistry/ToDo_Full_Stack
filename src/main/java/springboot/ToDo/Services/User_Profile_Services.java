@@ -29,11 +29,35 @@ public class User_Profile_Services {
     }
 
     public UserProfile set_UserProfile(UserProfile userProfile) {
-        return repo_dao_userProfile_jpa.save(userProfile);
+
+        // This is an easiest way to store and save object directly, but here we did join this 11 line will not work...
+        //        return repo_dao_userProfile_jpa.save(userProfile);
+
+
+
+        // Retrieve current user profile
+        UserProfile current_profile =  repo_dao_userProfile_jpa.findByUsername(userProfile.getUsername()).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
+
+        // set data
+        current_profile.setCity(userProfile.getCity());
+        current_profile.setF_name(userProfile.getF_name());
+        current_profile.setL_name(userProfile.getL_name());
+        current_profile.setPhone(userProfile.getPhone());
+
+        // obtained saved_user_profile
+        UserProfile updated_profile =  repo_dao_userProfile_jpa.findByUsername(userProfile.getUsername()).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
+
+                System.out.println("--------------------->>>>>>>>>>> " +"\n\n\n\n"+
+                "--------------------->" + updated_profile.toString());
+
+        // saved user_profile = fine, now save it to dB
+        repo_dao_userProfile_jpa.save(updated_profile);
+
+        // returning to show on front-end
+        return updated_profile;
     }
 }
 
-    //////// After joining table in Entity, this iis step-2
 
 
 
@@ -43,16 +67,3 @@ public class User_Profile_Services {
 
 
 
-
-
-//        // Retrieve current user profile
-//        UserProfile current_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
-//
-//        // set data
-//        current_profile.setCity(city);
-//        current_profile.setF_name(f_name);
-//        current_profile.setL_name(l_name);
-//        current_profile.setPhone(phone);
-//
-//        // return c
-//        UserProfile updated_profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));

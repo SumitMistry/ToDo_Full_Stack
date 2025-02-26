@@ -27,22 +27,19 @@ public class ToDo_main {
 						"   http://localhost:8080/searchAPI						http://localhost:8080/api/todo/searchAPI?searchKey=sumit\n" +
 						"   http://localhost:8080/api/todo/delete               http://localhost:8080/api/todo/delete?u=1 \n" +
 						"   http://localhost:8080/api/todo/update               http://localhost:8080/api/todo/update?u=3 \n" +
-						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?u=1  \n" +
-						"   http://localhost:8080/api/todo/findById             http://localhost:8080/api/todo/findById?u=1  \n" +
-						"   http://localhost:8080/api/todo/findByUID            http://localhost:8080/api/todo/findByUID?u=1  \n" +
-						"   http://localhost:8080/api/todo/findByUser           http://localhost:8080/api/todo/findByUser?user=vraj@yyz.com  \n" +
-						"   http://localhost:8080/api/todo/existbyuid			http://localhost:8080/api/todo/existbyuid?u=1\n" +
+						"   http://localhost:8080/api/todo/upload               http://localhost:8080/api/todo/upload?u=1 \n" +
+						"   http://localhost:8080/api/todo/findById             http://localhost:8080/api/todo/findById?u=1 \n" +
+						"   http://localhost:8080/api/todo/findByUID            http://localhost:8080/api/todo/findByUID?u=1 \n" +
+						"   http://localhost:8080/api/todo/findByUser           http://localhost:8080/api/todo/findByUser?user=vraj@yyz.com \n" +
+						"   http://localhost:8080/api/todo/existbyuid			http://localhost:8080/api/todo/existbyuid?u=1 \n" +
 
-						"   http://localhost:8080/api/todo/list (USER specific) http://localhost:8080/api/todo/listjson   \n" +
-						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console\n" +
-						"   http://localhost:8080/login1						http://localhost:8080/signup					\n" +
+						"	http://localhost:8080/api/todo/list (USER specific)	http://localhost:8080/api/todo/listjson \n" +
+						"	http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console \n" +
+						"	http://localhost:8080/login1						http://localhost:8080/signup \n" +
 						"   http://localhost:8080								\n" +
 
 						"		Hardcoced data coming from scripts (data.sql  + schema.sql  +  Autorun_justReference_DataInit.java)\n" +
-						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n" +
-						"		UserDetails user1 =  UserAuth.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +
-						"		UserDetails user2 =  UserAuth.withDefaultPasswordEncoder().username(\"vraj@yyz.com\").password(\"1\").roles(\"GUEST\", \"USER\").build();\n" +
-						"		UserDetails user3 =  UserAuth.withDefaultPasswordEncoder().username(\"f\").password(\"1\").roles(\"DEVELOPER\").build();\n"
+						"		H2 login:      	com.mysql.cj.jdbc.Driver        jdbc:mysql://localhost:3306/sumit          root         1029   \n"
 
 
 		);
@@ -50,3 +47,11 @@ public class ToDo_main {
 	}
 
 }
+
+
+/*
+"		UserDetails user1 =  UserAuth.withDefaultPasswordEncoder().username(\"sumit@bofa.com\").password(\"1\").roles(\"ADMIN\", \"DEVELOPER\").build();\n" +
+						"		UserDetails user2 =  UserAuth.withDefaultPasswordEncoder().username(\"vraj@yyz.com\").password(\"1\").roles(\"GUEST\", \"USER\").build();\n" +
+						"		UserDetails user3 =  UserAuth.withDefaultPasswordEncoder().username(\"f\").password(\"1\").roles(\"DEVELOPER\").build();\n"
+
+ */

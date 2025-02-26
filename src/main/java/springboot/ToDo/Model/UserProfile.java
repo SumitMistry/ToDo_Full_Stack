@@ -23,6 +23,7 @@ public class UserProfile {
     private UserAuth userAuth;
 
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "uid", nullable = false, unique = true, updatable = false)
@@ -115,10 +116,19 @@ public class UserProfile {
         this.city = city;
     }
 
+    public UserAuth getUserAuth() {
+        return userAuth;
+    }
+
+    public void setUserAuth(UserAuth userAuth) {
+        this.userAuth = userAuth;
+    }
+
     @Override
     public String toString() {
         return "UserProfile{" +
-                "uid=" + uid +
+                "userAuth=" + userAuth +
+                ", uid=" + uid +
                 ", username='" + username + '\'' +
                 ", f_name='" + f_name + '\'' +
                 ", l_name='" + l_name + '\'' +

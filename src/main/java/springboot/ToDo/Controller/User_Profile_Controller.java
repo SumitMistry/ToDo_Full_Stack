@@ -34,6 +34,7 @@ public class User_Profile_Controller {
         UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
         modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
         modelMap.addAttribute("profile3", up1_obj.toString());
+        modelMap.addAttribute("profile4",up1_obj.getUserAuth().toString());
         return "userProfile";
     }
 
