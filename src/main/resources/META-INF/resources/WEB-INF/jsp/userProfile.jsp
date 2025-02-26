@@ -54,8 +54,8 @@
 
                     <fieldset class="mb-3">
                     <form:label path="userAuth.user_role"> Roles : </form:label>
-                    <form:input type="text" path="userAuth.user_role" value="${userProfile_obj_modelAttribute.userAuth.UserRoleAsString}" required="required" disabled="true"  />
-                    <form:hidden path="userAuth.user_role"  value="${userProfile_obj_modelAttribute.userAuth.UserRoleAsString}" />
+                    <form:input type="text" path="userAuth.user_role" value="${userProfile_obj_modelAttribute.userAuth.userRoleAsString}" required="required" disabled="true"  />
+                    <form:hidden path="userAuth.user_role"  value="${userProfile_obj_modelAttribute.userAuth.userRoleAsString}" />
                     <form:errors path="userAuth.user_role"  cssClass="text-warning"  />
                     </fieldset>
 
@@ -94,14 +94,6 @@
 
 
 
-
-
-
-        <p><b>Raw Password:</b> ${userProfile_obj_modelAttribute.userAuth.password_raw}</p>
-        <p><b>Encoded Password:</b> ${userProfile_obj_modelAttribute.userAuth.password_encoded}</p>
-        <p><b>Roles:</b> <c:forEach var="role" items="${userProfile_obj_modelAttribute.userAuth.user_role}">
-            ${role} </c:forEach></p>
-        <p><b>Created Date:</b> ${userProfile_obj_modelAttribute.userAuth.created_date}</p>
 
 
 
