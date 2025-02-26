@@ -33,8 +33,15 @@ public class User_Profile_Controller {
                                    ModelMap modelMap){
         UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
         modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
-        modelMap.addAttribute("profile3", up1_obj.toString());
-        modelMap.addAttribute("profile4",up1_obj.getUserAuth().toString());
+
+        // Retrieving and posting User's join table data [userAuth] + [userProfile]
+        modelMap.addAttribute("profile1", up1_obj.toString());
+
+        // Retrieving and sending data to frontend. Data = [userAuth] table data only
+        modelMap.addAttribute("profile2",up1_obj.getUserAuth().toString());
+
+        //
+
         return "userProfile";
     }
 
@@ -55,8 +62,8 @@ public class User_Profile_Controller {
         new_userProfile.setCity(city);
 
         UserProfile retrived_user_prof =  user_profile_services.set_UserProfile(new_userProfile);
-        modelMap.addAttribute("profile1", " [Success] : UserProfile table: Updated successfully");
-        modelMap.addAttribute("profile2", " Retrieved data : " + retrived_user_prof.toString()) ;
+        modelMap.addAttribute("profile3", " [Success] : UserProfile table: Updated successfully");
+        modelMap.addAttribute("profile4", " Retrieved data : " + retrived_user_prof.toString()) ;
         return "userProfile";
 
     }

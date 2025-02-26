@@ -16508,3 +16508,936 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '2
 2025-02-25T22:55:42.414-05:00  INFO 4424 --- [ToDo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-02-25T22:55:42.420-05:00  INFO 4424 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-02-25T22:55:42.445-05:00  INFO 4424 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-02-25T22:56:11.159-05:00  INFO 13900 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Starting ToDo_main using Java 21.0.2 with PID 13900 (D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\target\classes started by Sumit in D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo)
+2025-02-25T22:56:11.162-05:00  INFO 13900 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : The following 1 profile is active: "UAT"
+2025-02-25T22:56:11.252-05:00  INFO 13900 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-02-25T22:56:11.252-05:00  INFO 13900 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-02-25T22:56:13.239-05:00  INFO 13900 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-25T22:56:13.360-05:00  INFO 13900 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106 ms. Found 3 JPA repository interfaces.
+2025-02-25T22:56:14.405-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : The Apache Tomcat Native library could not be found using names [tcnative-2, libtcnative-2, tcnative-1, libtcnative-1] on the java.library.path [C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.]. The errors reported were [Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-1.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-1.dll, no tcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no tcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.]
+
+org.apache.tomcat.jni.LibraryNotFoundError: Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-1.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-1.dll, no tcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no tcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.
+	at org.apache.tomcat.jni.Library.<init>(Library.java:91) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.jni.Library.initialize(Library.java:147) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.AprLifecycleListener.init(AprLifecycleListener.java:189) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.AprLifecycleListener.isAprAvailable(AprLifecycleListener.java:106) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getDefaultServerLifecycleListeners(TomcatServletWebServerFactory.java:191) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.<init>(TomcatServletWebServerFactory.java:138) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedTomcat.tomcatServletWebServerFactory(ServletWebServerFactoryConfiguration.java:73) ~[spring-boot-autoconfigure-3.3.0-RC1.jar:3.3.0-RC1]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getWebServerFactory(ServletWebServerApplicationContext.java:223) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:186) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at springboot.ToDo.ToDo_main.main(ToDo_main.java:12) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.3.0-RC1.jar:3.3.0-RC1]
+
+2025-02-25T22:56:14.984-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardHost[localhost]] to container [StandardEngine[Tomcat]]
+2025-02-25T22:56:15.029-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[jsp]] to container [TomcatEmbeddedContext[]]
+2025-02-25T22:56:15.039-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [TomcatEmbeddedContext[]] to container [StandardEngine[Tomcat].StandardHost[localhost]]
+2025-02-25T22:56:15.199-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-02-25T22:56:15.229-05:00  INFO 13900 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-25T22:56:15.230-05:00  INFO 13900 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2025-02-25T22:56:15.272-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.loader.WebappLoader    : Starting this Loader
+2025-02-25T22:56:15.708-05:00  INFO 13900 --- [ToDo] [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-02-25T22:56:15.720-05:00  INFO 13900 --- [ToDo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-25T22:56:15.721-05:00  INFO 13900 --- [ToDo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4468 ms
+2025-02-25T22:56:16.089-05:00  INFO 13900 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-25T22:56:16.690-05:00  INFO 13900 --- [ToDo] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@d1cb6f8
+2025-02-25T22:56:16.693-05:00  INFO 13900 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-25T22:56:16.723-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/sumit'
+2025-02-25T22:56:16.872-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[dispatcherServlet]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-02-25T22:56:16.873-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[h2Console]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-02-25T22:56:16.987-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-02-25T22:56:17.001-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.apache.catalina.mapper.Mapper        : Registered host [localhost]
+2025-02-25T22:56:17.002-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [jsp] in Context [] for service [StandardService[Tomcat]]
+2025-02-25T22:56:17.003-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [h2Console] in Context [] for service [StandardService[Tomcat]]
+2025-02-25T22:56:17.003-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [dispatcherServlet] in Context [] for service [StandardService[Tomcat]]
+2025-02-25T22:56:17.004-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Context [] for service [StandardService[Tomcat]]
+2025-02-25T22:56:17.004-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register host [localhost] at domain [null] for service [StandardService[Tomcat]]
+2025-02-25T22:56:17.175-05:00  INFO 13900 --- [ToDo] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-25T22:56:17.332-05:00  INFO 13900 --- [ToDo] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.0.CR2
+2025-02-25T22:56:17.436-05:00  INFO 13900 --- [ToDo] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-25T22:56:17.927-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-25T22:56:18.066-05:00  WARN 13900 --- [ToDo] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-25T22:56:18.108-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@64336204) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@79de2ae8)
+2025-02-25T22:56:18.108-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6c34ce39) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6c84e7c1)
+2025-02-25T22:56:18.108-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@13588b17) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@1bd97afe)
+2025-02-25T22:56:18.108-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@51562aba) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1aa775be)
+2025-02-25T22:56:18.109-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4df045ce) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@1daec804)
+2025-02-25T22:56:18.109-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@7d4d32f1) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5c66a263)
+2025-02-25T22:56:18.109-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@13775214) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@78f25696)
+2025-02-25T22:56:18.109-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@6cbc39c3) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@520eb8d)
+2025-02-25T22:56:18.109-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2c6efecf) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@46c24b32)
+2025-02-25T22:56:19.680-05:00  INFO 13900 --- [ToDo] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-25T22:56:19.802-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-02-25T22:56:19.807-05:00  INFO 13900 --- [ToDo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-25T22:56:20.455-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-02-25T22:56:21.340-05:00  WARN 13900 --- [ToDo] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-25T22:56:21.619-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-02-25T22:56:21.772-05:00 DEBUG 13900 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 33 mappings in 'requestMappingHandlerMapping'
+2025-02-25T22:56:21.976-05:00 DEBUG 13900 --- [ToDo] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-02-25T22:56:22.335-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-02-25T22:56:22.499-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2074e9c2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@da92c72, org.springframework.security.web.context.SecurityContextHolderFilter@1baad49a, org.springframework.security.web.header.HeaderWriterFilter@e61fe41, org.springframework.web.filter.CorsFilter@7e1f6ff5, org.springframework.security.web.csrf.CsrfFilter@42922b7c, org.springframework.security.web.authentication.logout.LogoutFilter@69d6dd94, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@60e013fb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@99775b8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ee7a63f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@103c30e9, org.springframework.security.web.access.ExceptionTranslationFilter@1292dd9a, org.springframework.security.web.access.intercept.AuthorizationFilter@5e503ad2]
+2025-02-25T22:56:22.730-05:00 DEBUG 13900 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-02-25T22:56:22.794-05:00 DEBUG 13900 --- [ToDo] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-02-25T22:56:23.063-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:2, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE DATABASE IF NOT EXISTS sumit"]
+Params:[]
+2025-02-25T22:56:23.064-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:0, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["use sumit"]
+Params:[]
+2025-02-25T22:56:23.068-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:3, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE TABLE IF NOT EXISTS todoh ( uid int NOT NULL AUTO_INCREMENT, id int NOT NULL UNIQUE , attach mediumblob, creation_date date DEFAULT NULL, description varchar(40) DEFAULT NULL, done bit(1) DEFAULT NULL, target_date date DEFAULT NULL, username varchar(255) DEFAULT NULL, PRIMARY KEY (uid) )"]
+Params:[]
+2025-02-25T22:56:23.075-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:4, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["INSERT INTO todoh (id, creation_date, description, done, target_date, username) VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, NOW() , "Auto-Added by data.sql", true, DATE_ADD(NOW(), INTERVAL 1 YEAR) , "sumit@sumit.com")"]
+Params:[]
+2025-02-25T22:56:23.077-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:1, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 80 AND 980"]
+Params:[]
+2025-02-25T22:56:23.158-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-02-25T22:56:23.307-05:00  INFO 13900 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-02-25T22:56:23.360-05:00  INFO 13900 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Started ToDo_main in 13.024 seconds (process running for 14.098)
+2025-02-25T22:56:23.570-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    delete 
+    from
+        sumit.todoh 
+    where
+        id BETWEEN 200 AND 888;
+2025-02-25T22:56:23.572-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:6, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 200 AND 888;"]
+Params:[()]
+2025-02-25T22:56:23.665-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-02-25T22:56:23.685-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:7, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-02-25,Autorun_justRef_dataInit.java,true,126,2026-02-25,sumit@bofa.com)]
+2025-02-25T22:56:23.701-05:00  WARN 13900 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-02-25T22:56:23.701-05:00 ERROR 13900 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-02-25T22:56:23.750-05:00 DEBUG 13900 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-02-25T22:56:23.752-05:00 DEBUG 13900 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:8, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-02-25,Autorun_justRef_dataInit.java,false,464,2026-02-25,vraj@yyz.com)]
+2025-02-25T22:56:23.753-05:00  WARN 13900 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-02-25T22:56:23.753-05:00 ERROR 13900 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-02-25T22:58:01.218-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.a.c.a.jaspic.AuthConfigFactoryImpl     : Loading persistent provider registrations from [C:\Users\Sumit\AppData\Local\Temp\tomcat.8080.15761500820014368346\conf\jaspic-providers.xml]
+2025-02-25T22:58:01.223-05:00  INFO 13900 --- [ToDo] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-25T22:58:01.223-05:00  INFO 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-25T22:58:01.224-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-02-25T22:58:01.224-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-02-25T22:58:01.224-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-02-25T22:58:01.226-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5710d698
+2025-02-25T22:58:01.228-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@7a30ccf7
+2025-02-25T22:58:01.228-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-02-25T22:58:01.229-05:00  INFO 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2025-02-25T22:58:01.283-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-02-25T22:58:01.308-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:01.315-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-02-25T22:58:01.317-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2025-02-25T22:58:01.320-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page(ModelMap)
+2025-02-25T22:58:01.339-05:00  INFO 13900 --- [ToDo] [http-nio-8080-exec-2] java.lang.Class                          : Loggged in by:--->sumit@america.com
+** CURRENT USER AUTH = sumit@america.com WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2]  UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]] []
+2025-02-25T22:58:01.432-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-02-25T22:58:01.437-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:9, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:01.453-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.user_role,
+        ua1_0.username,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-02-25T22:58:01.455-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:9, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.user_role,ua1_0.username,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:01.484-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : View name 'welcome1', model {uid_email=sumit@america.com, login_auth_success_1== UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, login_auth_success_2== ** CURRENT USER AUTH = sumit@america.com WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2]  UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]] [], org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-02-25T22:58:01.489-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/welcome1.jsp]
+2025-02-25T22:58:01.501-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/welcome1.jsp
+2025-02-25T22:58:01.503-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/welcome1.jsp
+2025-02-25T22:58:02.579-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-02-25T22:58:02.584-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.693-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:02.695-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:02.695-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:02.696-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:02.696-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:02.696-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-02-25T22:58:02.698-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:02.698-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:02.698-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.699-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:02.699-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-02-25T22:58:02.700-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:02.700-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:02.700-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.700-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.702-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.710-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:02.716-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:02.717-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-02-25T22:58:02.719-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.747-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.748-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.748-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.749-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.749-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.749-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.749-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.749-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.751-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.752-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.817-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:02.819-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:02.819-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:02.820-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.823-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.823-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.876-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:02.879-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:02.879-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:02.880-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:02.883-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:02.883-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.907-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-02-25T22:58:02.908-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.909-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-02-25T22:58:02.910-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2025-02-25T22:58:02.912-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-02-25T22:58:02.916-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-02-25T22:58:02.920-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-02-25T22:58:02.921-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-02-25T22:58:02.928-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-02-25T22:58:02.930-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:02.931-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /error
+2025-02-25T22:58:02.932-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2025-02-25T22:58:02.933-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-02-25T22:58:02.976-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.5', given [image/avif, image/webp, image/png, image/svg+xml, image/*;q=0.8, */*;q=0.5] and supported [application/json, application/*+json]
+2025-02-25T22:58:02.980-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Tue Feb 25 22:58:02 EST 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
+2025-02-25T22:58:03.059-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-02-25T22:58:05.567-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /profile
+2025-02-25T22:58:05.567-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:05.568-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /profile
+2025-02-25T22:58:05.568-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/profile", parameters={}
+2025-02-25T22:58:05.569-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.User_Profile_Controller#get_user_profile(String, ModelMap)
+2025-02-25T22:58:05.581-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    where
+        up1_0.username=?
+2025-02-25T22:58:05.585-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,up1_0.username from todo_user_profiles up1_0 where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:05.587-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-02-25T22:58:05.589-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:05.590-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.user_role,
+        ua1_0.username,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-02-25T22:58:05.591-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.user_role,ua1_0.username,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:05.602-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : View name 'userProfile', model {uid_email=sumit@america.com, userProfile_obj_modelAttribute=UserProfile{userAuth=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='null', l_name='null', phone='null', city='null'}, profile3=UserProfile{userAuth=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='null', l_name='null', phone='null', city='null'}, profile4=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors, org.springframework.validation.BindingResult.userProfile_obj_modelAttribute=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-02-25T22:58:05.603-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/userProfile.jsp]
+2025-02-25T22:58:05.604-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/userProfile.jsp
+2025-02-25T22:58:05.605-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/userProfile.jsp
+2025-02-25T22:58:06.269-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-02-25T22:58:06.271-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 202 ACCEPTED
+2025-02-25T22:58:06.377-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:06.377-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:06.379-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:06.380-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:06.380-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-02-25T22:58:06.381-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:06.381-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.381-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:06.381-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:06.383-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:06.383-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:06.384-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.384-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:06.385-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.384-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.385-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.385-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-02-25T22:58:06.389-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.389-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.390-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:06.390-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.391-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:06.392-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-02-25T22:58:06.393-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.398-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.399-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.403-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.403-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.404-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.404-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.469-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:06.470-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:06.471-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:06.472-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.478-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.478-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:06.524-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:06.528-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:06.529-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:06.530-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:06.534-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:06.536-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.621-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /profile
+2025-02-25T22:58:17.630-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.630-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /profile
+2025-02-25T22:58:17.631-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/profile", parameters={masked}
+2025-02-25T22:58:17.631-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.User_Profile_Controller#set_user_profile(String, String, String, String, String, UserProfile, ModelMap)
+2025-02-25T22:58:17.647-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    where
+        up1_0.username=?
+2025-02-25T22:58:17.651-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,up1_0.username from todo_user_profiles up1_0 where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:17.652-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-02-25T22:58:17.653-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:17.654-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.user_role,
+        ua1_0.username,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-02-25T22:58:17.657-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.user_role,ua1_0.username,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:17.662-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    where
+        up1_0.username=?
+2025-02-25T22:58:17.664-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,up1_0.username from todo_user_profiles up1_0 where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T22:58:17.686-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    update
+        todo_user_profiles 
+    set
+        city=?,
+        f_name=?,
+        l_name=?,
+        phone=?,
+        username=? 
+    where
+        uid=?
+2025-02-25T22:58:17.689-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["update todo_user_profiles set city=?,f_name=?,l_name=?,phone=?,username=? where uid=?"]
+Params:[(ahem,sumit,midf,56,sumit@america.com,2)]
+2025-02-25T22:58:17.701-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : View name 'userProfile', model {uid_email=sumit@america.com, userProfile_obj_modelAttribute=UserProfile{userAuth=UserAuth{uid=0, username='null', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN, {USER, ADMIN}], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='sumit', l_name='midf', phone='56', city='ahem'}, org.springframework.validation.BindingResult.userProfile_obj_modelAttribute=org.springframework.validation.BeanPropertyBindingResult: 0 errors, profile1= [Success] : UserProfile table: Updated successfully, profile2= Retrieved data : UserProfile{userAuth=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='sumit', l_name='midf', phone='56', city='ahem'}, org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-02-25T22:58:17.702-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/userProfile.jsp]
+2025-02-25T22:58:17.703-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /WEB-INF/jsp/userProfile.jsp
+2025-02-25T22:58:17.704-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /WEB-INF/jsp/userProfile.jsp
+2025-02-25T22:58:17.720-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-02-25T22:58:17.721-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.831-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:17.831-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:17.831-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:17.832-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:17.833-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:17.833-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.834-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.835-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-02-25T22:58:17.835-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.836-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.838-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.839-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.840-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.840-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.845-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.846-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.848-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.849-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.857-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:17.859-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T22:58:17.860-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-02-25T22:58:17.862-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.865-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.865-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.919-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:17.920-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T22:58:17.921-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T22:58:17.921-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.926-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.926-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:17.960-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:17.963-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T22:58:17.965-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T22:58:17.967-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T22:58:17.973-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T22:58:17.973-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:18.037-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-02-25T22:58:18.038-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:18.040-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-02-25T22:58:18.040-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2025-02-25T22:58:18.042-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-02-25T22:58:18.050-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-02-25T22:58:18.051-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-02-25T22:58:18.052-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-02-25T22:58:18.054-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-02-25T22:58:18.055-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T22:58:18.056-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /error
+2025-02-25T22:58:18.056-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2025-02-25T22:58:18.057-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-02-25T22:58:18.059-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.5', given [image/avif, image/webp, image/png, image/svg+xml, image/*;q=0.8, */*;q=0.5] and supported [application/json, application/*+json]
+2025-02-25T22:58:18.061-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Tue Feb 25 22:58:18 EST 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
+2025-02-25T22:58:18.063-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-02-25T22:59:18.281-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.281-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.281-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.281-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.284-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.284-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.284-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T22:59:18.284-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:04:14.598-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /profile
+2025-02-25T23:04:14.599-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.600-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /profile
+2025-02-25T23:04:14.600-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/profile", parameters={}
+2025-02-25T23:04:14.601-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.User_Profile_Controller#get_user_profile(String, ModelMap)
+2025-02-25T23:04:14.603-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    where
+        up1_0.username=?
+2025-02-25T23:04:14.608-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:12, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,up1_0.username from todo_user_profiles up1_0 where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T23:04:14.609-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-02-25T23:04:14.611-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:12, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T23:04:14.612-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.user_role,
+        ua1_0.username,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-02-25T23:04:14.614-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:12, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.user_role,ua1_0.username,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-02-25T23:04:14.616-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.view.JstlView            : View name 'userProfile', model {uid_email=sumit@america.com, userProfile_obj_modelAttribute=UserProfile{userAuth=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='sumit', l_name='midf', phone='56', city='ahem'}, profile3=UserProfile{userAuth=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, uid=2, username='sumit@america.com', f_name='sumit', l_name='midf', phone='56', city='ahem'}, profile4=UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$RyFO5CbXgT0lPZ357CyiD.DiPM5HFPXrCyAV8I.tsbN1rludrT7pe', user_role=[USER, ADMIN], createdDate=2025-02-25T21:55:41.401817}, org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors, org.springframework.validation.BindingResult.userProfile_obj_modelAttribute=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-02-25T23:04:14.617-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/userProfile.jsp]
+2025-02-25T23:04:14.618-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/userProfile.jsp
+2025-02-25T23:04:14.619-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/userProfile.jsp
+2025-02-25T23:04:14.634-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-02-25T23:04:14.635-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 202 ACCEPTED
+2025-02-25T23:04:14.743-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T23:04:14.744-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T23:04:14.745-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-02-25T23:04:14.745-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-02-25T23:04:14.745-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-02-25T23:04:14.745-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-02-25T23:04:14.746-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.746-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.748-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.748-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.751-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.751-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.752-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T23:04:14.752-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T23:04:14.752-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T23:04:14.753-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-02-25T23:04:14.753-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T23:04:14.753-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T23:04:14.753-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T23:04:14.754-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T23:04:14.753-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-02-25T23:04:14.754-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.754-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.754-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.758-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.758-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.759-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.759-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.759-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.759-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.844-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T23:04:14.846-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-02-25T23:04:14.846-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-02-25T23:04:14.847-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.851-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.852-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.888-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T23:04:14.896-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-02-25T23:04:14.896-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-02-25T23:04:14.897-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-02-25T23:04:14.900-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-02-25T23:04:14.900-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.921-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-02-25T23:04:14.923-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.924-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-02-25T23:04:14.924-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2025-02-25T23:04:14.925-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-02-25T23:04:14.928-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-02-25T23:04:14.929-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-02-25T23:04:14.929-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-02-25T23:04:14.932-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /error
+2025-02-25T23:04:14.933-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=8F49EDFF1AEBEC1038C2DC231176F9A2], Granted Authorities=[]]]
+2025-02-25T23:04:14.933-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /error
+2025-02-25T23:04:14.934-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error", parameters={}
+2025-02-25T23:04:14.935-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-02-25T23:04:14.937-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.5', given [image/avif, image/webp, image/png, image/svg+xml, image/*;q=0.8, */*;q=0.5] and supported [application/json, application/*+json]
+2025-02-25T23:04:14.938-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Tue Feb 25 23:04:14 EST 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
+2025-02-25T23:04:14.941-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-02-25T23:05:14.766-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:05:14.766-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:05:14.766-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:05:14.767-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:05:14.767-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:05:14.768-05:00 DEBUG 13900 --- [ToDo] [http-nio-8080-exec-10] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-02-25T23:07:30.852-05:00  INFO 13900 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-02-25T23:07:30.857-05:00  INFO 13900 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-02-25T23:07:30.869-05:00  INFO 13900 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

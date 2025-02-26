@@ -8,8 +8,8 @@
           <hr>
         </div>
 
-              <pre> ${profile3} </pre>  <p>
-              <pre> ${profile4} </pre>  <p>
+              <pre> ${profile1} </pre>  <p>
+              <pre> ${profile2} </pre>  <p>
 
              <form:form method="post" modelAttribute="userProfile_obj_modelAttribute">
 
@@ -93,7 +93,7 @@
                     <form:errors path="userAuth.created_date"  cssClass="text-warning"  />
                     </fieldset>
 
-
+                    <pre> ${profile_all_todos} </pre>  <p>
 
 
 
@@ -104,8 +104,8 @@
 
             </form:form>
 
-              <pre> ${profile1} </pre>  <p>
-              <pre> ${profile2} </pre>  <p>
+              <pre> ${profile3} </pre>  <p>
+              <pre> ${profile4} </pre>  <p>
 <p><p>
 
         </div>
