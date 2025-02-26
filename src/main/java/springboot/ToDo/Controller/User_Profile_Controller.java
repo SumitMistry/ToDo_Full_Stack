@@ -19,8 +19,9 @@ import springboot.ToDo.Services.User_Profile_Services;
 @SessionAttributes({"uid_email", "pass", "totally" })
 public class User_Profile_Controller {
 
-    @Autowired
-    private Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
+//    @Autowired
+//    private Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
+
     @Autowired
     private User_Profile_Services user_profile_services;
 
@@ -32,6 +33,7 @@ public class User_Profile_Controller {
                                    ModelMap modelMap){
         UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
         modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
+        modelMap.addAttribute("profile3", up1_obj.toString());
         return "userProfile";
     }
 

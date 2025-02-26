@@ -36,7 +36,9 @@ public class UserAuth {
     // ✅ Bidirectional One-to-One Mapping // By adding @OneToOne(mappedBy = "userProfile"), we establish a bidirectional link
     @OneToOne(mappedBy = "userAuth", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL ensures that changes in UserAuth propagate to UserProfile.
     // LAazy ensures UserAuth is not loaded unless explicitly accessed
+    // @JoinColumn(name = "username", referencedColumnName = "username")
     private UserProfile userProfile;
+
 
 
     public UserAuth(String username, String password_raw, String password_encoded) {
@@ -87,6 +89,11 @@ public class UserAuth {
     private String[] user_role;
 
 
+    @CreatedDate
+    @Column(name = "created_date", nullable = false, updatable = false) // Ensures immutability
+    private LocalDateTime created_date;
+
+
     /*
     What is @EntityListeners(AuditingEntityListener.class)?
         The annotation @EntityListeners(AuditingEntityListener.class) is used in a JPA entity to enable auditing functionality
@@ -100,9 +107,6 @@ public class UserAuth {
         Spring injects auditing values during entity creation or update
         No need to set timestamps manually!
      */
-    @CreatedDate
-    @Column(nullable = false, updatable = false) // Ensures immutability
-    private LocalDateTime createdDate;
 
     public int getUid() {
         return uid;
@@ -136,12 +140,13 @@ public class UserAuth {
         this.password_encoded = password_encoded;
     }
 
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
+
+    public LocalDateTime getCreated_date() {
+        return created_date;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
+    public void setCreated_date(LocalDateTime created_date) {
+        this.created_date = created_date;
     }
 
     public String[] getUser_role() {
@@ -153,6 +158,11 @@ public class UserAuth {
     }
 
 
+    public String getUserRoleAsString() {
+        String ans = String.join(", ", user_role);
+        return ans;
+    }
+
     @Override
     public String toString() {
         return "UserAuth{" +
@@ -161,7 +171,7 @@ public class UserAuth {
                 ", password_raw='" + password_raw + '\'' +
                 ", password_encoded='" + password_encoded + '\'' +
                 ", user_role=" + Arrays.toString(user_role) +
-                ", createdDate=" + createdDate +
+                ", createdDate=" + created_date +
                 '}';
     }
 }

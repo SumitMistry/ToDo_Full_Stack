@@ -13,27 +13,31 @@ import java.util.NoSuchElementException;
 @Service
 public class User_Profile_Services {
 
+    private final Repo_DAO_UserAuth_JPA repo_dao_userAuth_jpa;
 
     private final Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
-    public User_Profile_Services(Repo_DAO_UserProfile_JPA repoDaoUserProfileJpa){
-        repo_dao_userProfile_jpa = repoDaoUserProfileJpa;
+
+    public User_Profile_Services(Repo_DAO_UserProfile_JPA repoDaoUserProfileJpa, Repo_DAO_UserAuth_JPA repo_dao_userAuth_jpa) {
+        super();
+        this.repo_dao_userProfile_jpa = repoDaoUserProfileJpa;
+        this.repo_dao_userAuth_jpa = repo_dao_userAuth_jpa;
     }
 
-    public UserProfile get_UserProfile_byUsername(String username){
-        UserProfile profile =  repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));
+    public UserProfile get_UserProfile_byUsername(String username) {
+        UserProfile profile = repo_dao_userProfile_jpa.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(" Usernae not founnd"));
         return profile;
     }
 
-    public UserProfile set_UserProfile(UserProfile userProfile){
+    public UserProfile set_UserProfile(UserProfile userProfile) {
         return repo_dao_userProfile_jpa.save(userProfile);
     }
-
+}
 
     //////// After joining table in Entity, this iis step-2
 
 
 
-}
+
 
 
 

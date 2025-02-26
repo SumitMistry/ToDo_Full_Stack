@@ -48,12 +48,17 @@ public class UserProfile {
     @Column(name = "city")
     private String city;
 
-    public UserProfile( String username, String f_name, String l_name, String phone, String city) {
+
+
+    //adding <this.userAuth=userAuth>  to constructor
+    public UserProfile( String username, String f_name, String l_name, String phone, String city, UserAuth userAuth) {
+        super();
         this.username = username;
         this.f_name = f_name;
         this.l_name = l_name;
         this.phone = phone;
         this.city = city;
+        this.userAuth =userAuth;
     }
 
     public UserProfile(String username) {
