@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import springboot.ToDo.Model.UserProfile;
+import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
 import springboot.ToDo.Repository.Repo_DAO_UserProfile_JPA;
 
 import java.util.NoSuchElementException;
@@ -26,6 +27,12 @@ public class User_Profile_Services {
     public UserProfile set_UserProfile(UserProfile userProfile){
         return repo_dao_userProfile_jpa.save(userProfile);
     }
+
+
+    //////// After joining table in Entity, this iis step-2
+
+
+
 }
 
 

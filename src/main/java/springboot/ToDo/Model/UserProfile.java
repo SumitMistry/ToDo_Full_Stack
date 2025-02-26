@@ -18,7 +18,7 @@ public class UserProfile {
 
     // 1️⃣ Establish One-to-One Relationship in Entities
     //    Modify your UserAuth and UserProfile entities to define a one-to-one relationship.
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", referencedColumnName ="username", insertable = false, updatable = false, nullable = false, unique = false )
     private UserAuth userAuth;
 

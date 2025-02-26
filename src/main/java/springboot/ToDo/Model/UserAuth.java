@@ -33,7 +33,9 @@ public class UserAuth {
         )
     */
 
-    @OneToOne(mappedBy = "userAuth")
+    // ✅ Bidirectional One-to-One Mapping // By adding @OneToOne(mappedBy = "userProfile"), we establish a bidirectional link
+    @OneToOne(mappedBy = "userAuth", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL ensures that changes in UserAuth propagate to UserProfile.
+    // LAazy ensures UserAuth is not loaded unless explicitly accessed
     private UserProfile userProfile;
 
 
