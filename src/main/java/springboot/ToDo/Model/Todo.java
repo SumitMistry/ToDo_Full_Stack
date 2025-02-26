@@ -167,4 +167,18 @@ public class Todo {
     public void setAttach(Blob attach) {
         this.attach = attach;
     }
+
+    @Override
+    public String toString() {
+        return "Todo{" +
+                "uid=" + uid +
+                ", id=" + id +
+                ", username='" + username + '\'' +
+                ", description='" + description + '\'' +
+                ", creationDate=" + creationDate +
+                ", targetDate=" + targetDate +
+                ", done=" + done +
+                ", attach=" + attach +
+                '}';
+    }
 }

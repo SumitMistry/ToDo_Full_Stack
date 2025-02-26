@@ -1,6 +1,8 @@
 package springboot.ToDo.Controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +13,14 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Model.UserProfile;
+import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
 import springboot.ToDo.Repository.Repo_DAO_UserProfile_JPA;
+import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.User_Profile_Services;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 //@RequestMapping("/")
@@ -25,12 +33,14 @@ public class User_Profile_Controller {
     @Autowired
     private User_Profile_Services user_profile_services;
 
+    @Autowired
+    private Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
     //////////////////////  Profile: GET  //////////////////////////////////////
     //@ResponseBody
     @RequestMapping(value = {"profile", "profile/"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String get_user_profile(@SessionAttribute(value = "uid_email") String username,
-                                   ModelMap modelMap){
+                                   ModelMap modelMap) throws JsonProcessingException {
         UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
         modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
 
@@ -40,7 +50,9 @@ public class User_Profile_Controller {
         // Retrieving and sending data to frontend. Data = [userAuth] table data only
         modelMap.addAttribute("profile2",up1_obj.getUserAuth().toString());
 
-        //
+
+        // posting all todo belong to current user
+        modelMap.addAttribute("profile_all_todos", Arrays.toString(repo_dao_springData_todo_jpa.findByUsername(username).get().toArray()));
 
         return "userProfile";
     }
