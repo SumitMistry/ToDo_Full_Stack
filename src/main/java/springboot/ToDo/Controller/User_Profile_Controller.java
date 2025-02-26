@@ -63,6 +63,7 @@ public class User_Profile_Controller {
 
         UserProfile retrived_user_prof =  user_profile_services.set_UserProfile(new_userProfile);
         modelMap.addAttribute("profile3", " [Success] : UserProfile table: Updated successfully");
+        // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile]
         modelMap.addAttribute("profile4", " Retrieved data : " + retrived_user_prof.toString()) ;
         return "userProfile";
 
