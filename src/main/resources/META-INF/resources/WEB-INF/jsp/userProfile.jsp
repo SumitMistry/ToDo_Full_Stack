@@ -40,6 +40,14 @@
                     <form:errors path="l_name"  cssClass="text-warning"  />
                     </fieldset>
 
+
+                    <fieldset class="mb-3">
+                    <form:label path="birth_date"> Birthdate : </form:label>
+                    <form:input type="text" path="birth_date" required="required"   />
+                    <form:errors path="birth_date"  cssClass="text-warning"  />
+                    </fieldset>
+
+
                     <fieldset class="mb-3">
                     <form:label path="city"> City : </form:label>
                     <form:input type="text" path="city"      />

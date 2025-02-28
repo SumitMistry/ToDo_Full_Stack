@@ -11,6 +11,4 @@ public interface Repo_DAO_UserProfile_JPA extends JpaRepository<UserProfile , In
 
     Optional<UserProfile> findByUsername(String username);
 
-
-
 }

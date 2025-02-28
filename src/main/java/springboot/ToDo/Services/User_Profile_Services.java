@@ -43,6 +43,7 @@ public class User_Profile_Services {
         current_profile.setF_name(userProfile.getF_name());
         current_profile.setL_name(userProfile.getL_name());
         current_profile.setPhone(userProfile.getPhone());
+        current_profile.setBirth_date(userProfile.getBirth_date());
 
         // obtained saved_user_profile
         UserProfile updated_profile =  repo_dao_userProfile_jpa.findByUsername(userProfile.getUsername()).orElseThrow(()-> new UsernameNotFoundException(" Usernae not founnd"));

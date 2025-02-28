@@ -4,15 +4,19 @@ package springboot.ToDo.Model;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "todo_user_profiles" , schema = "sumit")
 public class UserProfile {
 
@@ -36,6 +40,11 @@ public class UserProfile {
     //  @OneToOne(mappedBy = "username", )
     private String username;
 
+    @DateTimeFormat(pattern = "dd/MM/yyyy")  // --> It only works when binding Java objects via @ModelAttribute. means if front frontend jsp file, we sending data to controller using via modelattribute. Int his case it works, otherwise this will not work.
+    @Past(message ="springboot-starter-validation-@Past---> birth_date -->  ALLOWED to enter only PAST dates " ) // to check date in past
+    // this past works only if I am binign data to frontend using modelattribute, individual tag binding case, this valid will not work, use @past directly at controlelr level, so @valid not needed to use
+    @Column(name = "birth_date", nullable = true)
+    private LocalDate birth_date;
 
     @Column(name = "f_name", nullable = true)
     private String f_name;
@@ -52,20 +61,22 @@ public class UserProfile {
 
 
     //adding <this.userAuth=userAuth>  to constructor
-    public UserProfile( String username, String f_name, String l_name, String phone, String city, UserAuth userAuth) {
-        super();
+
+
+    public UserProfile(UserAuth userAuth, int uid, String username, LocalDate birth_date, String f_name, String l_name, String phone, String city) {
+        this.userAuth = userAuth;
+        this.uid = uid;
         this.username = username;
+        this.birth_date = birth_date;
         this.f_name = f_name;
         this.l_name = l_name;
         this.phone = phone;
         this.city = city;
-        this.userAuth =userAuth;
     }
 
     public UserProfile(String username) {
         this.username = username;
     }
-
 
 
     public int getUid() {
@@ -124,12 +135,21 @@ public class UserProfile {
         this.userAuth = userAuth;
     }
 
+    public LocalDate getBirth_date() {
+        return birth_date;
+    }
+
+    public void setBirth_date(LocalDate birth_date) {
+        this.birth_date = birth_date;
+    }
+
     @Override
     public String toString() {
         return "UserProfile{" +
                 "userAuth=" + userAuth +
                 ", uid=" + uid +
                 ", username='" + username + '\'' +
+                ", birth_date=" + birth_date +
                 ", f_name='" + f_name + '\'' +
                 ", l_name='" + l_name + '\'' +
                 ", phone='" + phone + '\'' +

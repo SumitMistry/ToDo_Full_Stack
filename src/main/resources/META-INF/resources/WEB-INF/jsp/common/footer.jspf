@@ -14,6 +14,11 @@
                format: 'dd/mm/yyyy'
            });
 
+
+           $('#birth_date').datepicker({
+               format: 'dd/mm/yyyy'
+           });
+
         </script>
 `
 
