@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -89,10 +90,10 @@ public class Header_Controller<T> {
     //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
     @RequestMapping(value = { "/api/todo/insert3" }, method = RequestMethod.GET)
     public String get_SprData_JPA_insert(ModelMap modelMap) {
-        List<Todo> list1 = toDo_Services.findbyALL();
-
+        // this is used just to get count=size of list
+        int list_size = toDo_Services.findbyALL().size();
         //pre-filling add tags in forms automatically populated for users as easy to use.
-        Todo t1 = new Todo(list1.size() + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
+        Todo t1 = new Todo(list_size + 1, (String) modelMap.get("uid_email"), "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
         modelMap.addAttribute("todo_obj_spring_data_jpa2", t1);
 
         return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
@@ -117,6 +118,46 @@ public class Header_Controller<T> {
         // get data view
         return "redirect:/api/todo/list"; // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
     }
+
+
+
+
+
+
+
+//   If you decide to make your application a pure ""REST API"" (returning JSON instead of rendering a JSP page), ...
+//   .....then you'd need to change it to return JSON, like this:
+    /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
+
+    @RequestMapping(value = { "/api/todo/insert4" }, method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public ResponseEntity<Todo> insert4(@SessionAttribute("uid_email") String uidEmail) {
+
+        // this is used just to get count=size of list
+        int list_size = toDo_Services.findbyALL().size();
+        //pre-filling add tags in forms automatically populated for users as easy to use.
+        Todo t1 = new Todo(list_size + 1, uidEmail, "Hardcoded-world", LocalDate.now(), LocalDate.now().plusYears(1), false, null);
+
+        return ResponseEntity.ok(t1); // this just return our frontend page in JSON, NO JSP...
+    }
+
+
+    @RequestMapping(value = { "/api/todo/insert4" }, method = RequestMethod.POST, consumes = "application/json")
+    public ResponseEntity<String> insert4(
+                                    @RequestBody @Valid Todo todo_obj_spring_data_jpa2,
+                                    BindingResult bindingResult) {
+
+        // Check for validation errors
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body("Validation failed: " + bindingResult.getAllErrors());
+        }
+
+        // Save to database
+        repo_dao_springData_todo_jpa.save(todo_obj_spring_data_jpa2);
+
+        return ResponseEntity.ok("Todo inserted successfully");
+    }
+
 
 }
 
