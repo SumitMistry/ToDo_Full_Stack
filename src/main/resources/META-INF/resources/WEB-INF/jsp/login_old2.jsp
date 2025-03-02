@@ -12,8 +12,9 @@
         </b>
 
 
-
-                <form method="post" action="/login_perform2">
+                    <!--  <form method="post" action="/login_perform2">   ...this "login_perform2" need to be adjusted at SpringSecurityConfiguration:: securityFilterChain:: .loginProcessingUrl("/login_perform2") -->
+                    <!--  <form method="post" action="/login2"> -->
+                <form method="post" action="/login_perform2">   <!-- this ACTION URL goes to POSTMAN login url -->
 
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 

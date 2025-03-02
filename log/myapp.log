@@ -4340,3 +4340,607 @@ Params:[(sumit@america.com)]
 2025-03-01T23:14:00.272-05:00  INFO 7312 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-03-01T23:14:00.281-05:00  INFO 7312 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-03-01T23:14:00.291-05:00  INFO 7312 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-03-01T23:14:08.964-05:00  INFO 9624 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Starting ToDo_main using Java 21.0.2 with PID 9624 (D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\target\classes started by Sumit in D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo)
+2025-03-01T23:14:08.968-05:00  INFO 9624 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : The following 1 profile is active: "UAT"
+2025-03-01T23:14:09.084-05:00  INFO 9624 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-03-01T23:14:09.084-05:00  INFO 9624 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-03-01T23:14:11.587-05:00  INFO 9624 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-03-01T23:14:11.727-05:00  INFO 9624 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119 ms. Found 3 JPA repository interfaces.
+2025-03-01T23:14:13.031-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : The Apache Tomcat Native library could not be found using names [tcnative-2, libtcnative-2, tcnative-1, libtcnative-1] on the java.library.path [C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.]. The errors reported were [Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-1.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-1.dll, no tcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no tcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.]
+
+org.apache.tomcat.jni.LibraryNotFoundError: Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-2.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\tcnative-1.dll, Can't load library: D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\bin\libtcnative-1.dll, no tcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-2 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no tcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;., no libtcnative-1 in java.library.path: C:\Users\Sumit\.jdks\openjdk-21.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Python311\Scripts\;C:\Program Files\Python311\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\PuTTY\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Sumit\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.2.2\bin;;C:\Program Files\JetBrains\PyCharm Community Edition 2023.2.1\bin;;C:\Users\Sumit\AppData\Local\Programs\Microsoft VS Code\bin;.
+	at org.apache.tomcat.jni.Library.<init>(Library.java:91) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.jni.Library.initialize(Library.java:147) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.AprLifecycleListener.init(AprLifecycleListener.java:189) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.catalina.core.AprLifecycleListener.isAprAvailable(AprLifecycleListener.java:106) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getDefaultServerLifecycleListeners(TomcatServletWebServerFactory.java:191) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.<init>(TomcatServletWebServerFactory.java:138) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryConfiguration$EmbeddedTomcat.tomcatServletWebServerFactory(ServletWebServerFactoryConfiguration.java:73) ~[spring-boot-autoconfigure-3.3.0-RC1.jar:3.3.0-RC1]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:140) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:644) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:636) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1335) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1165) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205) ~[spring-beans-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getWebServerFactory(ServletWebServerApplicationContext.java:223) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:186) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:618) ~[spring-context-6.1.6.jar:6.1.6]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-3.3.0-RC1.jar:3.3.0-RC1]
+	at springboot.ToDo.ToDo_main.main(ToDo_main.java:12) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.3.0-RC1.jar:3.3.0-RC1]
+
+2025-03-01T23:14:13.742-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardHost[localhost]] to container [StandardEngine[Tomcat]]
+2025-03-01T23:14:13.783-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[jsp]] to container [TomcatEmbeddedContext[]]
+2025-03-01T23:14:13.792-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [TomcatEmbeddedContext[]] to container [StandardEngine[Tomcat].StandardHost[localhost]]
+2025-03-01T23:14:14.032-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-03-01T23:14:14.065-05:00  INFO 9624 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-03-01T23:14:14.066-05:00  INFO 9624 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2025-03-01T23:14:14.109-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.loader.WebappLoader    : Starting this Loader
+2025-03-01T23:14:14.680-05:00  INFO 9624 --- [ToDo] [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-03-01T23:14:14.695-05:00  INFO 9624 --- [ToDo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-03-01T23:14:14.695-05:00  INFO 9624 --- [ToDo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5610 ms
+2025-03-01T23:14:15.126-05:00  INFO 9624 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-03-01T23:14:15.938-05:00  INFO 9624 --- [ToDo] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@37534cda
+2025-03-01T23:14:15.942-05:00  INFO 9624 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-03-01T23:14:15.975-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/sumit'
+2025-03-01T23:14:16.132-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[dispatcherServlet]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-03-01T23:14:16.134-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[h2Console]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-03-01T23:14:16.174-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.a.catalina.session.StandardManager     : Persisted data file [C:\Users\Sumit\AppData\Local\Temp\DD76C0460EAEF38705E9C302AB0B82939A161C44\servlet-sessions\SESSIONS.ser] was not found
+2025-03-01T23:14:16.184-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-03-01T23:14:16.202-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.apache.catalina.mapper.Mapper        : Registered host [localhost]
+2025-03-01T23:14:16.204-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [jsp] in Context [] for service [StandardService[Tomcat]]
+2025-03-01T23:14:16.205-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [h2Console] in Context [] for service [StandardService[Tomcat]]
+2025-03-01T23:14:16.206-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [dispatcherServlet] in Context [] for service [StandardService[Tomcat]]
+2025-03-01T23:14:16.207-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Context [] for service [StandardService[Tomcat]]
+2025-03-01T23:14:16.208-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register host [localhost] at domain [null] for service [StandardService[Tomcat]]
+2025-03-01T23:14:16.441-05:00  INFO 9624 --- [ToDo] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-03-01T23:14:16.641-05:00  INFO 9624 --- [ToDo] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.0.CR2
+2025-03-01T23:14:16.714-05:00  INFO 9624 --- [ToDo] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-03-01T23:14:17.202-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-03-01T23:14:17.356-05:00  WARN 9624 --- [ToDo] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-03-01T23:14:17.391-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@20a6d96d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5925aa71)
+2025-03-01T23:14:17.392-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@198e9d04) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@41b8f1cb)
+2025-03-01T23:14:17.392-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@57c33520) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@23c17b8b)
+2025-03-01T23:14:17.392-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4ecab44a) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@48fa32f1)
+2025-03-01T23:14:17.392-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@65e74fb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2eeb4a98)
+2025-03-01T23:14:17.393-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3518d3eb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2c6c0203)
+2025-03-01T23:14:17.393-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@596052d9) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2d2b7ce7)
+2025-03-01T23:14:17.393-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5e5f7522) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@126f08f0)
+2025-03-01T23:14:17.393-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@494276fe) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3ff8f775)
+2025-03-01T23:14:19.263-05:00  INFO 9624 --- [ToDo] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-03-01T23:14:19.422-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-03-01T23:14:19.429-05:00  INFO 9624 --- [ToDo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-03-01T23:14:20.302-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-03-01T23:14:21.511-05:00  WARN 9624 --- [ToDo] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-03-01T23:14:21.835-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-03-01T23:14:22.022-05:00 DEBUG 9624 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 33 mappings in 'requestMappingHandlerMapping'
+2025-03-01T23:14:22.289-05:00 DEBUG 9624 --- [ToDo] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-03-01T23:14:22.721-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-03-01T23:14:22.925-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4db5cb50, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c190f6c, org.springframework.security.web.context.SecurityContextHolderFilter@203209c8, org.springframework.security.web.header.HeaderWriterFilter@a9de940, org.springframework.web.filter.CorsFilter@3b564764, org.springframework.security.web.authentication.logout.LogoutFilter@70298e84, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@789232c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46e717ca, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74598407, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d8b5d00, org.springframework.security.web.access.ExceptionTranslationFilter@7f62ce6a, org.springframework.security.web.access.intercept.AuthorizationFilter@24c4607d]
+2025-03-01T23:14:23.211-05:00 DEBUG 9624 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-03-01T23:14:23.284-05:00 DEBUG 9624 --- [ToDo] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-03-01T23:14:23.599-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:8, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE DATABASE IF NOT EXISTS sumit"]
+Params:[]
+2025-03-01T23:14:23.601-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:1, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["use sumit"]
+Params:[]
+2025-03-01T23:14:23.605-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:3, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE TABLE IF NOT EXISTS todoh ( uid int NOT NULL AUTO_INCREMENT, id int NOT NULL UNIQUE , attach mediumblob, creation_date date DEFAULT NULL, description varchar(40) DEFAULT NULL, done bit(1) DEFAULT NULL, target_date date DEFAULT NULL, username varchar(255) DEFAULT NULL, PRIMARY KEY (uid) )"]
+Params:[]
+2025-03-01T23:14:23.617-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:7, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["INSERT INTO todoh (id, creation_date, description, done, target_date, username) VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, NOW() , "Auto-Added by data.sql", true, DATE_ADD(NOW(), INTERVAL 1 YEAR) , "sumit@sumit.com")"]
+Params:[]
+2025-03-01T23:14:23.623-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:6, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 80 AND 980"]
+Params:[]
+2025-03-01T23:14:23.722-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-03-01T23:14:23.868-05:00  INFO 9624 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-03-01T23:14:23.899-05:00  INFO 9624 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Started ToDo_main in 15.901 seconds (process running for 17.22)
+2025-03-01T23:14:24.169-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    delete 
+    from
+        sumit.todoh 
+    where
+        id BETWEEN 200 AND 888;
+2025-03-01T23:14:24.173-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:6, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 200 AND 888;"]
+Params:[()]
+2025-03-01T23:14:24.291-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-03-01T23:14:24.310-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:7, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-03-01,Autorun_justRef_dataInit.java,true,241,2026-03-01,sumit@bofa.com)]
+2025-03-01T23:14:24.327-05:00  WARN 9624 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-03-01T23:14:24.328-05:00 ERROR 9624 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-03-01T23:14:24.376-05:00 DEBUG 9624 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-03-01T23:14:24.380-05:00 DEBUG 9624 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:8, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-03-01,Autorun_justRef_dataInit.java,false,873,2026-03-01,vraj@yyz.com)]
+2025-03-01T23:14:24.380-05:00  WARN 9624 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-03-01T23:14:24.380-05:00 ERROR 9624 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-03-01T23:15:10.318-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.a.c.a.jaspic.AuthConfigFactoryImpl     : Loading persistent provider registrations from [C:\Users\Sumit\AppData\Local\Temp\tomcat.8080.1466402551694732551\conf\jaspic-providers.xml]
+2025-03-01T23:15:10.323-05:00  INFO 9624 --- [ToDo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-03-01T23:15:10.324-05:00  INFO 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-03-01T23:15:10.324-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-03-01T23:15:10.324-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-03-01T23:15:10.324-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-03-01T23:15:10.326-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@7e1b3ace
+2025-03-01T23:15:10.327-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@12a4d663
+2025-03-01T23:15:10.328-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-03-01T23:15:10.328-05:00  INFO 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-03-01T23:15:10.394-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-03-01T23:15:10.425-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:10.473-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/?continue to session
+2025-03-01T23:15:10.475-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:10.517-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:10.525-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:10.528-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:10.533-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:10.573-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:10.618-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:10.636-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:10.655-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:10.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:11.961-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:11.964-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:12.125-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:12.126-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:12.127-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:12.127-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:12.129-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:12.129-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:12.130-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:12.130-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:12.130-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:12.130-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:12.130-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:12.131-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:12.133-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:12.134-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:12.135-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:12.136-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:12.188-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:12.189-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:12.189-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:12.189-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:12.190-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:12.190-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:12.192-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:12.192-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:12.502-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-03-01T23:15:12.505-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:12.505-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:13.857-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-03-01T23:15:13.868-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:13.871-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/login_perform2?continue to session
+2025-03-01T23:15:13.872-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:13.900-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:13.902-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:13.902-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:13.903-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:13.904-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:13.904-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:13.905-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:13.906-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:13.908-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:13.912-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:13.913-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:14.135-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:14.134-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:14.135-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:14.137-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:14.139-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:14.138-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:14.139-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:14.142-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:14.143-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:14.143-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:14.145-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:14.145-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:14.146-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:14.146-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:14.145-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:14.148-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:14.147-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:14.153-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:14.153-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.413-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-03-01T23:15:15.415-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.417-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/login_perform2?continue to session
+2025-03-01T23:15:15.418-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:15.456-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:15.458-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:15.459-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:15.460-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:15.461-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.461-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:15.462-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:15.464-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:15.466-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:15.471-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:15.473-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:15.693-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:15.695-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:15.695-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:15.699-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:15.702-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:15.703-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:15.705-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:15.705-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:15.705-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:15.707-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:15.707-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:15.708-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:15.708-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:15.707-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.708-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:15.709-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:15.709-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:15.710-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:15.712-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:15.713-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.714-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:15.715-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:15.719-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:15.720-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:16.004-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-03-01T23:15:16.006-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:16.007-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:16.072-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:16.074-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:16.074-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:16.075-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:16.076-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:16.076-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:16.076-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:16.078-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:16.080-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:16.082-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:16.083-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:16.862-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-03-01T23:15:16.864-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:16.866-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/login_perform2?continue to session
+2025-03-01T23:15:16.867-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:16.904-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:16.906-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:16.906-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:16.906-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:16.907-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:16.908-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:16.908-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:16.909-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:16.910-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:16.912-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:16.912-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:17.158-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:17.158-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:17.159-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:17.160-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:17.161-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:17.161-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:17.161-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:17.166-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:17.166-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:17.169-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:17.170-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:17.171-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:17.171-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:17.172-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:17.173-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:17.173-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:17.176-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:17.176-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.618-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-03-01T23:15:18.621-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.623-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/login_perform2?continue to session
+2025-03-01T23:15:18.623-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:18.657-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:18.659-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:18.659-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:18.660-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:18.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:18.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:18.663-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:18.664-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:18.666-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:18.667-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:18.886-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:18.886-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:18.887-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:18.888-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:18.888-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:18.889-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:18.890-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:18.891-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:18.892-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:18.893-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:18.893-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:18.894-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.894-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:18.895-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.895-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:18.896-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:18.896-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:18.903-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:18.903-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.420-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/todo/listall
+2025-03-01T23:15:23.422-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.423-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/api/todo/listall?continue to session
+2025-03-01T23:15:23.424-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:23.460-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:23.460-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:23.461-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:23.462-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:23.463-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.464-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:23.464-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:23.465-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:23.467-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:23.473-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:23.474-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:23.724-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:23.726-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:23.726-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:23.728-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:23.732-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:23.733-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:23.733-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:23.734-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:23.735-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:23.735-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:23.735-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:23.735-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.735-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:23.736-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:23.737-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:23.737-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:23.737-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:23.738-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:23.740-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:23.740-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.741-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:23.742-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:23.743-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:23.743-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.386-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-03-01T23:15:25.388-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.390-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/login_perform2?continue to session
+2025-03-01T23:15:25.390-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-3] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-03-01T23:15:25.425-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-03-01T23:15:25.426-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-03-01T23:15:25.427-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-03-01T23:15:25.428-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-03-01T23:15:25.429-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.430-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : View name 'login_old2', model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-03-01T23:15:25.430-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-03-01T23:15:25.432-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:25.435-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-03-01T23:15:25.436-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-03-01T23:15:25.437-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:25.656-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:25.656-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:25.658-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-03-01T23:15:25.658-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:25.659-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-03-01T23:15:25.660-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-03-01T23:15:25.660-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:25.660-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-03-01T23:15:25.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-03-01T23:15:25.661-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-03-01T23:15:25.662-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:25.662-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:25.663-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:25.664-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-03-01T23:15:25.665-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-03-01T23:15:25.666-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-03-01T23:15:25.668-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:25.668-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.668-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:25.668-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.668-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:25.670-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:15:25.670-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-03-01T23:15:25.671-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-03-01T23:16:25.840-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.840-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.841-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.840-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.842-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-6] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.842-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.842-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-5] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:16:25.842-05:00 DEBUG 9624 --- [ToDo] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error state [CLOSE_CONNECTION_NOW] reported while processing request
+
+java.io.EOFException: null
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.fillReadBuffer(NioEndpoint.java:1288) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.read(NioEndpoint.java:1176) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.fill(Http11InputBuffer.java:785) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:348) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:264) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.20.jar:10.1.20]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2025-03-01T23:19:46.964-05:00  INFO 9624 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-03-01T23:19:46.971-05:00  INFO 9624 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-03-01T23:19:47.005-05:00  INFO 9624 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
