@@ -46,7 +46,7 @@ public class User_Profile_Controller {
 
         // Retrieving Profile1 data to frontend from table [UserProfile1]
         UserProfile1 up1_obj = user_profile_services.get_UserProfile1_byUsername(username);
-        modelMap.addAttribute("up1sex", up1_obj.getSex().name());
+        modelMap.addAttribute("up1sex", up1_obj.getSex() != null    ?   up1_obj.getSex().name() : "");
 
         // Retrieving join table data to frontend from table = [userAuth] + [userProfile0]
         modelMap.addAttribute("profile_a", up0_obj.toString());

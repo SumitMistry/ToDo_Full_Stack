@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import springboot.ToDo.Model.UserProfile0;
 import springboot.ToDo.Model.UserProfile1;
 import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
-import springboot.ToDo.Repository.Repo_DAO_UserProfile1_JPA;
 import springboot.ToDo.Repository.Repo_DAO_UserProfile0_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserProfile1_JPA;
 
 @Service
 public class User_Profile_Services {

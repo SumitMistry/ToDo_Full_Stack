@@ -2,7 +2,6 @@ package springboot.ToDo;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.context.properties.ConfigurationPropertiesBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
