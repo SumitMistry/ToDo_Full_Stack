@@ -68,7 +68,8 @@
                     <label> Sex : </label>
 
                         <input type="radio" id="sexMale" name="sex"  value="MALE"          ${up1sex == 'MALE' ? 'checked' : ''}  required  >     <label for="sexMale">MALE   </label>
-                        <input type="radio" id="sexFemale" name="sex" value="FEMALE"       ${up1sex == 'FEMALE' ? 'checked' : ''}  required>           <label for="sexFemale">FEMALE</label><br>
+                        <input type="radio" id="sexFemale" name="sex" value="FEMALE"       ${up1sex == 'FEMALE' ? 'checked' : ''}  required>           <label for="sexFemale">FEMALE</label>
+                        <br> <br>
 
 
 
