@@ -26,7 +26,7 @@ import springboot.ToDo.Services.Login_Services;
 // "uid" is the frontend variable, passing this will be able to save as session. it will work..
 public class Login_Controller {
 
-    Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
+    final Logger l1 = LoggerFactory.getLogger(Class.class); // or   getLogger(Login_Controller.class)
 
     @Autowired
     private Login_Services login_services;

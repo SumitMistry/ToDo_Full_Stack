@@ -108,7 +108,7 @@ public class User_Profile_Controller {
         // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile0]
         modelMap.addAttribute("profile4", " Retrieved data : " + retrived_user_prof0.toString()) ;
         // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile1]
-        modelMap.addAttribute("profile5", " Retrieved data : " + retrived_user_prof1.toString()) ;
+        modelMap.addAttribute("profile5", " Retrieved data : " + retrived_user_prof1) ;
         return "userProfile";
 
     }

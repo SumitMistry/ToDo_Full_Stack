@@ -92,7 +92,7 @@ public class ToDo_Controller<T> {
                                            ModelMap modelMap){
         boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
 
-        if (x == true){   // if (x == true)
+        if (x){   // if (x == true)
             return new ResponseEntity<>(x, HttpStatus.FOUND); // 302 code
         }
         else{
@@ -282,7 +282,7 @@ public class ToDo_Controller<T> {
     public String deleteByUID(@RequestParam(value = "u") int uid) {
 
         // before deleting, checking if the ID exist or not!!, this is good practice..
-        if (repo_dao_springData_todo_jpa.existsByUid(uid) == true){ // if exist == true
+        if (repo_dao_springData_todo_jpa.existsByUid(uid)){ // if exist == true
             toDo_Services.deleteByUID_springDataJPA(uid);
             l1.info("Deleted UID: " + uid);
         } else {

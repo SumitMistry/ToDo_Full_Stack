@@ -27,7 +27,7 @@ public class UserProfile1 {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", referencedColumnName ="username", insertable = false, updatable = false, nullable = false, unique = false )
-    private UserAuth userAuth;;
+    private UserAuth userAuth;
 
 
 //    @Id
@@ -53,9 +53,9 @@ public class UserProfile1 {
 
         public enum Sex{
             MALE, FEMALE
-        };
+        }
 
-        @Enumerated(EnumType.STRING) // ✅ Stores as "MALE" or "FEMALE"
+    @Enumerated(EnumType.STRING) // ✅ Stores as "MALE" or "FEMALE"
         //This ensures the enum values are stored as "MALE" or "FEMALE" in the database instead of numbers (default behavior of JPA).
         @Column(name = "sex", nullable = true)
         private Sex sex;
