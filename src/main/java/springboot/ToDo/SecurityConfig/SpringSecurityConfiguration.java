@@ -173,7 +173,8 @@ public class SpringSecurityConfiguration {
                                 // please supply this to POSTMAN for login : POST http://localhost:8080/login_perform2 with BODY= x-www-form-urlencoded
                         .loginProcessingUrl("/login_perform2")  // Specifies the URL where login requests should be submitted
 
-                        .loginProcessingUrl("/login2")  // Specifies the URL where login requests should be submitted
+                        // .loginProcessingUrl("/login2")  // Specifies the URL where login requests should be submitted'
+
                         .defaultSuccessUrl("/", true)  // Redirects after successful login
                         .usernameParameter("uid_email")  // Match form field name
                         .passwordParameter("pass")       // Match form field name

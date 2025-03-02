@@ -8,10 +8,11 @@
           <hr>
         </div>
 
-              <pre> ${profile1} </pre>  <p>
-              <pre> ${profile2} </pre>  <p>
+              <pre> ${profile_a} </pre>  <p>
+              <pre> ${profile_b} </pre>  <p>
 
-             <form:form method="post" modelAttribute="userProfile_obj_modelAttribute">
+
+             <form:form method="post" modelAttribute="userProfile0_obj_modelAttribute">
 
                     <fieldset class="mb-3">
                     <form:label path="uid"> uid : </form:label>
@@ -62,33 +63,42 @@
                     </fieldset>
 
 
+
+
+                    <label> Sex : </label>
+
+                        <input type="radio" id="sexMale" name="sex"  value="MALE"          ${up1sex == 'MALE' ? 'checked' : ''}  required  >     <label for="sexMale">MALE   </label>
+                        <input type="radio" id="sexFemale" name="sex" value="FEMALE"       ${up1sex == 'FEMALE' ? 'checked' : ''}  required>           <label for="sexFemale">FEMALE</label><br>
+
+
+
                     <fieldset class="mb-3">
                     <form:label path="userAuth.user_role"> Roles : </form:label>
-                    <form:input type="text" path="userAuth.user_role" value="${userProfile_obj_modelAttribute.userAuth.userRoleAsString}"  disabled="true"   />
-                    <form:hidden path="userAuth.user_role"  value="${userProfile_obj_modelAttribute.userAuth.userRoleAsString}" />
+                    <form:input type="text" path="userAuth.user_role" value="${userProfile0_obj_modelAttribute.userAuth.userRoleAsString}"  disabled="true"   />
+                    <form:hidden path="userAuth.user_role"  value="${userProfile0_obj_modelAttribute.userAuth.userRoleAsString}" />
                     <form:errors path="userAuth.user_role"  cssClass="text-warning"  />
                     </fieldset>
 
 
                     <fieldset class="mb-3">
                     <form:label path="userAuth.user_role"> Roles : </form:label>
-                    <form:input type="text" path="userAuth.user_role" value="${userProfile_obj_modelAttribute.userAuth.user_role}"  disabled="true"   />
-                    <form:hidden path="userAuth.user_role"  value="${userProfile_obj_modelAttribute.userAuth.user_role}" />
+                    <form:input type="text" path="userAuth.user_role" value="${userProfile0_obj_modelAttribute.userAuth.user_role}"  disabled="true"   />
+                    <form:hidden path="userAuth.user_role"  value="${userProfile0_obj_modelAttribute.userAuth.user_role}" />
                     <form:errors path="userAuth.user_role"  cssClass="text-warning"  />
                     </fieldset>
 
                     <fieldset class="mb-3">
                     <form:label path="userAuth.password_raw"> Raw Password: </form:label>
-                    <form:input type="text" path="userAuth.created_date" value="${userProfile_obj_modelAttribute.userAuth.password_raw}" disabled="true"      />
-                    <form:hidden path="userAuth.password_raw"  value="${userProfile_obj_modelAttribute.userAuth.password_raw}" />
+                    <form:input type="text" path="userAuth.created_date" value="${userProfile0_obj_modelAttribute.userAuth.password_raw}" disabled="true"      />
+                    <form:hidden path="userAuth.password_raw"  value="${userProfile0_obj_modelAttribute.userAuth.password_raw}" />
                     <form:errors path="userAuth.password_raw"  cssClass="text-warning"  />
                     </fieldset>
 
 
                     <fieldset class="mb-3">
                     <form:label path="userAuth.password_encoded"> Encoded Password: </form:label>
-                    <form:input type="text" path="userAuth.password_encoded" value="${userProfile_obj_modelAttribute.userAuth.password_encoded}"  disabled="true"   size="70"   />
-                    <form:hidden path="userAuth.password_encoded"  value="${userProfile_obj_modelAttribute.userAuth.password_encoded}" />
+                    <form:input type="text" path="userAuth.password_encoded" value="${userProfile0_obj_modelAttribute.userAuth.password_encoded}"  disabled="true"   size="70"   />
+                    <form:hidden path="userAuth.password_encoded"  value="${userProfile0_obj_modelAttribute.userAuth.password_encoded}" />
                     <form:errors path="userAuth.password_encoded"  cssClass="text-warning"  />
                     </fieldset>
 
@@ -96,23 +106,26 @@
 
                     <fieldset class="mb-3">
                     <form:label path="userAuth.created_date"> Created Date: </form:label>
-                    <form:input type="text" path="userAuth.created_date" value="${userProfile_obj_modelAttribute.userAuth.created_date}" required="required" disabled="true"    size="30"   />
-                    <form:hidden path="userAuth.created_date"  value="${userProfile_obj_modelAttribute.userAuth.created_date}" />
+                    <form:input type="text" path="userAuth.created_date" value="${userProfile0_obj_modelAttribute.userAuth.created_date}" required="required" disabled="true"    size="30"   />
+                    <form:hidden path="userAuth.created_date"  value="${userProfile0_obj_modelAttribute.userAuth.created_date}" />
                     <form:errors path="userAuth.created_date"  cssClass="text-warning"  />
                     </fieldset>
-                    My Todos :     ${profile_all_todos}  <p>
 
 
 
-
+     My Todos :     ${profile_all_todos}  <p>
 
 
                 <p><input type="submit" value="   Update   "  class="btn btn-success"> </input>
 
             </form:form>
+            
 
+                    
+                    
               <pre> ${profile3} </pre>  <p>
               <pre> ${profile4} </pre>  <p>
+              <pre> ${profile5} </pre>  <p>
 <p><p>
 
         </div>

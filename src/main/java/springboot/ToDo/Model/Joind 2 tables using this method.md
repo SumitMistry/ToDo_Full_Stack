@@ -11,11 +11,11 @@ Modify your UserAuth and UserProfile entities to define a one-to-one relationshi
 
     @OneToOne
     @JoinColumn(name = "username", referencedColumnName = "username", insertable = false, updatable = false)
-    private UserProfile userProfile;
+    private UserProfile userProfile0;
 
 ✅ UserProfile.java (Modify It)
     
-    @OneToOne(mappedBy = "userProfile")
+    @OneToOne(mappedBy = "userProfile0")
     private UserAuth userAuth;
 
 2️⃣ Create a Repository to Fetch Joined Data
@@ -27,7 +27,7 @@ We need a method in the JPA repository to fetch user details by username.
     public interface Repo_DAO_UserAuth_JPA extends JpaRepository<UserAuth, Integer> {
         
         // Fetch user details by username, including UserProfile
-        @Query("SELECT u FROM UserAuth u JOIN FETCH u.userProfile WHERE u.username = :username")
+        @Query("SELECT u FROM UserAuth u JOIN FETCH u.userProfile0 WHERE u.username = :username")
         Optional<UserAuth> findByUsernameWithProfile(@Param("username") String username);
     }
 
@@ -65,7 +65,7 @@ Now, modify your controller to fetch user details and send them to the JSP page.
         public String showUserDetails(@SessionAttribute(value = "uid_email") String username, ModelMap modelMap) {
             UserAuth userAuth = userAuthService.getUserWithProfile(username);
             modelMap.addAttribute("userAuth", userAuth);
-            modelMap.addAttribute("userProfile", userAuth.getUserProfile());
+            modelMap.addAttribute("userProfile0", userAuth.getUserProfile());
             return "userDetails"; // This is the JSP page name
         }
     }
@@ -84,10 +84,10 @@ Now, create userDetails.jsp to show all user data.
             <tr><th>Username</th><td>${userAuth.username}</td></tr>
             <tr><th>Role</th><td>${userAuth.user_role}</td></tr>
             <tr><th>Created Date</th><td>${userAuth.createdDate}</td></tr>
-            <tr><th>First Name</th><td>${userProfile.f_name}</td></tr>
-            <tr><th>Last Name</th><td>${userProfile.l_name}</td></tr>
-            <tr><th>Phone</th><td>${userProfile.phone}</td></tr>
-            <tr><th>City</th><td>${userProfile.city}</td></tr>
+            <tr><th>First Name</th><td>${userProfile0.f_name}</td></tr>
+            <tr><th>Last Name</th><td>${userProfile0.l_name}</td></tr>
+            <tr><th>Phone</th><td>${userProfile0.phone}</td></tr>
+            <tr><th>City</th><td>${userProfile0.city}</td></tr>
         </table>
     </div>
     

@@ -2,12 +2,9 @@ package springboot.ToDo.Model;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,10 +15,10 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @Table(name = "todo_user_profiles" , schema = "sumit")
-public class UserProfile {
+public class UserProfile0 {
 
     // 1️⃣ Establish One-to-One Relationship in Entities
-    //    Modify your UserAuth and UserProfile entities to define a one-to-one relationship.
+    //    Modify your UserAuth and UserProfile0 entities to define a one-to-one relationship.
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", referencedColumnName ="username", insertable = false, updatable = false, nullable = false, unique = false )
     private UserAuth userAuth;
@@ -63,7 +60,7 @@ public class UserProfile {
     //adding <this.userAuth=userAuth>  to constructor
 
 
-    public UserProfile(UserAuth userAuth, int uid, String username, LocalDate birth_date, String f_name, String l_name, String phone, String city) {
+    public UserProfile0(UserAuth userAuth, int uid, String username, LocalDate birth_date, String f_name, String l_name, String phone, String city) {
         this.userAuth = userAuth;
         this.uid = uid;
         this.username = username;
@@ -74,7 +71,7 @@ public class UserProfile {
         this.city = city;
     }
 
-    public UserProfile(String username) {
+    public UserProfile0(String username) {
         this.username = username;
     }
 
@@ -145,7 +142,7 @@ public class UserProfile {
 
     @Override
     public String toString() {
-        return "UserProfile{" +
+        return "UserProfile0{" +
                 "userAuth=" + userAuth +
                 ", uid=" + uid +
                 ", username='" + username + '\'' +

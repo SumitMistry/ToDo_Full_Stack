@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Model.UserProfile;
+import springboot.ToDo.Model.UserProfile0;
+import springboot.ToDo.Model.UserProfile1;
 import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
-import springboot.ToDo.Repository.Repo_DAO_UserProfile_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserProfile0_JPA;
+import springboot.ToDo.Repository.Repo_DAO_UserProfile1_JPA;
 import springboot.ToDo.SecurityConfig.SpringSecurityConfiguration;
 
 @Service
@@ -22,12 +24,15 @@ public class User_Signup_Services {
 
 
 
-    private final Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
+    private final Repo_DAO_UserProfile0_JPA repo_dao_userProfile0_jpa;
+    private final Repo_DAO_UserProfile1_JPA repo_dao_userProfile1_jpa;
+
     private final Repo_DAO_UserAuth_JPA repo_dao_userAuth_jpa;
-    public User_Signup_Services(Repo_DAO_UserAuth_JPA userAuth_jpa, Repo_DAO_UserProfile_JPA userProfile_jpa){
+    public User_Signup_Services(Repo_DAO_UserAuth_JPA userAuth_jpa, Repo_DAO_UserProfile0_JPA repoDaoUserProfile0Jpa, Repo_DAO_UserProfile1_JPA repoDaoUserProfile1Jpa){
         super();
         this.repo_dao_userAuth_jpa = userAuth_jpa;
-        this.repo_dao_userProfile_jpa = userProfile_jpa;
+        this.repo_dao_userProfile0_jpa = repoDaoUserProfile0Jpa;
+        this.repo_dao_userProfile1_jpa = repoDaoUserProfile1Jpa;
         //        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -73,13 +78,23 @@ public class User_Signup_Services {
 
 
 
-    public UserProfile add_ONLY_username_in_UserProfile(String usr_name){
+    public UserProfile0 add_ONLY_username_in_UserProfile0(String usr_name){
         if (usr_name.isEmpty()) {
 
         }
-            UserProfile user_object_for_UserProfile = new UserProfile(usr_name);
-            repo_dao_userProfile_jpa.save(user_object_for_UserProfile);
-            return user_object_for_UserProfile;
+            UserProfile0 user_object_for_UserProfile0 = new UserProfile0(usr_name);
+            repo_dao_userProfile0_jpa.save(user_object_for_UserProfile0);
+            return user_object_for_UserProfile0;
+    }
+
+
+    public UserProfile1 add_ONLY_username_in_UserProfile1(String usr_name){
+        if (usr_name.isEmpty()) {
+
+        }
+        UserProfile1 user_object_for_UserProfile1 = new UserProfile1(usr_name);
+        repo_dao_userProfile1_jpa.save(user_object_for_UserProfile1);
+        return user_object_for_UserProfile1;
     }
 
 

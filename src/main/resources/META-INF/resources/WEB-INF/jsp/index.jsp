@@ -71,7 +71,7 @@
                     @Transactional(readOnly = true) // , propagation = Propagation.)
                     / I kept this hard coded data as READONLY so will not get injected to DB
                     public String sprData_jpa_hard_code_data(ModelMap modelMap){ <p>
-                    1.1<a href="api/todo/hardcode1" class="btn btn-success"> Append 3 records: /hardcode1 </a> <p>
+                    1.1<a href="api/todo/hardcode1" class="btn btn-success"> Append 4 records: /hardcode1 </a> <p>
             <hr>
                     3.Auto Validation: <a href="api/todo/insert" class="btn btn-warning"> X---Insert1---X </a> <p>
             <hr>

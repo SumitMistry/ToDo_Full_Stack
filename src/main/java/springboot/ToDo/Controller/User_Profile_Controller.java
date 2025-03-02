@@ -2,9 +2,7 @@ package springboot.ToDo.Controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Past;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,19 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import springboot.ToDo.Model.Todo;
-import springboot.ToDo.Model.UserProfile;
+import springboot.ToDo.Model.UserProfile0;
+import springboot.ToDo.Model.UserProfile1;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
-import springboot.ToDo.Repository.Repo_DAO_UserProfile_JPA;
-import springboot.ToDo.Services.Login_Services;
 import springboot.ToDo.Services.User_Profile_Services;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 //@RequestMapping("/")
@@ -34,7 +26,7 @@ import java.util.stream.Collectors;
 public class User_Profile_Controller {
 
 //    @Autowired
-//    private Repo_DAO_UserProfile_JPA repo_dao_userProfile_jpa;
+//    private Repo_DAO_UserProfile0_JPA repo_dao_userProfile_jpa;
 
     @Autowired
     private User_Profile_Services user_profile_services;
@@ -47,14 +39,19 @@ public class User_Profile_Controller {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String get_user_profile(@SessionAttribute(value = "uid_email") String username,
                                    ModelMap modelMap) throws JsonProcessingException {
-        UserProfile up1_obj = user_profile_services.get_UserProfile_byUsername(username);
-        modelMap.addAttribute("userProfile_obj_modelAttribute", up1_obj);
 
-        // Retrieving and posting User's join table data [userAuth] + [userProfile]
-        modelMap.addAttribute("profile1", up1_obj.toString());
+        // Retrieving Profile0 data to frontend from table [UserProfile0]
+        UserProfile0 up0_obj = user_profile_services.get_UserProfile0_byUsername(username);
+        modelMap.addAttribute("userProfile0_obj_modelAttribute", up0_obj);
 
-        // Retrieving and sending data to frontend. Data = [userAuth] table data only
-        modelMap.addAttribute("profile2",up1_obj.getUserAuth().toString());
+        // Retrieving Profile1 data to frontend from table [UserProfile1]
+        UserProfile1 up1_obj = user_profile_services.get_UserProfile1_byUsername(username);
+        modelMap.addAttribute("up1sex", up1_obj.getSex().name());
+
+        // Retrieving join table data to frontend from table = [userAuth] + [userProfile0]
+        modelMap.addAttribute("profile_a", up0_obj.toString());
+        // Retrieving join table data to frontend from table = [userAuth]only
+        modelMap.addAttribute("profile_b",up0_obj.getUserAuth().toString());
 
 
         // posting all todo belong to current user
@@ -72,9 +69,12 @@ public class User_Profile_Controller {
                                    @RequestParam(value = "city") String city,
                                    @RequestParam(value = "phone") String phone,
                                    @RequestParam(value = "birth_date" )  LocalDate birth_date, // While using @RequestParam, @valid will not work, you should manually validate the value, @valid only works for Modelattibute only.
+
+                                   @RequestParam(value = "sex") UserProfile1.Sex sex,
                                    //Use @Validated on the controller to enable @RequestParam validation.
                                    ModelMap modelMap,
-                                   @ModelAttribute("userProfile_obj_modelAttribute") @Valid UserProfile new_userProfile,
+                                   @ModelAttribute("userProfile0_obj_modelAttribute") @Valid UserProfile0 new_userProfile0,
+                                   @Valid UserProfile1 new_userProfile1,
                                    BindingResult bindingResult1, Errors err1){
 
 
@@ -86,22 +86,29 @@ public class User_Profile_Controller {
             return "userProfile";
         }
 
-        new_userProfile.setPhone(phone);
-        new_userProfile.setL_name(l_name);
-        new_userProfile.setF_name(f_name);
-        new_userProfile.setCity(city);
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Ensure correct format
-//            LocalDate birthDateee = LocalDate.parse(birthDate, formatter);
-        new_userProfile.setBirth_date(birth_date);
+        // --Profile-1 adjustment
+            new_userProfile0.setPhone(phone);
+            new_userProfile0.setL_name(l_name);
+            new_userProfile0.setF_name(f_name);
+            new_userProfile0.setCity(city);
+                    //            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Ensure correct format
+                    //            LocalDate birthDateee = LocalDate.parse(birthDate, formatter);
+            new_userProfile0.setBirth_date(birth_date);
+            UserProfile0 retrived_user_prof0 =  user_profile_services.set_UserProfile0(new_userProfile0);
+
+        // --Profile-2 adjustment
+            new_userProfile1.setSex(sex);
+            UserProfile1 retrived_user_prof1 =  user_profile_services.set_UserProfile1(new_userProfile1);
+            // Sending retrieved SEX values from backend to radio button=frontend
+            modelMap.addAttribute("up1sex", retrived_user_prof1.getSex().name());
 
 
-        UserProfile retrived_user_prof =  user_profile_services.set_UserProfile(new_userProfile);
 
-
-
-        modelMap.addAttribute("profile3", " [Success] : UserProfile table: Updated successfully");
-        // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile]
-        modelMap.addAttribute("profile4", " Retrieved data : " + retrived_user_prof.toString()) ;
+        modelMap.addAttribute("profile3", " [Success] : UserProfile 0 + 1  table: Updated successfully");
+        // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile0]
+        modelMap.addAttribute("profile4", " Retrieved data : " + retrived_user_prof0.toString()) ;
+        // "retrived_user_prof" will contain joined table data from tables [userAuth] + [userProfile1]
+        modelMap.addAttribute("profile5", " Retrieved data : " + retrived_user_prof1.toString()) ;
         return "userProfile";
 
     }

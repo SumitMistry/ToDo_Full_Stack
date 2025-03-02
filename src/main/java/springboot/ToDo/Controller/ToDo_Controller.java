@@ -70,6 +70,7 @@ public class ToDo_Controller<T> {
     private final Login_Services loginServices;
 
 
+
     public ToDo_Controller(ToDo_Services toDo_Services, Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa, Login_Services loginServices) {
         super();
         this.toDo_Services = toDo_Services;
@@ -231,7 +232,8 @@ public class ToDo_Controller<T> {
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(readOnly = true) // , propagation = Propagation.)
     // I kept this hard coded data as READONLY so will not get injected to DB
-    public String hard_code_data_sprData_jpa(ModelMap modelMap) {
+    public String hard_code_data_sprData_jpa(
+                        ModelMap modelMap,  @SessionAttribute(value ="uid_email") String uid_email) {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
@@ -254,6 +256,14 @@ public class ToDo_Controller<T> {
         list3.add(new Todo(003, "RuthBVraj@nakamo.com", "Faint of 2021-2024", LocalDate.of(2004, 11, 22), LocalDate.of(2025, 11, 25), false,  null));
         // INSERTING to SQL
         toDo_Services.insert_list_data_springDataJpa(list3);
+
+
+        // ADD: locally add to LIST
+        List<Todo> list4 = new ArrayList<>();
+        list4.add(new Todo(004, uid_email , "Adding 2025", LocalDate.of(2025, 01, 22), LocalDate.of(2026, 11, 25), false,  null));
+        // INSERTING to SQL
+        toDo_Services.insert_list_data_springDataJpa(list4);
+
 
         // FETCH all from SQL
         List<Todo> existing = toDo_Services.findbyALL();

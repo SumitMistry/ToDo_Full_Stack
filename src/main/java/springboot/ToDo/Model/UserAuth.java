@@ -20,7 +20,7 @@ import java.util.Arrays;
 public class UserAuth {
 
     // 1️⃣ Establish One-to-One Relationship in Entities
-    //  Modify your UserAuth and UserProfile entities to define a one-to-one relationship.
+    //  Modify your UserAuth and UserProfile0 entities to define a one-to-one relationship.
     //  @JoinColumn annotation in JPA is used to specify the foreign key column for an entity association. It is applied on the owning side of a relationship (e.g., @OneToOne, @ManyToOne).
     /*
         @JoinColumn(
@@ -33,11 +33,17 @@ public class UserAuth {
         )
     */
 
-    // ✅ Bidirectional One-to-One Mapping // By adding @OneToOne(mappedBy = "userProfile"), we establish a bidirectional link
-    @OneToOne(mappedBy = "userAuth", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL ensures that changes in UserAuth propagate to UserProfile.
+    // ✅ Bidirectional One-to-One Mapping // By adding @OneToOne(mappedBy = "userProfile0"), we establish a bidirectional link
+    @OneToOne(mappedBy = "userAuth", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL ensures that changes in UserAuth propagate to UserProfile0.
     // LAazy ensures UserAuth is not loaded unless explicitly accessed
     // @JoinColumn(name = "username", referencedColumnName = "username")
-    private UserProfile userProfile;
+    private UserProfile0 userProfile0;
+
+    // ✅ Bidirectional One-to-One Mapping // By adding @OneToOne(mappedBy = "userProfile1"), we establish a bidirectional link
+    @OneToOne(mappedBy = "userAuth", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // CascadeType.ALL ensures that changes in UserAuth propagate to UserProfile1.
+    // LAazy ensures UserAuth is not loaded unless explicitly accessed
+    // @JoinColumn(name = "username", referencedColumnName = "username")
+    private UserProfile1 userProfile1;
 
 
 
