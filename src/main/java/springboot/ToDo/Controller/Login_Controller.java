@@ -29,34 +29,6 @@ public class Login_Controller {
     private Login_Services login_services;
 
 
-
-
-
-    @RequestMapping(value = { "/login1", "login1" }, method = RequestMethod.GET)
-    public String get_login_page1(@RequestParam(value = "error", required = false) String error,
-                                  @RequestParam(value = "logout", required = false) String logout,
-                                  ModelMap modelMap) {
-
-        // Check if user is already authenticated and prevent looping
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser")) {
-            return "redirect:/welcome1"; // 🚀 Redirect authenticated users to the welcome page
-        }
-
-            if (error != null) {
-                modelMap.addAttribute("errorMessage", "Invalid username or password.");
-            }
-            if (logout != null) {
-                modelMap.addAttribute("logoutMessage", "You have been logged out.");
-            }
-
-        modelMap.addAttribute("prefill_login_email_old1_a", "sumit@america.com");
-        modelMap.addAttribute("prefill_login_email_old1_b", "1");
-
-        return "login_old1";
-    }
-
-
     @RequestMapping(value = { "/login2", "login2" }, method = RequestMethod.GET)
     public String get_login_page2(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout,
@@ -88,7 +60,7 @@ public class Login_Controller {
 ////  This method work to only and only Fetches 2 items [[[[..... 1) entered_username 2) entered pass]]] from login page and variable get created....
 ////  username retrieved from user's login entry point // HTML tag label are "pass" and "uid_email", retrieving what use entered in frontend.
     @RequestMapping(value = {"/", "login" }, method = RequestMethod.GET)
-    public String get_login_page(ModelMap modelMap){
+    public String get_welcome_page(ModelMap modelMap){
 
         String retrived_user = login_services.get_username_from_login_from_spring_Security();
         String retrived_user_details = login_services.get_logged_user_Full_details();
@@ -115,6 +87,33 @@ public class Login_Controller {
 
 
 
+
+
+
+//
+//    @RequestMapping(value = { "/login1", "login1" }, method = RequestMethod.GET)
+//    public String get_login_page1(@RequestParam(value = "error", required = false) String error,
+//                                  @RequestParam(value = "logout", required = false) String logout,
+//                                  ModelMap modelMap) {
+//
+//        // Check if user is already authenticated and prevent looping
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null && auth.isAuthenticated() && !auth.getName().equals("anonymousUser")) {
+//            return "redirect:/welcome1"; // 🚀 Redirect authenticated users to the welcome page
+//        }
+//
+//            if (error != null) {
+//                modelMap.addAttribute("errorMessage", "Invalid username or password.");
+//            }
+//            if (logout != null) {
+//                modelMap.addAttribute("logoutMessage", "You have been logged out.");
+//            }
+//
+//        modelMap.addAttribute("prefill_login_email_old1_a", "sumit@america.com");
+//        modelMap.addAttribute("prefill_login_email_old1_b", "1");
+//
+//        return "login_old1";
+//    }
 
 
 

@@ -157,9 +157,9 @@ public class SpringSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "/login1", "/login2", "signup/", "welcome1/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "welcome1/", "/error", "error/" , "/error" , "/login1", "/login2", "signup/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**"))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("login2", "login2/","login1", "login1/", "/login2", "/signup","/signup/**", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
+                        .requestMatchers("login2", "login2/", "/error", "error/"  ,"login1", "login1/", "/login2", "/signup","/signup/**", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
                         .requestMatchers("/WEB-INF/jsp/**", "META-INF/resources/WEB-INF/jsp/common/", "META-INF/resources/WEB-INF/jsp/common", "/META-INF/resources/WEB-INF/jsp/common").permitAll() // Allow access to JSP files
                         .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**", "/common/**", "/common", "common/").permitAll() // Allow static resources // The issue here is that Spring Security is blocking access to static resources (JS, CSS, Bootstrap, jQuery) before login. This is why your signup.jsp page appears broken before authentication but works fine after login.
                         .requestMatchers("/WEB-INF/jsp/common/**").permitAll() // Allow access to JSP files
@@ -183,6 +183,8 @@ public class SpringSecurityConfiguration {
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 );
+
+                //http.csrf(csrf -> csrf.disable()); // This disables CSRF entirely, making it easy to test with Postman but not secure for production.
 
         return http.build();
     }
