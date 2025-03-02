@@ -133,10 +133,6 @@ public class Header_Controller<T> {
 //   .....then you'd need to change it to return JSON, like this:
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
 
-
-
-
-
     @RequestMapping(value = { "/api/todo/insert4" }, method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<String> insert4(
                                     @RequestBody @Valid Todo todo_obj_spring_data_jpa2,

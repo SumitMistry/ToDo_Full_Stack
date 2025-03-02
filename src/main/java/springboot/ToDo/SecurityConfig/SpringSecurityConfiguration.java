@@ -157,7 +157,7 @@ public class SpringSecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "welcome1/", "/error", "error/" , "/error" , "/login1", "/login2", "signup/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**"))
+                //.csrf(csrf -> csrf.ignoringRequestMatchers("/signup", "/welcome1", "welcome1/", "/error", "error/" , "/error" , "/login1", "/login2", "signup/", "login1/", "login1/**", "login2/", "/logout", "logout", "logout/", "/logout/**", "logout/**")) // to specify which request paths should be excluded from CSRF protection. Requests to these paths will not require a CSRF token.
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("login2", "login2/", "/error", "error/"  ,"login1", "login1/", "/login2", "/signup","/signup/**", "/signup/", "login", "/login", "login/", "logout", "/logout", "logout/").permitAll() // Allow signup page access
                         .requestMatchers("/WEB-INF/jsp/**", "META-INF/resources/WEB-INF/jsp/common/", "META-INF/resources/WEB-INF/jsp/common", "/META-INF/resources/WEB-INF/jsp/common").permitAll() // Allow access to JSP files
@@ -168,7 +168,12 @@ public class SpringSecurityConfiguration {
                 )
                 .formLogin(form -> form
                         .loginPage("/login2")  // Ensure this matches your form action
+
+                                // This is where login POST requests are sent
+                                // please supply this to POSTMAN for login : POST http://localhost:8080/login_perform2 with BODY= x-www-form-urlencoded
                         .loginProcessingUrl("/login_perform2")  // Specifies the URL where login requests should be submitted
+
+                        .loginProcessingUrl("/login2")  // Specifies the URL where login requests should be submitted
                         .defaultSuccessUrl("/", true)  // Redirects after successful login
                         .usernameParameter("uid_email")  // Match form field name
                         .passwordParameter("pass")       // Match form field name
@@ -184,7 +189,7 @@ public class SpringSecurityConfiguration {
                         .permitAll()
                 );
 
-                //http.csrf(csrf -> csrf.disable()); // This disables CSRF entirely, making it easy to test with Postman but not secure for production.
+                http.csrf(csrf -> csrf.disable()); // This disables CSRF entirely, making it easy to test with Postman but not secure for production. //Disables CSRF protection for the entire application.
 
         return http.build();
     }
