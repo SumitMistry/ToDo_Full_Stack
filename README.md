@@ -15,7 +15,8 @@
 
 3. SEARCH API - Date Range Picker (From To)
    - jsp /
-   - 
+   
+4. git_cmd file is provided for the reference.
 
     
 
