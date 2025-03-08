@@ -182,7 +182,7 @@ public class ToDo_Controller<T> {
 //   .....then you'd need to change it to return JSON, like this:
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
     /**
-     * 5️⃣ Insert Todo via API (Returns JSON)
+     * 5️⃣ Insert/POST Todo via API (Returns JSON)
      */
     @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
@@ -198,7 +198,7 @@ public class ToDo_Controller<T> {
         // Save to database
         Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // 201 Created
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created)
     }
 
 
@@ -208,27 +208,83 @@ public class ToDo_Controller<T> {
      */
     @RequestMapping(value = "/id/{iid}",  method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<?> getTodoById(@PathVariable int iid){
+    public ResponseEntity<?> getTodoById(@PathVariable(value = "iid") int id){
 
         // Debug method
-        System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
+        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
 
         // Step 1: Fetch the Todo item from the database using its ID
-        Optional<List<Todo>> optnl_todo = repo_dao_springData_todo_jpa.findById(iid);
+        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
 
         // Step 2: Check if the Todo item exists
-        if (optnl_todo.isPresent() && !optnl_todo.get().isEmpty()) {
+        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
             // Step 3: If found, return the Todo item with HTTP status 200 OK
-            return new ResponseEntity<>(optnl_todo.get().get(0), HttpStatus.OK);
+            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
 
         } else {
 
             // Step 4: If not found, return a 404 Not Found response with a message
-            String errorMessage = "Todo with ID " + iid + " not found";
+            String errorMessage = "Todo with ID " + id + " not found";
             return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
         }
 
     }
+
+
+    /**
+     * 7️⃣ PUT-Update Todo By ID (Returns JSON)
+     */
+    @RequestMapping(value = "/id/{iid}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<?> updateTodo(
+                            @PathVariable(value = "iid") int id,
+                            @RequestBody @Valid Todo updatedTodo,
+                            BindingResult bindingResult) {
+        // Edge case-1 - Binding error catch
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors()); // 400 Bad Request
+        }
+
+        // Edge case-2 - Todo not Found
+        if (!repo_dao_springData_todo_jpa.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
+        }
+
+        updatedTodo.setId(id);
+        Todo savedTodo = repo_dao_springData_todo_jpa.save(updatedTodo);
+        return new ResponseEntity<> ((savedTodo), HttpStatus.OK); // 200 OK
+        // or
+        // return  ResponseEntity.ok(savedTodo); // 200 OK
+    }
+
+
+
+    /**
+     * 8️⃣ Delete Todo (Returns JSON)
+     */
+    @DeleteMapping("/id/{idd}")
+    @ResponseBody
+    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int id) {
+        // edge case-1: if ID Todo not found...
+        if (!repo_dao_springData_todo_jpa.existsById(id)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
+        }
+
+        repo_dao_springData_todo_jpa.deleteById(id);
+        return ResponseEntity.noContent().build(); // 204 No Content
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
