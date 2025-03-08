@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ import java.util.function.Predicate;
  */
 
 @Controller
-//@RequestMapping(value = "api/todo/")
+@RequestMapping(value = "/api/todo")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally", "listMapVar"})  // when you want to store a value in whole session, use this.
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
@@ -65,7 +66,6 @@ public class ToDo_Controller<T> {
 
     ///////// doing this so I dont need to use @Autowire annotation, this is constructor based injection, we dont need autowire here
     private final ToDo_Services toDo_Services;
-
     private final Repo_DAO_SpringData_todo_JPA repo_dao_springData_todo_jpa;
     private final Login_Services loginServices;
 
@@ -84,7 +84,155 @@ public class ToDo_Controller<T> {
 
 
 
-    // to check if the UID exit or not, just simpley returns TRUE orFALSE BOOLEAN value only
+    /**
+     * 1️⃣ Fetch todos within a date range (Returns JSP page)
+     */
+    @RequestMapping(value = {"/dateRangePicker"}, method = RequestMethod.GET)
+    public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+                                  @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
+                                  ModelMap modelMap){
+
+        List<Todo> list_todos = repo_dao_springData_todo_jpa.findCreationDateRange(fromDate,toDate);
+
+        if (! list_todos.isEmpty()) {
+            modelMap.addAttribute("listMapVar", list_todos);
+            modelMap.addAttribute("totally", list_todos.size());
+        } else {
+            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
+            modelMap.addAttribute("totally", 0);
+        }
+        return "index";  // Returning JSP page
+    }
+
+
+
+    /**
+     * 2️⃣ Search todos by keyword (Returns JSP page)
+     */
+    @RequestMapping(value = {"/searchAPI"}, method = {RequestMethod.GET,  RequestMethod.POST})
+    public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
+                                ModelMap modelMap){
+
+        List<Todo> todoList = toDo_Services.findByKeyword(keyword);
+
+        System.out.println(todoList.size());
+
+        if (! todoList.isEmpty()) {
+            modelMap.addAttribute("listMapVar", todoList);
+            modelMap.addAttribute("totally", todoList.size());
+        } else {
+            modelMap.addAttribute("listMapVar", new ArrayList<>());  // Empty list if no results
+            modelMap.addAttribute("totally",0);
+        }
+        return "index";   // Returning JSP page
+    }
+
+
+    /**
+     * 3️⃣ GET - Show Insert Todo Page (JSP Page)
+     */
+    //////////////////// INSERT - SpringDataJPA SQL == insert3 (GET/POST)
+    @RequestMapping(value = { "/insert3" }, method = RequestMethod.GET)
+    public String getInsertPage(ModelMap modelMap) {
+        // 🔹THIS GET Method - Returns a pre-filled Todo object in frontend page using ModelMapping...
+
+        // this is used just to get count=size of list
+        int list_size = toDo_Services.findbyALL().size();
+        //pre-filling add tags in forms automatically populated for users as easy to use.
+        Todo t1 = new Todo(list_size + 1, (String) modelMap.get("uid_email"), "Hardcoded / Default Task", LocalDate.now(), LocalDate.now().plusDays(7), false, null);
+
+        modelMap.addAttribute("todo_obj_spring_data_jpa2", t1);
+
+        return "insert3_SprDataJPA"; // this returns (jsp file)=view without @RESPONSEBODY
+    }
+
+
+    /**
+     * 4️⃣ POST - Insert a new Todo (Process Form Submission)
+     */
+    @RequestMapping(value = { "/insert3" }, method = RequestMethod.POST)
+    public String post_SprData_JPA_insert(ModelMap modelMap,
+                                          @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo,
+                                          BindingResult bindingResult, Errors err) {
+
+        //use binding result to find error while validating / entering data
+        if (err.hasErrors() || bindingResult.hasErrors()) {
+                        //            l1.info(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
+                        //            System.out.println(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
+                        //            return "redirect:insert3_SprDataJPA";
+            return "insert3_SprDataJPA"; // Return form page with validation errors
+        }
+
+        // post data to backend SQL
+        repo_dao_springData_todo_jpa.save(todo);
+
+        // get data view
+        // Redirect to todo list page
+        return "redirect:/api/todo/list";    // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
+    }
+
+
+
+
+
+// ------------------------------------------------------------------------------
+// ---------------------------------- JSON --------------------------------------
+// ------------------------------------------------------------------------------
+//   If you decide to make your application a pure ""REST API"" (returning JSON instead of rendering a JSP page), ...
+//   .....then you'd need to change it to return JSON, like this:
+    /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
+    /**
+     * 5️⃣ Insert Todo via API (Returns JSON)
+     */
+    @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity<?> insert4TodoAPI(
+            @RequestBody @Valid Todo todoh,
+            BindingResult bindingResult) {
+
+        // Check for validation errors
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body("Validation failed: " + bindingResult.getAllErrors()); // 400 Bad Request
+        }
+
+        // Save to database
+        Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // 201 Created
+    }
+
+
+
+    /**
+     * 6️⃣ Get Todo By ID (Returns JSON)
+     */
+    @RequestMapping(value = "/id/{iid}",  method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> getTodoById(@PathVariable int iid){
+
+        // Debug method
+        System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
+
+        // Step 1: Fetch the Todo item from the database using its ID
+        Optional<List<Todo>> optnl_todo = repo_dao_springData_todo_jpa.findById(iid);
+
+        // Step 2: Check if the Todo item exists
+        if (optnl_todo.isPresent() && !optnl_todo.get().isEmpty()) {
+            // Step 3: If found, return the Todo item with HTTP status 200 OK
+            return new ResponseEntity<>(optnl_todo.get().get(0), HttpStatus.OK);
+
+        } else {
+
+            // Step 4: If not found, return a 404 Not Found response with a message
+            String errorMessage = "Todo with ID " + iid + " not found";
+            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+
+
+    // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
     @RequestMapping(value = "/api/todo/existbyuid", method = RequestMethod.GET)
@@ -101,7 +249,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     USER based LISTING     ///////////////////////////
-    @RequestMapping(value = {"/api/todo/list"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public String list_per_user_todos(ModelMap modelMap) {
 
         // List with all todos + parsing it to modelmap
@@ -122,7 +270,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     ALL USER LISTING     ///////////////////////////
-    @RequestMapping(value = {"/api/todo/listall"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/listall"}, method = RequestMethod.GET)
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
@@ -139,7 +287,7 @@ public class ToDo_Controller<T> {
     }
 
 
-    @RequestMapping(value = "/api/todo/listjson", method = RequestMethod.GET)
+    @RequestMapping(value = "/listjson", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
@@ -148,7 +296,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     JSON     ///////////////////////////
     // JSON: below is without the use of ----> [responseEntity<> wrapper ]
-    @RequestMapping(value = "/api/todo/listjson1", method = RequestMethod.GET)
+    @RequestMapping(value = "/listjson1", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<Todo> listAll_todos_json1() {
@@ -158,7 +306,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     FindBYUID     ///////////////////////////
-    @RequestMapping(value = "/api/todo/findByUID", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUID", method = RequestMethod.GET)
     public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
         //      System.out.println(toDo_Services.findByID(uid));
         //      List<Todo> list1 =  toDo_Services.findByID_from_List(uid);
@@ -170,7 +318,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     FindBY ID     ///////////////////////////
-    @RequestMapping(value = "/api/todo/findById", method = RequestMethod.GET)
+    @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
@@ -191,7 +339,7 @@ public class ToDo_Controller<T> {
 
     // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
-    @RequestMapping(value = "/api/todo/findByUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
 
@@ -211,7 +359,7 @@ public class ToDo_Controller<T> {
     // Not in use, taken off from JSP - front end (listall.jsp) side
     // /////////////////////////     findByUser     ///////////////////////////
     // ---BELOW  NOT in USE---------------
-    @RequestMapping(value = "/api/todo/findByUser1", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUser1", method = RequestMethod.GET)
     public String findBYusername1(@RequestParam(value = "u")String enter_username, ModelMap modelMap ){
 
         // Predicate function practice
@@ -228,7 +376,7 @@ public class ToDo_Controller<T> {
 
     //////////////////// This end point ONLY used to ADD HARDCODED values into SQL
     /////////// CHange values to NOT readOnly..here...to make it work @Transactional(readOnly = true)
-    @RequestMapping(value = {"/api/todo/hardcode1"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/hardcode1"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(readOnly = true) // , propagation = Propagation.)
     // I kept this hard coded data as READONLY so will not get injected to DB
@@ -278,7 +426,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     DELETE BY UID    ///////////////////////////
-    @RequestMapping(value = "/api/todo/deleteByUid", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteByUid", method = RequestMethod.GET)
     public String deleteByUID(@RequestParam(value = "u") int uid) {
 
         // before deleting, checking if the ID exist or not!!, this is good practice..
@@ -296,7 +444,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
-    @RequestMapping(value = "/api/todo/delByID", method = RequestMethod.GET)
+    @RequestMapping(value = "/delByID", method = RequestMethod.GET)
     public String del_By_ID(@RequestParam(value = "u") int id) {
         repo_dao_springData_todo_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
@@ -305,7 +453,7 @@ public class ToDo_Controller<T> {
     }
 
     /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
-    @RequestMapping(value = "/api/todo/sam", method = RequestMethod.GET)
+    @RequestMapping(value = "/sam", method = RequestMethod.GET)
     public String getSum(ModelMap modelMap){
         List<Todo> todo =  toDo_Services.getAllSumit().get();
         modelMap.addAttribute("listMapVar", todo);
@@ -316,7 +464,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
-    @RequestMapping(value = "/api/todo/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String show_UpdateByID_page(ModelMap modelMap,
                                        @RequestParam(value = "u") int uidTakenFromHtmlTag) {
 
@@ -333,7 +481,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     //This updated method will NOT create new UID upon modifying/updating existing record.
-    @RequestMapping(value = "/api/todo/update", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     public String post_UpdateByUID_page(ModelMap modelMap,
                                        @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
@@ -365,7 +513,7 @@ public class ToDo_Controller<T> {
     //backup UPLOAD GET WORKING...
 
     ///////////////////////////     UPLOAD     ///////////////////////////
-    @RequestMapping(value = "/api/todo/upload", method = RequestMethod.GET)
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String get_attach_function(
             ModelMap modelMap,
             @RequestParam(value = "u") int uidTakenFromHtmlTag) {
@@ -381,7 +529,7 @@ public class ToDo_Controller<T> {
         return "upload";
     }
 
-    @RequestMapping(value = "/api/todo/upload", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String post_now_uploading_here(
             ModelMap modelMap,
             @ModelAttribute("multipartFile") MultipartFile_holder multipartFile,

@@ -23,3 +23,19 @@
         git add .
         git commit -m "Initial commit"
         git push -u -f origin main
+
+
+----------------To solve below error-------------
+ERROR=
+            fatal: detected dubious ownership in repository at 'D:/hackerRank/src/Spring_SpringBoot_applications/SpringBoot/ToDo'
+            'D:/hackerRank/src/Spring_SpringBoot_applications/SpringBoot/ToDo' is owned by:
+                    (inconvertible) (S-1-5-21-1629088934-164995440-1584870280-1001)
+            but the current user is:
+                    SUMIT-I7/sumit (S-1-5-21-233804175-1332844379-3583384791-1001)
+            To add an exception for this directory, call:
+
+                    git config --global --add safe.directory D:/hackerRank/src/Spring_SpringBoot_applications/SpringBoot/ToDo
+SOLUTION=
+        git config --global --add safe.directory D:/hackerRank/src/Spring_SpringBoot_applications/SpringBoot/ToDo
+        git config --global user.name "Sumit Mistry"
+        git config --global user.email "sumitmistry@l--------->.com"

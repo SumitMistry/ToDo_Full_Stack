@@ -62,20 +62,20 @@
             <div class="container">
 
                     1.SpringDataJPA - INSERT: <p>
-                    <a href="api/todo/insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
+                    <a href="/api/todo/insert3" class="btn btn-success"> Insert+Validation: /insert3 </a> <p>
 
             <hr>
-                    2.SpringDataJPA - FIND: <p>
-                    <a href="api/todo/find?u=1" class="btn btn-success">find?u=1 </a> <p>
+                    2.SpringDataJPA - FindByUID: <p>
+                    <a href="/api/todo/findByUID?u=1" class="btn btn-success">find?u=1 </a> <p>
             <hr>
                     @Transactional(readOnly = true) // , propagation = Propagation.)
                     / I kept this hard coded data as READONLY so will not get injected to DB
                     public String sprData_jpa_hard_code_data(ModelMap modelMap){ <p>
-                    1.1<a href="api/todo/hardcode1" class="btn btn-success"> Append 4 records: /hardcode1 </a> <p>
+                    1.1<a href="/api/todo/hardcode1" class="btn btn-success"> Append 4 records: /hardcode1 </a> <p>
             <hr>
                     3.Auto Validation: <a href="api/todo/insert" class="btn btn-warning"> X---Insert1---X </a> <p>
             <hr>
-                    4.Manual: <a href="api/todo/insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
+                    4.Manual: <a href="/api/todo/insert2" class="btn btn-warning"> X---Insert2-deleted---X </a> <p>
             <hr>
                        <a href="/" class="btn btn-primary">     /     </a>
                        <a href="list" class="btn btn-primary">    /list     </a>
@@ -85,7 +85,7 @@
                        <a href="login" class="btn btn-primary">       /login     </a>
                        <a href="login1" class="btn btn-primary">       /login1     </a>
                        <a href="login2" class="btn btn-primary">       /login2     </a>
-                       <a href="welcome1" class="btn btn-primary">       /welcome1     </a> <p>
+                       <a href="/welcome1" class="btn btn-primary">       /welcome1     </a> <p>
 
         </div>
 
