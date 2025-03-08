@@ -31,7 +31,9 @@ public class Login_Controller {
     @Autowired
     private Login_Services login_services;
 
-
+    /**
+     * 9️⃣ Login Page Handling (JSP Page)
+     */
     @RequestMapping(value = { "/login2", "login2" }, method = RequestMethod.GET)
     public String get_login_page2(@RequestParam(value = "error", required = false) String error,
                                   @RequestParam(value = "logout", required = false) String logout,
@@ -53,7 +55,7 @@ public class Login_Controller {
         modelMap.addAttribute("prefill_login_email_old2_a", "sumit@america.com");
         modelMap.addAttribute("prefill_login_email_old2_b", "1");
 
-        return "login_old2";
+        return "login_old2"; // JSP Page
     }
 
 
