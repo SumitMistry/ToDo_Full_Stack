@@ -10,7 +10,7 @@
 
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
-            <p> All JSON guide:       <a href="alljson.jsp">JSON guide</a>
+            <p> All JSON guide:       <a href="/src/main/resources/META-INF/resources/WEB-INF/jsp/alljson.jsp">JSON guide</a>
 
 
             <p><p><p><p>
