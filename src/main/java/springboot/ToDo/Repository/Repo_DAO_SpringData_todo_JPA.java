@@ -70,5 +70,11 @@ public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //Howe
 
     boolean existsByUid(Integer uid);
 
+    @Query("SELECT t FROM Todo t WHERE t.id IN :ids")
+    List<Todo> findByCustomId(@Param("ids") List<Integer> ids);
+
+//    @Query(value = "SELECT t FROM todo t WHERE t.id IN :idsHere")
+//    List<Todo> findAllByIdssss(@Param(value = "idsHere") List<Integer> listOfIds);
+
 }
 

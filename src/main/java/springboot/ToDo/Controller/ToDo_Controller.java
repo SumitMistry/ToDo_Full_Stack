@@ -28,9 +28,11 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 
@@ -523,6 +525,14 @@ public class ToDo_Controller<T> {
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
     /**
      * 5️⃣ Insert/POST Todo via API (Returns JSON)
+                     * {
+                     *     "id": 456,
+                     *     "username": "test1@test2.com",
+                     *     "description": "Added from PostMAN",
+                     *     "creationDate": "2025-01-30",
+                     *     "targetDate": "2026-01-30",
+                     *     "done": false
+                     * }
      */
     @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
@@ -542,32 +552,6 @@ public class ToDo_Controller<T> {
     }
 
 
-    /**
-     * 6️⃣ Get Todo By ID (Returns JSON)
-     */
-    @RequestMapping(value = "/id/{iid}",  method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<?> getTodoById(@PathVariable(value = "iid") int id){
-
-        // Debug method
-        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
-
-        // Step 1: Fetch the Todo item from the database using its ID
-        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
-
-        // Step 2: Check if the Todo item exists
-        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
-            // Step 3: If found, return the Todo item with HTTP status 200 OK
-            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
-
-        } else {
-
-            // Step 4: If not found, return a 404 Not Found response with a message
-            String errorMessage = "Todo with ID " + id + " not found";
-            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
-        }
-
-    }
 
     /**
      * 7️⃣ PUT-Update Todo By ID (Returns JSON)
@@ -593,6 +577,66 @@ public class ToDo_Controller<T> {
         return new ResponseEntity<> ((savedTodo), HttpStatus.OK); // 200 OK
         // or
         // return  ResponseEntity.ok(savedTodo); // 200 OK
+    }
+
+
+
+    /**
+     * 6️⃣ Get Todo By (SINGLE) ID (Returns JSON)
+     */
+//    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
+//
+//        // Debug method
+//        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
+//
+//        // Step 1: Fetch the Todo item from the database using its ID
+//        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
+//
+//        // Step 2: Check if the Todo item exists
+//        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
+//            // Step 3: If found, return the Todo item with HTTP status 200 OK
+//            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
+//
+//        } else {
+//
+//            // Step 4: If not found, return a 404 Not Found response with a message
+//            String errorMessage = "Todo with ID " + id + " not found";
+//            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+//        }
+//    }
+
+
+    /**
+     * 6️⃣ Get Todo By (MULTIPLE) ID (Returns JSON)
+     * http://localhost:8080/api/todo/id/990,1,2,3,51,4
+     *
+     */
+    @RequestMapping(value = "/id/{multipleiid}",  method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<?> getTodoByIdss(@PathVariable(value = "multipleiid") String multiple_ids){
+
+        // step:1 - get seperate is in LIST<Integer>
+        List<Integer> ids_in_list = Arrays.stream(multiple_ids.split(","))
+                .map(x-> Integer.parseInt(x))
+                .toList();
+
+
+        // step-2: Fetch the Todos from the database using the list of IDs
+        List<Todo> todos_multiple = repo_dao_springData_todo_jpa.findByCustomId(ids_in_list);
+
+
+        // Step 2: Check if the Todo item exists
+        if ( todos_multiple.isEmpty()) {
+            // Step 3: If not found, return 404 - NOT FOUND
+            return new ResponseEntity<>("NO todos found ", HttpStatus.NOT_FOUND);
+
+        } else {
+            // Step 4: If found, return 200 - OK
+            return new ResponseEntity<>(todos_multiple, HttpStatus.OK);
+        }
+
     }
 
     /**
