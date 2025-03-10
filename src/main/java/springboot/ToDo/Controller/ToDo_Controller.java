@@ -1,5 +1,7 @@
 package springboot.ToDo.Controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +64,7 @@ import java.util.stream.Collectors;
 // you have to pass this values from frontend variable standpoint, so it is <uid_email> not <usernr>
 // <usernr> is backend variable, this will not work
 // "uid_email" is the frontend variable, passing this will be able to save as session. it will work..
+@Tag(name = "Todo Management", description = "SM: Operations related to Todo items") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 public class ToDo_Controller<T> {
 
     private static final Logger l1 = LoggerFactory.getLogger(Class.class);
@@ -507,7 +510,7 @@ public class ToDo_Controller<T> {
 //   If you decide to make your application a pure ""REST API"" (returning JSON instead of rendering a JSP page), ...
 //   .....then you'd need to change it to return JSON, like this:
 
-
+    @Operation(summary = "Json Central", description = "JSON Central Guide to all api point")
     @RequestMapping(value = "/alljson", method = RequestMethod.GET)
     public String show_allJson_jsp() {
         return "alljson";  // This will look for WEB-INF/jsp/alljson.jsp
@@ -517,6 +520,7 @@ public class ToDo_Controller<T> {
 
 
     //    http://localhost:8080/api/todo/listjson
+    @Operation(summary = "Get all Todos (JSON+ResponseEntity)", description = "GET all todos in JSON (returning ResponseEntity<List<Todo>>) Returns a list of all todo items in JSON format")
     @RequestMapping(value = "/listjson", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -527,6 +531,7 @@ public class ToDo_Controller<T> {
     //    http://localhost:8080/api/todo/listjson1
     ///////////////////////////     JSON     ///////////////////////////
     // JSON: below is without the use of ----> [responseEntity<> wrapper ]
+    @Operation(summary = "Get all Todos (JSON)", description = "GET all todo in JSON(returning  List<Todo>) (without ResponseEntity). Returns a list of all todo items in JSON format")
     @RequestMapping(value = "/listjson1", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -551,6 +556,7 @@ public class ToDo_Controller<T> {
                      *     "done": false
                      * }
      */
+    @Operation(summary = "POST/ INSERT Todo via API (Returns JSON)", description = "insert todo record. User to send data in json.")
     @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public ResponseEntity<?> insert4TodoAPI(
@@ -582,6 +588,7 @@ public class ToDo_Controller<T> {
              *     "done": false
              * }
      */
+    @Operation(summary = "PUT-Update Todo By UID (Returns JSON)", description = "Update todo record by UID. PUT http://localhost:8080/api/todo/uid/97")
     @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<?> updateTodoByUID(
@@ -614,10 +621,10 @@ public class ToDo_Controller<T> {
     /**
      * 6️⃣ Get Todo By (SINGLE) ID (Returns JSON)
      */
+//    @Operation(summary = "GET Single Todo by id" , description = "GET Todo By (SINGLE) ID (Returns JSON)")
 //    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
 //    @ResponseBody
 //    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
-//
 //        // Debug method
 //        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
 //
@@ -642,6 +649,7 @@ public class ToDo_Controller<T> {
      * 6️⃣ Get Todo By (MULTIPLE) ID (Returns JSON)
      *    GET http://localhost:8080/api/todo/id/990,1,2,3,51,4
      */
+    @Operation(summary = "Get Todo By (MULTIPLE) ID (Returns JSON) using comma" , description = "GET Todo By (Mutiple) ID (Returns JSON) GET http://localhost:8080/api/todo/id/990,1,2,3,51,4")
     @RequestMapping(value = "/id/{multipleiid}",  method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<?> getTodoByIdss(@PathVariable(value = "multipleiid") String multiple_ids){
@@ -669,9 +677,10 @@ public class ToDo_Controller<T> {
     }
 
     /**
-     * 8️⃣ Delete Todo by UID (Returns JSON)
+     * 8️⃣ DELETE Todo by UID (Returns 204: noContent() created = void)
      *    DELETE http://localhost:8080/api/todo/uid/1
      */
+    @Operation(summary = "DELETE Todo by UID (Returns 204: noContent() created = void)" , description = "DELETE by uid. User pass UId that want to delete. http://localhost:8080/api/todo/uid/1" )
     @DeleteMapping("/uid/{uidd}")
     @ResponseBody
     public ResponseEntity<?> deleteTodo(@PathVariable(value = "uidd") int uid) {
