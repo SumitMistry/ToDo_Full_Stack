@@ -524,7 +524,7 @@ public class ToDo_Controller<T> {
 //   .....then you'd need to change it to return JSON, like this:
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
     /**
-     * 5️⃣ Insert/POST Todo via API (Returns JSON)
+     * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
                      * {
                      *     "id": 456,
                      *     "username": "test1@test2.com",
@@ -554,12 +554,13 @@ public class ToDo_Controller<T> {
 
 
     /**
-     * 7️⃣ PUT-Update Todo By ID (Returns JSON)
+     * 7️⃣ PUT-Update Todo By UID (Returns JSON)
+     *
      */
-    @RequestMapping(value = "/id/{iid}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<?> updateTodo(
-            @PathVariable(value = "iid") int id,
+            @PathVariable(value = "uiid") int uid,
             @RequestBody @Valid Todo updatedTodo,
             BindingResult bindingResult) {
         // Edge case-1 - Binding error catch
@@ -568,11 +569,11 @@ public class ToDo_Controller<T> {
         }
 
         // Edge case-2 - Todo not Found
-        if (!repo_dao_springData_todo_jpa.existsById(id)) {
+        if (!repo_dao_springData_todo_jpa.existsById(uid)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
-        updatedTodo.setId(id);
+        updatedTodo.setId(uid);
         Todo savedTodo = repo_dao_springData_todo_jpa.save(updatedTodo);
         return new ResponseEntity<> ((savedTodo), HttpStatus.OK); // 200 OK
         // or
