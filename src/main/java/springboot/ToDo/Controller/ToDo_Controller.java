@@ -231,6 +231,7 @@ public class ToDo_Controller<T> {
     }
 
 
+    //    http://localhost:8080/api/todo/listjson
     @RequestMapping(value = "/listjson", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -238,6 +239,7 @@ public class ToDo_Controller<T> {
         return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
     }
 
+    //    http://localhost:8080/api/todo/listjson1
     ///////////////////////////     JSON     ///////////////////////////
     // JSON: below is without the use of ----> [responseEntity<> wrapper ]
     @RequestMapping(value = "/listjson1", method = RequestMethod.GET)
@@ -454,8 +456,7 @@ public class ToDo_Controller<T> {
 
 
 
-    //backup UPLOAD GET WORKING...
-
+    // backup UPLOAD GET WORKING...
     ///////////////////////////     UPLOAD     ///////////////////////////
     @RequestMapping(value = "/upload", method = RequestMethod.GET)
     public String get_attach_function(
@@ -525,6 +526,7 @@ public class ToDo_Controller<T> {
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
     /**
      * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
+     *    POST http://localhost:8080/api/todo/insert4
                      * {
                      *     "id": 456,
                      *     "username": "test1@test2.com",
@@ -555,14 +557,23 @@ public class ToDo_Controller<T> {
 
     /**
      * 7️⃣ PUT-Update Todo By UID (Returns JSON)
-     *
+     *    PUT http://localhost:8080/api/todo/uid/97
+             * {
+             *     "id": 123,
+             *     "username": "nyc@njusa.com",
+             *     "description": "Added from Postman edited2",
+             *     "creationDate": "2025-01-30",
+             *     "targetDate": "2056-10-24",
+             *     "done": false
+             * }
      */
     @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> updateTodo(
+    public ResponseEntity<?> updateTodoByUID(
             @PathVariable(value = "uiid") int uid,
             @RequestBody @Valid Todo updatedTodo,
             BindingResult bindingResult) {
+
         // Edge case-1 - Binding error catch
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(bindingResult.getAllErrors()); // 400 Bad Request
@@ -573,9 +584,12 @@ public class ToDo_Controller<T> {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
-        updatedTodo.setId(uid);
-        Todo savedTodo = repo_dao_springData_todo_jpa.save(updatedTodo);
-        return new ResponseEntity<> ((savedTodo), HttpStatus.OK); // 200 OK
+        //user input data(user-entered-todo) will not have UID, so binding/merging uid to user-entered-todo
+        updatedTodo.setUid(uid);
+
+
+        toDo_Services.updateByUid(updatedTodo);
+        return new ResponseEntity<> ("updated successfullly " + toDo_Services.findByUid(uid) , HttpStatus.OK); // 200 OK
         // or
         // return  ResponseEntity.ok(savedTodo); // 200 OK
     }
@@ -611,8 +625,7 @@ public class ToDo_Controller<T> {
 
     /**
      * 6️⃣ Get Todo By (MULTIPLE) ID (Returns JSON)
-     * http://localhost:8080/api/todo/id/990,1,2,3,51,4
-     *
+     *    GET http://localhost:8080/api/todo/id/990,1,2,3,51,4
      */
     @RequestMapping(value = "/id/{multipleiid}",  method = RequestMethod.GET)
     @ResponseBody
@@ -641,17 +654,18 @@ public class ToDo_Controller<T> {
     }
 
     /**
-     * 8️⃣ Delete Todo (Returns JSON)
+     * 8️⃣ Delete Todo by UID (Returns JSON)
+     *    DELETE http://localhost:8080/api/todo/uid/1
      */
-    @DeleteMapping("/id/{idd}")
+    @DeleteMapping("/uid/{uidd}")
     @ResponseBody
-    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int id) {
+    public ResponseEntity<?> deleteTodo(@PathVariable(value = "uidd") int uid) {
         // edge case-1: if ID Todo not found...
-        if (!repo_dao_springData_todo_jpa.existsById(id)) {
+        if (!repo_dao_springData_todo_jpa.existsById(uid)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
-        repo_dao_springData_todo_jpa.deleteById(id);
+        repo_dao_springData_todo_jpa.deleteById(uid);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
 
