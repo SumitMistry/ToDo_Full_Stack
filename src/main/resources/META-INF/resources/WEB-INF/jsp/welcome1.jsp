@@ -5,12 +5,12 @@
 
         <style="color: blue;" >
             <pre>${login_auth_success_1}</pre>
-            <pre>${login_auth_success_2}</pre>
+            <code>${login_auth_success_2}</code>
 
 
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
-            <p> All JSON guide:       <a href="/alljson">JSON guide</a>
+            <p> All JSON guide:       <a href="api/todo/alljson">JSON guide</a>
 
 
             <p><p><p><p>
