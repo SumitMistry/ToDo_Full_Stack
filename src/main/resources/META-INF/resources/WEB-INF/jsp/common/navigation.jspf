@@ -68,6 +68,7 @@
             			    <form class="form-inline d-flex">
                                 <a class="nav-link" href="/api/todo/health">/healthCheck-Bluey</a>
                                 <a class="nav-link" href="/actuator/health">/health </a>
+                                <a class="nav-link" href="/swagger">/swagger</a>
                             </form>
             			</li>
             		</ul>

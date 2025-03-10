@@ -10,7 +10,7 @@
 
             <p>
             <p> ToDo App is located:  <a href = "api/todo/listall">  right here </a>
-            <p> All JSON guide:       <a href = "api/todo/alljson">  JSON guide </a>
+            <p> JSON-Central:       <a href = "api/todo/jsoncentral">  right here </a>
 
 
             <p><p><p><p>

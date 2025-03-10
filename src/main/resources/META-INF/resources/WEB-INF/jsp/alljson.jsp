@@ -71,9 +71,9 @@
 
 
 
-                Delete (SINGLE) Todo by UID (Returns JSON)
+                Delete (SINGLE) Todo by ID (Returns JSON)
                     DELETE
-                    http://localhost:8080/api/todo/uid/1
+                    http://localhost:8080/api/todo/id/1
 
 
 

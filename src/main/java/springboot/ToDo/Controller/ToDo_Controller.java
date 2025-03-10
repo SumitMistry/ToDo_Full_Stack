@@ -511,7 +511,7 @@ public class ToDo_Controller<T> {
 //   .....then you'd need to change it to return JSON, like this:
 
     @Operation(summary = "Json Central", description = "JSON Central Guide to all api point")
-    @RequestMapping(value = "/alljson", method = RequestMethod.GET)
+    @RequestMapping(value = "/jsoncentral", method = RequestMethod.GET)
     public String show_allJson_jsp() {
         return "alljson";  // This will look for WEB-INF/jsp/alljson.jsp
     }
@@ -677,19 +677,19 @@ public class ToDo_Controller<T> {
     }
 
     /**
-     * 8️⃣ DELETE Todo by UID (Returns 204: noContent() created = void)
-     *    DELETE http://localhost:8080/api/todo/uid/1
+     * 8️⃣ DELETE Todo by ID (Returns 204: noContent() created = void)
+     *    DELETE http://localhost:8080/api/todo/id/1
      */
-    @Operation(summary = "DELETE Todo by UID (Returns 204: noContent() created = void)" , description = "DELETE by uid. User pass UId that want to delete. http://localhost:8080/api/todo/uid/1" )
-    @DeleteMapping("/uid/{uidd}")
+    @Operation(summary = "DELETE Todo by ID (Returns 204: noContent() created = void)" , description = "DELETE by id. User pass Id that want to delete. http://localhost:8080/api/todo/id/1" )
+    @DeleteMapping("/id/{idd}")
     @ResponseBody
-    public ResponseEntity<?> deleteTodo(@PathVariable(value = "uidd") int uid) {
+    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int uid) {
         // edge case-1: if ID Todo not found...
-        if (!repo_dao_springData_todo_jpa.existsById(uid)) {
+        if (!repo_dao_springData_todo_jpa.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
-        repo_dao_springData_todo_jpa.deleteById(uid);
+        repo_dao_springData_todo_jpa.deleteById(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
 
