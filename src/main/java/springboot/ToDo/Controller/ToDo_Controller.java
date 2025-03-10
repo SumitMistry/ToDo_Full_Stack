@@ -231,25 +231,6 @@ public class ToDo_Controller<T> {
     }
 
 
-    //    http://localhost:8080/api/todo/listjson
-    @RequestMapping(value = "/listjson", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
-        return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
-    }
-
-    //    http://localhost:8080/api/todo/listjson1
-    ///////////////////////////     JSON     ///////////////////////////
-    // JSON: below is without the use of ----> [responseEntity<> wrapper ]
-    @RequestMapping(value = "/listjson1", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public List<Todo> listAll_todos_json1() {
-        List<Todo> ans =  toDo_Services.findbyALL();
-        return ans;
-    }
-
 
     ///////////////////////////     FindBYUID     ///////////////////////////
     @RequestMapping(value = "/findByUID", method = RequestMethod.GET)
@@ -514,6 +495,8 @@ public class ToDo_Controller<T> {
 
 
 
+
+
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
@@ -523,6 +506,38 @@ public class ToDo_Controller<T> {
 // ------------------------------------------------------------------------------
 //   If you decide to make your application a pure ""REST API"" (returning JSON instead of rendering a JSP page), ...
 //   .....then you'd need to change it to return JSON, like this:
+
+
+    @RequestMapping(value = "/alljson", method = RequestMethod.GET)
+    public String show_allJson_jsp() {
+        return "alljson";  // This will look for WEB-INF/jsp/alljson.jsp
+    }
+
+
+
+
+    //    http://localhost:8080/api/todo/listjson
+    @RequestMapping(value = "/listjson", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public ResponseEntity<List<Todo>> listAll_todos_json(ModelMap modelMap) {
+        return new ResponseEntity<List<Todo>>(toDo_Services.findbyALL(), HttpStatus.OK);
+    }
+
+    //    http://localhost:8080/api/todo/listjson1
+    ///////////////////////////     JSON     ///////////////////////////
+    // JSON: below is without the use of ----> [responseEntity<> wrapper ]
+    @RequestMapping(value = "/listjson1", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<Todo> listAll_todos_json1() {
+        List<Todo> ans =  toDo_Services.findbyALL();
+        return ans;
+    }
+
+
+
+
     /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
     /**
      * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
