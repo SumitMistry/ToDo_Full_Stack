@@ -507,6 +507,8 @@ public class ToDo_Controller<T> {
 // ------------------------------------------------------------------------------
 // ---------------------------------- JSON --------------------------------------
 // ------------------------------------------------------------------------------
+// ----------------------------------POSTMAN-------------------------------------
+// ------------------------------------------------------------------------------
 //   If you decide to make your application a pure ""REST API"" (returning JSON instead of rendering a JSP page), ...
 //   .....then you'd need to change it to return JSON, like this:
 
@@ -683,7 +685,7 @@ public class ToDo_Controller<T> {
     @Operation(summary = "DELETE Todo by ID (Returns 204: noContent() created = void)" , description = "DELETE by id. User pass Id that want to delete. http://localhost:8080/api/todo/id/1" )
     @DeleteMapping("/id/{idd}")
     @ResponseBody
-    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int uid) {
+    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int id) {
         // edge case-1: if ID Todo not found...
         if (!repo_dao_springData_todo_jpa.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
@@ -692,11 +694,6 @@ public class ToDo_Controller<T> {
         repo_dao_springData_todo_jpa.deleteById(id);
         return ResponseEntity.noContent().build(); // 204 No Content
     }
-
-
-
-
-
 
 
 }
