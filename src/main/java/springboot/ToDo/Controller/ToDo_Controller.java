@@ -113,7 +113,8 @@ public class ToDo_Controller<T> {
     /**
      * 2️⃣ Search todos by keyword (Returns JSP page)
      */
-    @RequestMapping(value = {"/searchAPI"}, method = {RequestMethod.GET,  RequestMethod.POST})
+    @RequestMapping(value = {"/searchAPI"}, method = {RequestMethod.GET})
+    @Operation(summary = "GET searchAPI", description = "Returns Keyword Search result.")
     public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
                                 ModelMap modelMap){
 
@@ -155,6 +156,7 @@ public class ToDo_Controller<T> {
      * 4️⃣ POST - Insert a new Todo (Process Form Submission)
      */
     @RequestMapping(value = { "/insert3" }, method = RequestMethod.POST)
+    @Operation(summary = "POST insert3 (includes Validation", description = "Insert validated todo by Json.")
     public String post_SprData_JPA_insert(ModelMap modelMap,
                                           @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo,
                                           BindingResult bindingResult, Errors err) {
