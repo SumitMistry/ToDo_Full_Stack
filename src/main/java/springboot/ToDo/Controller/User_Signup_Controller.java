@@ -1,5 +1,6 @@
 package springboot.ToDo.Controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +13,7 @@ import springboot.ToDo.Services.User_Signup_Services;
 @Controller
 //@RequestMapping(value = "/")
 @SessionAttributes({"uid_email", "pass", "totally" })
+@Tag(name = "Controller# 4 = User_SignUp Management", description = "SM: Operations related to User_SignUp ") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 public class User_Signup_Controller {
 
 

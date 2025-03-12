@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/todo/")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally"})
-@Tag(name = "PersonJson Management", description = "SM: Operations related to Todo items") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
+@Tag(name = "Controller# 2 = PersonJson Management", description = "SM: Operations related to pJSON") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 public class PersonJSON_Controller {
 
 

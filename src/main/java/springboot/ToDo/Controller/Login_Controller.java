@@ -1,5 +1,6 @@
 package springboot.ToDo.Controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import springboot.ToDo.Services.Login_Services;
 @Controller
 //@RequestMapping("/")
 @SessionAttributes({"uid_email", "pass", "totally" })  // when you want to store a value in whole session, use this.
+@Tag(name = "Controller# 5 = Login Controller Management", description = "SM: Operations related to Login Controller") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 // you have to pass this values from frontend variable standpoint, so it is <uid> not <usernr>
 // <usernr> is backend variable, this will nto work
 // "uid" is the frontend variable, passing this will be able to save as session. it will work..

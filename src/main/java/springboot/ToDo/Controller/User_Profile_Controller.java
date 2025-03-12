@@ -2,6 +2,7 @@ package springboot.ToDo.Controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 //@RequestMapping("/")
 @SessionAttributes({"uid_email", "pass", "totally" })
 @Validated //  especially while using  @RequestParam.... this @validated enables validation(like @past, @future, @max min) within method argument direct .... @valid will not work here
+@Tag(name = "Controller# 3 = User_Profile Management", description = "SM: Operations related to User_Profile") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 public class User_Profile_Controller {
 
 //    @Autowired
