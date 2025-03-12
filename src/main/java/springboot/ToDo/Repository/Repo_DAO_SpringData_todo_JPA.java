@@ -24,7 +24,7 @@ public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //Howe
     // Method to find record by ID
     //override the query to explicitly specify the id field using the @Query annotation
     @Query(value = "SELECT * FROM todoh WHERE id = :id ;", nativeQuery = true) // The @Param("id") annotation ensures that the id method parameter is correctly mapped to the :id placeholder in the query
-    Optional<List<Todo>> findById(@Param("id") int id);
+    Optional<List<Todo>> findById_custom(@Param("id") int id);
 
 
     void deleteByUid(int uid);

@@ -34,7 +34,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 
 
@@ -253,7 +252,7 @@ public class ToDo_Controller<T> {
                            ModelMap modelMap) {
 
         // Optional<List<Todo>> todo_list_optional = repo_dao_springData_todo_jpa.findById(id);
-        Optional<List<Todo>> todo_list= repo_dao_springData_todo_jpa.findById(id);
+        Optional<List<Todo>> todo_list= repo_dao_springData_todo_jpa.findById_custom(id);
 
         if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
@@ -687,7 +686,7 @@ public class ToDo_Controller<T> {
     @ResponseBody
     public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int id) {
         // edge case-1: if ID Todo not found...
-        if (!repo_dao_springData_todo_jpa.existsById(id)) {
+        if ( repo_dao_springData_todo_jpa.findById_custom(id).get().isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
