@@ -1,5 +1,6 @@
 package springboot.ToDo.A_ForPracticeONLY;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpStatus;
@@ -11,28 +12,28 @@ import org.springframework.web.bind.annotation.*;
     (@RequestParam("username") String retrieved_username) -------------> frontend ---> Java class. This extracts submitted "username" tag's data into variable <retrieved_username>
         this value can be returning as array int[] or String[], example in update() POST method...below
  */
-
 @Controller
 @RequestMapping("api/todo/")
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @SessionAttributes({"uid_email", "pass", "totally"})
+@Tag(name = "PersonJson Management", description = "SM: Operations related to Todo items") // Now, APIs will be grouped under "Todo Management" in Swagger UI. ✅ // used to group related API endpoints in the Swagger UI. It helps organize APIs by functionality, making them easier to understand and navigate.
 public class PersonJSON_Controller {
 
 
-    @RequestMapping(value = "test1", method = RequestMethod.GET)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public String test1(){
-        System.out.println(" ....>>.....testing success ");
-        return " .........testing success";   //goes to frontend
-    }
-
+    /*
+        POST http://localhost:8080/api/todo/pJSON
+                {
+                    "name" : "Sumikt" ,
+                    "age" : 14
+                }
+    */
     @RequestMapping(value = "pJSON", method = RequestMethod.POST)
     @ResponseBody // this is mandatory
     public String createPersonJSON(@RequestBody PersonJSON_POJO_Model personJSONPOJOModel){
         System.out.println("I ....m ....here....");
         return "  ---> RETURNUNG JSON name=" + personJSONPOJOModel.getName() + "  ---> RETURNUNG JSON age="+ personJSONPOJOModel.getAge();
     }
+
 }
 
 
@@ -43,6 +44,19 @@ public class PersonJSON_Controller {
 
 
 /*
+
+
+
+    @RequestMapping(value = "test1", method = RequestMethod.GET)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public String test1(){
+        System.out.println(" ....>>.....testing success ");
+        return " .........testing success";   //goes to frontend
+    }
+
+
+
  if (todo55.getattach() != null && !todo.getAttach().isEmpty()) {
                 // attach attachment
                 existingTodo.setattach(todo55.getMultipartFile().getBytes());
