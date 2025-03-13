@@ -92,6 +92,7 @@ public class ToDo_Controller<T> {
      * 1️⃣ Fetch todos within a date range (Returns JSP page)
      */
     @RequestMapping(value = {"/dateRangePicker"}, method = RequestMethod.GET)
+    @Operation(tags = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD")
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){

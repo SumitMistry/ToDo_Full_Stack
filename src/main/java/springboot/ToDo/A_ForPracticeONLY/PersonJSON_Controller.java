@@ -22,10 +22,14 @@ public class PersonJSON_Controller {
 
     /*
         POST http://localhost:8080/api/todo/pJSON
-                {
-                    "name" : "Sumikt" ,
-                    "age" : 14
-                }
+                POST this:
+                    {
+                        "name" : "Sumikt" ,
+                        "age" : 14
+                    }
+
+                RETRUN this:
+                    ---> RETURNUNG JSON name=Sumikt  ---> RETURNUNG JSON age=14
     */
     @RequestMapping(value = "pJSON", method = RequestMethod.POST)
     @ResponseBody // this is mandatory
