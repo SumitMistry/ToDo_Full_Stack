@@ -31,7 +31,7 @@ public class ToDo_main {
 						"   http://localhost:8080/api/todo/findById             http://localhost:8080/api/todo/findById?u=1 \n" +
 						"   http://localhost:8080/api/todo/findByUID            http://localhost:8080/api/todo/findByUID?u=1 \n" +
 						"   http://localhost:8080/api/todo/findByUser           http://localhost:8080/api/todo/findByUser?user=vraj@yyz.com \n" +
-						"   http://localhost:8080/api/todo/existbyuid			http://localhost:8080/api/todo/existbyuid?u=1 \n" +
+						"   http://localhost:8080/api/todo/existByUID			http://localhost:8080/api/todo/existByUID?u=1 \n" +
 
 						"   http://localhost:8080/api/todo/list (USER specific)	http://localhost:8080/api/todo/listjson \n" +
 						"   http://localhost:8080/api/todo/listall				http://localhost:8080/h2-console \n" +

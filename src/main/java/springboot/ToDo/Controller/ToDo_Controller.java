@@ -95,9 +95,7 @@ public class ToDo_Controller<T> {
      * 1️⃣ Fetch todos within a date range (Returns JSP page)
      */
     @RequestMapping(value = {"/dateRangePicker"}, method = RequestMethod.GET)
-    @Operation(summary = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD",
-                parameters ={@Parameter( name = "Date" ,description = "YYYY-MM-DD")}
-                )
+    @Operation(summary = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD"  )
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){
@@ -189,7 +187,7 @@ public class ToDo_Controller<T> {
     // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
-    @RequestMapping(value = "/api/todo/existbyuid", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/todo/existByUID", method = RequestMethod.GET)
     @Operation(
             summary = "Check if a Todo exists by UID",
             description = "Checks if a Todo item exists by UID. Returns a boolean value (true/false).",
@@ -318,7 +316,8 @@ public class ToDo_Controller<T> {
     // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
     @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
-    @Operation(summary = "GET todo by Username/email", description = "Use Username/email to retrieve Todo")
+    @Operation(summary = "GET todo by Username/email", description = "Use Username/email to retrieve Todo",
+            parameters = {@Parameter(name = "user", description = "email"  )})
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
 
@@ -358,6 +357,7 @@ public class ToDo_Controller<T> {
     @RequestMapping(value = {"/hardcode1"}, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional(readOnly = true) // , propagation = Propagation.)
+    @Operation(summary = "Hardcoded 4 data entries into dB.", description = "4 data entries-hardcoded data" )
     // I kept this hard coded data as READONLY so will not get injected to DB
     public String hard_code_data_sprData_jpa(
                         ModelMap modelMap,  @SessionAttribute(value ="uid_email") String uid_email) {
@@ -405,7 +405,8 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     DELETE BY UID    ///////////////////////////
-    @RequestMapping(value = "/deleteByUid", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteByUID", method = RequestMethod.GET)
+    @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
     public String deleteByUID(@RequestParam(value = "u") int uid) {
 
         // before deleting, checking if the ID exist or not!!, this is good practice..
@@ -424,6 +425,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "/delByID", method = RequestMethod.GET)
+    @Operation(summary = "DELETE Todo by ID - JSP" , description = "DELETE by Id. User passes ID.. that want to delete." )
     public String del_By_ID(@RequestParam(value = "u") int id) {
         repo_dao_springData_todo_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
@@ -444,6 +446,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @Operation(summary = "GET update Todo by id - in JSP)" , description = "Update by id" )
     public String show_UpdateByID_page(ModelMap modelMap,
                                        @RequestParam(value = "u") int uidTakenFromHtmlTag) {
 
