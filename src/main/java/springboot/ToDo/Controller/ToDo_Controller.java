@@ -1,6 +1,9 @@
 package springboot.ToDo.Controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -92,7 +95,9 @@ public class ToDo_Controller<T> {
      * 1️⃣ Fetch todos within a date range (Returns JSP page)
      */
     @RequestMapping(value = {"/dateRangePicker"}, method = RequestMethod.GET)
-    @Operation(tags = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD")
+    @Operation(summary = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD",
+                parameters ={@Parameter( name = "Date" ,description = "YYYY-MM-DD")}
+                )
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                                   ModelMap modelMap){
@@ -157,7 +162,7 @@ public class ToDo_Controller<T> {
      * 4️⃣ POST - Insert a new Todo (Process Form Submission)
      */
     @RequestMapping(value = { "/insert3" }, method = RequestMethod.POST)
-    @Operation(summary = "POST insert3 (includes Validation", description = "Insert validated todo by Json.")
+    @Operation(summary = "POST insert3 (includes Validation)", description = "Insert validated todo by Json.")
     public String post_SprData_JPA_insert(ModelMap modelMap,
                                           @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo,
                                           BindingResult bindingResult, Errors err) {
@@ -185,6 +190,24 @@ public class ToDo_Controller<T> {
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
     @RequestMapping(value = "/api/todo/existbyuid", method = RequestMethod.GET)
+    @Operation(
+            summary = "Check if a Todo exists by UID",
+            description = "Checks if a Todo item exists by UID. Returns a boolean value (true/false).",
+            parameters = {
+                    @Parameter(
+                            name = "u",
+                            description = "The UID of the Todo item to check",
+                            required = true,
+                            in = ParameterIn.QUERY,
+                            example = "123",
+                            hidden = false // Hides this parameter from Swagger UI
+
+                    )
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "200=Todo item exists (true)"),
+                    @ApiResponse(responseCode = "404", description = "404=Todo item does not exist (false)")
+            })
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
                                            ModelMap modelMap){
         boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
@@ -199,6 +222,20 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     USER based LISTING     ///////////////////////////
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+    @Operation(
+            summary = "GET user based listing" ,
+            description = "Returns JSP page with current user's all todo" ,
+            parameters = {
+                    @Parameter(
+                            name = "username",
+                            description = "Username of the currently logged-in user (automatically fetched from Spring Security)",
+                            required = true,
+                            hidden = false // Hides this parameter from Swagger UI
+                    )},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "200=No Todo lin list to show you."),
+                    @ApiResponse(responseCode = "404", description = "404=Todo listing is here.")            }
+    )
     public String list_per_user_todos(ModelMap modelMap) {
 
         // List with all todos + parsing it to modelmap
@@ -215,11 +252,18 @@ public class ToDo_Controller<T> {
 //        }
 
         // now final result listing as view
-        return "index";
+        return "index"; // JSP page
     }
 
     ///////////////////////////     ALL USER LISTING     ///////////////////////////
     @RequestMapping(value = {"/listall"}, method = RequestMethod.GET)
+    @Operation(summary = "GET Listing of all User's Todo ", description = "select * = List of all todo in db"
+//                parameters = { @Parameter
+//                                ( name = "LIST ALL TODO" ,
+//                                description = "GET Listing of all User's Todo",
+//                                        required = false,
+//                                        hidden = false)        }
+                )
     public String listAll_todos(ModelMap modelMap) {
         //List<Todo> outputList = toDo_Services.listAllToDo();
 
@@ -239,6 +283,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     FindBYUID     ///////////////////////////
     @RequestMapping(value = "/findByUID", method = RequestMethod.GET)
+    @Operation(summary = "GET todo by UID", description = "Use UID to retrieve Todo")
     public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
         //      System.out.println(toDo_Services.findByID(uid));
         //      List<Todo> list1 =  toDo_Services.findByID_from_List(uid);
@@ -251,6 +296,7 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     FindBY ID     ///////////////////////////
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
+    @Operation(summary = "GET todo by ID", description = "Use ID to retrieve Todo")
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
@@ -272,6 +318,7 @@ public class ToDo_Controller<T> {
     // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
     @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
+    @Operation(summary = "GET todo by Username/email", description = "Use Username/email to retrieve Todo")
     public String findByUsername(@RequestParam(value = "user")String enter_username,
                                  ModelMap modelMap ){
 
