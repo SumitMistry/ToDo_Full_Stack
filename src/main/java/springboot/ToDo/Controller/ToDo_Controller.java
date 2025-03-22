@@ -21,6 +21,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import springboot.ToDo.Model.MultipartFile_holder;
 import springboot.ToDo.Model.Todo;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
@@ -29,6 +30,7 @@ import springboot.ToDo.Services.ToDo_Services;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
+import java.net.URI;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -628,7 +630,11 @@ public class ToDo_Controller<T> {
         // Save to database
         Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created)
+        // GET URI location path link
+        URI  get_current_request_uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uid_email}").buildAndExpand(savedTodo.getId()).toUri();
+
+        // return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created) --> returns full TODO object
+        return ResponseEntity.status(HttpStatus.CREATED).body(get_current_request_uri);  // returning only status (201 Created)  ---> return only path where URI created
     }
 
 
