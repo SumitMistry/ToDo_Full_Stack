@@ -132,11 +132,11 @@
 
 
 		<!--for loading code (including jsp) without restarting the server you can use Spring Boot Devtools dependency-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-devtools</artifactId>-->
+<!--			<optional>true</optional>-->
+<!--		</dependency>-->
 
 
 		<!-- For 2 way binding data and Validation to check data is within range of our requirement   -->

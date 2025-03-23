@@ -139,6 +139,65 @@ public class ToDo_Controller<T> {
     }
 
 
+    ///////////////////////////     USER based LISTING     ///////////////////////////
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+    @Operation(
+            summary = "GET user based listing" ,
+            description = "Returns JSP page with current user's all todo" ,
+            parameters = {
+                    @Parameter(
+                            name = "username",
+                            description = "Username of the currently logged-in user (automatically fetched from Spring Security)",
+                            required = true,
+                            hidden = false // Hides this parameter from Swagger UI
+                    )},
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "200=No Todo lin list to show you."),
+                    @ApiResponse(responseCode = "404", description = "404=Todo listing is here.")            }
+    )
+    public String list_per_user_todos(ModelMap modelMap) {
+
+        // List with all todos + parsing it to modelmap
+        Optional<List<Todo>> user_listing = repo_dao_springData_todo_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security());
+        modelMap.addAttribute("listMapVar", user_listing.get());
+
+        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
+        int count_todos = user_listing.get().size();
+        modelMap.addAttribute("totally", count_todos );
+
+//        // This code helps in - Improve Exception Handling
+//        if (user_listing.isEmpty() || user_listing.get().isEmpty()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data found for the uxser");
+//        }
+
+        // now final result listing as view
+        return "index"; // JSP page
+    }
+
+    ///////////////////////////     ALL USER LISTING     ///////////////////////////
+    @RequestMapping(value = {"/listall"}, method = RequestMethod.GET)
+    @Operation(summary = "GET Listing of all User's Todo ", description = "select * = List of all todo in db"
+//                parameters = { @Parameter
+//                                ( name = "LIST ALL TODO" ,
+//                                description = "GET Listing of all User's Todo",
+//                                        required = false,
+//                                        hidden = false)        }
+    )
+    public String listAll_todos(ModelMap modelMap) {
+        //List<Todo> outputList = toDo_Services.listAllToDo();
+
+        // List with all todos + parsing it to modelmap
+        List<Todo> list1 = toDo_Services.findbyALL();
+        modelMap.addAttribute("listMapVar", list1);
+
+        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
+        int count_todos = list1.size();
+        modelMap.addAttribute("totally", count_todos );
+
+        // now final result listing as view
+        return "index";
+    }
+
     /**
      * 3️⃣ GET - Show Insert Todo Page (JSP Page)
      */
@@ -185,7 +244,7 @@ public class ToDo_Controller<T> {
 
 
 
-
+    ///////////////////////////     existByUid (GET)    ///////////////////////////
     // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
@@ -218,65 +277,6 @@ public class ToDo_Controller<T> {
         else{
             return new ResponseEntity<>(x, HttpStatus.NOT_FOUND); //404 error code
         }
-    }
-
-    ///////////////////////////     USER based LISTING     ///////////////////////////
-    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    @Operation(
-            summary = "GET user based listing" ,
-            description = "Returns JSP page with current user's all todo" ,
-            parameters = {
-                    @Parameter(
-                            name = "username",
-                            description = "Username of the currently logged-in user (automatically fetched from Spring Security)",
-                            required = true,
-                            hidden = false // Hides this parameter from Swagger UI
-                    )},
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "200=No Todo lin list to show you."),
-                    @ApiResponse(responseCode = "404", description = "404=Todo listing is here.")            }
-    )
-    public String list_per_user_todos(ModelMap modelMap) {
-
-        // List with all todos + parsing it to modelmap
-        Optional<List<Todo>> user_listing = repo_dao_springData_todo_jpa.findByUsername(loginServices.get_username_from_login_from_spring_Security());
-        modelMap.addAttribute("listMapVar", user_listing.get());
-
-        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
-        int count_todos = user_listing.get().size();
-        modelMap.addAttribute("totally", count_todos );
-
-//        // This code helps in - Improve Exception Handling
-//        if (user_listing.isEmpty() || user_listing.get().isEmpty()){
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No data found for the uxser");
-//        }
-
-        // now final result listing as view
-        return "index"; // JSP page
-    }
-
-    ///////////////////////////     ALL USER LISTING     ///////////////////////////
-    @RequestMapping(value = {"/listall"}, method = RequestMethod.GET)
-    @Operation(summary = "GET Listing of all User's Todo ", description = "select * = List of all todo in db"
-//                parameters = { @Parameter
-//                                ( name = "LIST ALL TODO" ,
-//                                description = "GET Listing of all User's Todo",
-//                                        required = false,
-//                                        hidden = false)        }
-                )
-    public String listAll_todos(ModelMap modelMap) {
-        //List<Todo> outputList = toDo_Services.listAllToDo();
-
-        // List with all todos + parsing it to modelmap
-        List<Todo> list1 = toDo_Services.findbyALL();
-        modelMap.addAttribute("listMapVar", list1);
-
-        // counting total todos and parsing on the navigation.jspf via {totally} variable, this is for HEADER count variable
-        int count_todos = list1.size();
-        modelMap.addAttribute("totally", count_todos );
-
-        // now final result listing as view
-        return "index";
     }
 
 
@@ -315,6 +315,7 @@ public class ToDo_Controller<T> {
     }
 
 
+    ///////////////////////////     FindBY User     ///////////////////////////
     // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
     @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
@@ -354,6 +355,46 @@ public class ToDo_Controller<T> {
 
 
 
+    ///////////////////////////     DELETE BY UID    ///////////////////////////
+    @RequestMapping(value = "/deleteByUID", method = RequestMethod.GET)
+    @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
+    public String deleteByUID(@RequestParam(value = "u") int uid) {
+
+        // before deleting, checking if the ID exist or not!!, this is good practice..
+        if (repo_dao_springData_todo_jpa.existsByUid(uid)){ // if exist == true
+            toDo_Services.deleteByUID_springDataJPA(uid);
+            l1.info("Deleted UID: " + uid);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Todo not foundd");
+        }
+
+        //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
+
+        //return "index";
+        return "redirect:/api/todo/list";
+    }
+
+    ///////////////////////////     DELETE BY ID    ///////////////////////////
+    @RequestMapping(value = "/delByID", method = RequestMethod.GET)
+    @Operation(summary = "DELETE Todo by ID - JSP" , description = "DELETE by Id. User passes ID.. that want to delete." )
+    public String del_By_ID(@RequestParam(value = "u") int id) {
+        repo_dao_springData_todo_jpa.deleteById(id);
+        l1.info("DELETEDD::::::::" + id);
+        //return "index";
+        return "redirect:/api/todo/list";
+    }
+
+    /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
+    @RequestMapping(value = "/sam", method = RequestMethod.GET)
+    public String getSum(ModelMap modelMap){
+        List<Todo> todo =  toDo_Services.getAllSumit().get();
+        modelMap.addAttribute("listMapVar", todo);
+        modelMap.addAttribute("totally", todo.size());
+        return "index";
+    }
+
+
+    ///////////////////////////     hardcode1     ///////////////////////////
     //////////////////// This end point ONLY used to ADD HARDCODED values into SQL
     /////////// CHange values to NOT readOnly..here...to make it work @Transactional(readOnly = true)
     @RequestMapping(value = {"/hardcode1"}, method = RequestMethod.GET)
@@ -362,7 +403,7 @@ public class ToDo_Controller<T> {
     @Operation(summary = "Hardcoded 4 data entries into dB.", description = "4 data entries-hardcoded data" )
     // I kept this hard coded data as READONLY so will not get injected to DB
     public String hard_code_data_sprData_jpa(
-                        ModelMap modelMap,  @SessionAttribute(value ="uid_email") String uid_email) {
+            ModelMap modelMap,  @SessionAttribute(value ="uid_email") String uid_email) {
 
         // ADD: locally add to LIST
         List<Todo> list1 = new ArrayList<>();
@@ -405,44 +446,6 @@ public class ToDo_Controller<T> {
 
 
 
-
-    ///////////////////////////     DELETE BY UID    ///////////////////////////
-    @RequestMapping(value = "/deleteByUID", method = RequestMethod.GET)
-    @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
-    public String deleteByUID(@RequestParam(value = "u") int uid) {
-
-        // before deleting, checking if the ID exist or not!!, this is good practice..
-        if (repo_dao_springData_todo_jpa.existsByUid(uid)){ // if exist == true
-            toDo_Services.deleteByUID_springDataJPA(uid);
-            l1.info("Deleted UID: " + uid);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Todo not foundd");
-        }
-
-        //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
-
-        //return "index";
-        return "redirect:/api/todo/list";
-    }
-
-    ///////////////////////////     DELETE BY ID    ///////////////////////////
-    @RequestMapping(value = "/delByID", method = RequestMethod.GET)
-    @Operation(summary = "DELETE Todo by ID - JSP" , description = "DELETE by Id. User passes ID.. that want to delete." )
-    public String del_By_ID(@RequestParam(value = "u") int id) {
-        repo_dao_springData_todo_jpa.deleteById(id);
-        l1.info("DELETEDD::::::::" + id);
-        //return "index";
-        return "redirect:/api/todo/list";
-    }
-
-    /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
-    @RequestMapping(value = "/sam", method = RequestMethod.GET)
-    public String getSum(ModelMap modelMap){
-        List<Todo> todo =  toDo_Services.getAllSumit().get();
-        modelMap.addAttribute("listMapVar", todo);
-        modelMap.addAttribute("totally", todo.size());
-        return "index";
-    }
 
 
 
@@ -605,28 +608,28 @@ public class ToDo_Controller<T> {
     /**
      * 6️⃣ Get Todo By (SINGLE) ID (Returns JSON)
      */
-//    @Operation(summary = "GET Single Todo by id" , description = "GET Todo By (SINGLE) ID (Returns JSON)")
-//    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
-//    @ResponseBody
-//    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
-//        // Debug method
-//        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
-//
-//        // Step 1: Fetch the Todo item from the database using its ID
-//        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
-//
-//        // Step 2: Check if the Todo item exists
-//        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
-//            // Step 3: If found, return the Todo item with HTTP status 200 OK
-//            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
-//
-//        } else {
-//
-//            // Step 4: If not found, return a 404 Not Found response with a message
-//            String errorMessage = "Todo with ID " + id + " not found";
-//            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
-//        }
-//    }
+        //    @Operation(summary = "GET Single Todo by id" , description = "GET Todo By (SINGLE) ID (Returns JSON)")
+        //    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
+        //    @ResponseBody
+        //    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
+        //        // Debug method
+        //        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
+        //
+        //        // Step 1: Fetch the Todo item from the database using its ID
+        //        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
+        //
+        //        // Step 2: Check if the Todo item exists
+        //        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
+        //            // Step 3: If found, return the Todo item with HTTP status 200 OK
+        //            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
+        //
+        //        } else {
+        //
+        //            // Step 4: If not found, return a 404 Not Found response with a message
+        //            String errorMessage = "Todo with ID " + id + " not found";
+        //            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        //        }
+        //    }
 
 
     /**

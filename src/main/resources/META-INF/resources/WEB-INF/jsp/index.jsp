@@ -48,9 +48,9 @@
                             <td>  <a href="/api/todo/delByID?u=${eentry.id}" class="btn btn-danger"> &#x2718 </a> u=${eentry.id} </td>
                             <td>  <a href="/api/todo/deleteByUID?u=${eentry.uid}" class="btn btn-danger"> &#x2718;</a> u=${eentry.uid} </td>
                             <td>  <a href="/api/todo/upload?u=${eentry.uid}" class="btn btn-primary btn-success">  &#x1F517 </a> u=${eentry.uid} </td>
-                            <td>  <a href="/api/todo/findById?u=${eentry.id}" class="btn btn-warning"> &#x2754; </a> u=${eentry.id} </td>
-                            <td>  <a href="/api/todo/findByUID?u=${eentry.uid}" class="btn btn-warning"> &#x2754; </a> u=${eentry.uid} </td>
-                            <td>  <a href="/api/todo/findByUser?user=${eentry.username}" class="btn btn-warning"> &#x2754; </a> user=${eentry.username} </td>
+                            <td>  <a href="/api/todo/findById?u=${eentry.id}" class="btn btn-outline-dark"> &#x1F50D; </a> u=${eentry.id} </td>
+                            <td>  <a href="/api/todo/findByUID?u=${eentry.uid}" class="btn btn-outline-"> &#x1F50D; </a> u=${eentry.uid} </td>
+                            <td>  <a href="/api/todo/findByUser?user=${eentry.username}" class="btn btn-outline-"> &#x1F50D; </a> user=${eentry.username} </td>
 
 
                         </tr>
