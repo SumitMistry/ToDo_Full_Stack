@@ -34,10 +34,7 @@ import java.net.URI;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 
 
@@ -689,14 +686,20 @@ public class ToDo_Controller<T> {
             return ResponseEntity.badRequest().body("Validation failed: " + bindingResult.getAllErrors()); // 400 Bad Request
         }
 
-        // Save to database
+        // Saved TODO to database
         Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
 
         // GET URI location path link
         URI  get_current_request_uri =  ServletUriComponentsBuilder.fromCurrentRequest().path("/{multipleiid}").buildAndExpand(savedTodo.getId()).toUri();
 
-        // return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created) --> returns full TODO object
-        return ResponseEntity.status(HttpStatus.CREATED).body(get_current_request_uri);  // returning only status (201 Created)  ---> return only path where URI created
+        // Create Map
+        // Map(K:V) Map(URIstring:TodoObj)
+        // Map = (K)URI link + (V)saved TODO
+        Map<URI,Todo> map = new HashMap<URI,Todo>();
+        map.put(get_current_request_uri,savedTodo);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(map);  // returning only status (201 Created)  ---> return only path where URI created
+
     }
 
 
