@@ -602,85 +602,6 @@ public class ToDo_Controller<T> {
 
 
 
-    /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
-    /**
-     * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
-     *    POST http://localhost:8080/api/todo/insert4
-                     * {
-                     *     "id": 456,
-                     *     "username": "test1@test2.com",
-                     *     "description": "Added from PostMAN",
-                     *     "creationDate": "2025-01-30",
-                     *     "targetDate": "2026-01-30",
-                     *     "done": false
-                     * }
-     */
-    @Operation(summary = "POST/ INSERT Todo via API (Returns JSON)", description = "insert todo record. User to send data in json.")
-    @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    public ResponseEntity<?> insert4TodoAPI(
-            @RequestBody @Valid Todo todoh,
-            BindingResult bindingResult) {
-
-        // Check for validation errors
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body("Validation failed: " + bindingResult.getAllErrors()); // 400 Bad Request
-        }
-
-        // Save to database
-        Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
-
-        // GET URI location path link
-        URI  get_current_request_uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{uid_email}").buildAndExpand(savedTodo.getId()).toUri();
-
-        // return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created) --> returns full TODO object
-        return ResponseEntity.status(HttpStatus.CREATED).body(get_current_request_uri);  // returning only status (201 Created)  ---> return only path where URI created
-    }
-
-
-
-    /**
-     * 7️⃣ PUT-Update Todo By UID (Returns JSON)
-     *    PUT http://localhost:8080/api/todo/uid/97
-             * {
-             *     "id": 123,
-             *     "username": "nyc@njusa.com",
-             *     "description": "Added from Postman edited2",
-             *     "creationDate": "2025-01-30",
-             *     "targetDate": "2056-10-24",
-             *     "done": false
-             * }
-     */
-    @Operation(summary = "PUT-Update Todo By UID (Returns JSON)", description = "Update todo record by UID. PUT http://localhost:8080/api/todo/uid/97")
-    @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
-    @ResponseBody
-    public ResponseEntity<?> updateTodoByUID(
-            @PathVariable(value = "uiid") int uid,
-            @RequestBody @Valid Todo updatedTodo,
-            BindingResult bindingResult) {
-
-        // Edge case-1 - Binding error catch
-        if (bindingResult.hasErrors()) {
-            return ResponseEntity.badRequest().body(bindingResult.getAllErrors()); // 400 Bad Request
-        }
-
-        // Edge case-2 - Todo not Found
-        if (!repo_dao_springData_todo_jpa.existsById(uid)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
-        }
-
-        //user input data(user-entered-todo) will not have UID, so binding/merging uid to user-entered-todo
-        updatedTodo.setUid(uid);
-
-
-        toDo_Services.updateByUid(updatedTodo);
-        return new ResponseEntity<> ("updated successfullly " + toDo_Services.findByUid(uid) , HttpStatus.OK); // 200 OK
-        // or
-        // return  ResponseEntity.ok(savedTodo); // 200 OK
-    }
-
-
-
     /**
      * 6️⃣ Get Todo By (SINGLE) ID (Returns JSON)
      */
@@ -738,6 +659,87 @@ public class ToDo_Controller<T> {
         }
 
     }
+
+
+    /////----------------- INSERT - SpringDataJPA SQL == insert4 (GET/POST) --------JSON
+    /**
+     * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
+     *    POST http://localhost:8080/api/todo/insert4
+                     * {
+                     *     "id": 456,
+                     *     "username": "test1@test2.com",
+                     *     "description": "Added from PostMAN",
+                     *     "creationDate": "2025-01-30",
+                     *     "targetDate": "2026-01-30",
+                     *     "done": false
+                     * }
+     */
+    @Operation(summary = "POST/ INSERT Todo via API (Returns JSON)", description = "insert todo record. User to send data in json.")
+    @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
+    @ResponseBody
+    public ResponseEntity<?> insert4TodoAPI(
+            @RequestBody @Valid Todo todoh,
+            BindingResult bindingResult) {
+
+        // Check for validation errors
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body("Validation failed: " + bindingResult.getAllErrors()); // 400 Bad Request
+        }
+
+        // Save to database
+        Todo savedTodo = repo_dao_springData_todo_jpa.save(todoh);
+
+        // GET URI location path link
+        URI  get_current_request_uri =  ServletUriComponentsBuilder.fromCurrentRequest().path("/{multipleiid}").buildAndExpand(savedTodo.getId()).toUri();
+
+        // return ResponseEntity.status(HttpStatus.CREATED).body(savedTodo);  // returning only status (201 Created) --> returns full TODO object
+        return ResponseEntity.status(HttpStatus.CREATED).body(get_current_request_uri);  // returning only status (201 Created)  ---> return only path where URI created
+    }
+
+
+
+    /**
+     * 7️⃣ PUT-Update Todo By UID (Returns JSON)
+     *    PUT http://localhost:8080/api/todo/uid/97
+             * {
+             *     "id": 123,
+             *     "username": "nyc@njusa.com",
+             *     "description": "Added from Postman edited2",
+             *     "creationDate": "2025-01-30",
+             *     "targetDate": "2056-10-24",
+             *     "done": false
+             * }
+     */
+    @Operation(summary = "PUT-Update Todo By UID (Returns JSON)", description = "Update todo record by UID. PUT http://localhost:8080/api/todo/uid/97")
+    @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<?> updateTodoByUID(
+            @PathVariable(value = "uiid") int uid,
+            @RequestBody @Valid Todo updatedTodo,
+            BindingResult bindingResult) {
+
+        // Edge case-1 - Binding error catch
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors()); // 400 Bad Request
+        }
+
+        // Edge case-2 - Todo not Found
+        if (!repo_dao_springData_todo_jpa.existsById(uid)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
+        }
+
+        //user input data(user-entered-todo) will not have UID, so binding/merging uid to user-entered-todo
+        updatedTodo.setUid(uid);
+
+
+        toDo_Services.updateByUid(updatedTodo);
+        return new ResponseEntity<> ("updated successfullly " + toDo_Services.findByUid(uid) , HttpStatus.OK); // 200 OK
+        // or
+        // return  ResponseEntity.ok(savedTodo); // 200 OK
+    }
+
+
+
 
     /**
      * 8️⃣ DELETE Todo by ID (Returns 204: noContent() created = void)
