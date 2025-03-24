@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0-RC1</version>
+		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>springboot</groupId>
@@ -48,11 +48,33 @@
 
 		<!-- These 2 dependencies for JSP page load for view, mandatory
             if you find this error: No static resource WEB-INF////..... then this means this dependency not correctly added.-->
+
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>11.0.1</version>
+			<version> 10.1.19</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>10.1.20</version>
+		</dependency>
+
+		<!--
+
+		I manually downloaded tomcat file from its website and extracted to bin folder and put in root folder at  ToDo\bin
+		https://tomcat.apache.org/download-native.cgi
+		https://dlcdn.apache.org/tomcat/tomcat-connectors/native/2.0.8/binaries/tomcat-native-2.0.8-openssl-3.0.14-win32-bin.zip
+		version - 2.0.8
+		Binary Distributions
+		Standard zip >> extracted >> tomcat-native-2.0.8-openssl-3.0.14-win32-bin.zip
+		took bin and pasted at todo root folder so app can work  ==== IMPORTANT
+
+		-->
+
+
 
 		<!-- These 2 dependencies for JSP page load for view, mandatory-->
 
@@ -64,6 +86,8 @@
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
