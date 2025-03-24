@@ -291,6 +291,8 @@ public class ToDo_Controller<T> {
         return "index";
     }
 
+
+
     ///////////////////////////     FindBY ID     ///////////////////////////
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     @Operation(summary = "GET todo by ID", description = "Use ID to retrieve Todo")
@@ -301,8 +303,19 @@ public class ToDo_Controller<T> {
         Optional<List<Todo>> todo_list= repo_dao_springData_todo_jpa.findById_custom(id);
 
         if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
+
+            // OPTION # 1 (White Label page with exception specific message there
+            // This will return WHITE-LABEL PAGE with below Exception reason
+            // app.properties ---> ++ ---> server.error.include-message=always
+            // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
+
+            // OPTION # 2 (return error.jsp page with specific variable string message passed)
+            // return jsp error page with specific to "ID not found" error message
+            modelMap.addAttribute("errorCodeHere5047_id_nf","Todo id # " + id + " based item not found <- written in ResponseStatusException...Controller");
+            return "error_nf";
+
         }
+
 
         modelMap.addAttribute("listMapVar",todo_list.get());
         modelMap.addAttribute("totally", todo_list.get().size());
