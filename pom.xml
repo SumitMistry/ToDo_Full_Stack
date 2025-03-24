@@ -56,12 +56,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-core</artifactId>
-			<version>10.1.20</version>
-		</dependency>
-
 		<!--
 
 		I manually downloaded tomcat file from its website and extracted to bin folder and put in root folder at  ToDo\bin
