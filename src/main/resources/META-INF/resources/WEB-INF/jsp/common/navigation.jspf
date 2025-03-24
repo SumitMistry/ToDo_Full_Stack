@@ -32,7 +32,9 @@
             			<li class="nav-item"><a class="nav-link" href="/">Login</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login1">Login(1)</a></li>
             			<li class="nav-item"><a class="nav-link" href="/login2">Login(2)</a></li>
-            		<li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>
+            	<!--	<li class="nav-item"><a class="nav-link" href="/logout">Logout(<b style="color: DodgerBlue;" >${uid_email}</b>)</a></li>    -->
+                    <td>  <a href="/logout" class="btn btn-outline">&#x1f512(<b style="color: DodgerBlue;">${uid_email}</b>)</a> </td>
+
 
                     <!--   <a href="/profile" > &#128064; </a>  -->
                     <!--   <td>  <a href="/profile" class="btn btn-outline-dark btn-sm"> &#128064; </a> </td>   -->

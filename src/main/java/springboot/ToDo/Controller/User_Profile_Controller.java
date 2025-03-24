@@ -12,8 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import springboot.ToDo.Model.UserProfile0;
-import springboot.ToDo.Model.UserProfile1;
+import springboot.ToDo.Model.UserProfile_pg0;
+import springboot.ToDo.Model.UserProfile_pg1;
 import springboot.ToDo.Repository.Repo_DAO_SpringData_todo_JPA;
 import springboot.ToDo.Services.User_Profile_Services;
 
@@ -42,12 +42,12 @@ public class User_Profile_Controller {
     public String get_user_profile(@SessionAttribute(value = "uid_email") String username,
                                    ModelMap modelMap) throws JsonProcessingException {
 
-        // Retrieving Profile0 data to frontend from table [UserProfile0]
-        UserProfile0 up0_obj = user_profile_services.get_UserProfile0_byUsername(username);
+        // Retrieving Profile0 data to frontend from table [UserProfile_pg0]
+        UserProfile_pg0 up0_obj = user_profile_services.get_UserProfile0_byUsername(username);
         modelMap.addAttribute("userProfile0_obj_modelAttribute", up0_obj);
 
-        // Retrieving Profile1 data to frontend from table [UserProfile1]
-        UserProfile1 up1_obj = user_profile_services.get_UserProfile1_byUsername(username);
+        // Retrieving Profile1 data to frontend from table [UserProfile_pg1]
+        UserProfile_pg1 up1_obj = user_profile_services.get_UserProfile1_byUsername(username);
         modelMap.addAttribute("up1sex", up1_obj.getSex() != null    ?   up1_obj.getSex().name() : "");
 
         // Retrieving join table data to frontend from table = [userAuth] + [userProfile0]
@@ -72,11 +72,11 @@ public class User_Profile_Controller {
                                    @RequestParam(value = "phone") String phone,
                                    @RequestParam(value = "birth_date" )  LocalDate birth_date, // While using @RequestParam, @valid will not work, you should manually validate the value, @valid only works for Modelattibute only.
 
-                                   @RequestParam(value = "sex") UserProfile1.Sex sex,
+                                   @RequestParam(value = "sex") UserProfile_pg1.Sex sex,
                                    //Use @Validated on the controller to enable @RequestParam validation.
                                    ModelMap modelMap,
-                                   @ModelAttribute("userProfile0_obj_modelAttribute") @Valid UserProfile0 new_userProfile0,
-                                   @Valid UserProfile1 new_userProfile1,
+                                   @ModelAttribute("userProfile0_obj_modelAttribute") @Valid UserProfile_pg0 new_userProfilePg0,
+                                   @Valid UserProfile_pg1 new_userProfilePg1,
                                    BindingResult bindingResult1, Errors err1){
 
 
@@ -89,18 +89,18 @@ public class User_Profile_Controller {
         }
 
         // --Profile-1 adjustment
-            new_userProfile0.setPhone(phone);
-            new_userProfile0.setL_name(l_name);
-            new_userProfile0.setF_name(f_name);
-            new_userProfile0.setCity(city);
+            new_userProfilePg0.setPhone(phone);
+            new_userProfilePg0.setL_name(l_name);
+            new_userProfilePg0.setF_name(f_name);
+            new_userProfilePg0.setCity(city);
                     //            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Ensure correct format
                     //            LocalDate birthDateee = LocalDate.parse(birthDate, formatter);
-            new_userProfile0.setBirth_date(birth_date);
-            UserProfile0 retrived_user_prof0 =  user_profile_services.set_UserProfile0(new_userProfile0);
+            new_userProfilePg0.setBirth_date(birth_date);
+            UserProfile_pg0 retrived_user_prof0 =  user_profile_services.set_UserProfile0(new_userProfilePg0);
 
         // --Profile-2 adjustment
-            new_userProfile1.setSex(sex);
-            UserProfile1 retrived_user_prof1 =  user_profile_services.set_UserProfile1(new_userProfile1);
+            new_userProfilePg1.setSex(sex);
+            UserProfile_pg1 retrived_user_prof1 =  user_profile_services.set_UserProfile1(new_userProfilePg1);
             // Sending retrieved SEX values from backend to radio button=frontend
             modelMap.addAttribute("up1sex", retrived_user_prof1.getSex().name());
 

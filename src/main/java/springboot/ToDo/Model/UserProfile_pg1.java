@@ -10,18 +10,18 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "todo_user_profiles1" , schema = "sumit")
-public class UserProfile1 {
+public class UserProfile_pg1 {
 
 
 
-    public UserProfile1(UserAuth userAuth, int uid, String username, Sex sex) {
+    public UserProfile_pg1(UserAuth userAuth, int uid, String username, Sex sex) {
         this.userAuth = userAuth;
         this.uid = uid;
         this.username = username;
         this.sex = sex;
     }
 
-    public UserProfile1(String username) {
+    public UserProfile_pg1(String username) {
         this.username = username;
     }
 
@@ -95,7 +95,7 @@ public class UserProfile1 {
 
     @Override
     public String toString() {
-        return "UserProfile1{" +
+        return "UserProfile_pg1{" +
                 "userAuth=" + userAuth +
                 ", uid=" + uid +
                 ", username='" + username + '\'' +

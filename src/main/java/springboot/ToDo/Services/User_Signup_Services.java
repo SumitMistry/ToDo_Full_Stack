@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Model.UserProfile0;
-import springboot.ToDo.Model.UserProfile1;
+import springboot.ToDo.Model.UserProfile_pg0;
+import springboot.ToDo.Model.UserProfile_pg1;
 import springboot.ToDo.Repository.Repo_DAO_UserAuth_JPA;
 import springboot.ToDo.Repository.Repo_DAO_UserProfile0_JPA;
 import springboot.ToDo.Repository.Repo_DAO_UserProfile1_JPA;
@@ -77,23 +77,23 @@ public class User_Signup_Services {
 
 
 
-    public UserProfile0 add_ONLY_username_in_UserProfile0(String usr_name){
+    public UserProfile_pg0 add_ONLY_username_in_UserProfile0(String usr_name){
         if (usr_name.isEmpty()) {
 
         }
-            UserProfile0 user_object_for_UserProfile0 = new UserProfile0(usr_name);
-            repo_dao_userProfile0_jpa.save(user_object_for_UserProfile0);
-            return user_object_for_UserProfile0;
+            UserProfile_pg0 user_object_for_UserProfilePg0 = new UserProfile_pg0(usr_name);
+            repo_dao_userProfile0_jpa.save(user_object_for_UserProfilePg0);
+            return user_object_for_UserProfilePg0;
     }
 
 
-    public UserProfile1 add_ONLY_username_in_UserProfile1(String usr_name){
+    public UserProfile_pg1 add_ONLY_username_in_UserProfile1(String usr_name){
         if (usr_name.isEmpty()) {
 
         }
-        UserProfile1 user_object_for_UserProfile1 = new UserProfile1(usr_name);
-        repo_dao_userProfile1_jpa.save(user_object_for_UserProfile1);
-        return user_object_for_UserProfile1;
+        UserProfile_pg1 user_object_for_UserProfilePg1 = new UserProfile_pg1(usr_name);
+        repo_dao_userProfile1_jpa.save(user_object_for_UserProfilePg1);
+        return user_object_for_UserProfilePg1;
     }
 
 

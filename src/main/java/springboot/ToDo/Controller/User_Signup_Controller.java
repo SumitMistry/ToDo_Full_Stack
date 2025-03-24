@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import springboot.ToDo.Model.UserAuth;
-import springboot.ToDo.Model.UserProfile0;
-import springboot.ToDo.Model.UserProfile1;
+import springboot.ToDo.Model.UserProfile_pg0;
+import springboot.ToDo.Model.UserProfile_pg1;
 import springboot.ToDo.Services.User_Signup_Services;
 
 @Controller
@@ -71,13 +71,13 @@ public class User_Signup_Controller {
             UserAuth retrieved_output_andNowAdding_EncodedPass_Role = user_Signup_services.signup_insert_encoded_pass_and_role(  incoming_username,  incoming_password,  roles);
             modelMap.addAttribute("authmsg_signup1", "Success[ENCODED_pass + ROLE added]: " + retrieved_output_andNowAdding_EncodedPass_Role.toString());
 
-            // Adding Sign-Up data into table <UserProfile0>
-            UserProfile0 profile0_object = user_Signup_services.add_ONLY_username_in_UserProfile0(incoming_username);
-            modelMap.addAttribute("authmsg_signup2", "Success[added into <UserProfile0> table]: " + profile0_object.toString());
+            // Adding Sign-Up data into table <UserProfile_pg0>
+            UserProfile_pg0 profile0_object = user_Signup_services.add_ONLY_username_in_UserProfile0(incoming_username);
+            modelMap.addAttribute("authmsg_signup2", "Success[added into <UserProfile_pg0> table]: " + profile0_object.toString());
 
-            // Adding Sign-Up data into table <UserProfile1>
-            UserProfile1 profile1_obj = user_Signup_services.add_ONLY_username_in_UserProfile1(incoming_username);
-            modelMap.addAttribute("authmsg_signup3", "Success[added into <UserProfile1> table]: " + profile1_obj.toString());
+            // Adding Sign-Up data into table <UserProfile_pg1>
+            UserProfile_pg1 profile1_obj = user_Signup_services.add_ONLY_username_in_UserProfile1(incoming_username);
+            modelMap.addAttribute("authmsg_signup3", "Success[added into <UserProfile_pg1> table]: " + profile1_obj.toString());
         }
 
 

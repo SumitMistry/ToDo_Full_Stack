@@ -225,9 +225,9 @@ public class ToDo_Controller<T> {
 
         //use binding result to find error while validating / entering data
         if (err.hasErrors() || bindingResult.hasErrors()) {
-                        //            l1.info(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
-                        //            System.out.println(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
-                        //            return "redirect:insert3_SprDataJPA";
+            //            l1.info(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
+            //            System.out.println(" -------> YOu have BindingResult err: count = " + bindingResult.getErrorCount());
+            //            return "redirect:insert3_SprDataJPA";
             return "insert3_SprDataJPA"; // Return form page with validation errors
         }
 
@@ -265,7 +265,7 @@ public class ToDo_Controller<T> {
                     @ApiResponse(responseCode = "404", description = "404=Todo item does not exist (false)")
             })
     public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
-                                           ModelMap modelMap){
+                                              ModelMap modelMap){
         boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
 
         if (x){   // if (x == true)
@@ -467,10 +467,10 @@ public class ToDo_Controller<T> {
     //This updated method will NOT create new UID upon modifying/updating existing record.
     @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
     public String post_UpdateByUID_page(ModelMap modelMap,
-                                       @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
-                                       @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
-                                       BindingResult bindingResult,
-                                       Errors err
+                                        @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
+                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
+                                        BindingResult bindingResult,
+                                        Errors err
     ) {
 
         // this is fetching existing UID of the record, first we need UID
@@ -483,7 +483,7 @@ public class ToDo_Controller<T> {
 //            return "insert";    //  --> "redirect:insert" returns   /insert   endpoint
 //            // return "insert";   --> return "insert"    returns    insert.jsp
             return "insert3_SprDataJPA";
-             }
+        }
 
         // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
         toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
@@ -605,28 +605,28 @@ public class ToDo_Controller<T> {
     /**
      * 6️⃣ Get Todo By (SINGLE) ID (Returns JSON)
      */
-        //    @Operation(summary = "GET Single Todo by id" , description = "GET Todo By (SINGLE) ID (Returns JSON)")
-        //    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
-        //    @ResponseBody
-        //    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
-        //        // Debug method
-        //        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
-        //
-        //        // Step 1: Fetch the Todo item from the database using its ID
-        //        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
-        //
-        //        // Step 2: Check if the Todo item exists
-        //        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
-        //            // Step 3: If found, return the Todo item with HTTP status 200 OK
-        //            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
-        //
-        //        } else {
-        //
-        //            // Step 4: If not found, return a 404 Not Found response with a message
-        //            String errorMessage = "Todo with ID " + id + " not found";
-        //            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
-        //        }
-        //    }
+    //    @Operation(summary = "GET Single Todo by id" , description = "GET Todo By (SINGLE) ID (Returns JSON)")
+    //    @RequestMapping(value = "/id/{singeleiid}",  method = RequestMethod.GET)
+    //    @ResponseBody
+    //    public ResponseEntity<?> getTodoById(@PathVariable(value = "singeleiid") int id){
+    //        // Debug method
+    //        // System.out.println("-----------Fetching Todo with ID: " + iid); // Log the ID
+    //
+    //        // Step 1: Fetch the Todo item from the database using its ID
+    //        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById(id);
+    //
+    //        // Step 2: Check if the Todo item exists
+    //        if (todo_list.isPresent() && !todo_list.get().isEmpty()) {
+    //            // Step 3: If found, return the Todo item with HTTP status 200 OK
+    //            return new ResponseEntity<>(todo_list.get().get(0), HttpStatus.OK);
+    //
+    //        } else {
+    //
+    //            // Step 4: If not found, return a 404 Not Found response with a message
+    //            String errorMessage = "Todo with ID " + id + " not found";
+    //            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    //        }
+    //    }
 
 
     /**
@@ -665,14 +665,14 @@ public class ToDo_Controller<T> {
     /**
      * 5️⃣ POST/ INSERT Todo via API (Returns JSON)
      *    POST http://localhost:8080/api/todo/insert4
-                     * {
-                     *     "id": 456,
-                     *     "username": "test1@test2.com",
-                     *     "description": "Added from PostMAN",
-                     *     "creationDate": "2025-01-30",
-                     *     "targetDate": "2026-01-30",
-                     *     "done": false
-                     * }
+     * {
+     *     "id": 456,
+     *     "username": "test1@test2.com",
+     *     "description": "Added from PostMAN",
+     *     "creationDate": "2025-01-30",
+     *     "targetDate": "2026-01-30",
+     *     "done": false
+     * }
      */
     @Operation(summary = "POST/ INSERT Todo via API (Returns JSON)", description = "insert todo record. User to send data in json.")
     @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
@@ -707,14 +707,14 @@ public class ToDo_Controller<T> {
     /**
      * 7️⃣ PUT-Update Todo By UID (Returns JSON)
      *    PUT http://localhost:8080/api/todo/uid/97
-             * {
-             *     "id": 123,
-             *     "username": "nyc@njusa.com",
-             *     "description": "Added from Postman edited2",
-             *     "creationDate": "2025-01-30",
-             *     "targetDate": "2056-10-24",
-             *     "done": false
-             * }
+     * {
+     *     "id": 123,
+     *     "username": "nyc@njusa.com",
+     *     "description": "Added from Postman edited2",
+     *     "creationDate": "2025-01-30",
+     *     "targetDate": "2056-10-24",
+     *     "done": false
+     * }
      */
     @Operation(summary = "PUT-Update Todo By UID (Returns JSON)", description = "Update todo record by UID. PUT http://localhost:8080/api/todo/uid/97")
     @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
@@ -928,7 +928,6 @@ try {
 //        toDo_Services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
 //        return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
 //    }
-
 
 
 

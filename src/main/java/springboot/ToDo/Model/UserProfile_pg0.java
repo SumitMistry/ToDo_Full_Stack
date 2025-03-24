@@ -15,10 +15,10 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @Table(name = "todo_user_profiles" , schema = "sumit")
-public class UserProfile0 {
+public class UserProfile_pg0 {
 
     // 1️⃣ Establish One-to-One Relationship in Entities
-    //    Modify your UserAuth and UserProfile0 entities to define a one-to-one relationship.
+    //    Modify your UserAuth and UserProfile_pg0 entities to define a one-to-one relationship.
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "username", referencedColumnName ="username", insertable = false, updatable = false, nullable = false, unique = false )
     private UserAuth userAuth;
@@ -60,7 +60,7 @@ public class UserProfile0 {
     //adding <this.userAuth=userAuth>  to constructor
 
 
-    public UserProfile0(UserAuth userAuth, int uid, String username, LocalDate birth_date, String f_name, String l_name, String phone, String city) {
+    public UserProfile_pg0(UserAuth userAuth, int uid, String username, LocalDate birth_date, String f_name, String l_name, String phone, String city) {
         this.userAuth = userAuth;
         this.uid = uid;
         this.username = username;
@@ -71,7 +71,7 @@ public class UserProfile0 {
         this.city = city;
     }
 
-    public UserProfile0(String username) {
+    public UserProfile_pg0(String username) {
         this.username = username;
     }
 
@@ -142,7 +142,7 @@ public class UserProfile0 {
 
     @Override
     public String toString() {
-        return "UserProfile0{" +
+        return "UserProfile_pg0{" +
                 "userAuth=" + userAuth +
                 ", uid=" + uid +
                 ", username='" + username + '\'' +
