@@ -39,3 +39,25 @@ SOLUTION=
         git config --global --add safe.directory D:/hackerRank/src/Spring_SpringBoot_applications/SpringBoot/ToDo
         git config --global user.name "Sumit Mistry"
         git config --global user.email "sumitmistry@l--------->.com"
+
+
+
+
+----------------To solve below error-------------
+ERROR=
+    Multiple  git add . and there were many git stacked and stagged in cache og git.
+    example:
+        git add . (1st time) then git commit and git push(did not work)
+        git add . (2nd time) then git commit and git push(did not work)
+
+        Now here in this example we have 2 unstagged stack og git that we need to reset and remove.
+
+SOLUTION=
+
+    git reset HEAD~1
+    Unstaged changes after reset:
+        M       pom.xml
+        M       src/main/java/springboot/ToDo/Controller/Login_Controller.java
+        M       src/main/resources/META-INF/resources/WEB-INF/jsp/welcome1.jsp
+        M       src/main/resources/application.properties
+
