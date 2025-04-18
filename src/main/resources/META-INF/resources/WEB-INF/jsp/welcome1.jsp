@@ -6,6 +6,7 @@
         <style="color: blue;" >
             <pre>${login_auth_success_1}</pre>
             <code>${login_auth_success_2}</code>
+            <pre>${modelmap_env_var_open_api_key}</pre>
 
 
             <p>

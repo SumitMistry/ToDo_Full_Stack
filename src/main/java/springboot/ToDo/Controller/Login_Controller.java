@@ -34,7 +34,7 @@ public class Login_Controller {
     private Login_Services login_services;
 
     /**
-     * 9️⃣ Login Page Handling (JSP Page)
+     * 9️⃣ Login Page Handling (JSP Page)  //////////////////////   OLD / NOT USED  //////////////////////////////
      */
     @RequestMapping(value = { "/login2", "login2" }, method = RequestMethod.GET)
     public String get_login_page2(@RequestParam(value = "error", required = false) String error,
@@ -81,6 +81,10 @@ public class Login_Controller {
 
         modelMap.addAttribute("login_auth_success_1", "= "+ login_services.get_userDETAILS_from_login_from_spring_Security());
         modelMap.addAttribute("login_auth_success_2", "= "+ login_services.get_logged_user_Full_details());
+
+        // System.out.println("\n\n\n\n\n" + System.getenv( "open_ai_api_key_sm"));
+
+        modelMap.addAttribute("modelmap_env_var_open_api_key", "OpenAI Secret key env_var = "+ System.getenv( "open_ai_api_key_sm"));
 
         return "welcome1";
     }
