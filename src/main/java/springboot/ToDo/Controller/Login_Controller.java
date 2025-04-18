@@ -84,7 +84,7 @@ public class Login_Controller {
 
         // System.out.println("\n\n\n\n\n" + System.getenv( "open_ai_api_key_sm")); dont turn on this, turn on will print secret key in Log file and then Git push will throw an error and hit need to reset, git reset, refer to my file in this repo at root "git_cmd"
 
-        modelMap.addAttribute("modelmap_env_var_open_api_key", "OpenAI Secret key env_var = "+ System.getenv( "open_ai_api_key_sm"));
+        modelMap.addAttribute("modelmap_env_var_open_api_key", System.getenv( "open_ai_api_key_sm"));
 
         return "welcome1";
     }
