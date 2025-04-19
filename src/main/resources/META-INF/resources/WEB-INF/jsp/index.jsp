@@ -8,6 +8,19 @@
                         <a href="hardcode1" class="btn btn-primary btn-block"> Append 3 records: /hardcode1 </a> --> change value true-->false <p>
                               @Transactional(readOnly = true, propagation = Propagation.) -->  I kept this hard coded data as READ ONLY so will not get injected to DB
                         <hr>
+
+                        <test1:if test="${not empty message}">
+                            <div class="alert alert-success">
+                                ${message}
+                            </div>
+                        </test1:if>
+
+                        <test1:if test="${not empty error}">
+                            <div class="alert alert-danger">
+                                ${error}
+                            </div>
+                        </test1:if>
+
             <table class="table">
                 <thead>
 
