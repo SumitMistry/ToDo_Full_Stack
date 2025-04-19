@@ -82,9 +82,12 @@ public class Login_Controller {
         modelMap.addAttribute("login_auth_success_1", "= "+ login_services.get_userDETAILS_from_login_from_spring_Security());
         modelMap.addAttribute("login_auth_success_2", "= "+ login_services.get_logged_user_Full_details());
 
-        // System.out.println("\n\n\n\n\n" + System.getenv( "open_ai_api_key_sm")); dont turn on this, turn on will print secret key in Log file and then Git push will throw an error and hit need to reset, git reset, refer to my file in this repo at root "git_cmd"
 
-        modelMap.addAttribute("modelmap_env_var_open_api_key", System.getenv( "open_ai_api_key_sm"));
+        // DONT turn on below 2 line code. turning on will print secret key in Log file at/// DEBUG 2568 --- [ToDo] [nio-8080-exec-9] o.s.web.servlet.view.JstlView  ///
+        // Also then Git push will throw an error and hit need to reset, git reset, refer to my file in this repo at root "git_cmd"
+        // System.out.println("\n\n\n\n\n" + System.getenv( "open_ai_api_key_sm"));
+        //modelMap.addAttribute("modelmap_env_var_open_api_key", System.getenv( "open_ai_api_key_sm"));
+
 
         return "welcome1";
     }
