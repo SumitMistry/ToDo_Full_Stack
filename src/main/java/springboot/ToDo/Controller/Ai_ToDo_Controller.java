@@ -26,7 +26,7 @@ import java.util.Map;
 @SessionAttributes({"uid_email", "pass", "totally", "listMapVar"})
 public class Ai_ToDo_Controller {
 
-    @Value("${deepseek.api.key}")
+    @Value("${gemini.api.key}")
     private String ai_sm_ky;
 
     @Autowired
@@ -51,8 +51,9 @@ public class Ai_ToDo_Controller {
             //get ai result ---> map ai-result ----> JSON object ----> parse into ToDo model obj --->  save to db
             String ai_json_result = call_ai_api(data_goes_to_ai);
             ObjectMapper objectMapper = new ObjectMapper();
-            Todo out_todo = objectMapper.readValue(ai_json_result,Todo.class);
+            objectMapper.findAndRegisterModules(); // for LocalDate
 
+            Todo out_todo = objectMapper.readValue(ai_json_result,Todo.class);
             //hardcoded - necessary mapping
             out_todo.setUid(0);
             out_todo.setAttach(null);
@@ -80,32 +81,91 @@ public class Ai_ToDo_Controller {
 
 
 
-    private String call_ai_api(String prompt) throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "https://api.deepseek.com/v1/chat/completions";
 
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("model", "gpt-3.5-turbo");
-        requestBody.put("messages", List.of(
-                Map.of("role", "system", "content", "You are a smart assistant that returns Java TODO data in JSON. Only return JSON."),
-                Map.of("role", "user", "content", prompt + "\nRespond ONLY with a valid JSON with: id (int), username (email), description, creationDate (yyyy-MM-dd), targetDate (yyyy-MM-dd), done (boolean).")
-        ));
+    // This is GOOGLE GEMINI AI specific method-------------------------
+    // API usage data is here=  https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com/metrics?project=gen-lang-client-0399073710&pli=1
+
+    //WORKING =  Create a TODO with description carwash, creationDate (2025-04-19), targetDate (2026-04-19), done (true). Return only raw JSON. No explanations. No markdown
+    private String call_ai_api(String prompt) throws Exception {
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+
+        Map<String, Object> body = Map.of(
+                "contents", List.of(Map.of(
+                        "parts", List.of(Map.of("text", prompt + "\n\nRespond ONLY with raw JSON. No explanation. No markdown."))
+                ))
+        );
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setBearerAuth(ai_sm_ky); // set in application.properties
+        headers.set("x-goog-api-key", ai_sm_ky);
 
-        HttpEntity<Map<String, Object>> request = new HttpEntity<>(requestBody, headers);
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+
         ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, request, Map.class);
 
-        Map<String, Object> message = (Map<String, Object>) ((List<?>) response.getBody().get("choices")).get(0);
-        Map<String, String> messageContent = (Map<String, String>) message.get("message");
+        List<Map<String, Object>> candidates = (List<Map<String, Object>>) response.getBody().get("candidates");
+        Map<String, Object> content = (Map<String, Object>) candidates.get(0).get("content");
+        List<Map<String, Object>> parts = (List<Map<String, Object>>) content.get("parts");
+        String textResponse = (String) parts.get(0).get("text");
 
-        return messageContent.get("content");
+        // Optional: log original Gemini response
+        System.out.println("\n\n\n\n\n --------------->> Gemini Raw Response:\n" + textResponse);
+
+        // Extract JSON block (remove markdown if present)
+        String cleanedJson = extractJson(textResponse);
+
+        return cleanedJson;
+    }
+
+
+
+
+    private String extractJson(String text) {
+        // If Gemini responds with markdown, extract content between triple backticks
+        if (text.contains("```")) {
+            return text.replaceAll("(?s).*?```(?:json)?\\s*(\\{.*?\\})\\s*```.*", "$1");
+        }
+        // Otherwise return plain response (assumes it's JSON already)
+        return text.trim();
     }
 
 
 
 
 
+
+
+
 }
+
+
+
+/*
+
+    private String call_ai_api(String prompt) throws Exception {
+        String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+
+        Map<String, Object> body = Map.of(
+                "contents", List.of(Map.of(
+                        "parts", List.of(Map.of("text", prompt + "\n\nRespond ONLY with a JSON having: id (int), username (email), description, creationDate (yyyy-MM-dd), targetDate (yyyy-MM-dd), done (boolean). No explanations."))
+                ))
+        );
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("x-goog-api-key", ai_sm_ky);
+
+        HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.POST, request, Map.class);
+
+        // Extract JSON content
+        List<Map<String, Object>> candidates = (List<Map<String, Object>>) response.getBody().get("candidates");
+        Map<String, Object> content = (Map<String, Object>) candidates.get(0).get("content");
+        List<Map<String, Object>> parts = (List<Map<String, Object>>) content.get("parts");
+        String textResponse = (String) parts.get(0).get("text");
+
+        return textResponse;
+ */

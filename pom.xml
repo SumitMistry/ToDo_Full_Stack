@@ -237,12 +237,30 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
+
+
+
+		<!--
+		Integrating Swagger into Your Spring Boot Controller
+		Springdoc OpenAPI
+		-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+
+
+
 		<!--
 		AI Dependency - Not required, WHY?
 			You do not need a special AI Maven dependency to use DeepSeek (or even OpenAI) if you're calling their API via HTTP using RestTemplate or WebClient.
 			✅ Why No AI SDK Is Needed
 			You're interacting with DeepSeek's API over HTTP, using standard JSON requests and responses — so your app doesn't depend on any proprietary Java SDK.
 		-->
+
+
 
 
 
