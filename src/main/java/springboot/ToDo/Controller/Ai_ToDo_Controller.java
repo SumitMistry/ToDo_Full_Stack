@@ -26,7 +26,7 @@ import java.util.Map;
 @SessionAttributes({"uid_email", "pass", "totally", "listMapVar"})
 public class Ai_ToDo_Controller {
 
-    @Value("${spring.ai.openai.api-key}")
+    @Value("${deepseek.api.key}")
     private String ai_sm_ky;
 
     @Autowired
@@ -49,7 +49,7 @@ public class Ai_ToDo_Controller {
 
             //convert incoming sentence to ai - based json model
             //get ai result ---> map ai-result ----> JSON object ----> parse into ToDo model obj --->  save to db
-            String ai_json_result = callOpenAI_api(data_goes_to_ai);
+            String ai_json_result = call_ai_api(data_goes_to_ai);
             ObjectMapper objectMapper = new ObjectMapper();
             Todo out_todo = objectMapper.readValue(ai_json_result,Todo.class);
 
@@ -80,9 +80,9 @@ public class Ai_ToDo_Controller {
 
 
 
-    private String callOpenAI_api(String prompt) throws Exception {
+    private String call_ai_api(String prompt) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "https://api.openai.com/v1/chat/completions";
+        String url = "https://api.deepseek.com/v1/chat/completions";
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("model", "gpt-3.5-turbo");
