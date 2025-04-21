@@ -69,7 +69,8 @@ public class Ai_ToDo_Controller {
             } else if (root.has("description") && root.has("creationDate") && root.has("targetDate")) {
                 Todo todo = mapper.treeToValue(root, Todo.class);
 
-                Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;  int random2 = rand.nextInt(1,999)+1;
+                Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;
+                todo.setId(random1);
                 todo.setUid(0);
                 todo.setAttach(null);
                 todo.setUsername(userEmail);
