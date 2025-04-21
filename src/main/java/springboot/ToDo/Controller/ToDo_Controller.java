@@ -236,7 +236,8 @@ public class ToDo_Controller<T> {
 
         // get data view
         // Redirect to todo list page
-        return "redirect:/api/todo/list";    // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
+        // return "redirect:/api/todo/list";    // validation will not be displayed because we have 2 different mpodels, both displaying on same page=List
+        return "redirect:/api/todo/listall";
     }
 
 
@@ -381,7 +382,8 @@ public class ToDo_Controller<T> {
         //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
 
         //return "index";
-        return "redirect:/api/todo/list";
+        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
+        return "redirect:/api/todo/listall";
     }
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
@@ -390,8 +392,10 @@ public class ToDo_Controller<T> {
     public String del_By_ID(@RequestParam(value = "u") int id) {
         repo_dao_springData_todo_jpa.deleteById(id);
         l1.info("DELETEDD::::::::" + id);
+
         //return "index";
-        return "redirect:/api/todo/list";
+        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
+        return "redirect:/api/todo/listall";
     }
 
     /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
@@ -501,7 +505,8 @@ public class ToDo_Controller<T> {
         // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
         toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
 
-        return "redirect:/api/todo/list";
+        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
+        return "redirect:/api/todo/listall";
     }
 
 
@@ -556,7 +561,8 @@ public class ToDo_Controller<T> {
                                         repo_dao_springData_todo_jpa.save(existingTodo);
                                     */
 
-        return "redirect:/api/todo/list";
+        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
+        return "redirect:/api/todo/listall";
     }
 
 
