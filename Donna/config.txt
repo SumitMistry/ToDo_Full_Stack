@@ -1,0 +1,4 @@
+folder_path = c:/users/sumit/desktop/sm
+keywords = risk, sdlc, aml
+
+
