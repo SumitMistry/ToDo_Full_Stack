@@ -1,10 +1,5 @@
-
-# pip install python-docx
-# pip install pywin32
-# pip install openpyxl
-
-
 import os
+import pdfplumber
 from docx import Document
 from openpyxl import Workbook
 from openpyxl.styles import Font, Border, Side
@@ -18,7 +13,7 @@ def read_config(config_file):
     # Extract folder path and keywords
     folder_path = lines[0].strip().split('=')[1]
     keywords = lines[1].strip().split('=')[1].split(', ')
-    
+
     return folder_path, keywords
 
 def search_keyword_in_docx(doc_path, keywords):
@@ -37,12 +32,31 @@ def search_keyword_in_docx(doc_path, keywords):
 
     return results, keyword_count
 
+def search_keyword_in_pdf(pdf_path, keywords):
+    """Extract text from a PDF file and search for multiple keywords using pdfplumber."""
+    results = {keyword: [] for keyword in keywords}  # Store results for each keyword
+    keyword_count = {keyword: 0 for keyword in keywords}  # Initialize keyword counts
+
+    with pdfplumber.open(pdf_path) as pdf:
+        # Loop through each page of the PDF
+        for page_num, page in enumerate(pdf.pages):
+            text = page.extract_text()
+
+            # Search for keywords in the extracted text
+            for keyword in keywords:
+                paragraph_count = text.lower().count(keyword.lower())
+                if paragraph_count > 0:
+                    keyword_count[keyword] += paragraph_count
+                    results[keyword].append([keyword, keyword_count[keyword], page_num + 1, text])
+
+    return results, keyword_count
+
 def save_to_excel(results, keyword_count, output_excel):
     """Save the results into an Excel file using openpyxl, with formatting."""
     wb = Workbook()
     ws = wb.active
     ws.title = "Keyword Search Results"
-    
+
     # Add headers dynamically for each keyword
     headers = ['Doc Name', 'Keyword', 'Keyword Count', 'Paragraph Number', 'Paragraph Text']
     ws.append(headers)
@@ -78,25 +92,31 @@ def save_to_excel(results, keyword_count, output_excel):
     wb.save(output_excel)
 
 def process_documents_in_folder(folder_path, keywords, output_excel):
-    """Process all Word documents in a folder and save results to Excel."""
+    """Process all Word and PDF documents in a folder and save results to Excel."""
     results = {}  # Store results for each document
     keyword_count = {}  # Store keyword counts for all documents
 
     # Loop through all files in the folder
     for filename in os.listdir(folder_path):
+        doc_path = os.path.join(folder_path, filename)
+
         if filename.lower().endswith(('.docx', '.docm')):  # Only process Word files
-            doc_path = os.path.join(folder_path, filename)
-            print(f"Opening document: {filename}")  # Show when the document is being opened
+            print(f"Opening Word document: {filename}")
             doc_results, doc_keyword_count = search_keyword_in_docx(doc_path, keywords)
-            
-            # Store results with the document name as the key
-            results[filename] = []
-            for keyword, keyword_results in doc_results.items():
-                results[filename].extend(keyword_results)
-            
-            # Update overall keyword count (you can choose to save per doc or per all docs)
-            keyword_count.update(doc_keyword_count)
-            print(f"Processed document: {filename}")  # Show when the document is processed
+        elif filename.lower().endswith('.pdf'):  # Process PDF files
+            print(f"Opening PDF document: {filename}")
+            doc_results, doc_keyword_count = search_keyword_in_pdf(doc_path, keywords)
+        else:
+            continue  # Skip unsupported file types
+
+        # Store results with the document name as the key
+        results[filename] = []
+        for keyword, keyword_results in doc_results.items():
+            results[filename].extend(keyword_results)
+
+        # Update overall keyword count
+        keyword_count.update(doc_keyword_count)
+        print(f"Processed document: {filename}")
 
     # Save results to Excel
     save_to_excel(results, keyword_count, output_excel)
