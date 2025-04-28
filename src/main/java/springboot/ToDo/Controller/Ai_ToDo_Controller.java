@@ -117,6 +117,7 @@ public class Ai_ToDo_Controller {
                                         "Input: show all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                                         "Input: all tasks \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                                         "Input: show my tasks\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                                        "Input: show all\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                                         "Input: delete a todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
                                         "Input: search todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
                                         "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
@@ -131,7 +132,8 @@ public class Ai_ToDo_Controller {
 
     private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
         String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-        Map<String, Object> body = Map.of(
+        Map<String, Object> body =
+                Map.of(
                 "contents", List.of(Map.of(
                         "parts", List.of(Map.of("text",
                                 "You are a smart JSON generator for creating a TODO item.\n" +
@@ -241,40 +243,3 @@ public class Ai_ToDo_Controller {
 }
 
 
-
-/*
-
-
-
-    private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
-        Map<String, Object> body = Map.of(
-                "contents", List.of(Map.of(
-                        "parts", List.of(Map.of("text",
-                                "You are a smart JSON generator for creating a TODO item.\n" +
-                                        "Based on the input, return a valid JSON object with the following fields:\n" +
-                                        "- username: \"dummy@example.com\"\n" +
-                                        "- description: string (required)\n" +
-                                        "- creationDate: yyyy-MM-dd (today's date)\n" +
-                                        "- targetDate: yyyy-MM-dd (can be inferred from input or set as a future date)\n" +
-                                        "- done: true or false\n\n" +
-                                        "DO NOT include 'id'.\n" +
-                                        "If any required field is missing or unclear, make a best guess.\n" +
-                                        "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
-                                        "Examples:\n" +
-                                        "Input: create a todo to buy groceries tomorrow\n" +
-                                        "Output: {\n" +
-                                        "  \"username\": \"dummy@example.com\",\n" +
-                                        "  \"description\": \"buy groceries\",\n" +
-                                        "  \"creationDate\": \"<today's date>\",\n" +
-                                        "  \"targetDate\": \"<tomorrow's date>\",\n" +
-                                        "  \"done\": false\n" +
-                                        "}\n\n" +
-                                        "Input: " + input
-                        ))
-                ))
-        );
-        return callGeminiAPI(body);
-    }
-
-
- */
