@@ -1,4 +1,4 @@
-package springboot.ToDo.Controller;
+package springboot.ToDo.aiController;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,70 +95,72 @@ public class Ai_ToDo_Controller {
 
 
     private String construct_STRING_prompt_for_OTHERS(String input) throws Exception {
-        Map<String, Object> body = Map.of(
-                "contents", List.of(Map.of(
-                        "parts", List.of(Map.of("text",
-                                "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
-                                        "Supported actions with hints:\n" +
-                                        "- listAll → list, show, display, all\n" +
-                                        "- jsonCentral\n" +
-                                        "- findByUser (username) → user, username\n" +
-                                        "- findById (id) → find, get, id\n" +
-                                        "- findByUID (uid) → fetch, find, uid\n" +
-                                        "- deleteByUID (uid) → delete, remove, uid\n" +
-                                        "- updateByUID (uid) → update, change, edit, uid\n" +
-                                        "- checkExistByUID (uid) → exists, check, uid\n" +
-                                        "- search (keyword) → search, keyword, match\n" +
-                                        "- multipleIds (ids) → many, multiple, ids\n" +
-                                        "- dateRange (from, to) → date, range, from, to\n\n" +
-                                        "Examples:\n" +
-                                        "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: show all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: all tasks \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: show my tasks\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: show all\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                        "Input: delete a todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
-                                        "Input: search todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
-                                        "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
-                                        "Respond ONLY with valid JSON like this:\n" +
-                                        "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
-                                        "Input: " + input
-                        ))
-                ))
-        );
+
+        String prompt = "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
+                        "Supported actions with hints:\n" +
+                        "- listAll → list, show, display, all\n" +
+                        "- jsonCentral\n" +
+                        "- findByUser (username) → user, username\n" +
+                        "- findById (id) → find, get, id\n" +
+                        "- findByUID (uid) → fetch, find, uid\n" +
+                        "- deleteByUID (uid) → delete, remove, uid\n" +
+                        "- updateByUID (uid) → update, change, edit, uid\n" +
+                        "- checkExistByUID (uid) → exists, check, uid\n" +
+                        "- search (keyword) → search, keyword, match\n" +
+                        "- multipleIds (ids) → many, multiple, ids\n" +
+                        "- dateRange (from, to) → date, range, from, to\n\n" +
+                        "Examples:\n" +
+                        "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                        "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                        "Input: show all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                        "Input: all tasks \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                        "Input: show my tasks\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                        "Input: delete a todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
+                        "Input: search todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
+                        "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
+                        "Respond ONLY with valid JSON like this:\n" +
+                        "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
+                        "Input: " + input ;
+
+        Map<String, Object> textPart = Map.of("text", prompt);
+        Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+        Map<String, Object> body = Map.of("contents", List.of(contentItem));
+
+
         return callGeminiAPI(body);
     }
 
     private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
         String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-        Map<String, Object> body =
-                Map.of(
-                "contents", List.of(Map.of(
-                        "parts", List.of(Map.of("text",
-                                "You are a smart JSON generator for creating a TODO item.\n" +
-                                        "Based on the input, return a valid JSON object with the following fields:\n" +
-                                        "- username: \"dummy@example.com\"\n" +
-                                        "- description: string (required)\n" +
-                                        "- creationDate: \"" + today + "\" (today's date)\n" +
-                                        "- targetDate: yyyy-MM-dd (MUST be in this exact format, no relative dates like 'tomorrow')\n" +
-                                        "- done: true or false\n\n" +
-                                        "DO NOT include 'id'.\n" +
-                                        "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
-                                        "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
-                                        "Examples:\n" +
-                                        "Input: create a todo to buy groceries tomorrow\n" +
-                                        "Output: {\n" +
-                                        "  \"username\": \"dummy@example.com\",\n" +
-                                        "  \"description\": \"buy groceries\",\n" +
-                                        "  \"creationDate\": \"" + today + "\",\n" +
-                                        "  \"targetDate\": \"2025-04-22\",\n" +
-                                        "  \"done\": false\n" +
-                                        "}\n\n" +
-                                        "Input: " + input
-                        ))
-                ))
-        );
+
+
+
+        String prompt = "You are a smart JSON generator for creating a TODO item.\n" +
+                "Based on the input, return a valid JSON object with the following fields:\n" +
+                "- username: \"dummy@example.com\"\n" +
+                "- description: string (required)\n" +
+                "- creationDate: \"" + today + "\" (today's date)\n" +
+                "- targetDate: yyyy-MM-dd (MUST be in this exact format, no relative dates like 'tomorrow')\n" +
+                "- done: true or false\n\n" +
+                "DO NOT include 'id'.\n" +
+                "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
+                "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
+                "Examples:\n" +
+                "Input: create a todo to buy groceries tomorrow\n" +
+                "Output: {\n" +
+                "  \"username\": \"dummy@example.com\",\n" +
+                "  \"description\": \"buy groceries\",\n" +
+                "  \"creationDate\": \"" + today + "\",\n" +
+                "  \"targetDate\": \"2025-04-22\",\n" +
+                "  \"done\": false\n" +
+                "}\n\n" +
+                "Input: " + input;
+
+        Map<String, Object> textPart = Map.of("text", prompt);
+        Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+        Map<String, Object> body = Map.of("contents", List.of(contentItem));
+
+
         return callGeminiAPI(body);
     }
 
