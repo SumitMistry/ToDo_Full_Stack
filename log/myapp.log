@@ -4127,3 +4127,139 @@ java.io.EOFException: null
 2025-05-02T01:39:01.632-04:00  INFO 9840 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-05-02T01:39:01.643-04:00  INFO 9840 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-02T01:39:01.672-04:00  INFO 9840 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-02T01:39:08.156-04:00  INFO 15272 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Starting ToDo_main using Java 21.0.6 with PID 15272 (D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\target\classes started by sumit in D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo)
+2025-05-02T01:39:08.166-04:00  INFO 15272 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : The following 1 profile is active: "UAT"
+2025-05-02T01:39:08.346-04:00  INFO 15272 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-05-02T01:39:08.346-04:00  INFO 15272 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-05-02T01:39:12.435-04:00  INFO 15272 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-02T01:39:12.720-04:00  INFO 15272 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 248 ms. Found 4 JPA repository interfaces.
+2025-05-02T01:39:15.481-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardHost[localhost]] to container [StandardEngine[Tomcat]]
+2025-05-02T01:39:15.551-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[jsp]] to container [TomcatEmbeddedContext[]]
+2025-05-02T01:39:15.573-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [TomcatEmbeddedContext[]] to container [StandardEngine[Tomcat].StandardHost[localhost]]
+2025-05-02T01:39:15.872-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-02T01:39:15.882-04:00  INFO 15272 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [2.0.8] using APR version [1.7.4].
+2025-05-02T01:39:15.893-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : Current FIPS mode: [0]
+2025-05-02T01:39:15.893-04:00  INFO 15272 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 3.0.14 4 Jun 2024]
+2025-05-02T01:39:15.941-04:00  INFO 15272 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-02T01:39:15.941-04:00  INFO 15272 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2025-05-02T01:39:16.031-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.loader.WebappLoader    : Starting this Loader
+2025-05-02T01:39:16.735-04:00  INFO 15272 --- [ToDo] [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-05-02T01:39:16.764-04:00  INFO 15272 --- [ToDo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-05-02T01:39:16.764-04:00  INFO 15272 --- [ToDo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8416 ms
+2025-05-02T01:39:17.250-04:00  INFO 15272 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-02T01:39:18.145-04:00  INFO 15272 --- [ToDo] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d696831
+2025-05-02T01:39:18.153-04:00  INFO 15272 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-02T01:39:18.193-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/sumit'
+2025-05-02T01:39:18.401-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[dispatcherServlet]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-05-02T01:39:18.401-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[h2Console]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-05-02T01:39:18.551-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-05-02T01:39:18.558-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.apache.catalina.mapper.Mapper        : Registered host [localhost]
+2025-05-02T01:39:18.566-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [jsp] in Context [] for service [StandardService[Tomcat]]
+2025-05-02T01:39:18.566-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [h2Console] in Context [] for service [StandardService[Tomcat]]
+2025-05-02T01:39:18.566-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [dispatcherServlet] in Context [] for service [StandardService[Tomcat]]
+2025-05-02T01:39:18.566-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Context [] for service [StandardService[Tomcat]]
+2025-05-02T01:39:18.566-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register host [localhost] at domain [null] for service [StandardService[Tomcat]]
+2025-05-02T01:39:18.845-04:00  INFO 15272 --- [ToDo] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-02T01:39:19.179-04:00  INFO 15272 --- [ToDo] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.0.CR2
+2025-05-02T01:39:19.322-04:00  INFO 15272 --- [ToDo] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-02T01:39:20.239-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-02T01:39:20.467-04:00  WARN 15272 --- [ToDo] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@66d50372) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@38fa1cd0)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7d842369) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@2e14cb75)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@60149356) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@8600f18)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5423ea16) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5ce4cc84)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@182e7a6d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@10bebebf)
+2025-05-02T01:39:20.520-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5b8695e4) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@21fcf2fc)
+2025-05-02T01:39:20.524-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@4aea09bc) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@2f440d18)
+2025-05-02T01:39:20.524-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@400284a1) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@62fe54f)
+2025-05-02T01:39:20.524-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@1c92bbdf) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@13314998)
+2025-05-02T01:39:22.459-04:00  INFO 15272 --- [ToDo] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-02T01:39:22.649-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-05-02T01:39:22.667-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-05-02T01:39:22.669-04:00  INFO 15272 --- [ToDo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-02T01:39:23.646-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-02T01:39:25.536-04:00  WARN 15272 --- [ToDo] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-02T01:39:25.679-04:00  INFO 15272 --- [ToDo] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-02T01:39:25.679-04:00  WARN 15272 --- [ToDo] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-05-02T01:39:25.932-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-05-02T01:39:26.174-04:00 DEBUG 15272 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 41 mappings in 'requestMappingHandlerMapping'
+2025-05-02T01:39:26.268-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-05-02T01:39:26.705-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-05-02T01:39:26.890-04:00 DEBUG 15272 --- [ToDo] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-05-02T01:39:27.211-04:00 DEBUG 15272 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-05-02T01:39:27.316-04:00 DEBUG 15272 --- [ToDo] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-05-02T01:39:28.004-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:8, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE DATABASE IF NOT EXISTS sumit"]
+Params:[]
+2025-05-02T01:39:28.004-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:0, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["use sumit"]
+Params:[]
+2025-05-02T01:39:28.004-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:0, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE TABLE IF NOT EXISTS todoh ( uid int NOT NULL AUTO_INCREMENT, id int NOT NULL UNIQUE , attach mediumblob, creation_date date DEFAULT NULL, description varchar(40) DEFAULT NULL, done bit(1) DEFAULT NULL, target_date date DEFAULT NULL, username varchar(255) DEFAULT NULL, PRIMARY KEY (uid) )"]
+Params:[]
+2025-05-02T01:39:28.016-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:12, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["INSERT INTO todoh (id, creation_date, description, done, target_date, username) VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, NOW() , "Auto-Added by data.sql", true, DATE_ADD(NOW(), INTERVAL 1 YEAR) , "sumit@sumit.com")"]
+Params:[]
+2025-05-02T01:39:28.016-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:0, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 80 AND 980"]
+Params:[]
+2025-05-02T01:39:28.161-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-05-02T01:39:28.484-04:00  INFO 15272 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-05-02T01:39:28.521-04:00  INFO 15272 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Started ToDo_main in 21.867 seconds (process running for 25.0)
+2025-05-02T01:39:28.884-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    delete 
+    from
+        sumit.todoh 
+    where
+        id BETWEEN 200 AND 888;
+2025-05-02T01:39:28.886-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:6, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 200 AND 888;"]
+Params:[()]
+2025-05-02T01:39:28.994-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-02T01:39:29.032-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:7, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-05-02,Autorun_justRef_dataInit.java,true,572,2026-05-02,sumit@bofa.com)]
+2025-05-02T01:39:29.041-04:00  WARN 15272 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-05-02T01:39:29.041-04:00 ERROR 15272 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-05-02T01:39:29.105-04:00 DEBUG 15272 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-05-02T01:39:29.105-04:00 DEBUG 15272 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:8, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-05-02,Autorun_justRef_dataInit.java,false,769,2026-05-02,vraj@yyz.com)]
+2025-05-02T01:39:29.105-04:00  WARN 15272 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-05-02T01:39:29.105-04:00 ERROR 15272 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
