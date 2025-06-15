@@ -1,3 +1,10 @@
+
+
+GEMINI API call check link:
+https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com/credentials?project=gen-lang-client-0399073710&inv=1&invt=Ab0JAw
+
+
+
 # Understanding `contents > parts > text` in Gemini AI
 
 ---
@@ -15,23 +22,22 @@
 
 ---
 
+
+## 💪 Why `contents` and `parts`?
+
+| Field      | Why It Exists                             | Example / Use         |
+| ---------- | ----------------------------------------- | --------------------- |
+| `contents` | Hold multiple messages in a conversation  | Multi-turn chats      |
+| `parts`    | Handle different types inside one message | Text + Image together |
+| `text`     | The user's real instruction               | "Show all my tasks"   |
+
+---
+
+
 ## 🌟 Full Picture
 
 **Gemini API needs** a structure like:
 
-```json
-{
-  "contents": [
-    {
-      "parts": [
-        {
-          "text": "User's question or instruction goes here"
-        }
-      ]
-    }
-  ]
-}
-```
 
 ✅ Always `contents ➞ parts ➞ text`.
 
@@ -83,31 +89,6 @@
 
 ---
 
-## 💪 Why `contents` and `parts`?
-
-| Field      | Why It Exists                             | Example / Use         |
-| ---------- | ----------------------------------------- | --------------------- |
-| `contents` | Hold multiple messages in a conversation  | Multi-turn chats      |
-| `parts`    | Handle different types inside one message | Text + Image together |
-| `text`     | The user's real instruction               | "Show all my tasks"   |
-
----
-
-## 🌟 Real-World Example Scenarios
-
-| Use Case                      | Why `contents`/`parts` are needed              |
-| ----------------------------- | ---------------------------------------------- |
-| Multi-turn chat               | Each user message becomes one `content`        |
-| Upload image + ask a question | One `content`, multiple `parts` (text + image) |
-| Send audio + instruction      | One `content`, parts = text + audio            |
-| Long conversation memory      | Multiple `contents`                            |
-| Ask about video clip          | Parts = text + video                           |
-
----
-
-## 🖊️ Practical Examples
-
-### Simple (Today)
 
 ```json
 {
@@ -174,7 +155,7 @@ contents [
 
 ```plaintext
 
-┌┌──────────────────────────────────────────────┐
+┌──────────────────────────────────────────────┐
 │  User submits input from browser/form (text) │
 └──────────────────────────────────────────────┘
                     ↓

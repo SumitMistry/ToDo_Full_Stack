@@ -65,7 +65,7 @@ public class Ai_ToDo_Controller {
             JsonNode root = mapper.readTree(aiJson);
 
             if (root.has("action")) {
-                return routing_ai_JSONdecision_to_correct_endpoint(root, modelMap);
+                return routing_ai_JSON_decision_to_correct_endpoint(root, modelMap);
             } else if (root.has("description") && root.has("creationDate") && root.has("targetDate")) {
                 Todo todo = mapper.treeToValue(root, Todo.class);
 
@@ -96,7 +96,7 @@ public class Ai_ToDo_Controller {
 
     private String construct_STRING_prompt_for_OTHERS(String input) throws Exception {
 
-        String prompt = "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
+        String prompt_other = "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
                         "Supported actions with hints:\n" +
                         "- listAll → list, show, display, all\n" +
                         "- jsonCentral\n" +
@@ -122,10 +122,9 @@ public class Ai_ToDo_Controller {
                         "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
                         "Input: " + input ;
 
-        Map<String, Object> textPart = Map.of("text", prompt);
+        Map<String, Object> textPart = Map.of("text", prompt_other);
         Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
         Map<String, Object> body = Map.of("contents", List.of(contentItem));
-
 
         return callGeminiAPI(body);
     }
@@ -133,9 +132,7 @@ public class Ai_ToDo_Controller {
     private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
         String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
 
-
-
-        String prompt = "You are a smart JSON generator for creating a TODO item.\n" +
+        String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
                 "Based on the input, return a valid JSON object with the following fields:\n" +
                 "- username: \"dummy@example.com\"\n" +
                 "- description: string (required)\n" +
@@ -156,14 +153,13 @@ public class Ai_ToDo_Controller {
                 "}\n\n" +
                 "Input: " + input;
 
-        Map<String, Object> textPart = Map.of("text", prompt);
+        Map<String, Object> textPart = Map.of("text", prompt_create);
         Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
         Map<String, Object> body = Map.of("contents", List.of(contentItem));
 
 
         return callGeminiAPI(body);
     }
-
 
 
     private String callGeminiAPI(Map<String, Object> body) throws Exception {
@@ -175,11 +171,11 @@ public class Ai_ToDo_Controller {
         RestTemplate restTemplate = new RestTemplate();
 
         ResponseEntity<Map> response = restTemplate.exchange(
-                geminiApiUrl,
-                HttpMethod.POST,
-                request,
-                Map.class
-        );
+                                                        geminiApiUrl,
+                                                        HttpMethod.POST,
+                                                        request,
+                                                        Map.class
+                                                        );
 
         if (!response.getStatusCode().is2xxSuccessful()) {
             throw new RuntimeException("Gemini API failed with status: " + response.getStatusCode());
@@ -198,18 +194,17 @@ public class Ai_ToDo_Controller {
         }
 
         String text = (String) parts.get(0).get("text");
-        return extract_Json_from_Str(text);
-    }
 
-
-    private String extract_Json_from_Str(String text) {
+        // extract Json from String logic
         if (text.contains("```")) {
             return text.replaceAll("(?s).*?```(?:json)?\\s*(\\{.*?\\})\\s*```.*", "$1").trim();
         }
         return text.trim();
+
     }
 
-    private String routing_ai_JSONdecision_to_correct_endpoint(JsonNode root, ModelMap modelMap) {
+
+    private String routing_ai_JSON_decision_to_correct_endpoint(JsonNode root, ModelMap modelMap) {
         String action = root.path("action").asText();
         JsonNode params = root.path("params");
 
@@ -246,8 +241,10 @@ public class Ai_ToDo_Controller {
 
 
 /*
-            list multiple todo ids 680,681
-
+            -list multiple todo ids 680,681
+            -
+            -
+            -
 
 
  */

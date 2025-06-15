@@ -1,4 +1,9 @@
 
+GEMINI API call check link:
+https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com/credentials?project=gen-lang-client-0399073710&inv=1&invt=Ab0JAw
+
+
+
 # 🛑 Your current problem:
 
     Gemini API does NOT accept { "prompt": "..." } structure.
