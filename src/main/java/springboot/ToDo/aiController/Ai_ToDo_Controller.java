@@ -46,23 +46,23 @@ public class Ai_ToDo_Controller {
     }
 
     @RequestMapping(value = "/ai", method = RequestMethod.POST)
-    public String handleAiRequest(@RequestParam("text_for_ai_submission") String userInput,
+    public String user_textInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput,
                                   ModelMap modelMap,
                                   // @ModelAttribute("totally") int totally, // not good, if totally not parsed,or open once, then it is null and error..so not good one.
                                   @ModelAttribute("uid_email") String userEmail) {
         try {
 
-            String aiJson;
-
-            if (userInput.toLowerCase().matches(".*(list|find|delete|search|update).*")){
-                aiJson = construct_STRING_prompt_for_OTHERS(userInput);
+            // Routing correct action
+            String received_Json_from_ai;
+            if (userInput.toLowerCase().matches(".*(give|show|list|find|delete|search|update).*")){
+                received_Json_from_ai = construct_STRING_prompt_for_OTHERS(userInput);
             }
             else {
-                aiJson = construct_STRING_prompt_for_CREATE(userInput);
+                received_Json_from_ai = construct_STRING_prompt_for_CREATE(userInput);
             }
 
             ObjectMapper mapper = objectMapper();
-            JsonNode root = mapper.readTree(aiJson);
+            JsonNode root = mapper.readTree(received_Json_from_ai);  //---> Parses the raw JSON string (received_Json_from_ai) into a JsonNode
 
             if (root.has("action")) {
                 return routing_ai_JSON_decision_to_correct_endpoint(root, modelMap);
@@ -77,9 +77,9 @@ public class Ai_ToDo_Controller {
                 todo.setCreationDate(java.time.LocalDate.now());
 
                 Todo created = todoRepo.save(todo);
-                modelMap.put("message", "✅ TODO created via AI!" +created.toString()+  root  + root.asText() + mapper + aiJson + userInput);
+                modelMap.put("message", "✅ TODO created via AI!" +created.toString()+  root  + root.asText() + mapper + received_Json_from_ai + userInput);
             } else {
-                modelMap.put("error", "❌ Unrecognized AI response format." + root + root.asText() + mapper + aiJson + userInput);
+                modelMap.put("error", "❌ Unrecognized AI response format." + root + root.asText() + mapper + received_Json_from_ai + userInput);
             }
 
         } catch (Exception e) {
