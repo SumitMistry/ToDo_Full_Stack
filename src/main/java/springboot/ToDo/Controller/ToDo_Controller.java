@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -93,7 +94,7 @@ public class ToDo_Controller<T> {
     /**
      * 1️⃣ Fetch todos within a date range (Returns JSP page)
      */
-    @RequestMapping(value = {"/dateRangePicker"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/dateRangePicker"}, method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "GET Todo by dateRange", description = "Range of date from and to picker for searching todo, FORMAT = YYYY-MM-DD"  )
     public String dateRangeFinder(@RequestParam(name = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                                   @RequestParam(name = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
@@ -116,7 +117,7 @@ public class ToDo_Controller<T> {
     /**
      * 2️⃣ Search todos by keyword (Returns JSP page)
      */
-    @RequestMapping(value = {"/searchAPI"}, method = {RequestMethod.GET})
+    @RequestMapping(value = {"/searchAPI"}, method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "GET searchAPI", description = "Returns Keyword Search result.")
     public String findByKeyword(@RequestParam(name = "searchKey") String keyword,
                                 ModelMap modelMap){
@@ -172,7 +173,7 @@ public class ToDo_Controller<T> {
     }
 
     ///////////////////////////     ALL USER LISTING     ///////////////////////////
-    @RequestMapping(value = {"/listall"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/listall"}, method = {RequestMethod.GET, RequestMethod.POST})
     @Operation(summary = "GET Listing of all User's Todo ", description = "select * = List of all todo in db"
 //                parameters = { @Parameter
 //                                ( name = "LIST ALL TODO" ,
@@ -246,7 +247,7 @@ public class ToDo_Controller<T> {
     // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
     // Output directly into BODY of HTML using @ResponseBody
     @ResponseBody
-    @RequestMapping(value = "/api/todo/existByUID", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/todo/existByUID", method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(
             summary = "Check if a Todo exists by UID",
             description = "Checks if a Todo item exists by UID. Returns a boolean value (true/false).",
@@ -280,7 +281,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     FindBYUID     ///////////////////////////
-    @RequestMapping(value = "/findByUID", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUID", method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "GET todo by UID", description = "Use UID to retrieve Todo")
     public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
         //      System.out.println(toDo_Services.findByID(uid));
@@ -295,7 +296,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     FindBY ID     ///////////////////////////
-    @RequestMapping(value = "/findById", method = RequestMethod.GET)
+    @RequestMapping(value = "/findById", method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "GET todo by ID", description = "Use ID to retrieve Todo")
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
@@ -329,7 +330,7 @@ public class ToDo_Controller<T> {
     ///////////////////////////     FindBY User     ///////////////////////////
     // New Derived Query bases JPA function //////////////
     // findByUsername() is ++ Faster than  findBYusername1() no steram ALL in here.
-    @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUser", method = {RequestMethod.GET, RequestMethod.POST})
     @Operation(summary = "GET todo by Username/email", description = "Use Username/email to retrieve Todo",
             parameters = {@Parameter(name = "user", description = "email"  )})
     public String findByUsername(@RequestParam(value = "user")String enter_username,
@@ -367,24 +368,54 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     DELETE BY UID    ///////////////////////////
-    @RequestMapping(value = "/deleteByUID", method = RequestMethod.GET)
+
+//    @RequestMapping(value = "/deleteByUID", method = {RequestMethod.GET , RequestMethod.POST})
+//    @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
+//    public ResponseEntity<String> deleteByUID(@RequestParam("u") int uid, ModelMap map) {
+//
+//        boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid); // if exist == true
+//
+//        if (x == true) {
+//            toDo_Services.deleteByUID_springDataJPA(uid);
+//            l1.info("Deleted UID: " + uid);
+//            map.addAttribute("message","✅ Deleted UID: " + uid);
+//            return ResponseEntity.ok("Todo deleted successfully");
+//        } else {
+//            l1.info("Todo uid not foundd: " + uid);
+//            map.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo with UID " + uid + " not found");
+//        }
+//
+//    }
+
+    @RequestMapping(value = "/deleteByUID", method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
-    public String deleteByUID(@RequestParam(value = "u") int uid) {
+    public String deleteByUID(@RequestParam(value = "u") int uid, ModelMap map) {
 
-        // before deleting, checking if the ID exist or not!!, this is good practice..
-        if (repo_dao_springData_todo_jpa.existsByUid(uid)){ // if exist == true
-            toDo_Services.deleteByUID_springDataJPA(uid);
-            l1.info("Deleted UID: " + uid);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Todo not foundd");
-        }
 
-        //toDo_Services.deleteByID(id); // this was old implementation for  deleting from local list.
+            boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid); // if exist == true
 
-        //return "index";
-        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
-        return "redirect:/api/todo/listall";
+            // before deleting, checking if the ID exist or not!!, this is good practice..
+            if (x == true ){ // if exist == true
+                toDo_Services.deleteByUID_springDataJPA(uid);
+                l1.info("Deleted UID: " + uid);
+                map.addAttribute("message","✅ Deleted UID: " + uid);
+
+            } else {
+                l1.info("Todo uid not foundd: " + uid);
+                map.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
+
+                // stopping white-label page. Thanks to this exception handling method ---> handleError_to_avoid_white_label_page()
+//                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo with UID " + uid + " not found");  //-> gives wWhitelabel Error Page
+            }
+
+               //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
+            return "index";
     }
+
+
+
+
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "/delByID", method = RequestMethod.GET)
@@ -589,7 +620,7 @@ public class ToDo_Controller<T> {
 //   .....then you'd need to change it to return JSON, like this:
 
     @Operation(summary = "Json Central", description = "JSON Central Guide to all api point")
-    @RequestMapping(value = "/jsoncentral", method = RequestMethod.GET)
+    @RequestMapping(value = "/jsoncentral", method = {RequestMethod.GET , RequestMethod.POST})
     public String show_allJson_jsp() {
         return "alljson";  // This will look for WEB-INF/jsp/alljson.jsp
     }
@@ -649,11 +680,11 @@ public class ToDo_Controller<T> {
 
 
     /**
-     * 6️⃣ Get Todo By (MULTIPLE) ID (Returns JSON)
+     * 6️⃣ Get Todo By (MULTIPLE) ID (Returns JSON) multipleIds
      *    GET http://localhost:8080/api/todo/id/990,1,2,3,51,4
      */
     @Operation(summary = "Get Todo By (MULTIPLE) ID (Returns JSON) using comma" , description = "GET Todo By (Mutiple) ID (Returns JSON) GET http://localhost:8080/api/todo/id/990,1,2,3,51,4")
-    @RequestMapping(value = "/id/{multipleiid}",  method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{multipleiid}",  method = {RequestMethod.GET , RequestMethod.POST})
     @ResponseBody
     public ResponseEntity<?> getTodoByIdss(@PathVariable(value = "multipleiid") String multiple_ids){
 
@@ -908,8 +939,7 @@ try {
 //        //redierct: {Always put url endpoint name, NOT JSP}
 //    }
 //
-//
-/////////////////////////////     INSERT   Automatic     ///////////////////////////////////////////////////////////////////
+///////////////////////////////     INSERT   Automatic     ///////////////////////////////////////////////////////////////////
 //    @RequestMapping(value = "/insert", method = RequestMethod.GET)
 //    public String get_insert_todo(ModelMap modelMap) {
 //
@@ -947,6 +977,3 @@ try {
 //        toDo_Services.insert_todo(String.valueOf(todooo.getId()), u_retrived, todooo.getDescription(), todooo.getCreationDate(), todooo.getTargetDate(), todooo.getDone());
 //        return "redirect:list"; //    For such redirects you put ENDPOINT which is "/list"
 //    }
-
-
-

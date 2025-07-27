@@ -79,7 +79,7 @@ public class Ai_ToDo_Controller {
                             //            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 
                             //            Thread.sleep(30000);
-            modelMap.addAttribute("message", "✅ Action was processed by AI !  " +
+            modelMap.addAttribute("message", " Action is being processed by AI...  " +
                     "\n   ↪ User Input = " + userInput_STRING +
                     "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
                     "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
@@ -98,7 +98,9 @@ public class Ai_ToDo_Controller {
 
 
                 //Manual setting-hard coding of fields within ai processed TODO data
-                    todo.setId(new Random().nextInt(1,999)+1);
+                    if (todo.getId() == 0) {
+                        todo.setId(new Random().nextInt(1, 999) + 1);
+                    }
                     todo.setUid(0); // I have to provide some number because ENTITY MODEL has <<UID>> annotation set to <<@NOTNULL>> and so even db will take care, user need to provide fake input like 0  here--> set MODEL as "NOTNULL"
                     // todo.setAttach(null); // I can avoid this, as this is not mandatory field /null possible
                     todo.setUsername(userEmail);
@@ -142,20 +144,21 @@ public class Ai_ToDo_Controller {
 
 
     private String construct_STRING_prompt_for_OTHERS(String input) throws Exception {
+        String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
 
         String prompt_other = "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
                         "Supported actions with hints:\n" +
-                        "- listAll → list, show, display, all\n" +
-                        "- jsonCentral\n" +
+                        "- listAll → list, show, display, all, give\n" +
+                        "- jsonCentral  → json, central\n" +
                         "- findByUser (username) → user, username\n" +
                         "- findById (id) → find, get, id\n" +
                         "- findByUID (uid) → fetch, find, uid\n" +
                         "- deleteByUID (uid) → delete, remove, uid\n" +
-                        "- updateByUID (uid) → update, change, edit, uid\n" +
+                        "- updateByUID (uid) → update, change, edit, uid\n" + // not applicable for our design, UID cahnge not allowed
                         "- checkExistByUID (uid) → exists, check, uid\n" +
                         "- search (keyword) → search, keyword, match\n" +
                         "- multipleIds (ids) → many, multiple, ids\n" +
-                        "- dateRange (from, to) → date, range, from, to\n\n" +
+                        "- dateRange (from, to) → date, between, range, from, to\n\n" +
                         "Examples:\n" +
                         "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                         "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
@@ -165,6 +168,9 @@ public class Ai_ToDo_Controller {
                         "Input: delete a todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
                         "Input: search todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
                         "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
+                        "Importantly Consider today's date(YYYY-MM-DD)= " + today + " and accordingly format 'from' and 'to' with strict format of YYYY-MM-DD per user's natural day language input.\n" +
+                        "- dateRange to: YYYY-MM-DD (MUST be in this exact format)\n" +
+                        "use today's date as reference and whenever user input natural language days(e.g. 'tomorrow', 'next Monday' convert date format to dd/MM/yyyy."+
                         "Respond ONLY with valid JSON like this:\n" +
                         "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
                         "Input: " + input ;
@@ -184,7 +190,7 @@ public class Ai_ToDo_Controller {
                 "- username: \"dummy@example.com\"\n" +
                 "- description: string (required)\n" +
                 "- creationDate: \"" + today + "\" (today's date)\n" +
-                "- targetDate: yyyy-MM-dd (MUST be in this exact format)\n" +
+                "- targetDate: YYYY-MM-DD (MUST be in this exact format)\n" +
                 "- done: true or false\n\n" +
                 "DO NOT include 'id'.\n" +
                 "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
@@ -257,37 +263,32 @@ public class Ai_ToDo_Controller {
 
 
         switch (action) {
+
             case "listAll":
-
-                List<Todo> todoList = toDoServices.findbyALL();
-                modelMap.addAttribute("listMapVar", todoList);
-
-                return "index";
-                // return "redirect:/api/todo/listall";
+                return "forward:/api/todo/listall";
             case "jsonCentral":
-                return "redirect:/api/todo/jsoncentral";
+                return "forward:/api/todo/jsoncentral";
             case "findByUser":
-                return "redirect:/api/todo/findByUser?user=" + params.path("username").asText();
+                return "forward:/api/todo/findByUser?user=" + params.path("username").asText();
             case "findById":
-                return "redirect:/api/todo/findById?u=" + params.path("id").asInt();
+                return "forward:/api/todo/findById?u=" + params.path("id").asInt();
             case "findByUID":
-                return "redirect:/api/todo/findByUID?u=" + params.path("uid").asInt();
+                return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
             case "deleteByUID":
-                return "redirect:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
+                return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
             case "updateByUID":
-                return "redirect:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
+                return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
             case "checkExistByUID":
-                return "redirect:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
+                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
             case "search":
-                return "redirect:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
+                return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
             case "multipleIds":
-                return "redirect:/api/todo/id/" + params.path("ids").asText();
+                return "forward:/api/todo/id/" + params.path("ids").asText();
             case "dateRange":
-                return "redirect:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
+                return "forward:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
                         + "&toDate=" + params.path("to").asText();
             default:
                 modelMap.put("error", "❌ Unknown action: " + action);
-//                return "redirect:/api/todo/listall";
 
                 List<Todo> todoList1 = toDoServices.findbyALL();
                 modelMap.addAttribute("listMapVar", todoList1);
