@@ -97,6 +97,8 @@ public class Ai_ToDo_Controller {
                     Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
 
 
+//                    System.out.println("\n\n\n -------------------->     " + todo.getId());
+//                    Thread.sleep(30000);
                 //Manual setting-hard coding of fields within ai processed TODO data
                     if (todo.getId() == 0) {
                         todo.setId(new Random().nextInt(1, 999) + 1);
@@ -184,20 +186,22 @@ public class Ai_ToDo_Controller {
 
     private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
         String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-
+//        System.out.println( "\n\n\n\n\n ------------> " + today);
         String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
                 "Based on the input, return a valid JSON object with the following fields:\n" +
+                "- id: Single Integer number required. Either entered by user, if not entered then between random integer between 1 to 999\n" +
                 "- username: \"dummy@example.com\"\n" +
                 "- description: string (required)\n" +
-                "- creationDate: \"" + today + "\" (today's date)\n" +
-                "- targetDate: YYYY-MM-DD (MUST be in this exact format)\n" +
+                "- creationDate: \"" + today + "\" (strictly count this as today's date)\n" +
+                "- targetDate: YYYY-MM-DD (MUST be in this exact format and use relative reference of 'creationDate')\n" +
                 "- done: true or false\n\n" +
-                "DO NOT include 'id'.\n" +
+//                "DO NOT include 'id'.\n" +
                 "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
                 "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
                 "Examples:\n" +
                 "Input: create a todo to buy groceries due next friday\n" +
                 "Output: {\n" +
+                "  \"id\": \"55\",\n" +
                 "  \"username\": \"dummy@example.com\",\n" +
                 "  \"description\": \"buy groceries\",\n" +
                 "  \"creationDate\": \"" + today + "\",\n" +

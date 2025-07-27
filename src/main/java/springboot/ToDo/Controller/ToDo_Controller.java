@@ -390,7 +390,7 @@ public class ToDo_Controller<T> {
 
     @RequestMapping(value = "/deleteByUID", method = {RequestMethod.GET , RequestMethod.POST})
     @Operation(summary = "DELETE Todo by UID - JSP" , description = "DELETE by Uid. User passes UID.. that want to delete." )
-    public String deleteByUID(@RequestParam(value = "u") int uid, ModelMap map) {
+    public String deleteByUID(@RequestParam(value = "u") int uid, ModelMap modelMap) {
 
 
             boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid); // if exist == true
@@ -399,18 +399,20 @@ public class ToDo_Controller<T> {
             if (x == true ){ // if exist == true
                 toDo_Services.deleteByUID_springDataJPA(uid);
                 l1.info("Deleted UID: " + uid);
-                map.addAttribute("message","✅ Deleted UID: " + uid);
+                modelMap.addAttribute("message","✅ Deleted UID: " + uid);
 
             } else {
                 l1.info("Todo uid not foundd: " + uid);
-                map.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
+                modelMap.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
 
                 // stopping white-label page. Thanks to this exception handling method ---> handleError_to_avoid_white_label_page()
 //                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo with UID " + uid + " not found");  //-> gives wWhitelabel Error Page
             }
 
                //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
-            return "index";
+        List<Todo> list1 = toDo_Services.findbyALL();
+        modelMap.addAttribute("listMapVar", list1);
+        return "index";
     }
 
 
