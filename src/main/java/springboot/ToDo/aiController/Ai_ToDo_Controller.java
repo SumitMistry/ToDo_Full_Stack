@@ -75,7 +75,6 @@ public class Ai_ToDo_Controller {
                     //---> Parses the raw JSON string (ai_response_received_in_JSON) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
             System.out.println("---------------->           " + ai_response_received_in_JSON);
-            System.out.println("---------------->>          " + jackson_obj_ROOT.asText());
             System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
             System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 

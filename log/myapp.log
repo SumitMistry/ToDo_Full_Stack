@@ -6442,3 +6442,488 @@ java.io.EOFException: null
 2025-07-26T21:52:58.841-04:00  INFO 7068 --- [ToDo] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-07-26T21:52:58.871-04:00  INFO 7068 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-07-26T21:52:58.895-04:00  INFO 7068 --- [ToDo] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-26T23:03:52.832-04:00  INFO 15476 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Starting ToDo_main using Java 21.0.6 with PID 15476 (D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo\target\classes started by sumit in D:\hackerRank\src\Spring_SpringBoot_applications\SpringBoot\ToDo)
+2025-07-26T23:03:52.835-04:00  INFO 15476 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : The following 1 profile is active: "UAT"
+2025-07-26T23:03:53.003-04:00  INFO 15476 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-26T23:03:53.003-04:00  INFO 15476 --- [ToDo] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-26T23:03:56.919-04:00  INFO 15476 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-26T23:03:57.115-04:00  INFO 15476 --- [ToDo] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 167 ms. Found 4 JPA repository interfaces.
+2025-07-26T23:03:59.989-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardHost[localhost]] to container [StandardEngine[Tomcat]]
+2025-07-26T23:04:00.053-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[jsp]] to container [TomcatEmbeddedContext[]]
+2025-07-26T23:04:00.065-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [TomcatEmbeddedContext[]] to container [StandardEngine[Tomcat].StandardHost[localhost]]
+2025-07-26T23:04:00.317-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-26T23:04:00.325-04:00  INFO 15476 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [2.0.8] using APR version [1.7.4].
+2025-07-26T23:04:00.338-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : Current FIPS mode: [0]
+2025-07-26T23:04:00.338-04:00  INFO 15476 --- [ToDo] [restartedMain] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 3.0.14 4 Jun 2024]
+2025-07-26T23:04:00.371-04:00  INFO 15476 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-26T23:04:00.375-04:00  INFO 15476 --- [ToDo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2025-07-26T23:04:00.456-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.loader.WebappLoader    : Starting this Loader
+2025-07-26T23:04:01.055-04:00  INFO 15476 --- [ToDo] [restartedMain] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-07-26T23:04:01.080-04:00  INFO 15476 --- [ToDo] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-26T23:04:01.080-04:00  INFO 15476 --- [ToDo] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 8077 ms
+2025-07-26T23:04:01.632-04:00  INFO 15476 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-26T23:04:02.615-04:00  INFO 15476 --- [ToDo] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1a99d8fc
+2025-07-26T23:04:02.619-04:00  INFO 15476 --- [ToDo] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-26T23:04:02.673-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:mysql://localhost:3306/sumit'
+2025-07-26T23:04:02.834-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[dispatcherServlet]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-07-26T23:04:02.839-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.core.ContainerBase   : Add container child [StandardWrapper[h2Console]] to container [StandardEngine[Tomcat].StandardHost[localhost].TomcatEmbeddedContext[]]
+2025-07-26T23:04:02.989-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2025-07-26T23:04:02.997-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.apache.catalina.mapper.Mapper        : Registered host [localhost]
+2025-07-26T23:04:03.001-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [jsp] in Context [] for service [StandardService[Tomcat]]
+2025-07-26T23:04:03.001-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [h2Console] in Context [] for service [StandardService[Tomcat]]
+2025-07-26T23:04:03.001-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Wrapper [dispatcherServlet] in Context [] for service [StandardService[Tomcat]]
+2025-07-26T23:04:03.001-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register Context [] for service [StandardService[Tomcat]]
+2025-07-26T23:04:03.006-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.apache.catalina.mapper.MapperListener  : Register host [localhost] at domain [null] for service [StandardService[Tomcat]]
+2025-07-26T23:04:03.315-04:00  INFO 15476 --- [ToDo] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-26T23:04:03.613-04:00  INFO 15476 --- [ToDo] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.0.CR2
+2025-07-26T23:04:03.751-04:00  INFO 15476 --- [ToDo] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-26T23:04:04.564-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-26T23:04:04.756-04:00  WARN 15476 --- [ToDo] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-26T23:04:04.809-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(12, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@7fef6c8d) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@43ef7558)
+2025-07-26T23:04:04.809-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-9, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@3a97d374) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@551d63e7)
+2025-07-26T23:04:04.810-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(-3, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5192e6cd) replaced previous registration(org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@69ef1c12)
+2025-07-26T23:04:04.810-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4003, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@6d676e28) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@53db2a38)
+2025-07-26T23:04:04.810-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4001, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@15b90a00) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@4a79b29)
+2025-07-26T23:04:04.811-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(4002, org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5267b3bb) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@5867d925)
+2025-07-26T23:04:04.811-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2004, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@5d32123) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3d159c63)
+2025-07-26T23:04:04.811-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2005, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@52800a11) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@34c85f95)
+2025-07-26T23:04:04.811-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.h.t.d.sql.spi.DdlTypeRegistry          : addDescriptor(2011, org.hibernate.type.descriptor.sql.internal.CapacityDependentDdlType@280eaa16) replaced previous registration(org.hibernate.type.descriptor.sql.internal.DdlTypeImpl@3969cdf0)
+2025-07-26T23:04:06.870-04:00  INFO 15476 --- [ToDo] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-26T23:04:07.067-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-07-26T23:04:07.095-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:3, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select * from `sumit`.`todo_user_auth` where 1=0"]
+Params:[()]
+2025-07-26T23:04:07.100-04:00  INFO 15476 --- [ToDo] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-26T23:04:07.980-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-26T23:04:09.876-04:00  WARN 15476 --- [ToDo] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-26T23:04:10.002-04:00  INFO 15476 --- [ToDo] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-07-26T23:04:10.009-04:00  WARN 15476 --- [ToDo] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-07-26T23:04:10.250-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-07-26T23:04:10.480-04:00 DEBUG 15476 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 41 mappings in 'requestMappingHandlerMapping'
+2025-07-26T23:04:10.585-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2025-07-26T23:04:11.031-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoints beneath base path '/actuator'
+2025-07-26T23:04:11.221-04:00 DEBUG 15476 --- [ToDo] [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-07-26T23:04:11.568-04:00 DEBUG 15476 --- [ToDo] [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-07-26T23:04:11.657-04:00 DEBUG 15476 --- [ToDo] [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-07-26T23:04:12.419-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:8, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE DATABASE IF NOT EXISTS sumit"]
+Params:[]
+2025-07-26T23:04:12.421-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:1, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["use sumit"]
+Params:[]
+2025-07-26T23:04:12.425-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:4, Time:4, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["CREATE TABLE IF NOT EXISTS todoh ( uid int NOT NULL AUTO_INCREMENT, id int NOT NULL UNIQUE , attach mediumblob, creation_date date DEFAULT NULL, description varchar(40) DEFAULT NULL, done bit(1) DEFAULT NULL, target_date date DEFAULT NULL, username varchar(255) DEFAULT NULL, PRIMARY KEY (uid) )"]
+Params:[]
+2025-07-26T23:04:12.438-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:8, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["INSERT INTO todoh (id, creation_date, description, done, target_date, username) VALUES (FLOOR(RAND() * (1000 - 1 + 1)) + 1, NOW() , "Auto-Added by data.sql", true, DATE_ADD(NOW(), INTERVAL 1 YEAR) , "sumit@sumit.com")"]
+Params:[]
+2025-07-26T23:04:12.444-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:5, Time:5, Success:True
+Type:Statement, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 80 AND 980"]
+Params:[]
+2025-07-26T23:04:12.561-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-26T23:04:12.857-04:00  INFO 15476 --- [ToDo] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-26T23:04:12.892-04:00  INFO 15476 --- [ToDo] [restartedMain] springboot.ToDo.ToDo_main                : Started ToDo_main in 21.488 seconds (process running for 23.25)
+2025-07-26T23:04:13.301-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    delete 
+    from
+        sumit.todoh 
+    where
+        id BETWEEN 200 AND 888;
+2025-07-26T23:04:13.304-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:6, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["delete from sumit.todoh where id BETWEEN 200 AND 888;"]
+Params:[()]
+2025-07-26T23:04:13.425-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-07-26T23:04:13.455-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:7, Time:1, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-07-26,Autorun_justRef_dataInit.java,true,691,2026-07-26,sumit@bofa.com)]
+2025-07-26T23:04:13.484-04:00  WARN 15476 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-07-26T23:04:13.485-04:00 ERROR 15476 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-07-26T23:04:13.603-04:00 DEBUG 15476 --- [ToDo] [restartedMain] org.hibernate.SQL                        : 
+    insert 
+    into
+        todoh
+        (attach, creation_date, description, done, id, target_date, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+2025-07-26T23:04:13.608-04:00 DEBUG 15476 --- [ToDo] [restartedMain] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:8, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["insert into todoh (attach,creation_date,description,done,id,target_date,username) values (?,?,?,?,?,?,?)"]
+Params:[(NULL(BLOB),2025-07-26,Autorun_justRef_dataInit.java,false,405,2026-07-26,vraj@yyz.com)]
+2025-07-26T23:04:13.609-04:00  WARN 15476 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: S0022
+2025-07-26T23:04:13.610-04:00 ERROR 15476 --- [ToDo] [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'uid' not found.
+2025-07-26T23:04:22.852-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.a.c.a.jaspic.AuthConfigFactoryImpl     : Loading persistent provider registrations from [C:\Users\sumit\AppData\Local\Temp\tomcat.8080.5329679656101566358\conf\jaspic-providers.xml]
+2025-07-26T23:04:22.857-04:00  INFO 15476 --- [ToDo] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-26T23:04:22.858-04:00  INFO 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-26T23:04:22.859-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-07-26T23:04:22.859-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-07-26T23:04:22.859-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-07-26T23:04:22.861-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@16c7f6f7
+2025-07-26T23:04:22.862-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@18db74af
+2025-07-26T23:04:22.863-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-07-26T23:04:22.863-04:00  INFO 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-07-26T23:04:22.920-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-07-26T23:04:22.961-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:22.996-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8080/?continue to session
+2025-07-26T23:04:22.998-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-07-26T23:04:23.032-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login2
+2025-07-26T23:04:23.038-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /login2
+2025-07-26T23:04:23.043-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/login2", parameters={}
+2025-07-26T23:04:23.048-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_login_page2(String, String, ModelMap)
+2025-07-26T23:04:23.086-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:23.112-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : View name [login_old2], model {prefill_login_email_old2_a=sumit@america.com, prefill_login_email_old2_b=1}
+2025-07-26T23:04:23.125-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/login_old2.jsp]
+2025-07-26T23:04:23.154-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/login_old2.jsp
+2025-07-26T23:04:23.159-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/login_old2.jsp
+2025-07-26T23:04:24.877-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-07-26T23:04:24.882-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:25.052-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:25.055-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:25.056-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:25.059-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-07-26T23:04:25.067-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:25.067-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-07-26T23:04:25.067-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:25.069-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:25.072-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:25.079-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:25.085-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:25.086-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-07-26T23:04:25.089-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:25.090-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-07-26T23:04:25.091-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:25.092-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:25.137-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:25.147-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:25.142-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:25.148-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:25.152-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:25.155-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:25.154-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:25.162-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:25.547-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-26T23:04:25.549-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-07-26T23:04:25.550-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8080/login2
+2025-07-26T23:04:43.732-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /login_perform2
+2025-07-26T23:04:44.171-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-07-26T23:04:44.173-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:9, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.189-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.birth_date,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-07-26T23:04:44.193-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:9, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.birth_date,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.193-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.sex,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role,
+        up1_0.username 
+    from
+        todo_user_profiles1 up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-07-26T23:04:44.199-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:9, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.sex,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role,up1_0.username from todo_user_profiles1 up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.318-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2025-07-26T23:04:44.319-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] .s.ChangeSessionIdAuthenticationStrategy : Changed session id from E1F265C45FDDA9BE279AE4C9445095A1
+2025-07-26T23:04:44.321-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]] to HttpSession [org.apache.catalina.session.StandardSessionFacade@46989fc1]
+2025-07-26T23:04:44.321-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] w.a.UsernamePasswordAuthenticationFilter : Set SecurityContextHolder to UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]
+2025-07-26T23:04:44.321-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /
+2025-07-26T23:04:44.346-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-07-26T23:04:44.349-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:44.351-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-07-26T23:04:44.353-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/", parameters={}
+2025-07-26T23:04:44.353-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.Login_Controller#get_welcome_page(ModelMap)
+2025-07-26T23:04:44.356-04:00  INFO 15476 --- [ToDo] [http-nio-8080-exec-9] java.lang.Class                          : Loggged in by:--->sumit@america.com
+** CURRENT USER AUTH = sumit@america.com WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1]  UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]] []
+2025-07-26T23:04:44.359-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role 
+    from
+        todo_user_auth ua1_0 
+    where
+        ua1_0.username=?
+2025-07-26T23:04:44.363-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:2, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role from todo_user_auth ua1_0 where ua1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.363-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.birth_date,
+        up1_0.city,
+        up1_0.f_name,
+        up1_0.l_name,
+        up1_0.phone,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role,
+        up1_0.username 
+    from
+        todo_user_profiles up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-07-26T23:04:44.366-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:3, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.birth_date,up1_0.city,up1_0.f_name,up1_0.l_name,up1_0.phone,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role,up1_0.username from todo_user_profiles up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.366-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        up1_0.uid,
+        up1_0.sex,
+        ua1_0.uid,
+        ua1_0.created_date,
+        ua1_0.password_encoded,
+        ua1_0.password_raw,
+        ua1_0.username,
+        ua1_0.user_role,
+        up1_0.username 
+    from
+        todo_user_profiles1 up1_0 
+    left join
+        todo_user_auth ua1_0 
+            on ua1_0.username=up1_0.username 
+    where
+        up1_0.username=?
+2025-07-26T23:04:44.366-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:10, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select up1_0.uid,up1_0.sex,ua1_0.uid,ua1_0.created_date,ua1_0.password_encoded,ua1_0.password_raw,ua1_0.username,ua1_0.user_role,up1_0.username from todo_user_profiles1 up1_0 left join todo_user_auth ua1_0 on ua1_0.username=up1_0.username where up1_0.username=?"]
+Params:[(sumit@america.com)]
+2025-07-26T23:04:44.379-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : View name [welcome1], model {uid_email=sumit@america.com, login_auth_success_1== UserAuth{uid=2, username='sumit@america.com', password_raw='1', password_encoded='$2a$10$QHDJLNMPwF5C0PL33UfIkOzkifnkWitYICwTk.2D6MBepjkqalgju', user_role=[USER, ADMIN], createdDate=2025-03-03T02:17:13.580413}, login_auth_success_2== ** CURRENT USER AUTH = sumit@america.com WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1]  UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]] [], org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-07-26T23:04:44.381-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/welcome1.jsp]
+2025-07-26T23:04:44.383-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/welcome1.jsp
+2025-07-26T23:04:44.386-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/welcome1.jsp
+2025-07-26T23:04:44.779-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-07-26T23:04:44.780-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.201-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:45.211-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:45.213-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:45.213-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-07-26T23:04:45.213-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-07-26T23:04:45.213-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:45.211-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:45.213-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.215-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-07-26T23:04:45.215-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.215-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:45.217-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-07-26T23:04:45.211-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:45.226-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.229-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.228-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.238-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.239-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.239-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-07-26T23:04:45.240-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-07-26T23:04:45.242-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.242-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.242-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.244-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:45.244-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-07-26T23:04:45.244-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.248-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.248-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.261-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.261-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.349-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:45.359-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:45.361-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-07-26T23:04:45.365-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.379-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.381-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.433-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:45.445-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:45.445-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-07-26T23:04:45.447-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:45.451-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:45.451-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.531-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-26T23:04:45.541-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.541-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-26T23:04:45.541-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2025-07-26T23:04:45.546-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-26T23:04:45.550-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-07-26T23:04:45.558-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-07-26T23:04:45.558-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-07-26T23:04:45.566-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /custom-error
+2025-07-26T23:04:45.576-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:45.576-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /custom-error
+2025-07-26T23:04:45.576-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/custom-error", parameters={}
+2025-07-26T23:04:45.580-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-07-26T23:04:45.644-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.5', given [image/avif, image/webp, image/png, image/svg+xml, image/*;q=0.8, */*;q=0.5] and supported [application/json, application/*+json]
+2025-07-26T23:04:45.649-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Sat Jul 26 23:04:45 EDT 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
+2025-07-26T23:04:45.794-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2025-07-26T23:04:51.691-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/todo/listall
+2025-07-26T23:04:51.691-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:51.691-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/todo/listall
+2025-07-26T23:04:51.695-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/api/todo/listall", parameters={}
+2025-07-26T23:04:51.716-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to springboot.ToDo.Controller.ToDo_Controller#listAll_todos(ModelMap)
+2025-07-26T23:04:51.744-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        t1_0.uid,
+        t1_0.attach,
+        t1_0.creation_date,
+        t1_0.description,
+        t1_0.done,
+        t1_0.id,
+        t1_0.target_date,
+        t1_0.username 
+    from
+        todoh t1_0
+2025-07-26T23:04:51.746-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] n.t.d.l.l.SLF4JQueryLoggingListener      : 
+Name:dataSource, Connection:11, Time:0, Success:True
+Type:Prepared, Batch:False, QuerySize:1, BatchSize:0
+Query:["select t1_0.uid,t1_0.attach,t1_0.creation_date,t1_0.description,t1_0.done,t1_0.id,t1_0.target_date,t1_0.username from todoh t1_0"]
+Params:[()]
+2025-07-26T23:04:51.775-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : View name [index], model {uid_email=sumit@america.com, listMapVar=[Todo{uid=627, id=56, username='sumit@america.com', description='youtube clean up', creationDate=2025-04-21, targetDate=2026-05-08, done=true, attach=null}, Todo{uid=659, id=77, username='sumit@americas.com', description='Hardcoded / Default Task', creationDate=2025-04-21, targetDate=2025-04-28, done=false, attach=null}, Todo{uid=675, id=45, username='sumit@america.com', description='crete reminder to go home', creationDate=2025-05-02, targetDate=2025-05-03, done=false, attach=null}, Todo{uid=686, id=985, username='vraj@yyz.com', description='Autorun_justRef_dataInit.java', creationDate=2025-05-02, targetDate=2026-05-02, done=false, attach=null}, Todo{uid=688, id=7, username='sumit@ame', description='Hardcoded / Default Task', creationDate=2025-05-02, targetDate=2025-05-09, done=false, attach=null}, Todo{uid=689, id=8, username='sumitgbb@fdsf', description='Hardcoded / Default Task', creationDate=2025-05-02, targetDate=2025-05-09, done=false, attach=null}, Todo{uid=697, id=691, username='sumit@bofa.com', description='Autorun_justRef_dataInit.java', creationDate=2025-07-26, targetDate=2026-07-26, done=true, attach=null}, Todo{uid=698, id=405, username='vraj@yyz.com', description='Autorun_justRef_dataInit.java', creationDate=2025-07-26, targetDate=2026-07-26, done=false, attach=null}], totally=8, org.springframework.validation.BindingResult.uid_email=org.springframework.validation.BeanPropertyBindingResult: 0 errors, org.springframework.validation.BindingResult.listMapVar=org.springframework.validation.BeanPropertyBindingResult: 0 errors, org.springframework.validation.BindingResult.totally=org.springframework.validation.BeanPropertyBindingResult: 0 errors}
+2025-07-26T23:04:51.775-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.view.JstlView            : Forwarding to [/WEB-INF/jsp/index.jsp]
+2025-07-26T23:04:51.779-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /WEB-INF/jsp/index.jsp
+2025-07-26T23:04:51.779-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /WEB-INF/jsp/index.jsp
+2025-07-26T23:04:52.355-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.a.c.c.C.[.[localhost].[/].[jsp]        : The response class [class org.springframework.security.web.header.HeaderWriterFilter$HeaderWriterResponse] could not be unwraped to the Catalina response class and will be closed immediately after the forward
+2025-07-26T23:04:52.357-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/css/bootstrap.min.css
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/css/bootstrap.min.css", parameters={}
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css", parameters={}
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:52.505-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-07-26T23:04:52.509-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.509-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:52.511-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.511-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.515-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.515-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-10] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.515-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.517-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-4] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.519-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-07-26T23:04:52.528-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js
+2025-07-26T23:04:52.528-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js", parameters={}
+2025-07-26T23:04:52.529-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.536-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.538-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-6] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.539-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:52.539-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-07-26T23:04:52.543-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.549-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.549-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-9] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.551-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.551-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-1] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.609-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:52.611-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /webjars/jquery/3.6.0/jquery.min.js
+2025-07-26T23:04:52.613-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/webjars/jquery/3.6.0/jquery.min.js", parameters={}
+2025-07-26T23:04:52.613-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.619-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.619-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-2] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.694-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:52.698-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /webjars/bootstrap/5.1.3/js/bootstrap.min.js
+2025-07-26T23:04:52.699-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/webjars/bootstrap/5.1.3/js/bootstrap.min.js", parameters={}
+2025-07-26T23:04:52.705-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2025-07-26T23:04:52.709-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-07-26T23:04:52.709-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-5] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.729-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2025-07-26T23:04:52.733-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.735-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /favicon.ico
+2025-07-26T23:04:52.738-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/favicon.ico", parameters={}
+2025-07-26T23:04:52.739-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2025-07-26T23:04:52.741-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2025-07-26T23:04:52.743-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-07-26T23:04:52.743-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2025-07-26T23:04:52.743-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /custom-error
+2025-07-26T23:04:52.749-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] w.c.HttpSessionSecurityContextRepository : Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=sumit@america.com, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[]], Credentials=[PROTECTED], Authenticated=true, Details=WebAuthenticationDetails [RemoteIpAddress=127.0.0.1, SessionId=E1F265C45FDDA9BE279AE4C9445095A1], Granted Authorities=[]]]
+2025-07-26T23:04:52.749-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /custom-error
+2025-07-26T23:04:52.749-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/custom-error", parameters={}
+2025-07-26T23:04:52.751-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2025-07-26T23:04:52.751-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json;q=0.5', given [image/avif, image/webp, image/png, image/svg+xml, image/*;q=0.8, */*;q=0.5] and supported [application/json, application/*+json]
+2025-07-26T23:04:52.754-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Sat Jul 26 23:04:52 EDT 2025, status=404, error=Not Found, trace=org.springframework.web. (truncated)...]
+2025-07-26T23:04:52.754-04:00 DEBUG 15476 --- [ToDo] [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
