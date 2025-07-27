@@ -46,45 +46,64 @@ public class Ai_ToDo_Controller {
     }
 
     @RequestMapping(value = "/ai", method = RequestMethod.POST)
-    public String user_textInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput,
+    public String user_textInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput_STRING,
                                   ModelMap modelMap,
                                   // @ModelAttribute("totally") int totally, // not good, if totally not parsed,or open once, then it is null and error..so not good one.
                                   @ModelAttribute("uid_email") String userEmail) {
         try {
 
             // Routing correct action
-            String received_Json_from_ai;
-            if (userInput.toLowerCase().matches(".*(give|show|list|find|delete|search|update).*")){
-                received_Json_from_ai = construct_STRING_prompt_for_OTHERS(userInput);
+            String ai_response_received_in_JSON;
+            // for ---> ACTION
+            if (userInput_STRING.toLowerCase().matches(".*(give|show|list|find|delete|search|update).*")){
+                ai_response_received_in_JSON = construct_STRING_prompt_for_OTHERS(userInput_STRING);
             }
+            // for ---> NON-ACTION
             else {
-                received_Json_from_ai = construct_STRING_prompt_for_CREATE(userInput);
+                ai_response_received_in_JSON = construct_STRING_prompt_for_CREATE(userInput_STRING);
             }
 
-            ObjectMapper mapper = objectMapper();
-            JsonNode root = mapper.readTree(received_Json_from_ai);  //---> Parses the raw JSON string (received_Json_from_ai) into a JsonNode
+            //import com.fasterxml.jackson.databind.JsonNode;
+            //import com.fasterxml.jackson.databind.ObjectMapper;
+            // This Jackson library (-->ObjectMapper) in Java help us performing serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
+            com.fasterxml.jackson.databind.
+                    ObjectMapper jackson_obj_MAPPER = objectMapper();
+            // The Jackson library in Java help us to parse JSON data into a tree-like structure
+            //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
+            com.fasterxml.jackson.databind.
+                    JsonNode jackson_obj_ROOT = jackson_obj_MAPPER.readTree(ai_response_received_in_JSON);
+                    //---> Parses the raw JSON string (ai_response_received_in_JSON) into a JsonNode
+                    //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
+            System.out.println("---------------->           " + ai_response_received_in_JSON);
+            System.out.println("---------------->>          " + jackson_obj_ROOT.asText());
+            System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
+            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 
-            if (root.has("action")) {
-                return routing_ai_JSON_decision_to_correct_endpoint(root, modelMap);
-            } else if (root.has("description") && root.has("creationDate") && root.has("targetDate")) {
-                Todo todo = mapper.treeToValue(root, Todo.class);
+            Thread.sleep(10000);
 
-                Random rand = new Random();         int random1 = rand.nextInt(1,999)+1;
-                todo.setId(random1);
-                todo.setUid(0);
+            if // Action items?
+                (jackson_obj_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
+                return routing_ai_JSON_decision_to_correct_endpoint(jackson_obj_ROOT, modelMap);
+            } else if // "create" ??
+                    (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
+                Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
+
+
+                todo.setId(new Random().nextInt(1,999)+1);
+                todo.setUid(0); // I have to provide some number because I set MODEL as "NOTNULL"
                 todo.setAttach(null);
                 todo.setUsername(userEmail);
                 todo.setCreationDate(java.time.LocalDate.now());
 
-                Todo created = todoRepo.save(todo);
-                modelMap.put("message", "✅ TODO created via AI!" +created.toString()+  root  + root.asText() + mapper + received_Json_from_ai + userInput);
+                Todo todo_after_saved = todoRepo.save(todo);
+                modelMap.put("message", "✅ TODO created via AI!" +todo_after_saved.toString()+  jackson_obj_ROOT  + jackson_obj_ROOT.asText() + jackson_obj_MAPPER + ai_response_received_in_JSON + userInput_STRING);
             } else {
-                modelMap.put("error", "❌ Unrecognized AI response format." + root + root.asText() + mapper + received_Json_from_ai + userInput);
+                modelMap.put("error", "❌ Unrecognized AI response format." + jackson_obj_ROOT + jackson_obj_ROOT.asText() + jackson_obj_MAPPER + ai_response_received_in_JSON + userInput_STRING);
             }
 
         } catch (Exception e) {
             logger.error("Error handling AI response", e);
-            modelMap.put("error", "❌ AI failed to process your input." + e.toString() + e.getMessage() + userInput);
+            modelMap.put("error", "❌ AI failed to process your input." + e.toString() + e.getMessage() + userInput_STRING);
         }
 
         List<Todo> todoList = toDoServices.findbyALL();
