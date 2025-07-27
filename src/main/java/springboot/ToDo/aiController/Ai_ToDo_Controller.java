@@ -74,35 +74,64 @@ public class Ai_ToDo_Controller {
                     JsonNode jackson_obj_ROOT = jackson_obj_MAPPER.readTree(ai_response_received_in_JSON);
                     //---> Parses the raw JSON string (ai_response_received_in_JSON) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
-            System.out.println("---------------->           " + ai_response_received_in_JSON);
-            System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
-            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
+                            //            System.out.println("---------------->           " + ai_response_received_in_JSON);
+                            //            System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
+                            //            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 
-            Thread.sleep(10000);
+                            //            Thread.sleep(30000);
+            modelMap.addAttribute("message", "✅ Action was processed by AI !  " +
+                    "\n   ↪ User Input = " + userInput_STRING +
+                    "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                    "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                    "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+            );
 
             if // Action items?
                 (jackson_obj_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
+
                 return routing_ai_JSON_decision_to_correct_endpoint(jackson_obj_ROOT, modelMap);
             } else if // "create" ??
                     (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
-                Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
+
+                //AI processed TODO is ready here..
+                    Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
 
 
-                todo.setId(new Random().nextInt(1,999)+1);
-                todo.setUid(0); // I have to provide some number because I set MODEL as "NOTNULL"
-                todo.setAttach(null);
-                todo.setUsername(userEmail);
-                todo.setCreationDate(java.time.LocalDate.now());
+                //Manual setting-hard coding of fields within ai processed TODO data
+                    todo.setId(new Random().nextInt(1,999)+1);
+                    todo.setUid(0); // I have to provide some number because ENTITY MODEL has <<UID>> annotation set to <<@NOTNULL>> and so even db will take care, user need to provide fake input like 0  here--> set MODEL as "NOTNULL"
+                    // todo.setAttach(null); // I can avoid this, as this is not mandatory field /null possible
+                    todo.setUsername(userEmail);
+                    todo.setCreationDate(java.time.LocalDate.now());
+                    // other fields are being taken from AI response
 
                 Todo todo_after_saved = todoRepo.save(todo);
-                modelMap.put("message", "✅ TODO created via AI!" +todo_after_saved.toString()+  jackson_obj_ROOT  + jackson_obj_ROOT.asText() + jackson_obj_MAPPER + ai_response_received_in_JSON + userInput_STRING);
+                modelMap.put("message", "✅ TODO created via AI (within - elseif branch)!  " +
+                                        "\n   ↪ User Input = " + userInput_STRING +
+                                        "\n   ↪ todo_after_saved = " + todo_after_saved.toString() +
+                                        "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                                        "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                                        "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+                );
+
             } else {
-                modelMap.put("error", "❌ Unrecognized AI response format." + jackson_obj_ROOT + jackson_obj_ROOT.asText() + jackson_obj_MAPPER + ai_response_received_in_JSON + userInput_STRING);
+                modelMap.put("error", "❌ Unrecognized AI response ((FORMAT)) <-------" +
+                        "\n   Error related to ---> if condition in (jackson_obj_ROOT.has(action/description/creationDate/targetDate))" +
+                        "\n   ↪ User Input = " + userInput_STRING +
+                        "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                        "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                        "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+                );
             }
 
         } catch (Exception e) {
             logger.error("Error handling AI response", e);
-            modelMap.put("error", "❌ AI failed to process your input." + e.toString() + e.getMessage() + userInput_STRING);
+            modelMap.put("error", "❌ ❌ ❌ ❌ ❌ ❌ AI failed to process your input with error below:" +
+                    "\n   ↪ User Input = " + userInput_STRING +
+                    "\n   ↪ Error 1 = " + e.toString() +
+                    "\n   ↪ Error 2 = " + e.getMessage()
+            );
+
         }
 
         List<Todo> todoList = toDoServices.findbyALL();
@@ -155,13 +184,13 @@ public class Ai_ToDo_Controller {
                 "- username: \"dummy@example.com\"\n" +
                 "- description: string (required)\n" +
                 "- creationDate: \"" + today + "\" (today's date)\n" +
-                "- targetDate: yyyy-MM-dd (MUST be in this exact format, no relative dates like 'tomorrow')\n" +
+                "- targetDate: yyyy-MM-dd (MUST be in this exact format)\n" +
                 "- done: true or false\n\n" +
                 "DO NOT include 'id'.\n" +
                 "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
                 "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
                 "Examples:\n" +
-                "Input: create a todo to buy groceries tomorrow\n" +
+                "Input: create a todo to buy groceries due next friday\n" +
                 "Output: {\n" +
                 "  \"username\": \"dummy@example.com\",\n" +
                 "  \"description\": \"buy groceries\",\n" +
@@ -226,9 +255,15 @@ public class Ai_ToDo_Controller {
         String action = root.path("action").asText();
         JsonNode params = root.path("params");
 
+
         switch (action) {
             case "listAll":
-                return "redirect:/api/todo/listall";
+
+                List<Todo> todoList = toDoServices.findbyALL();
+                modelMap.addAttribute("listMapVar", todoList);
+
+                return "index";
+                // return "redirect:/api/todo/listall";
             case "jsonCentral":
                 return "redirect:/api/todo/jsoncentral";
             case "findByUser":
@@ -252,7 +287,12 @@ public class Ai_ToDo_Controller {
                         + "&toDate=" + params.path("to").asText();
             default:
                 modelMap.put("error", "❌ Unknown action: " + action);
-                return "redirect:/api/todo/listall";
+//                return "redirect:/api/todo/listall";
+
+                List<Todo> todoList1 = toDoServices.findbyALL();
+                modelMap.addAttribute("listMapVar", todoList1);
+
+                return "index";
         }
     }
 }
