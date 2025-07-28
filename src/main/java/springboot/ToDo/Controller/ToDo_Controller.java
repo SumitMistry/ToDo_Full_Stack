@@ -243,40 +243,6 @@ public class ToDo_Controller<T> {
 
 
 
-    ///////////////////////////     existByUid (GET)    ///////////////////////////
-    // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
-    // Output directly into BODY of HTML using @ResponseBody
-    @ResponseBody
-    @RequestMapping(value = "/api/todo/existByUID", method = {RequestMethod.GET , RequestMethod.POST})
-    @Operation(
-            summary = "Check if a Todo exists by UID",
-            description = "Checks if a Todo item exists by UID. Returns a boolean value (true/false).",
-            parameters = {
-                    @Parameter(
-                            name = "u",
-                            description = "The UID of the Todo item to check",
-                            required = true,
-                            in = ParameterIn.QUERY,
-                            example = "123",
-                            hidden = false // Hides this parameter from Swagger UI
-
-                    )
-            },
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "200=Todo item exists (true)"),
-                    @ApiResponse(responseCode = "404", description = "404=Todo item does not exist (false)")
-            })
-    public ResponseEntity<Boolean> existByUid(@RequestParam(value = "u") int uid,
-                                              ModelMap modelMap){
-        boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
-
-        if (x){   // if (x == true)
-            return new ResponseEntity<>(x, HttpStatus.FOUND); // 302 code
-        }
-        else{
-            return new ResponseEntity<>(x, HttpStatus.NOT_FOUND); //404 error code
-        }
-    }
 
 
 
@@ -285,11 +251,17 @@ public class ToDo_Controller<T> {
     @Operation(summary = "GET todo by UID", description = "Use UID to retrieve Todo")
     public String findByUID_from_List(@RequestParam(value = "u") int uid, ModelMap modelMap) {
         //      System.out.println(toDo_Services.findByID(uid));
-        //      List<Todo> list1 =  toDo_Services.findByID_from_List(uid);
 
-        List<Todo> todo_uid = toDo_Services.findByUid(uid);
-        modelMap.addAttribute("listMapVar", todo_uid );
-        modelMap.addAttribute("totally", todo_uid.size());
+        if (repo_dao_springData_todo_jpa.existsByUid(uid)){
+            modelMap.addAttribute("message"," ✅ Todo uid -> " + uid + "foundd!");
+            List<Todo> todo_uid = toDo_Services.findByUid(uid);
+            modelMap.addAttribute("listMapVar", todo_uid );
+            modelMap.addAttribute("totally", todo_uid.size());
+        }
+        else{
+            modelMap.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
+        }
+
         return "index";
     }
 
@@ -301,26 +273,42 @@ public class ToDo_Controller<T> {
     public String findById(@RequestParam(value = "u") int id,
                            ModelMap modelMap) {
 
-        // Optional<List<Todo>> todo_list_optional = repo_dao_springData_todo_jpa.findById(id);
-        Optional<List<Todo>> todo_list= repo_dao_springData_todo_jpa.findById_custom(id);
-
-        if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
-
-            // OPTION # 1 (White Label page with exception specific message there
-            // This will return WHITE-LABEL PAGE with below Exception reason
-            // app.properties ---> ++ ---> server.error.include-message=always
-            // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
-
-            // OPTION # 2 (return error.jsp page with specific variable string message passed)
-            // return jsp error page with specific to "ID not found" error message
-            modelMap.addAttribute("errorCodeHere5047_id_nf","Todo id # " + id + " based item not found <- written in ResponseStatusException...Controller");
-            return "error_nf";
-
+        if (repo_dao_springData_todo_jpa.existsByCustomId(id)){
+            modelMap.addAttribute("message"," ✅ Todo ID -> " + id + "foundd!");
+            List<Todo> todo_id = toDo_Services.findByCustomId(id).get();
+            modelMap.addAttribute("listMapVar", todo_id );
+            modelMap.addAttribute("totally", todo_id.size());
+        } else{
+            modelMap.addAttribute("error"," ❌ Todo ID -> " + id + " not foundd!");
         }
 
+        //
+        //        // Optional<List<Todo>> todo_list_optional = repo_dao_springData_todo_jpa.findById(id);
+        //        Optional<List<Todo>> todo_list = repo_dao_springData_todo_jpa.findById_custom(id);
+        //
+        //        if (todo_list.isEmpty() || todo_list.get().isEmpty()) {
+        //
+        //            // OPTION # 1 (White Label page with exception specific message there
+        //            // This will return WHITE-LABEL PAGE with below Exception reason
+        //            // app.properties ---> ++ ---> server.error.include-message=always
+        //            // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo id based item not found <- written in ResponseStatusException...Controller");
+        //
+        //
+        //            // OPTION # 2 (return error.jsp page with specific variable string message passed)
+        //            // return jsp error page with specific to "ID not found" error message
+        //            modelMap.addAttribute("error","Todo id # " + id + " based item not found <- written in ResponseStatusException...Controller");
+        //            // return "error_nf";
+        //
+        //
+        //            // OPTION # 3 (just disabled ----> return "error_nf")
+        //            // We will not use <error_nf.php> in above line.
+        //            // This will using <index.php> original webpage which already has "error" tag and we will associate error message only.
+        //
+        //        } else{
+        //            modelMap.addAttribute("message",id + " <-- Todo Found!");
+        //
+        //        }
 
-        modelMap.addAttribute("listMapVar",todo_list.get());
-        modelMap.addAttribute("totally", todo_list.get().size());
 
         return "index"; // JSP page name (without prefix/suffix)
 
@@ -406,7 +394,7 @@ public class ToDo_Controller<T> {
                 modelMap.addAttribute("error"," ❌ Todo uid -> " + uid + " not foundd!");
 
                 // stopping white-label page. Thanks to this exception handling method ---> handleError_to_avoid_white_label_page()
-//                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo with UID " + uid + " not found");  //-> gives wWhitelabel Error Page
+                // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Todo with UID " + uid + " not found");  //-> gives wWhitelabel Error Page
             }
 
                //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
@@ -422,14 +410,22 @@ public class ToDo_Controller<T> {
     ///////////////////////////     DELETE BY ID    ///////////////////////////
     @RequestMapping(value = "/delByID", method = RequestMethod.GET)
     @Operation(summary = "DELETE Todo by ID - JSP" , description = "DELETE by Id. User passes ID.. that want to delete." )
-    public String del_By_ID(@RequestParam(value = "u") int id) {
-        repo_dao_springData_todo_jpa.deleteById(id);
-        l1.info("DELETEDD::::::::" + id);
+    public String deleteById(@RequestParam(value = "u") int id, ModelMap modelMap) {
 
-        //return "index";
-        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
-        return "redirect:/api/todo/listall";
+        if (repo_dao_springData_todo_jpa.existsByCustomId(id)){
+            repo_dao_springData_todo_jpa.deleteByCustomId(id);
+            l1.info("DELETEDD::::::::" + id);
+            modelMap.addAttribute("message","✅ Deleted ID: " + id);
+        }
+        else{
+            l1.info("Todo ID not foundd: " + id);
+            modelMap.addAttribute("error"," ❌ Todo id -> " + id + " not foundd!");
+        }
+        List<Todo> list1 = toDo_Services.findbyALL();
+        modelMap.addAttribute("listMapVar", list1);
+        return "index";
     }
+
 
     /////////////       CUSTOM QUERY supported by JpaRepository  //////////////////////
     @RequestMapping(value = "/sam", method = RequestMethod.GET)
@@ -606,6 +602,19 @@ public class ToDo_Controller<T> {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
@@ -688,7 +697,7 @@ public class ToDo_Controller<T> {
     @Operation(summary = "Get Todo By (MULTIPLE) ID (Returns JSON) using comma" , description = "GET Todo By (Mutiple) ID (Returns JSON) GET http://localhost:8080/api/todo/id/990,1,2,3,51,4")
     @RequestMapping(value = "/id/{multipleiid}",  method = {RequestMethod.GET , RequestMethod.POST})
     @ResponseBody
-    public ResponseEntity<?> getTodoByIdss(@PathVariable(value = "multipleiid") String multiple_ids){
+    public ResponseEntity<?> getTodoByIdss_JSON(@PathVariable(value = "multipleiid") String multiple_ids){
 
         // step:1 - get seperate is in LIST<Integer>
         List<Integer> ids_in_list = Arrays.stream(multiple_ids.split(","))
@@ -729,7 +738,7 @@ public class ToDo_Controller<T> {
     @Operation(summary = "POST/ INSERT Todo via API (Returns JSON)", description = "insert todo record. User to send data in json.")
     @RequestMapping(value = { "/insert4" }, method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<?> insert4TodoAPI(
+    public ResponseEntity<?> insert4TodoAPI_JSON(
             @RequestBody @Valid Todo todoh,
             BindingResult bindingResult) {
 
@@ -771,7 +780,7 @@ public class ToDo_Controller<T> {
     @Operation(summary = "PUT-Update Todo By UID (Returns JSON)", description = "Update todo record by UID. PUT http://localhost:8080/api/todo/uid/97")
     @RequestMapping(value = "/uid/{uiid}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<?> updateTodoByUID(
+    public ResponseEntity<?> updateTodoByUID_JSON(
             @PathVariable(value = "uiid") int uid,
             @RequestBody @Valid Todo updatedTodo,
             BindingResult bindingResult) {
@@ -806,14 +815,50 @@ public class ToDo_Controller<T> {
     @Operation(summary = "DELETE Todo by ID (Returns 204: noContent() created = void)" , description = "DELETE by id. User pass Id that want to delete. http://localhost:8080/api/todo/id/1" )
     @DeleteMapping("/id/{idd}")
     @ResponseBody
-    public ResponseEntity<?> deleteTodo(@PathVariable(value = "idd") int id) {
+    public ResponseEntity<?> deleteTodo_by_id_JSON(@PathVariable(value = "idd") int id) {
         // edge case-1: if ID Todo not found...
         if ( repo_dao_springData_todo_jpa.findById_custom(id).get().isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Todo not found"); // 404 Not Found
         }
 
-        repo_dao_springData_todo_jpa.deleteById(id);
+        repo_dao_springData_todo_jpa.deleteByCustomId(id);
         return ResponseEntity.noContent().build(); // 204 No Content
+    }
+
+
+    ///////////////////////////     existByUid (GET)    ///////////////////////////
+    // to check if the UID exit or not, just simply returns TRUE orFALSE BOOLEAN value only
+    // Output directly into BODY of HTML using @ResponseBody
+    @ResponseBody
+    @RequestMapping(value = "/api/todo/existByUID", method = {RequestMethod.GET , RequestMethod.POST})
+    @Operation(
+            summary = "Check if a Todo exists by UID",
+            description = "Checks if a Todo item exists by UID. Returns a boolean value (true/false).",
+            parameters = {
+                    @Parameter(
+                            name = "u",
+                            description = "The UID of the Todo item to check",
+                            required = true,
+                            in = ParameterIn.QUERY,
+                            example = "123",
+                            hidden = false // Hides this parameter from Swagger UI
+
+                    )
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "200=Todo item exists (true)"),
+                    @ApiResponse(responseCode = "404", description = "404=Todo item does not exist (false)")
+            })
+    public ResponseEntity<Boolean> existByUid_JSON(@RequestParam(value = "u") int uid,
+                                              ModelMap modelMap){
+        boolean x =  repo_dao_springData_todo_jpa.existsByUid(uid);
+
+        if (x){   // if (x == true)
+            return new ResponseEntity<>(x, HttpStatus.FOUND); // 302 code
+        }
+        else{
+            return new ResponseEntity<>(x, HttpStatus.NOT_FOUND); //404 error code
+        }
     }
 
 

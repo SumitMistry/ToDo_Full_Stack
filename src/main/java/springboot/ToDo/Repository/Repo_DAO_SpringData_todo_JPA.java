@@ -27,17 +27,6 @@ public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //Howe
     Optional<List<Todo>> findById_custom(@Param("id") int id);
 
 
-    void deleteByUid(int uid);
-
-
-
-    // HEre if i remove @modifying and @Transactional , then error : org.springframework.orm.jpa.JpaSystemException: JDBC exception executing SQL [DELETE FROM todoh WHERE id = ? ;] [Statement.executeQuery() cannot issue statements that do not produce result sets.]
-    // This error comes becasue JPA need modification permission, we creating custoom query so we need to plug this into it
-    @Modifying
-    @Transactional
-    @Query(value = "DELETE FROM todoh WHERE id = :id ;", nativeQuery = true) // The @Param("id") annotation ensures that the id method parameter is correctly mapped to the :id placeholder in the query
-    void deleteById(Integer id);
-
     Optional<List<Todo>> findByUsername(String username);
 
 
@@ -70,8 +59,24 @@ public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //Howe
 
     boolean existsByUid(Integer uid);
 
+
+    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM todoh WHERE id = :id ", nativeQuery = true)
+    boolean existsByCustomId(@Param("id") Integer id);
+
     @Query("SELECT t FROM Todo t WHERE t.id IN :ids")
     List<Todo> findByCustomId(@Param("ids") List<Integer> ids);
+
+
+    void deleteByUid(int uid);
+
+
+    // HEre if i remove @modifying and @Transactional , then error : org.springframework.orm.jpa.JpaSystemException: JDBC exception executing SQL [DELETE FROM todoh WHERE id = ? ;] [Statement.executeQuery() cannot issue statements that do not produce result sets.]
+    // This error comes becasue JPA need modification permission, we creating custoom query so we need to plug this into it
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM todoh WHERE id = :id ;", nativeQuery = true) // The @Param("id") annotation ensures that the id method parameter is correctly mapped to the :id placeholder in the query
+    void deleteByCustomId(Integer id);
+
 
 //    @Query(value = "SELECT t FROM todo t WHERE t.id IN :idsHere")
 //    List<Todo> findAllByIdssss(@Param(value = "idsHere") List<Integer> listOfIds);

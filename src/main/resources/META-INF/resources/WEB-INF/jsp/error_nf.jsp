@@ -10,6 +10,8 @@
 
     <h1>Error</h1>
     <p>${errorCodeHere5047_id_nf}</p>
+    <p>${error}</p>
+    <p>${message}</p>
 
     <a href="/api/todo/list"> Go Back</a>
 
