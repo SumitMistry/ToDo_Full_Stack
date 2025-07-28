@@ -15,6 +15,17 @@
             <form:form method="post" modelAttribute="todo_obj_spring_data_jpa2">
 
                     <fieldset class="mb-3">
+                    <form:label path="uid"> uid : </form:label>
+                    <form:input type="text" path="uid" disabled="true"   />
+                    <%--  <form:input type="text" path="uid" required="required" disabled="true"  />    --%>
+                    <form:hidden path="uid" />
+                    <form:errors path="uid"  cssClass="text-warning"    />
+                    </fieldset>
+
+
+
+
+                    <fieldset class="mb-3">
                     <form:label path="id"> id : </form:label>
                     <form:input type="text" path="id" required="required"   />
                     <form:errors path="id"  cssClass="text-warning"    />

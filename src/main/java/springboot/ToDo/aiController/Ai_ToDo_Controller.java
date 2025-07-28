@@ -153,9 +153,10 @@ public class Ai_ToDo_Controller {
                         "- listAll → list, show, display, all, give\n" +
                         "- jsonCentral  → json, central\n" +
                         "- findByUser (username) → user, username\n" +
-                        "- findById (id) → find, get, id\n" +
-                        "- findByUID (uid) → fetch, find, uid\n" +
+                        "- findById (id) → find, fetch, get, id\n" +
+                        "- findByUID (uid) → fetch, find, get, uid\n" +
                         "- deleteByUID (uid) → delete, remove, uid\n" +
+                        "- deleteById (id) → delete, remove, id\n" +
                         "- updateByUID (uid) → update, change, edit, uid\n" + // not applicable for our design, UID cahnge not allowed
                         "- checkExistByUID (uid) → exists, check, uid\n" +
                         "- search (keyword) → search, keyword, match\n" +
@@ -167,8 +168,8 @@ public class Ai_ToDo_Controller {
                         "Input: show all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                         "Input: all tasks \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
                         "Input: show my tasks\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: delete a todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
-                        "Input: search todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
+                        "Input: delete or remove todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
+                        "Input: search or find or get todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
                         "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
                         "Importantly Consider today's date(YYYY-MM-DD)= " + today + " and accordingly format 'from' and 'to' with strict format of YYYY-MM-DD per user's natural day language input.\n" +
                         "- dateRange to: YYYY-MM-DD (MUST be in this exact format)\n" +
@@ -280,10 +281,12 @@ public class Ai_ToDo_Controller {
                 return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
             case "deleteByUID":
                 return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
+            case "deleteById":
+                return "forward:/api/todo/delByID?u=" + params.path("id").asInt();
             case "updateByUID":
                 return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
-            case "checkExistByUID":
-                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
+//            case "checkExistByUID":
+//                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
             case "search":
                 return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
             case "multipleIds":

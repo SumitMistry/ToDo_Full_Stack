@@ -60,7 +60,9 @@ public interface Repo_DAO_SpringData_todo_JPA extends JpaRepository<Todo  //Howe
     boolean existsByUid(Integer uid);
 
 
-    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM todoh WHERE id = :id ", nativeQuery = true)
+//    @Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN true ELSE false END FROM todoh WHERE id = :id ", nativeQuery = true)
+//    @Query(value = "SELECT COUNT(*) > 0 FROM todos WHERE id = :id", nativeQuery = true)
+    @Query("SELECT CASE WHEN COUNT(t) > 0 THEN true ELSE false END FROM Todo t WHERE t.id = :id")
     boolean existsByCustomId(@Param("id") Integer id);
 
     @Query("SELECT t FROM Todo t WHERE t.id IN :ids")

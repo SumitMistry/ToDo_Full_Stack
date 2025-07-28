@@ -494,12 +494,12 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    @Operation(summary = "GET update Todo by id - in JSP)" , description = "Update by id" )
-    public String show_UpdateByID_page(ModelMap modelMap,
-                                       @RequestParam(value = "u") int uidTakenFromHtmlTag) {
+    @Operation(summary = "GET update Todo by UID - in JSP)" , description = "Update by UId" )
+    public String get_UpdateByUID_page(ModelMap modelMap,
+                                       @RequestParam(value = "u") int uid_TakenFromURL) {
 
-        // Retrieved current record=data
-        Todo retrieve_current_rec = toDo_Services.findByUid(uidTakenFromHtmlTag).get(0); //toDo_Services.findByID_from_List(id);
+        // Retrieved current record/data
+        Todo retrieve_current_rec = toDo_Services.findByUid(uid_TakenFromURL).get(0); //toDo_Services.findByID_from_List(id);
 
         // To inject our pre-fill the data from object to model to front_end
         // This model is dupming data into insert3_SprDataJPA
@@ -511,16 +511,15 @@ public class ToDo_Controller<T> {
 
     ///////////////////////////     UPDATE GET + POST     ///////////////////////////
     //This updated method will NOT create new UID upon modifying/updating existing record.
-    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "/update", method = {RequestMethod.PUT, RequestMethod.POST}) // PUT = modifying existing resource // POST = new resource creation
     public String post_UpdateByUID_page(ModelMap modelMap,
-                                        @RequestParam("u") int uidTakenFromHtmlTag, // ---> this is uid values, taken from mapping HTML user's input
-                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // this brings data from HTML VIEW FORM --->
+                                        @RequestParam("u") int uid_TakenFrom_HtmlForm_URL, // ---> this is unique uid value, taken from mapping HTML user's input
+                                        @ModelAttribute("todo_obj_spring_data_jpa2") @Valid Todo todo_obj_spring_data_jpa2,  // user inputed form's data this brings data from HTML VIEW FORM ---> into this method here
                                         BindingResult bindingResult,
-                                        Errors err
-    ) {
+                                        Errors err    ) {
 
         // this is fetching existing UID of the record, first we need UID
-        todo_obj_spring_data_jpa2.setUid(uidTakenFromHtmlTag);
+//        todo_obj_spring_data_jpa2.setUid(uid_TakenFrom_HtmlForm_URL); // this is to prevent user from changing any uid, if user enters diff uid, still it will not impact, because we are hardcoding before onw uid to after one.
 
         if (err.hasErrors() || bindingResult.hasErrors()) {
 //            int x = bindingResult.getErrorCount();
@@ -534,8 +533,13 @@ public class ToDo_Controller<T> {
         // this "todo_obj_spring_data_jpa2" data is coming from FRONT-END and we simply pass it to save.
         toDo_Services.updateByUid(todo_obj_spring_data_jpa2);   // this has existing UID inside.
 
-        //return "redirect:/api/todo/list";  // --->this return logged in User's specific todos
-        return "redirect:/api/todo/listall";
+        // FETCH all from SQL
+        List<Todo> all_current = toDo_Services.findbyALL();
+        // Map above list to display on frontend UI
+        modelMap.addAttribute("listMapVar", all_current);
+        modelMap.addAttribute("message", " ✅ Todo Updated successfully for uid -> " + uid_TakenFrom_HtmlForm_URL + " ✅ "+todo_obj_spring_data_jpa2);
+
+        return  "index";
     }
 
 
