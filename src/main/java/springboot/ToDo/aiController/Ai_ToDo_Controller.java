@@ -55,7 +55,7 @@ public class Ai_ToDo_Controller {
             // Routing correct action
             String ai_response_received_in_JSON;
             // for ---> ACTION
-            if (userInput_STRING.toLowerCase().matches(".*(give|show|list|find|delete|search|update).*")){
+            if (userInput_STRING.toLowerCase().matches(".*(get|give|show|list|find|delete|search|update).*")){
                 ai_response_received_in_JSON = construct_STRING_prompt_for_OTHERS(userInput_STRING);
             }
             // for ---> NON-ACTION
@@ -71,7 +71,7 @@ public class Ai_ToDo_Controller {
             // The Jackson library in Java help us to parse JSON data into a tree-like structure
             //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
             com.fasterxml.jackson.databind.
-                    JsonNode jackson_obj_ROOT = jackson_obj_MAPPER.readTree(ai_response_received_in_JSON);
+                    JsonNode    jackson_obj_ROOT = jackson_obj_MAPPER.readTree(ai_response_received_in_JSON);
                     //---> Parses the raw JSON string (ai_response_received_in_JSON) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
                             //            System.out.println("---------------->           " + ai_response_received_in_JSON);
@@ -86,11 +86,11 @@ public class Ai_ToDo_Controller {
                     "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
             );
 
-            if // Action items?
+            if // Action items:
                 (jackson_obj_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
-
                 return routing_ai_JSON_decision_to_correct_endpoint(jackson_obj_ROOT, modelMap);
-            } else if // "create" ??
+
+            } else if // "create" ...
                     (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
 
                 //AI processed TODO is ready here..
