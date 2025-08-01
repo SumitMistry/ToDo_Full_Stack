@@ -63,8 +63,7 @@ public class Ai_ToDo_Controller {
                 ai_response_received_in_JSON = construct_STRING_prompt_for_CREATE(userInput_STRING);
             }
 
-            //import com.fasterxml.jackson.databind.JsonNode;
-            //import com.fasterxml.jackson.databind.ObjectMapper;
+
             // This Jackson library (-->ObjectMapper) in Java help us performing serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
             com.fasterxml.jackson.databind.
                     ObjectMapper jackson_obj_MAPPER = objectMapper();
@@ -78,7 +77,6 @@ public class Ai_ToDo_Controller {
                             //            System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
                             //            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 
-                            //            Thread.sleep(30000);
             modelMap.addAttribute("message", " ⏳ Data is being processed by AI...  " +
                     "\n   ↪ User Input = " + userInput_STRING +
                     "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
