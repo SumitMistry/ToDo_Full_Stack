@@ -46,21 +46,21 @@ public class Ai_ToDo_Controller {
     }
 
     @RequestMapping(value = "/ai", method = RequestMethod.POST)
-    public String user_textInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput_STRING,
-                                  ModelMap modelMap,
-                                  // @ModelAttribute("totally") int totally, // not good, if totally not parsed,or open once, then it is null and error..so not good one.
-                                  @ModelAttribute("uid_email") String userEmail) {
+    public String user_stringInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput_STRING,
+                                                      ModelMap modelMap,
+                                                      // @ModelAttribute("totally") int totally, // not good, if totally not parsed,or open once, then it is null and error..so not good one.
+                                                      @ModelAttribute("uid_email") String userEmail) {
         try {
 
             // Routing correct action
-            String ai_response_received_in_JSON;
+            String json_generated_by_AI;
             // for ---> ACTION
             if (userInput_STRING.toLowerCase().matches(".*(get|give|show|list|find|delete|search|update).*")){
-                ai_response_received_in_JSON = construct_STRING_prompt_for_OTHERS(userInput_STRING);
+                json_generated_by_AI = construct_STRING_prompt_for_OTHERS(userInput_STRING);
             }
             // for ---> NON-ACTION
             else {
-                ai_response_received_in_JSON = construct_STRING_prompt_for_CREATE(userInput_STRING);
+                json_generated_by_AI = construct_STRING_prompt_for_CREATE(userInput_STRING);
             }
 
 
@@ -70,10 +70,10 @@ public class Ai_ToDo_Controller {
             // The Jackson library in Java help us to parse JSON data into a tree-like structure
             //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
             com.fasterxml.jackson.databind.
-                    JsonNode    jackson_obj_ROOT = jackson_obj_MAPPER.readTree(ai_response_received_in_JSON);
-                    //---> Parses the raw JSON string (ai_response_received_in_JSON) into a JsonNode
+                    JsonNode    jackson_obj_ROOT = jackson_obj_MAPPER.readTree(json_generated_by_AI);
+                    //---> Parses the raw JSON string (json_generated_by_AI) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
-                            //            System.out.println("---------------->           " + ai_response_received_in_JSON);
+                            //            System.out.println("---------------->           " + json_generated_by_AI);
                             //            System.out.println("---------------->>>         " + jackson_obj_ROOT.toString());
                             //            System.out.println("---------------->>>>        " + jackson_obj_ROOT);
 
@@ -81,7 +81,7 @@ public class Ai_ToDo_Controller {
                     "\n   ↪ User Input = " + userInput_STRING +
                     "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
                     "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
-                    "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+                    "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
             );
 
             if // Action items:
@@ -89,9 +89,9 @@ public class Ai_ToDo_Controller {
                 return routing_ai_JSON_decision_to_correct_endpoint(jackson_obj_ROOT, modelMap);
 
             } else if // "create" ...
-                    (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
+                (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
 
-                //AI processed TODO is ready here..
+                //AI processed json TODO is ready here..
                     Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
 
 
@@ -113,7 +113,7 @@ public class Ai_ToDo_Controller {
                                         "\n   ↪ todo_after_saved = " + todo_after_saved.toString() +
                                         "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
                                         "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
-                                        "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+                                        "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
                 );
 
             } else {
@@ -122,7 +122,7 @@ public class Ai_ToDo_Controller {
                         "\n   ↪ User Input = " + userInput_STRING +
                         "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
                         "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
-                        "\n   ↪ ai_response_received_in_JSON = " + ai_response_received_in_JSON
+                        "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
                 );
             }
 
