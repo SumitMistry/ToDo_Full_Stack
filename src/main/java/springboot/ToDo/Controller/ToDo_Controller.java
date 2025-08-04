@@ -408,7 +408,7 @@ public class ToDo_Controller<T> {
 
 
     ///////////////////////////     DELETE BY ID    ///////////////////////////
-    @RequestMapping(value = "/delByID", method = RequestMethod.GET)
+    @RequestMapping(value = "/delByID", method = {RequestMethod.GET, RequestMethod.POST})
     @Operation(summary = "DELETE Todo by ID - JSP" , description = "DELETE by Id. User passes ID.. that want to delete." )
     public String deleteById(@RequestParam(value = "u") int id, ModelMap modelMap) {
 
