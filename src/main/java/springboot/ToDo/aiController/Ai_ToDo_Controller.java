@@ -51,11 +51,71 @@ public class Ai_ToDo_Controller {
             String json_generated_by_AI;
             // for ---> ACTION
             if (userInput_STRING.toLowerCase().matches(".*(get|give|show|list|find|delete|search|update).*")){
-                json_generated_by_AI = construct_STRING_prompt_for_OTHERS(userInput_STRING);
+                String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
+                String prompt_other =
+                        "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
+                                "Supported actions with hints:\n" +
+                                "- listAll → list, show, display, all, give\n" +
+                                "- jsonCentral  → json, central\n" +
+                                "- findByUser (username) → user, username\n" +
+                                "- findById (id) → find, fetch, get, id\n" +
+                                "- findByUID (uid) → fetch, find, get, uid\n" +
+                                "- deleteByUID (uid) → delete, remove, uid\n" +
+                                "- deleteById (id) → delete, remove, id\n" +
+                                "- updateByUID (uid) → update, change, edit, uid\n" +
+                                "- checkExistByUID (uid) → exists, check, uid\n" +
+                                "- search (keyword) → search, keyword, match\n" +
+                                "- multipleIds (ids) → many, multiple, ids\n" +
+                                "- dateRange (from, to) → date, between, range, from, to\n\n" +
+                                "Examples:\n" +
+                                "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                                "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                                "Input: delete todo with uid 5\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": 5 } }\n" +
+                                "Input: search todos with keyword homework\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"homework\" } }\n\n" +
+                                "Try to infer the best matching action from user input.\n" +
+                                "Consider today's date (YYYY-MM-DD) = " + today + "\n" +
+                                "Respond ONLY with valid JSON like this:\n" +
+                                "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
+                                "Input: " + userInput_STRING;
+
+
+                Map<String, Object> textPart = Map.of("text", prompt_other);
+                Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+                Map<String, Object> body = Map.of("contents", List.of(contentItem));
+
+                json_generated_by_AI = callGeminiAPI(body);
             }
             // for ---> NON-ACTION
             else {
-                json_generated_by_AI = construct_STRING_prompt_for_CREATE(userInput_STRING);
+                String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
+                String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
+                        "Based on the input, return a valid JSON object with the following fields:\n" +
+                        "- id: Single Integer number required. Either entered by user, if not entered then between random integer between 1 to 999\n" +
+                        "- username: \"dummy@example.com\"\n" +
+                        "- description: string (required)\n" +
+                        "- creationDate: \"" + today + "\" (strictly count this as today's date)\n" +
+                        "- targetDate: YYYY-MM-DD (MUST be in this exact format and use relative reference of 'creationDate')\n" +
+                        "- done: true or false\n\n" +
+                    //                "DO NOT include 'id'.\n" +
+                        "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
+                        "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
+                        "Examples:\n" +
+                        "Input: create a todo to buy groceries due next friday\n" +
+                        "Output: {\n" +
+                        "  \"id\": \"55\",\n" +
+                        "  \"username\": \"dummy@example.com\",\n" +
+                        "  \"description\": \"buy groceries\",\n" +
+                        "  \"creationDate\": \"" + today + "\",\n" +
+                        "  \"targetDate\": \"2025-04-22\",\n" +
+                        "  \"done\": false\n" +
+                        "}\n\n" +
+                        "Input: " + userInput_STRING;
+
+                Map<String, Object> textPart = Map.of("text", prompt_create);
+                Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+                Map<String, Object> body = Map.of("contents", List.of(contentItem));
+
+                json_generated_by_AI =  callGeminiAPI(body);
             }
 
 
@@ -180,81 +240,6 @@ public class Ai_ToDo_Controller {
         modelMap.addAttribute("listMapVar", todoList);
 
         return "index";
-    }
-
-
-    private String construct_STRING_prompt_for_OTHERS(String input) throws Exception {
-        String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-
-        String prompt_other = "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
-                        "Supported actions with hints:\n" +
-                        "- listAll → list, show, display, all, give\n" +
-                        "- jsonCentral  → json, central\n" +
-                        "- findByUser (username) → user, username\n" +
-                        "- findById (id) → find, fetch, get, id\n" +
-                        "- findByUID (uid) → fetch, find, get, uid\n" +
-                        "- deleteByUID (uid) → delete, remove, uid\n" +
-                        "- deleteById (id) → delete, remove, id\n" +
-                        "- updateByUID (uid) → update, change, edit, uid\n" + // not applicable for our design, UID cahnge not allowed
-                        "- checkExistByUID (uid) → exists, check, uid\n" +
-                        "- search (keyword) → search, keyword, match\n" +
-                        "- multipleIds (ids) → many, multiple, ids\n" +
-                        "- dateRange (from, to) → date, between, range, from, to\n\n" +
-                        "Examples:\n" +
-                        "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: show all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: all tasks \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: show my tasks\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                        "Input: delete or remove todo with uid <uid>\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": <uid> } }\n" +
-                        "Input: search or find or get todos for keyword <keyword>\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"<keyword>\" } }\n\n" +
-                        "Try to infer the best matching action from user input, even if phrased naturally or with synonyms.\n" +
-                        "Importantly Consider today's date(YYYY-MM-DD)= " + today + " and accordingly format 'from' and 'to' with strict format of YYYY-MM-DD per user's natural day language input.\n" +
-                        "- dateRange to: YYYY-MM-DD (MUST be in this exact format)\n" +
-                        "use today's date as reference and whenever user input natural language days(e.g. 'tomorrow', 'next Monday' convert date format to dd/MM/yyyy."+
-                        "Respond ONLY with valid JSON like this:\n" +
-                        "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
-                        "Input: " + input ;
-
-        Map<String, Object> textPart = Map.of("text", prompt_other);
-        Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
-        Map<String, Object> body = Map.of("contents", List.of(contentItem));
-
-        return callGeminiAPI(body);
-    }
-
-    private String construct_STRING_prompt_for_CREATE(String input) throws Exception {
-        String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-//        System.out.println( "\n\n\n\n\n ------------> " + today);
-        String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
-                "Based on the input, return a valid JSON object with the following fields:\n" +
-                "- id: Single Integer number required. Either entered by user, if not entered then between random integer between 1 to 999\n" +
-                "- username: \"dummy@example.com\"\n" +
-                "- description: string (required)\n" +
-                "- creationDate: \"" + today + "\" (strictly count this as today's date)\n" +
-                "- targetDate: YYYY-MM-DD (MUST be in this exact format and use relative reference of 'creationDate')\n" +
-                "- done: true or false\n\n" +
-//                "DO NOT include 'id'.\n" +
-                "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
-                "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
-                "Examples:\n" +
-                "Input: create a todo to buy groceries due next friday\n" +
-                "Output: {\n" +
-                "  \"id\": \"55\",\n" +
-                "  \"username\": \"dummy@example.com\",\n" +
-                "  \"description\": \"buy groceries\",\n" +
-                "  \"creationDate\": \"" + today + "\",\n" +
-                "  \"targetDate\": \"2025-04-22\",\n" +
-                "  \"done\": false\n" +
-                "}\n\n" +
-                "Input: " + input;
-
-        Map<String, Object> textPart = Map.of("text", prompt_create);
-        Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
-        Map<String, Object> body = Map.of("contents", List.of(contentItem));
-
-
-        return callGeminiAPI(body);
     }
 
 
