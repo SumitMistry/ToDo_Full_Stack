@@ -40,10 +40,6 @@ public class Ai_ToDo_Controller {
     @Autowired
     private Repo_DAO_SpringData_todo_JPA todoRepo;
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper().findAndRegisterModules();
-    }
 
     @RequestMapping(value = "/ai", method = RequestMethod.POST)
     public String user_stringInput_for_ai_submission(@RequestParam("user_textInput_for_ai_submission") String userInput_STRING,
@@ -65,23 +61,24 @@ public class Ai_ToDo_Controller {
 
 
             // This Jackson library (-->ObjectMapper) in Java help us performing serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
-            //            com.fasterxml.jackson.databind.
-            //                    ObjectMapper jackson_obj_MAPPER = objectMapper();
+            com.fasterxml.jackson.databind.
+                    ObjectMapper    jackson_obj_MAPPER  = new com.fasterxml.jackson.databind
+                                                                                    .ObjectMapper()
+                                                                                    .findAndRegisterModules();
             // The Jackson library in Java help us to parse JSON data into a tree-like structure
             //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
             com.fasterxml.jackson.databind.
-                    JsonNode    jackson_obj_with_tree_ROOT = new com.fasterxml.jackson.databind.
-                                                                                    ObjectMapper().readTree(json_generated_by_AI);
+                    JsonNode        jackson_obj_ROOT    = jackson_obj_MAPPER.readTree(json_generated_by_AI);
                     //---> Parses the raw JSON string (json_generated_by_AI) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
                                         System.out.println("--------------1-->           " + json_generated_by_AI);
-                                        System.out.println("--------------2-->>>         " + jackson_obj_with_tree_ROOT.toString());
-                                        System.out.println("--------------3-->>>>        " + jackson_obj_with_tree_ROOT);
+                                        System.out.println("--------------2-->>>         " + jackson_obj_ROOT.toString());
+                                        System.out.println("--------------3-->>>>        " + jackson_obj_ROOT);
 
             modelMap.addAttribute("message", " ⏳ Data is being processed by AI...  " +
                     "\n   ↪ User Input = " + userInput_STRING +
                     "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                    "\n   ↪ jackson_obj_ROOT = " + jackson_obj_with_tree_ROOT  +
+                    "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
                     "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
             );
 
