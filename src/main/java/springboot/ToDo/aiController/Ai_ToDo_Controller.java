@@ -1,9 +1,7 @@
 package springboot.ToDo.aiController;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,6 +46,7 @@ public class Ai_ToDo_Controller {
                                                       @ModelAttribute("uid_email") String userEmail) {
         try {
 
+/// User passed STRING
             // Routing correct action
             String json_generated_by_AI;
             // for ---> ACTION
@@ -60,7 +59,8 @@ public class Ai_ToDo_Controller {
             }
 
 
-            // This Jackson library (-->ObjectMapper) in Java help us performing serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
+/// String --> JSON Node
+            // This Jackson library (-->ObjectMapper) in Java help us perform serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
             com.fasterxml.jackson.databind.
                     ObjectMapper    jackson_obj_MAPPER  = new com.fasterxml.jackson.databind
                                                                                     .ObjectMapper()
@@ -68,29 +68,30 @@ public class Ai_ToDo_Controller {
             // The Jackson library in Java help us to parse JSON data into a tree-like structure
             //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
             com.fasterxml.jackson.databind.
-                    JsonNode        jackson_obj_ROOT    = jackson_obj_MAPPER.readTree(json_generated_by_AI);
+                    JsonNode        jackson_obj_JsonNode_ROOT    = jackson_obj_MAPPER.readTree(json_generated_by_AI);
                     //---> Parses the raw JSON string (json_generated_by_AI) into a JsonNode
                     //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
                                         System.out.println("--------------1-->           " + json_generated_by_AI);
-                                        System.out.println("--------------2-->>>         " + jackson_obj_ROOT.toString());
-                                        System.out.println("--------------3-->>>>        " + jackson_obj_ROOT);
+                                        System.out.println("--------------2-->>>         " + jackson_obj_JsonNode_ROOT.toString());
+                                        System.out.println("--------------3-->>>>        " + jackson_obj_JsonNode_ROOT);
 
             modelMap.addAttribute("message", " ⏳ Data is being processed by AI...  " +
                     "\n   ↪ User Input = " + userInput_STRING +
                     "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                    "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                    "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
                     "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
             );
 
-            if // Action items:
-                (jackson_obj_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
-                return routing_ai_JSON_decision_to_correct_endpoint(jackson_obj_ROOT, modelMap);
 
+//// Identify Json & Route-API   --->     1) CREATE      2) UPDATE DELETE SHOW LIST SEARCH UPDATE
+            if // Action items:
+                (jackson_obj_JsonNode_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
+                return routing_ai_JSON_to_correct_endpoint(jackson_obj_JsonNode_ROOT, modelMap);
             } else if // "create" ...
-                (jackson_obj_ROOT.has("description") && jackson_obj_ROOT.has("creationDate") && jackson_obj_ROOT.has("targetDate")) {
+                (jackson_obj_JsonNode_ROOT.has("description") && jackson_obj_JsonNode_ROOT.has("creationDate") && jackson_obj_JsonNode_ROOT.has("targetDate")) {
 
                 //AI processed json TODO is ready here..
-                    Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_ROOT, Todo.class);
+                    Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_JsonNode_ROOT, Todo.class);
 
 
                 //System.out.println("\n\n\n -------------------->     " + todo.getId());
@@ -110,16 +111,16 @@ public class Ai_ToDo_Controller {
                                         "\n   ↪ User Input = " + userInput_STRING +
                                         "\n   ↪ todo_after_saved = " + todo_after_saved.toString() +
                                         "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                                        "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                                        "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
                                         "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
                 );
 
             } else {
                 modelMap.put("error", "❌ Unrecognized AI response ((FORMAT)) <-------" +
-                        "\n   Error related to ---> if condition in (jackson_obj_ROOT.has(action/description/creationDate/targetDate))" +
+                        "\n   Error related to ---> if condition in (jackson_obj_JsonNode_ROOT.has(action/description/creationDate/targetDate))" +
                         "\n   ↪ User Input = " + userInput_STRING +
                         "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                        "\n   ↪ jackson_obj_ROOT = " + jackson_obj_ROOT  +
+                        "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
                         "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
                 );
             }
@@ -258,7 +259,7 @@ public class Ai_ToDo_Controller {
     }
 
 
-    private String routing_ai_JSON_decision_to_correct_endpoint(JsonNode root, ModelMap modelMap) {
+    private String routing_ai_JSON_to_correct_endpoint(JsonNode root, ModelMap modelMap) {
         String action = root.path("action").asText();
         JsonNode params = root.path("params");
 
