@@ -46,7 +46,7 @@ public class Ai_ToDo_Controller {
                                                       @ModelAttribute("uid_email") String userEmail) {
         try {
 
-/// User passed STRING
+/// User passed STRING  ---> Json (AI)
             // Routing correct action
             String json_generated_by_AI;
             // for ---> ACTION
@@ -59,7 +59,7 @@ public class Ai_ToDo_Controller {
             }
 
 
-/// String --> JSON Node
+/// Mapping: String --> JSON Node
             // This Jackson library (-->ObjectMapper) in Java help us perform serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
             com.fasterxml.jackson.databind.
                     ObjectMapper    jackson_obj_MAPPER  = new com.fasterxml.jackson.databind
@@ -83,10 +83,50 @@ public class Ai_ToDo_Controller {
             );
 
 
-//// Identify Json & Route-API   --->     1) CREATE      2) UPDATE DELETE SHOW LIST SEARCH UPDATE
+//// Identify Json.has( action / non-action ) & Route-API   --->     1) CREATE      2) UPDATE DELETE SHOW LIST SEARCH UPDATE
             if // Action items:
                 (jackson_obj_JsonNode_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
-                return routing_ai_JSON_to_correct_endpoint(jackson_obj_JsonNode_ROOT, modelMap);
+
+                String action = jackson_obj_JsonNode_ROOT.path("action").asText();
+                JsonNode params = jackson_obj_JsonNode_ROOT.path("params");
+
+
+                switch (action) {
+
+                    case "listAll":
+                        return "forward:/api/todo/listall";
+                    case "jsonCentral":
+                        return "forward:/api/todo/jsoncentral";
+                    case "findByUser":
+                        return "forward:/api/todo/findByUser?user=" + params.path("username").asText();
+                    case "findById":
+                        return "forward:/api/todo/findById?u=" + params.path("id").asInt();
+                    case "findByUID":
+                        return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
+                    case "deleteByUID":
+                        return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
+                    case "deleteById":
+                        return "forward:/api/todo/delByID?u=" + params.path("id").asInt();
+                    case "updateByUID":
+                        return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
+//            case "checkExistByUID":
+//                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
+                    case "search":
+                        return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
+                    case "multipleIds":
+                        return "forward:/api/todo/id/" + params.path("ids").asText();
+                    case "dateRange":
+                        return "forward:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
+                                + "&toDate=" + params.path("to").asText();
+                    default:
+                        modelMap.put("error", "❌ Unknown action: " + action);
+
+                        List<Todo> todoList1 = toDoServices.findbyALL();
+                        modelMap.addAttribute("listMapVar", todoList1);
+
+                        return "index";
+                }
+
             } else if // "create" ...
                 (jackson_obj_JsonNode_ROOT.has("description") && jackson_obj_JsonNode_ROOT.has("creationDate") && jackson_obj_JsonNode_ROOT.has("targetDate")) {
 
@@ -115,7 +155,8 @@ public class Ai_ToDo_Controller {
                                         "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
                 );
 
-            } else {
+            }
+            else { // contains no action item, no create, so error
                 modelMap.put("error", "❌ Unrecognized AI response ((FORMAT)) <-------" +
                         "\n   Error related to ---> if condition in (jackson_obj_JsonNode_ROOT.has(action/description/creationDate/targetDate))" +
                         "\n   ↪ User Input = " + userInput_STRING +
@@ -259,55 +300,5 @@ public class Ai_ToDo_Controller {
     }
 
 
-    private String routing_ai_JSON_to_correct_endpoint(JsonNode root, ModelMap modelMap) {
-        String action = root.path("action").asText();
-        JsonNode params = root.path("params");
 
-
-        switch (action) {
-
-            case "listAll":
-                return "forward:/api/todo/listall";
-            case "jsonCentral":
-                return "forward:/api/todo/jsoncentral";
-            case "findByUser":
-                return "forward:/api/todo/findByUser?user=" + params.path("username").asText();
-            case "findById":
-                return "forward:/api/todo/findById?u=" + params.path("id").asInt();
-            case "findByUID":
-                return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
-            case "deleteByUID":
-                return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
-            case "deleteById":
-                return "forward:/api/todo/delByID?u=" + params.path("id").asInt();
-            case "updateByUID":
-                return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
-//            case "checkExistByUID":
-//                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
-            case "search":
-                return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
-            case "multipleIds":
-                return "forward:/api/todo/id/" + params.path("ids").asText();
-            case "dateRange":
-                return "forward:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
-                        + "&toDate=" + params.path("to").asText();
-            default:
-                modelMap.put("error", "❌ Unknown action: " + action);
-
-                List<Todo> todoList1 = toDoServices.findbyALL();
-                modelMap.addAttribute("listMapVar", todoList1);
-
-                return "index";
-        }
-    }
 }
-
-
-/*
-            -list multiple todo ids 680,681
-            -
-            -
-            -
-
-
- */
