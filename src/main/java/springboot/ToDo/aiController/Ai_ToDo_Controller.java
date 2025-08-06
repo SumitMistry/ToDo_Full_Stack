@@ -46,185 +46,185 @@ public class Ai_ToDo_Controller {
                                                       @ModelAttribute("uid_email") String userEmail) {
         try {
 
-/// User passed STRING  ---> Json (AI)
-            // Routing correct action
-            String json_generated_by_AI;
-            // for ---> ACTION
-            if (userInput_STRING.toLowerCase().matches(".*(get|give|show|list|find|delete|search|update).*")){
-                String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-                String prompt_other =
-                        "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
-                                "Supported actions with hints:\n" +
-                                "- listAll → list, show, display, all, give\n" +
-                                "- jsonCentral  → json, central\n" +
-                                "- findByUser (username) → user, username\n" +
-                                "- findById (id) → find, fetch, get, id\n" +
-                                "- findByUID (uid) → fetch, find, get, uid\n" +
-                                "- deleteByUID (uid) → delete, remove, uid\n" +
-                                "- deleteById (id) → delete, remove, id\n" +
-                                "- updateByUID (uid) → update, change, edit, uid\n" +
-                                "- checkExistByUID (uid) → exists, check, uid\n" +
-                                "- search (keyword) → search, keyword, match\n" +
-                                "- multipleIds (ids) → many, multiple, ids\n" +
-                                "- dateRange (from, to) → date, between, range, from, to\n\n" +
-                                "Examples:\n" +
-                                "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
-                                "Input: delete todo with uid 5\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": 5 } }\n" +
-                                "Input: search todos with keyword homework\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"homework\" } }\n\n" +
-                                "Try to infer the best matching action from user input.\n" +
-                                "Consider today's date (YYYY-MM-DD) = " + today + "\n" +
-                                "Respond ONLY with valid JSON like this:\n" +
-                                "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
-                                "Input: " + userInput_STRING;
+            /// User passed STRING  ---> Json (AI)
+                        // Routing correct action
+                        String json_generated_by_AI;
+                        // for ---> ACTION
+                        if (userInput_STRING.toLowerCase().matches(".*(get|give|show|list|find|delete|search|update).*")){
+                            String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
+                            String prompt_other =
+                                    "You are a smart API router for a TODO app. Return JSON with the correct action and its parameters.\n\n" +
+                                            "Supported actions with hints:\n" +
+                                            "- listAll → list, show, display, all, give\n" +
+                                            "- jsonCentral  → json, central\n" +
+                                            "- findByUser (username) → user, username\n" +
+                                            "- findById (id) → find, fetch, get, id\n" +
+                                            "- findByUID (uid) → fetch, find, get, uid\n" +
+                                            "- deleteByUID (uid) → delete, remove, uid\n" +
+                                            "- deleteById (id) → delete, remove, id\n" +
+                                            "- updateByUID (uid) → update, change, edit, uid\n" +
+                                            "- checkExistByUID (uid) → exists, check, uid\n" +
+                                            "- search (keyword) → search, keyword, match\n" +
+                                            "- multipleIds (ids) → many, multiple, ids\n" +
+                                            "- dateRange (from, to) → date, between, range, from, to\n\n" +
+                                            "Examples:\n" +
+                                            "Input: list all todos\nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                                            "Input: give all \nOutput: { \"action\": \"listAll\", \"params\": {} }\n" +
+                                            "Input: delete todo with uid 5\nOutput: { \"action\": \"deleteByUID\", \"params\": { \"uid\": 5 } }\n" +
+                                            "Input: search todos with keyword homework\nOutput: { \"action\": \"search\", \"params\": { \"keyword\": \"homework\" } }\n\n" +
+                                            "Try to infer the best matching action from user input.\n" +
+                                            "Consider today's date (YYYY-MM-DD) = " + today + "\n" +
+                                            "Respond ONLY with valid JSON like this:\n" +
+                                            "{ \"action\": \"action_name\", \"params\": { ... } }\n\n" +
+                                            "Input: " + userInput_STRING;
 
 
-                Map<String, Object> textPart = Map.of("text", prompt_other);
-                Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
-                Map<String, Object> body = Map.of("contents", List.of(contentItem));
+                            Map<String, Object> textPart = Map.of("text", prompt_other);
+                            Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+                            Map<String, Object> body = Map.of("contents", List.of(contentItem));
 
-                json_generated_by_AI = callGeminiAPI(body);
-            }
-            // for ---> NON-ACTION
-            else {
-                String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
-                String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
-                        "Based on the input, return a valid JSON object with the following fields:\n" +
-                        "- id: Single Integer number required. Either entered by user, if not entered then between random integer between 1 to 999\n" +
-                        "- username: \"dummy@example.com\"\n" +
-                        "- description: string (required)\n" +
-                        "- creationDate: \"" + today + "\" (strictly count this as today's date)\n" +
-                        "- targetDate: YYYY-MM-DD (MUST be in this exact format and use relative reference of 'creationDate')\n" +
-                        "- done: true or false\n\n" +
-                    //                "DO NOT include 'id'.\n" +
-                        "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
-                        "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
-                        "Examples:\n" +
-                        "Input: create a todo to buy groceries due next friday\n" +
-                        "Output: {\n" +
-                        "  \"id\": \"55\",\n" +
-                        "  \"username\": \"dummy@example.com\",\n" +
-                        "  \"description\": \"buy groceries\",\n" +
-                        "  \"creationDate\": \"" + today + "\",\n" +
-                        "  \"targetDate\": \"2025-04-22\",\n" +
-                        "  \"done\": false\n" +
-                        "}\n\n" +
-                        "Input: " + userInput_STRING;
+                            json_generated_by_AI = callGeminiAPI(body);
+                        }
+                        // for ---> NON-ACTION
+                        else {
+                            String today = LocalDate.now().toString(); // Ensures today's date is in YYYY-MM-DD
+                            String prompt_create = "You are a smart JSON generator for creating a TODO item.\n" +
+                                    "Based on the input, return a valid JSON object with the following fields:\n" +
+                                    "- id: Single Integer number required. Either entered by user, if not entered then between random integer between 1 to 999\n" +
+                                    "- username: \"dummy@example.com\"\n" +
+                                    "- description: string (required)\n" +
+                                    "- creationDate: \"" + today + "\" (strictly count this as today's date)\n" +
+                                    "- targetDate: YYYY-MM-DD (MUST be in this exact format and use relative reference of 'creationDate')\n" +
+                                    "- done: true or false\n\n" +
+                                //                "DO NOT include 'id'.\n" +
+                                    "If the input contains relative dates (e.g., 'tomorrow', 'next Monday'), convert them to YYYY-MM-DD format.\n" +
+                                    "Return ONLY the raw JSON. No explanation or extra text.\n\n" +
+                                    "Examples:\n" +
+                                    "Input: create a todo to buy groceries due next friday\n" +
+                                    "Output: {\n" +
+                                    "  \"id\": \"55\",\n" +
+                                    "  \"username\": \"dummy@example.com\",\n" +
+                                    "  \"description\": \"buy groceries\",\n" +
+                                    "  \"creationDate\": \"" + today + "\",\n" +
+                                    "  \"targetDate\": \"2025-04-22\",\n" +
+                                    "  \"done\": false\n" +
+                                    "}\n\n" +
+                                    "Input: " + userInput_STRING;
 
-                Map<String, Object> textPart = Map.of("text", prompt_create);
-                Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
-                Map<String, Object> body = Map.of("contents", List.of(contentItem));
+                            Map<String, Object> textPart = Map.of("text", prompt_create);
+                            Map<String, Object> contentItem = Map.of("parts", List.of(textPart));
+                            Map<String, Object> body = Map.of("contents", List.of(contentItem));
 
-                json_generated_by_AI =  callGeminiAPI(body);
-            }
-
-
-/// Mapping: String --> JSON Node
-            // This Jackson library (-->ObjectMapper) in Java help us perform serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
-            com.fasterxml.jackson.databind.
-                    ObjectMapper    jackson_obj_MAPPER  = new com.fasterxml.jackson.databind
-                                                                                    .ObjectMapper()
-                                                                                    .findAndRegisterModules();
-            // The Jackson library in Java help us to parse JSON data into a tree-like structure
-            //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
-            com.fasterxml.jackson.databind.
-                    JsonNode        jackson_obj_JsonNode_ROOT    = jackson_obj_MAPPER.readTree(json_generated_by_AI);
-                    //---> Parses the raw JSON string (json_generated_by_AI) into a JsonNode
-                    //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
-                                        System.out.println("--------------1-->           " + json_generated_by_AI);
-                                        System.out.println("--------------2-->>>         " + jackson_obj_JsonNode_ROOT.toString());
-                                        System.out.println("--------------3-->>>>        " + jackson_obj_JsonNode_ROOT);
-
-            modelMap.addAttribute("message", " ⏳ Data is being processed by AI...  " +
-                    "\n   ↪ User Input = " + userInput_STRING +
-                    "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                    "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
-                    "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
-            );
+                            json_generated_by_AI =  callGeminiAPI(body);
+                        }
 
 
-//// Identify Json.has( action / non-action ) & Route-API   --->     1) CREATE      2) UPDATE DELETE SHOW LIST SEARCH UPDATE
-            if // Action items:
-                (jackson_obj_JsonNode_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
+            /// Mapping: String --> JSON Node
+                        // This Jackson library (-->ObjectMapper) in Java help us perform serialization (Java objects to JSON) and deserialization (JSON to Java objects or JsonNode trees).
+                        com.fasterxml.jackson.databind.
+                                ObjectMapper    jackson_obj_MAPPER  = new com.fasterxml.jackson.databind
+                                                                                                .ObjectMapper()
+                                                                                                .findAndRegisterModules();
+                        // The Jackson library in Java help us to parse JSON data into a tree-like structure
+                        //package ----> com.fasterxml.jackson -----> this library in Java helps us to parse JSON data into a tree-like structure.
+                        com.fasterxml.jackson.databind.
+                                JsonNode        jackson_obj_JsonNode_ROOT    = jackson_obj_MAPPER.readTree(json_generated_by_AI);
+                                //---> Parses the raw JSON string (json_generated_by_AI) into a JsonNode
+                                //readTree() method parses the provided JSON source and returns the root node of the resulting JSON tree model as a JsonNode object
+                                                    System.out.println("--------------1-->           " + json_generated_by_AI);
+                                                    System.out.println("--------------2-->>>         " + jackson_obj_JsonNode_ROOT.toString());
+                                                    System.out.println("--------------3-->>>>        " + jackson_obj_JsonNode_ROOT);
 
-                String action = jackson_obj_JsonNode_ROOT.path("action").asText();
-                JsonNode params = jackson_obj_JsonNode_ROOT.path("params");
-
-
-                switch (action) {
-
-                    case "listAll":
-                        return "forward:/api/todo/listall";
-                    case "jsonCentral":
-                        return "forward:/api/todo/jsoncentral";
-                    case "findByUser":
-                        return "forward:/api/todo/findByUser?user=" + params.path("username").asText();
-                    case "findById":
-                        return "forward:/api/todo/findById?u=" + params.path("id").asInt();
-                    case "findByUID":
-                        return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
-                    case "deleteByUID":
-                        return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
-                    case "deleteById":
-                        return "forward:/api/todo/delByID?u=" + params.path("id").asInt();
-                    case "updateByUID":
-                        return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
-//            case "checkExistByUID":
-//                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
-                    case "search":
-                        return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
-                    case "multipleIds":
-                        return "forward:/api/todo/id/" + params.path("ids").asText();
-                    case "dateRange":
-                        return "forward:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
-                                + "&toDate=" + params.path("to").asText();
-                    default:
-                        modelMap.put("error", "❌ Unknown action: " + action);
-
-                        List<Todo> todoList1 = toDoServices.findbyALL();
-                        modelMap.addAttribute("listMapVar", todoList1);
-
-                        return "index";
-                }
-
-            } else if // "create" ...
-                (jackson_obj_JsonNode_ROOT.has("description") && jackson_obj_JsonNode_ROOT.has("creationDate") && jackson_obj_JsonNode_ROOT.has("targetDate")) {
-
-                //AI processed json TODO is ready here..
-                    Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_JsonNode_ROOT, Todo.class);
+                        modelMap.addAttribute("message", " ⏳ Data is being processed by AI...  " +
+                                "\n   ↪ User Input = " + userInput_STRING +
+                                "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                                "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
+                                "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
+                        );
 
 
-                //System.out.println("\n\n\n -------------------->     " + todo.getId());
-                //Thread.sleep(30000);
-                //Manual setting-hard coding of fields within ai processed TODO data
-                    if (todo.getId() == 0) {
-                        todo.setId(new Random().nextInt(1, 999) + 1);
-                    }
-                    todo.setUid(0); // I have to provide some number because ENTITY MODEL has <<UID>> annotation set to <<@NOTNULL>> and so even db will take care, user need to provide fake input like 0  here--> set MODEL as "NOTNULL"
-                    // todo.setAttach(null); // I can avoid this, as this is not mandatory field /null possible
-                    todo.setUsername(userEmail);
-                    todo.setCreationDate(java.time.LocalDate.now());
-                    // other fields are being taken from AI response
+            //// Identify Json.has( action / non-action ) & Route-API   --->     1) CREATE      2) UPDATE DELETE SHOW LIST SEARCH UPDATE
+                        if // Action items:
+                            (jackson_obj_JsonNode_ROOT.has("action")) { // action == delete (give|show|list|find|delete|search|update)
 
-                Todo todo_after_saved = todoRepo.save(todo);
-                modelMap.put("message", "✅ TODO created via AI (within - elseif branch)!  " +
-                                        "\n   ↪ User Input = " + userInput_STRING +
-                                        "\n   ↪ todo_after_saved = " + todo_after_saved.toString() +
-                                        "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                                        "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
-                                        "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
-                );
+                            String action = jackson_obj_JsonNode_ROOT.path("action").asText();
+                            JsonNode params = jackson_obj_JsonNode_ROOT.path("params");
 
-            }
-            else { // contains no action item, no create, so error
-                modelMap.put("error", "❌ Unrecognized AI response ((FORMAT)) <-------" +
-                        "\n   Error related to ---> if condition in (jackson_obj_JsonNode_ROOT.has(action/description/creationDate/targetDate))" +
-                        "\n   ↪ User Input = " + userInput_STRING +
-                        "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
-                        "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
-                        "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
-                );
-            }
+
+                            switch (action) {
+
+                                case "listAll":
+                                    return "forward:/api/todo/listall";
+                                case "jsonCentral":
+                                    return "forward:/api/todo/jsoncentral";
+                                case "findByUser":
+                                    return "forward:/api/todo/findByUser?user=" + params.path("username").asText();
+                                case "findById":
+                                    return "forward:/api/todo/findById?u=" + params.path("id").asInt();
+                                case "findByUID":
+                                    return "forward:/api/todo/findByUID?u=" + params.path("uid").asInt();
+                                case "deleteByUID":
+                                    return "forward:/api/todo/deleteByUID?u=" + params.path("uid").asInt();
+                                case "deleteById":
+                                    return "forward:/api/todo/delByID?u=" + params.path("id").asInt();
+                                case "updateByUID":
+                                    return "forward:/api/todo/uid/" + params.path("uid").asInt();  // GET NOT SUPPORTED, ignore this for now.... // this is POST
+                                //            case "checkExistByUID":
+                                //                return "forward:/api/todo/api/todo/existByUID?u=" + params.path("uid").asInt();
+                                case "search":
+                                    return "forward:/api/todo/searchAPI?searchKey=" + params.path("keyword").asText();
+                                case "multipleIds":
+                                    return "forward:/api/todo/id/" + params.path("ids").asText();
+                                case "dateRange":
+                                    return "forward:/api/todo/dateRangePicker?fromDate=" + params.path("from").asText()
+                                            + "&toDate=" + params.path("to").asText();
+                                default:
+                                    modelMap.put("error", "❌ Unknown action: " + action);
+
+                                    List<Todo> todoList1 = toDoServices.findbyALL();
+                                    modelMap.addAttribute("listMapVar", todoList1);
+
+                                    return "index";
+                            }
+
+                        } else if // "create" ...
+                            (jackson_obj_JsonNode_ROOT.has("description") && jackson_obj_JsonNode_ROOT.has("creationDate") && jackson_obj_JsonNode_ROOT.has("targetDate")) {
+
+                            //AI processed json TODO is ready here..
+                                Todo todo = jackson_obj_MAPPER.treeToValue(jackson_obj_JsonNode_ROOT, Todo.class);
+
+
+                            //System.out.println("\n\n\n -------------------->     " + todo.getId());
+                            //Thread.sleep(30000);
+                            //Manual setting-hard coding of fields within ai processed TODO data
+                                if (todo.getId() == 0) {
+                                    todo.setId(new Random().nextInt(1, 999) + 1);
+                                }
+                                todo.setUid(0); // I have to provide some number because ENTITY MODEL has <<UID>> annotation set to <<@NOTNULL>> and so even db will take care, user need to provide fake input like 0  here--> set MODEL as "NOTNULL"
+                                // todo.setAttach(null); // I can avoid this, as this is not mandatory field /null possible
+                                todo.setUsername(userEmail);
+                                todo.setCreationDate(java.time.LocalDate.now());
+                                // other fields are being taken from AI response
+
+                            Todo todo_after_saved = todoRepo.save(todo);
+                            modelMap.put("message", "✅ TODO created via AI (within - elseif branch)!  " +
+                                                    "\n   ↪ User Input = " + userInput_STRING +
+                                                    "\n   ↪ todo_after_saved = " + todo_after_saved.toString() +
+                                                    "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                                                    "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
+                                                    "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
+                            );
+
+                        }
+                        else { // contains no action item, no create, so error
+                            modelMap.put("error", "❌ Unrecognized AI response ((FORMAT)) <-------" +
+                                    "\n   Error related to ---> if condition in (jackson_obj_JsonNode_ROOT.has(action/description/creationDate/targetDate))" +
+                                    "\n   ↪ User Input = " + userInput_STRING +
+                                    "\n   ↪ jackson_obj_MAPPER = " + jackson_obj_MAPPER +
+                                    "\n   ↪ jackson_obj_JsonNode_ROOT = " + jackson_obj_JsonNode_ROOT  +
+                                    "\n   ↪ json_generated_by_AI = " + json_generated_by_AI
+                            );
+                        }
 
         } catch (Exception e) {
             logger.error("Error handling AI response", e);
